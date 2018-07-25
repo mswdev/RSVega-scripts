@@ -2,14 +2,22 @@ package sphiinx.script.test_task_script;
 
 import org.rspeer.script.ScriptCategory;
 import org.rspeer.script.ScriptMeta;
-import sphiinx.api.SphiinxScript;
+import sphiinx.api.SPXScript;
+import sphiinx.api.framework.mission.Mission;
+
+import java.util.Queue;
 
 @ScriptMeta(developer = "Sphiinx", category = ScriptCategory.MONEY_MAKING, name = "Test Task Script", desc = "Test Task Script")
-public class TestScript extends SphiinxScript {
+public class TestScript extends SPXScript {
+
+    @Override
+    public Queue<Mission> createMissionQueue() {
+        return null;
+    }
 
     @Override
     public void onStart() {
-        submit(new TestTask());
+        //submit(new TestTask());
         super.onStart();
     }
 }
