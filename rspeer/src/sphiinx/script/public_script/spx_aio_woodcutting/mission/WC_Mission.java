@@ -1,8 +1,8 @@
 package sphiinx.script.public_script.spx_aio_woodcutting.mission;
 
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.goal.GoalList;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.goal.impl.InfiniteGoal;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.mission.Mission;
+import sphiinx.script.public_script.spx_aio_woodcutting.api.framework.goal.GoalList;
+import sphiinx.script.public_script.spx_aio_woodcutting.api.framework.goal.impl.InfiniteGoal;
+import sphiinx.script.public_script.spx_aio_woodcutting.api.framework.mission.Mission;
 import sphiinx.script.public_script.spx_aio_woodcutting.mission.worker.WCWorkerManager;
 
 public class WC_Mission extends Mission {

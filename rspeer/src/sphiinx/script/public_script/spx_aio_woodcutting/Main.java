@@ -2,8 +2,8 @@ package sphiinx.script.public_script.spx_aio_woodcutting;
 
 import org.rspeer.script.ScriptCategory;
 import org.rspeer.script.ScriptMeta;
-import sphiinx.script.public_script.spx_tutorial_island.api.SPXScript;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.mission.Mission;
+import sphiinx.script.public_script.spx_aio_woodcutting.api.SPXScript;
+import sphiinx.script.public_script.spx_aio_woodcutting.api.framework.mission.Mission;
 
 import java.util.Queue;
 
