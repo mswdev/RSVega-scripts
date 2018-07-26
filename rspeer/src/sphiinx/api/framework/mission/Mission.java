@@ -33,6 +33,13 @@ public abstract class Mission {
     public abstract String getWorkerString();
 
     /**
+     * True if the current worker string should be printed.
+     *
+     * @return True if the current worker string should be printed; false otherwise.
+     */
+    public abstract boolean shouldPrintWorkerString();
+
+    /**
      * Determines whether the mission can end.
      *
      * @return True if the mission can end, false otherwise.
@@ -89,6 +96,7 @@ public abstract class Mission {
     //TODO ADD PAINT SUPPORT
     //TODO ADD PAINT SUPPORT
     //TODO ADD PAINT SUPPORT
+
     /**
      * Generates the mission-specific paint Strings for this mission This is combined with the VikingScript specific
      * paint Strings seamlessly into one paint

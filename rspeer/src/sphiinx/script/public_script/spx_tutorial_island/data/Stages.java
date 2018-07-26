@@ -33,8 +33,8 @@ public class Stages {
 
     public Stages(TI_Mission script) {
         STAGES = new TutorialStage[]{
-                ts(new CharacterDesign(script), 0), ts(new TurnOffAudio(script), -1), ts(new HideRoofs(script), -1),
-                ts(new TurnUpBrightness(script), -1), ts(new ZoomOut(script), -1), ts(new RSGuideDialogue(script), 0, 7),
+                ts(new CharacterDesign(script), 0), ts(new RSGuideDialogue(script), 0, 7), ts(new TurnOffAudio(script), -1),
+                ts(new HideRoofs(script), -1), ts(new TurnUpBrightness(script), -1), ts(new ZoomOut(script), -1),
                 ts(new OpenOptionTab(script), 3), ts(new ExitRSGuide(script), 10),
                 ts(new SurvivalExpertDialogue(script), 20, 70), ts(new OpenInventory(script), 30),
                 ts(new ChopTree(script), 40, 50), ts(new MakeFire(script), 50),

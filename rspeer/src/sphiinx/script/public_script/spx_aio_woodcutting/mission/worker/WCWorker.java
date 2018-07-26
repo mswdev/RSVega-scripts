@@ -1,11 +1,11 @@
 package sphiinx.script.public_script.spx_aio_woodcutting.mission.worker;
 
 import sphiinx.api.framework.worker.Worker;
-import sphiinx.script.public_script.spx_aio_woodcutting.mission.WCMission;
+import sphiinx.script.public_script.spx_aio_woodcutting.mission.WC_Mission;
 
-public class WCWorker extends Worker<WCMission> {
+public class WCWorker extends Worker<WC_Mission> {
 
-    public WCWorker(WCMission mission) {
+    public WCWorker(WC_Mission mission) {
         super(mission);
     }
 

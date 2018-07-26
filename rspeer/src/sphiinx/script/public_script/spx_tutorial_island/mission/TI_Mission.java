@@ -16,6 +16,7 @@ import sphiinx.api.framework.goal.GoalList;
 import sphiinx.api.framework.mission.Mission;
 import sphiinx.script.public_script.spx_tutorial_island.data.Stages;
 import sphiinx.script.public_script.spx_tutorial_island.data.TutorialStage;
+import sphiinx.script.public_script.spx_tutorial_island.data.Vars;
 
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -35,7 +36,7 @@ public class TI_Mission extends Mission {
         this.SPX_SCRIPT = spx_script;
         this.ACCOUNT_DETAILS = account_details;
         this.STAGES = new Stages(this);
-        this.ITERATOR  = ACCOUNT_DETAILS.entrySet().iterator();
+        this.ITERATOR = ACCOUNT_DETAILS.entrySet().iterator();
     }
 
 
@@ -52,6 +53,11 @@ public class TI_Mission extends Mission {
     @Override
     public String getWorkerString() {
         return null;
+    }
+
+    @Override
+    public boolean shouldPrintWorkerString() {
+        return false;
     }
 
     @Override
@@ -76,6 +82,7 @@ public class TI_Mission extends Mission {
             return 150;
 
         if (Interfaces.canContinue()) {
+            Game.getClient().fireScriptEvent(299, 1, 1); //TODO Remove once Interfaces.processContinue() is fixed.
             if (Interfaces.processContinue())
                 Time.sleepUntil(Interfaces::isDialogProcessing, 1500);
         } else {
@@ -83,7 +90,7 @@ public class TI_Mission extends Mission {
             if (STATE == null)
                 return 150;
 
-            //TEMP
+            //Todo Replace once I write a paint framework.
             System.out.println(STATE.toString());
             STATE.execute();
         }
@@ -93,9 +100,7 @@ public class TI_Mission extends Mission {
 
     @Override
     public void onMissionStart() {
-        final Map.Entry<String, String> ENTRY = ITERATOR.next();
-        Log.fine("[ACCOUNT LOADEDS]: [Username: " + ENTRY.getKey() + " | Password: " + ENTRY.getValue() + "]");
-        SPX_SCRIPT.setAccount(new GameAccount(ENTRY.getKey(), ENTRY.getValue()));
+        setNextAccount();
     }
 
     @Override
@@ -161,6 +166,16 @@ public class TI_Mission extends Mission {
         }
 
         return false;
+    }
+
+    /**
+     * Sets the next account to use.
+     */
+    public void setNextAccount() {
+        final Map.Entry<String, String> ENTRY = ITERATOR.next();
+        Log.fine("[ACCOUNT]: [Username: " + ENTRY.getKey() + " | Password: " + ENTRY.getValue() + "]");
+        Vars.get().TEMP.add(ENTRY.getKey() + ":" + ENTRY.getValue()); //TODO Remove this soon, only using it to show accs that completed tutorial island.
+        SPX_SCRIPT.setAccount(new GameAccount(ENTRY.getKey(), ENTRY.getValue()));
     }
 }
 

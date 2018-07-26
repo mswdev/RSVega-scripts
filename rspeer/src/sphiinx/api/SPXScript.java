@@ -21,6 +21,7 @@ public abstract class SPXScript extends Script {
     public void onStart() {
         Log.log(Level.WARNING, "Info", "Starting " + getMeta().name() + "!");
         createDirectoryFolders();
+        loadScriptArgs();
         mission_handler = new MissionHandler(createMissionQueue());
     }
 
@@ -35,7 +36,6 @@ public abstract class SPXScript extends Script {
     @Override
     public void onStop() {
         Log.log(Level.WARNING, "Info", "Thanks for using " + getMeta().name() + "!");
-        super.onStop();
     }
 
     /**
@@ -44,6 +44,17 @@ public abstract class SPXScript extends Script {
      * @return The queue of missions.
      */
     public abstract Queue<Mission> createMissionQueue();
+
+    public void loadScriptArgs() {
+        final String ARGS = getArgs();
+        if (ARGS == null) {
+            Log.fine("[ARGS]: No script arguments found; using default settings");
+            return;
+        }
+
+
+        Log.fine("[ARGS]: Loaded script arguments");
+    }
 
     /**
      * Creates the script directories if they do not exist.

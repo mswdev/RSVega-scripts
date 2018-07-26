@@ -49,10 +49,6 @@ public class CharacterDesign extends TI_Worker {
                     RIGHT_OPTION.interact(mission.DEFAULT_ACTION);
                 }
 
-                //TODO Do I actually need this?
-                /*if (option == DesignOption.GENDER)
-                    break;*/
-
                 Time.sleep(100, 600);
             }
         }
@@ -67,7 +63,7 @@ public class CharacterDesign extends TI_Worker {
 
     @Override
     public String toString() {
-        return "Creating character design";
+        return "[RS GUIDE]: Creating character design";
     }
 }
 

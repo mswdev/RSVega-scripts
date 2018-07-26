@@ -11,7 +11,7 @@ public class Logging {
      * @param message the message to log
      */
     public static void log(Object c, boolean debug, String message) {
-        final String DEBUG_MESSAGE = "[CLASS]: " + c.getClass().getSimpleName() + " - ";
+        final String DEBUG_MESSAGE = "[" + c.getClass().getSimpleName() + "]: ";
         if (debug) {
             System.out.println(DEBUG_MESSAGE + message);
         } else {

@@ -31,12 +31,13 @@ public class MissionHandler {
         }
 
         if (MISSION.canEnd()) {
-            Logging.log(this, true, MISSION.getMissionName() + " mission has ended.");
-            Logging.log(this, true, MISSION.getEndMessage());
+            Logging.log(this, true, MISSION.getMissionName() + " " + MISSION.getEndMessage());
             MISSION.onMissionEnd();
             missions.poll();
             return 150;
         } else {
+            if (MISSION.shouldPrintWorkerString())
+                Logging.log(this, false, "[" + MISSION.getWorkerName() + "]: " + MISSION.getWorkerString());
             return MISSION.execute();
         }
     }

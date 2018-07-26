@@ -2,7 +2,6 @@ package sphiinx.script.public_script.spx_tutorial_island.mission.impl.stages.min
 
 import org.rspeer.runetek.adapter.component.Item;
 import org.rspeer.runetek.adapter.scene.SceneObject;
-import org.rspeer.runetek.api.Game;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.scene.Players;
@@ -37,10 +36,7 @@ public class SmeltOre extends TI_Worker {
             return;
 
         if (Inventory.use(TIN_ORE, OBJECT) && Time.sleepUntil(() -> Players.getLocal().getAnimation() != -1 || OBJECT.distance() <= 1, 3500))
-            if (Time.sleepUntil(() -> Inventory.contains(BRONZE_BAR), 3500)) {
-                Game.getClient().fireScriptEvent(299, 1, 1);
-                //TODO Temporary workaround for this special processContinue interface.
-            }
+            Time.sleepUntil(() -> Inventory.contains(BRONZE_BAR), 3500);
     }
 
     @Override
