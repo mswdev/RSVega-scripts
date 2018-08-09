@@ -75,7 +75,7 @@ public abstract class AntibanScript extends Script implements Ending {
     /**
      * Adds all of the given events to the list of events.
      *
-     * @param events The tasks to be added to the task list.
+     * @param events The task to be added to the task list.
      */
     public void addEvents(PriorityEvent... events) {
         PRIORITY_EVENT_HANDLER.addEvent(events);

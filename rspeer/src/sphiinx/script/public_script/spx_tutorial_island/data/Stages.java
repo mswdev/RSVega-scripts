@@ -1,37 +1,37 @@
 package sphiinx.script.public_script.spx_tutorial_island.data;
 
-import sphiinx.script.public_script.spx_tutorial_island.mission.TI_Mission;
-import sphiinx.script.public_script.spx_tutorial_island.mission.impl.TutorialComplete;
-import sphiinx.script.public_script.spx_tutorial_island.mission.impl.at_end.*;
-import sphiinx.script.public_script.spx_tutorial_island.mission.impl.at_start.HideRoofs;
-import sphiinx.script.public_script.spx_tutorial_island.mission.impl.at_start.TurnOffAudio;
-import sphiinx.script.public_script.spx_tutorial_island.mission.impl.at_start.TurnUpBrightness;
-import sphiinx.script.public_script.spx_tutorial_island.mission.impl.at_start.ZoomOut;
-import sphiinx.script.public_script.spx_tutorial_island.mission.impl.stages.bank.ExitBankStage;
-import sphiinx.script.public_script.spx_tutorial_island.mission.impl.stages.bank.PollBooth;
-import sphiinx.script.public_script.spx_tutorial_island.mission.impl.stages.bank.ToOpenBank;
-import sphiinx.script.public_script.spx_tutorial_island.mission.impl.stages.brother_brace.*;
-import sphiinx.script.public_script.spx_tutorial_island.mission.impl.stages.combat_instructor.*;
-import sphiinx.script.public_script.spx_tutorial_island.mission.impl.stages.financial_advisor.ExitFinancialAdvisor;
-import sphiinx.script.public_script.spx_tutorial_island.mission.impl.stages.financial_advisor.FinancialAdvisorDialogue;
-import sphiinx.script.public_script.spx_tutorial_island.mission.impl.stages.magic_instructor.CastAirStrike;
-import sphiinx.script.public_script.spx_tutorial_island.mission.impl.stages.magic_instructor.MagicInstructorDialogue;
-import sphiinx.script.public_script.spx_tutorial_island.mission.impl.stages.magic_instructor.OpenMagicTab;
-import sphiinx.script.public_script.spx_tutorial_island.mission.impl.stages.master_chef.*;
-import sphiinx.script.public_script.spx_tutorial_island.mission.impl.stages.mining_instructor.*;
-import sphiinx.script.public_script.spx_tutorial_island.mission.impl.stages.quest_guide.*;
-import sphiinx.script.public_script.spx_tutorial_island.mission.impl.stages.rs_guide.CharacterDesign;
-import sphiinx.script.public_script.spx_tutorial_island.mission.impl.stages.rs_guide.ExitRSGuide;
-import sphiinx.script.public_script.spx_tutorial_island.mission.impl.stages.rs_guide.OpenOptionTab;
-import sphiinx.script.public_script.spx_tutorial_island.mission.impl.stages.rs_guide.RSGuideDialogue;
-import sphiinx.script.public_script.spx_tutorial_island.mission.impl.stages.survival_expert.*;
-import sphiinx.script.public_script.spx_tutorial_island.mission.worker.TI_Worker;
+import sphiinx.script.public_script.spx_tutorial_island.mission.TIMission;
+import sphiinx.script.public_script.spx_tutorial_island.mission.worker.TIWorker;
+import sphiinx.script.public_script.spx_tutorial_island.mission.worker.impl.TutorialComplete;
+import sphiinx.script.public_script.spx_tutorial_island.mission.worker.impl.at_end.*;
+import sphiinx.script.public_script.spx_tutorial_island.mission.worker.impl.at_start.HideRoofs;
+import sphiinx.script.public_script.spx_tutorial_island.mission.worker.impl.at_start.TurnOffAudio;
+import sphiinx.script.public_script.spx_tutorial_island.mission.worker.impl.at_start.TurnUpBrightness;
+import sphiinx.script.public_script.spx_tutorial_island.mission.worker.impl.at_start.ZoomOut;
+import sphiinx.script.public_script.spx_tutorial_island.mission.worker.impl.stages.bank.ExitBankStage;
+import sphiinx.script.public_script.spx_tutorial_island.mission.worker.impl.stages.bank.PollBooth;
+import sphiinx.script.public_script.spx_tutorial_island.mission.worker.impl.stages.bank.ToOpenBank;
+import sphiinx.script.public_script.spx_tutorial_island.mission.worker.impl.stages.brother_brace.*;
+import sphiinx.script.public_script.spx_tutorial_island.mission.worker.impl.stages.combat_instructor.*;
+import sphiinx.script.public_script.spx_tutorial_island.mission.worker.impl.stages.financial_advisor.ExitFinancialAdvisor;
+import sphiinx.script.public_script.spx_tutorial_island.mission.worker.impl.stages.financial_advisor.FinancialAdvisorDialogue;
+import sphiinx.script.public_script.spx_tutorial_island.mission.worker.impl.stages.magic_instructor.CastAirStrike;
+import sphiinx.script.public_script.spx_tutorial_island.mission.worker.impl.stages.magic_instructor.MagicInstructorDialogue;
+import sphiinx.script.public_script.spx_tutorial_island.mission.worker.impl.stages.magic_instructor.OpenMagicTab;
+import sphiinx.script.public_script.spx_tutorial_island.mission.worker.impl.stages.master_chef.*;
+import sphiinx.script.public_script.spx_tutorial_island.mission.worker.impl.stages.mining_instructor.*;
+import sphiinx.script.public_script.spx_tutorial_island.mission.worker.impl.stages.quest_guide.*;
+import sphiinx.script.public_script.spx_tutorial_island.mission.worker.impl.stages.rs_guide.CharacterDesign;
+import sphiinx.script.public_script.spx_tutorial_island.mission.worker.impl.stages.rs_guide.ExitRSGuide;
+import sphiinx.script.public_script.spx_tutorial_island.mission.worker.impl.stages.rs_guide.OpenOptionTab;
+import sphiinx.script.public_script.spx_tutorial_island.mission.worker.impl.stages.rs_guide.RSGuideDialogue;
+import sphiinx.script.public_script.spx_tutorial_island.mission.worker.impl.stages.survival_expert.*;
 
 public class Stages {
 
     public final TutorialStage[] STAGES;
 
-    public Stages(TI_Mission script) {
+    public Stages(TIMission script) {
         STAGES = new TutorialStage[]{
                 ts(new CharacterDesign(script), 0), ts(new RSGuideDialogue(script), 0, 7), ts(new TurnOffAudio(script), -1),
                 ts(new HideRoofs(script), -1), ts(new TurnUpBrightness(script), -1), ts(new ZoomOut(script), -1),
@@ -76,7 +76,7 @@ public class Stages {
         return null;
     }
 
-    private TutorialStage ts(TI_Worker worker, int... vals) {
+    private TutorialStage ts(TIWorker worker, int... vals) {
         return new TutorialStage(worker, vals);
     }
 }

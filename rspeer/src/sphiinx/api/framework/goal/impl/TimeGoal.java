@@ -29,7 +29,7 @@ public class TimeGoal implements Goal {
 
     @Override
     public String toString() {
-        return "[Time Goal:] Left: " + (System.currentTimeMillis() - start_time / 1000) / 60 + "minutes.";
+        return "[Time Goal:] Left: " + ((System.currentTimeMillis() - start_time) / 1000) / 60 + "minutes.";
     }
 
     public void reset() {

@@ -1,7 +1,5 @@
 package sphiinx.api.framework.mission;
 
-import sphiinx.api.util.Logging;
-
 import java.util.Queue;
 
 public class MissionHandler {
@@ -26,18 +24,19 @@ public class MissionHandler {
 
         final Mission MISSION = missions.peek();
         if (!MISSION.hasStarted()) {
+            System.out.println(MISSION.getMissionName() + " mission started");
             MISSION.onMissionStart();
             MISSION.setStarted(true);
         }
 
         if (MISSION.canEnd()) {
-            Logging.log(this, true, MISSION.getMissionName() + " " + MISSION.getEndMessage());
+            System.out.println(MISSION.getMissionName() + " mission ended");
             MISSION.onMissionEnd();
             missions.poll();
             return 150;
         } else {
             if (MISSION.shouldPrintWorkerString())
-                Logging.log(this, false, "[" + MISSION.getWorkerName() + "]: " + MISSION.getWorkerString());
+                System.out.println("[" + MISSION.getWorkerName() + "]: " + MISSION.getWorkerString());
             return MISSION.execute();
         }
     }

@@ -47,13 +47,6 @@ public abstract class Mission {
     public abstract boolean canEnd();
 
     /**
-     * Gets the message the end of mission message.
-     *
-     * @return The end of mission message.
-     */
-    public abstract String getEndMessage();
-
-    /**
      * Gets the goals for the mission.
      *
      * @return The goals for the mission.

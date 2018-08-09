@@ -1,15 +1,15 @@
 package sphiinx.script.public_script.spx_tutorial_island.data;
 
 import org.rspeer.runetek.api.Varps;
-import sphiinx.script.public_script.spx_tutorial_island.mission.worker.TI_Worker;
+import sphiinx.script.public_script.spx_tutorial_island.mission.worker.TIWorker;
 
 public class TutorialStage {
 
     private static final int VARP_CONFIG_ID = 281;
     private final int[] VARPS;
-    private TI_Worker worker;
+    private TIWorker worker;
 
-    TutorialStage(TI_Worker worker, int... varps) {
+    TutorialStage(TIWorker worker, int... varps) {
         this.VARPS = varps;
         this.worker = worker;
     }

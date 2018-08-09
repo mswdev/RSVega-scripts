@@ -17,7 +17,7 @@ import java.io.*;
 @ScriptManifest(authors = "Antiban", category = "Tools", name = "Antiban Account Checker")
 public class Main extends AntibanScript {
 
-    private final String ACCOUNT_DEATILS_FILE_PATH = "C:\\Users\\07Scripting\\Desktop\\Account Lists\\test_list.txt";
+    private final String ACCOUNT_DEATILS_FILE_PATH = "/Users/matt/Desktop/Runescape/Account/Account Lists/1.txt";
 
     @Override
     protected GUI getGUI() {
@@ -53,6 +53,7 @@ public class Main extends AntibanScript {
                 Vars.get().account_details.add(ACCOUNT_DETAILS[0] + ":" +  ACCOUNT_DETAILS[1]);
                 line = READER.readLine();
             }
+            READER.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

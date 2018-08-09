@@ -53,7 +53,7 @@ public class GameSettings {
             if (ZOOM_OPTION == null)
                 return false;
 
-            final InterfaceComponent ZOOM_LVL = Interfaces.getComponent(INTER_OPTION_MASTER, 14  - level);
+            final InterfaceComponent ZOOM_LVL = Interfaces.getComponent(INTER_OPTION_MASTER, 14 - level);
             if (ZOOM_LVL == null)
                 return false;
 

@@ -4,7 +4,10 @@ import org.rspeer.script.Script;
 import org.rspeer.ui.Log;
 import sphiinx.api.framework.mission.Mission;
 import sphiinx.api.framework.mission.MissionHandler;
+import sphiinx.api.framework.ui.SPXScriptGUI;
+import sphiinx.api.framework.ui.SPXScriptGUIHandler;
 
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,13 +18,21 @@ import java.util.logging.Level;
 
 public abstract class SPXScript extends Script {
 
+    protected String script_data_path = getDataDirectory() + File.separator + "SPX" + File.separator + getMeta().name();
+    private SPXScriptGUIHandler spx_gui_handler;
     private MissionHandler mission_handler;
 
     @Override
     public void onStart() {
         Log.log(Level.WARNING, "Info", "Starting " + getMeta().name() + "!");
         createDirectoryFolders();
-        loadScriptArgs();
+
+        spx_gui_handler = new SPXScriptGUIHandler(setGUI(this));
+        if (spx_gui_handler.getGUI() != null) {
+            setPaused(true);
+            spx_gui_handler.initialize();
+        }
+
         mission_handler = new MissionHandler(createMissionQueue());
     }
 
@@ -35,6 +46,7 @@ public abstract class SPXScript extends Script {
 
     @Override
     public void onStop() {
+        spx_gui_handler.getGUI().getFrame().dispatchEvent(new WindowEvent(spx_gui_handler.getGUI().getFrame(), WindowEvent.WINDOW_CLOSING));
         Log.log(Level.WARNING, "Info", "Thanks for using " + getMeta().name() + "!");
     }
 
@@ -45,22 +57,18 @@ public abstract class SPXScript extends Script {
      */
     public abstract Queue<Mission> createMissionQueue();
 
-    public void loadScriptArgs() {
-        final String ARGS = getArgs();
-        if (ARGS == null) {
-            Log.fine("[ARGS]: No script arguments found; using default settings");
-            return;
-        }
-
-
-        Log.fine("[ARGS]: Loaded script arguments");
-    }
+    /**
+     * Sets the GUI to the specified GUI.
+     *
+     * @return The GUI to set.
+     * */
+    public abstract SPXScriptGUI setGUI(SPXScript script);
 
     /**
      * Creates the script directories if they do not exist.
      */
     private void createDirectoryFolders() {
-        final Path BOT_DIRECTORY_PATH = Paths.get(Script.getDataDirectory() + File.separator + "SPX" + File.separator + getMeta().name());
+        final Path BOT_DIRECTORY_PATH = Paths.get(script_data_path);
         if (!Files.exists(BOT_DIRECTORY_PATH)) {
             try {
                 Files.createDirectories(BOT_DIRECTORY_PATH);
