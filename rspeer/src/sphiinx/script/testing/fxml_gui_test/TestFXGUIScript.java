@@ -4,23 +4,24 @@ import org.rspeer.script.Script;
 import org.rspeer.script.ScriptCategory;
 import org.rspeer.script.ScriptMeta;
 import org.rspeer.ui.Log;
-import sphiinx.api.framework.ui.javafx.FXHandler;
+import sphiinx.api.framework.ui.javafx.FXGUIBuilder;
 
 @ScriptMeta(developer = "Sphiinx", category = ScriptCategory.TOOL, name = "Test FX GUI Script", desc = "Test FX GUI Script")
 public class TestFXGUIScript extends Script {
 
-    private final TestFXGUI GUI = new TestFXGUI();
-    private final FXHandler HANDLER = new FXHandler(GUI);
+    private static FXGUIBuilder FX_GUI_BUILDER = new FXGUIBuilder(new TestFXGUI());
 
     @Override
     public void onStart() {
-        setPaused(true);
-        HANDLER.invokeGUI();
         Log.fine(getMeta().name() + " has started.");
+        FX_GUI_BUILDER.invokeGUI();
     }
 
     @Override
     public int loop() {
+        if (FX_GUI_BUILDER.isInvoked())
+            return 150;
+
 
         Log.fine("Looping");
         return 150;
@@ -28,7 +29,7 @@ public class TestFXGUIScript extends Script {
 
     @Override
     public void onStop() {
-        HANDLER.close();
+        FX_GUI_BUILDER.close();
         Log.fine(getMeta().name() + " has ended.");
     }
 }

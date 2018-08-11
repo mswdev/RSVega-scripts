@@ -9,13 +9,17 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.rspeer.ui.Log;
 import sphiinx.api.framework.ui.javafx.FXGUI;
+import sphiinx.api.framework.ui.javafx.FXMLType;
 import sphiinx.api.framework.ui.javafx.components.FXAutoCompleteComboBox;
 import sphiinx.script.public_script.spx_aio_walking.data.Location;
 
-import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ResourceBundle;
 
 public class WalkingGUI extends FXGUI {
+
+    @FXML
+    private ResourceBundle resources;
 
     @FXML
     private URL location;
@@ -55,28 +59,12 @@ public class WalkingGUI extends FXGUI {
     }
 
     @Override
-    public URL getFXMLURL() {
-        try {
-            return new URL("https://pastebin.com/raw/xapV8Ysd");
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-
-        return null;
+    public String getFXML() {
+        return "https://pastebin.com/raw/xapV8Ysd";
     }
 
     @Override
-    public String getFXMLString() {
-        return null;
-    }
-
-    @Override
-    public URL getStylesheetURL() {
-        return null;
-    }
-
-    @Override
-    public String getStylesheetString() {
+    public FXMLType getFXMLType() {
         return null;
     }
 
@@ -93,11 +81,6 @@ public class WalkingGUI extends FXGUI {
     @Override
     public boolean showOnInvoke() {
         return true; //todo Change this when quickstart args are added.
-    }
-
-    @Override
-    public boolean decorated() {
-        return false;
     }
 
     @Override

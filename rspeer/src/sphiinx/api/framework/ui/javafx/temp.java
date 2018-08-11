@@ -88,7 +88,7 @@ public class temp extends Application {
 
         Parent box = loader.load();
 
-        FXHandler controller = loader.getController();
+        FXGUIBuilder controller = loader.getController();
 
         System.out.println("Aye");
         if (controller == null)// Add this

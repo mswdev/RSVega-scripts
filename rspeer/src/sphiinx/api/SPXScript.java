@@ -5,7 +5,7 @@ import org.rspeer.script.Script;
 import org.rspeer.ui.Log;
 import sphiinx.api.framework.mission.Mission;
 import sphiinx.api.framework.mission.MissionHandler;
-import sphiinx.api.framework.ui.javafx.FXHandler;
+import sphiinx.api.framework.ui.javafx.FXGUIBuilder;
 import sphiinx.api.framework.ui.javafx.FXGUI;
 
 import java.io.File;
@@ -20,20 +20,20 @@ public abstract class SPXScript extends Script {
 
     protected String script_data_path = getDataDirectory() + File.separator + "SPX" + File.separator + getMeta().name();
     private MissionHandler mission_handler;
-    private FXHandler fxml_handler;
+    private FXGUIBuilder fxml_handler;
 
     @Override
     public void onStart() {
         Log.log(Level.WARNING, "Info", "Starting " + getMeta().name() + "!");
         createDirectoryFolders();
 
-        fxml_handler = new FXHandler(getFXML());
+        fxml_handler = new FXGUIBuilder(getFXML());
         mission_handler = new MissionHandler(createMissionQueue());
     }
 
     @Override
     public int loop() {
-        if (fxml_handler.isFinished())
+        if (fxml_handler.isInvoked())
             fxml_handler.invokeGUI();
 
         if (mission_handler.isStopped())

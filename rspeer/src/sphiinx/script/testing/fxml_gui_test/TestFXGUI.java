@@ -1,31 +1,9 @@
 package sphiinx.script.testing.fxml_gui_test;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import org.rspeer.ui.Log;
 import sphiinx.api.framework.ui.javafx.FXGUI;
-
-import java.net.MalformedURLException;
-import java.net.URL;
+import sphiinx.api.framework.ui.javafx.FXMLType;
 
 public class TestFXGUI extends FXGUI {
-
-    @FXML
-    private ImageView logo;
-
-    @FXML
-    private Button start;
-
-    @FXML
-    void initialize() {
-        logo.setImage(new Image("https://i.imgur.com/SJj0rIs.png"));
-        start.setOnAction(event -> {
-            Log.fine("START ACTION");
-            getStage().close();
-        });
-    }
 
     @Override
     public String getName() {
@@ -33,14 +11,13 @@ public class TestFXGUI extends FXGUI {
     }
 
     @Override
-    public URL getFXMLURL() {
-        try {
-            return new URL("https://pastebin.com/raw/3XFXACwQ");
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+    public String getFXML() {
+        return "https://pastebin.com/raw/3XFXACwQ";
+    }
 
-        return null;
+    @Override
+    public FXMLType getFXMLType() {
+        return FXMLType.URL;
     }
 
     @Override
@@ -57,6 +34,5 @@ public class TestFXGUI extends FXGUI {
     public boolean showOnInvoke() {
         return true;
     }
-
 }
 
