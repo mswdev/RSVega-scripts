@@ -5,7 +5,7 @@ import org.rspeer.script.ScriptMeta;
 import org.rspeer.ui.Log;
 import sphiinx.api.SPXScript;
 import sphiinx.api.framework.mission.Mission;
-import sphiinx.api.framework.ui.SPXScriptGUI;
+import sphiinx.api.framework.ui.javafx.FXGUI;
 import sphiinx.script.public_script.spx_aio_firemaking.data.LogType;
 import sphiinx.script.public_script.spx_aio_firemaking.data.Vars;
 import sphiinx.script.public_script.spx_aio_firemaking.mission.FireMakingMission;
@@ -30,7 +30,7 @@ public class Main extends SPXScript {
     }
 
     @Override
-    public SPXScriptGUI setGUI(SPXScript script) {
+    public FXGUI getFXML() {
         return null;
     }
 

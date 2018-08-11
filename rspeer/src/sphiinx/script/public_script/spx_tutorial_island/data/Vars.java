@@ -19,7 +19,7 @@ public class Vars {
     public boolean at_end_walk_to_location;
     public boolean load_accounts_from_list;
     public Position at_end_walk_position;
-    //TODO Remove this soon, only using it to show accs that completed tutorial island.
+    //TODO Remove this soon, only using it to showOnInvoke accs that completed tutorial island.
     public ArrayList<String> TEMP = new ArrayList<>();
 
     public static Vars get() {

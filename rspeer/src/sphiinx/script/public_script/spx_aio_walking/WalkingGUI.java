@@ -1,62 +1,64 @@
 package sphiinx.script.public_script.spx_aio_walking;
 
-import sphiinx.api.SPXScript;
-import sphiinx.api.framework.ui.AutoCompleteComboBox;
-import sphiinx.api.framework.ui.SPXScriptGUI;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import org.rspeer.ui.Log;
+import sphiinx.api.framework.ui.javafx.FXGUI;
+import sphiinx.api.framework.ui.javafx.components.FXAutoCompleteComboBox;
 import sphiinx.script.public_script.spx_aio_walking.data.Location;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionListener;
-import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 
-public class WalkingGUI extends SPXScriptGUI {
+public class WalkingGUI extends FXGUI {
 
-    private final JFrame FRAME = new JFrame();
-    private final JPanel PANEL = new JPanel();
-    private final GridBagConstraints CONSTRAINTS = new GridBagConstraints();
-    private final SPXScript SCRIPT;
+    @FXML
+    private URL location;
 
-    WalkingGUI(SPXScript script) {
-        SCRIPT = script;
-    }
+    @FXML
+    private ImageView logo;
 
-    @Override
-    public void initialize() {
-        CONSTRAINTS.gridx = 0;
-        CONSTRAINTS.gridy = 1;
-        CONSTRAINTS.anchor = GridBagConstraints.CENTER;
-        final JComboBox COMBO_BOX = new AutoCompleteComboBox(Location.values(), "Search location", 200, 30);
-        PANEL.add(COMBO_BOX, CONSTRAINTS);
-    }
+    @FXML
+    private ComboBox<Location> locations;
 
-    @Override
-    public JFrame getFrame() {
-        return FRAME;
-    }
+    @FXML
+    private TextField location_position;
 
-    @Override
-    public JPanel getPanel() {
-        return PANEL;
-    }
+    @FXML
+    private Button add_location;
 
-    @Override
-    public GridBagConstraints getConstraints() {
-        return CONSTRAINTS;
+    @FXML
+    private Hyperlink view_map;
+
+    @FXML
+    private Button start;
+
+    @FXML
+    void initialize() {
+        logo.setImage(new Image("https://i.imgur.com/SJj0rIs.png"));
+
+        locations.getItems().setAll(Location.values());
+        FXAutoCompleteComboBox.autoCompleteComboBoxPlus(locations, (typedText, itemToCompare) -> itemToCompare.toString().toLowerCase().contains(typedText.toLowerCase()) || itemToCompare.toString().equals(typedText));
+        start.setOnAction(event -> {
+            Log.fine("ACTION");
+        });
     }
 
     @Override
     public String getName() {
-        return SCRIPT.getName();
+        return "Test";
     }
 
     @Override
-    public Image getLogo() {
+    public URL getFXMLURL() {
         try {
-            return ImageIO.read(new URL("https://i.imgur.com/6dRk3wf.png"));
-        } catch (IOException e) {
+            return new URL("https://pastebin.com/raw/xapV8Ysd");
+        } catch (MalformedURLException e) {
             e.printStackTrace();
         }
 
@@ -64,8 +66,23 @@ public class WalkingGUI extends SPXScriptGUI {
     }
 
     @Override
+    public String getFXMLString() {
+        return null;
+    }
+
+    @Override
+    public URL getStylesheetURL() {
+        return null;
+    }
+
+    @Override
+    public String getStylesheetString() {
+        return null;
+    }
+
+    @Override
     public int getWidth() {
-        return 315;
+        return 300;
     }
 
     @Override
@@ -74,16 +91,18 @@ public class WalkingGUI extends SPXScriptGUI {
     }
 
     @Override
-    public boolean isResizable() {
+    public boolean showOnInvoke() {
+        return true; //todo Change this when quickstart args are added.
+    }
+
+    @Override
+    public boolean decorated() {
         return false;
     }
 
     @Override
-    public ActionListener onStart() {
-        return e -> {
-            FRAME.setVisible(false);
-            SCRIPT.setPaused(false);
-        };
+    public boolean isResizable() {
+        return false;
     }
 }
 

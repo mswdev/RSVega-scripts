@@ -1,6 +1,7 @@
-package sphiinx.script.testing;
+package sphiinx.script.testing.swing_gui_test;
 
-import sphiinx.api.framework.ui.SPXScriptGUI;
+import sphiinx.api.framework.ui.swing.components.AutoCompleteComboBox;
+import sphiinx.api.framework.ui.swing.SPXGUI;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -8,8 +9,9 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 
-public class SwingGUIEx extends SPXScriptGUI {
+public class TestSwingGUI extends SPXGUI {
 
     private final JFrame FRAME = new JFrame();
     private final JPanel PANEL = new JPanel();
@@ -17,7 +19,15 @@ public class SwingGUIEx extends SPXScriptGUI {
 
     @Override
     public void initialize() {
-
+        ArrayList<String> list = new ArrayList<>();
+        list.add("LUMBRIDGE");
+        list.add("VARROCK");
+        list.add("EDGEVILLE");
+        CONSTRAINTS.gridx = 0;
+        CONSTRAINTS.gridy = 1;
+        CONSTRAINTS.anchor = GridBagConstraints.CENTER;
+        JComboBox COMBO_BOX = new AutoCompleteComboBox(list.toArray(), "Location");
+        PANEL.add(COMBO_BOX, CONSTRAINTS);
     }
 
     @Override
@@ -37,7 +47,7 @@ public class SwingGUIEx extends SPXScriptGUI {
 
     @Override
     public String getName() {
-        return "SwingGUIExample WalkingGUI";
+        return "TestSwingGUI WalkingGUI";
     }
 
     @Override

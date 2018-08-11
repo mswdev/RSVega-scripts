@@ -6,11 +6,11 @@ import org.rspeer.script.Script;
 import org.rspeer.script.ScriptBlockingEvent;
 import org.rspeer.script.events.LoginScreen;
 
-public class Block extends ScriptBlockingEvent {
+public class BlockEventTest extends ScriptBlockingEvent {
 
     private final LoginScreen SCREEN;
 
-    public Block(Script ctx) {
+    public BlockEventTest(Script ctx) {
         super(ctx);
         SCREEN = new LoginScreen(ctx);
     }

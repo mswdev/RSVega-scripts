@@ -1,10 +1,10 @@
-package sphiinx.api.framework.ui;
+package sphiinx.api.framework.ui.swing;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public abstract class SPXScriptGUI {
+public abstract class SPXGUI {
 
     public abstract void initialize();
 

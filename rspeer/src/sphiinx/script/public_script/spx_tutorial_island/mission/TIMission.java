@@ -164,7 +164,7 @@ public class TIMission extends Mission {
 
         final Map.Entry<String, String> ENTRY = ITERATOR.next();
         Log.fine("[ACCOUNT]: [Username: " + ENTRY.getKey() + " | Password: " + ENTRY.getValue() + "]");
-        Vars.get().TEMP.add(ENTRY.getKey() + ":" + ENTRY.getValue()); //TODO Remove this soon, only using it to show accs that completed tutorial island.
+        Vars.get().TEMP.add(ENTRY.getKey() + ":" + ENTRY.getValue()); //TODO Remove this soon, only using it to showOnInvoke accs that completed tutorial island.
         SPX_SCRIPT.setAccount(new GameAccount(ENTRY.getKey(), ENTRY.getValue()));
     }
 }

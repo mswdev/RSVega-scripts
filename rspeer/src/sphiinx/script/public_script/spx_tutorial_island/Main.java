@@ -9,7 +9,7 @@ import org.rspeer.script.ScriptMeta;
 import org.rspeer.ui.Log;
 import sphiinx.api.SPXScript;
 import sphiinx.api.framework.mission.Mission;
-import sphiinx.api.framework.ui.SPXScriptGUI;
+import sphiinx.api.framework.ui.javafx.FXGUI;
 import sphiinx.script.public_script.spx_tutorial_island.data.Vars;
 import sphiinx.script.public_script.spx_tutorial_island.mission.TIMission;
 
@@ -49,7 +49,7 @@ public class Main extends SPXScript implements GameStateListener {
     }
 
     @Override
-    public SPXScriptGUI setGUI(SPXScript script) {
+    public FXGUI getFXML() {
         return null;
     }
 
@@ -114,7 +114,7 @@ public class Main extends SPXScript implements GameStateListener {
 
     @Override
     public void onStop() {
-        //TODO Remove this soon, only using it to show accs that completed tutorial island.
+        //TODO Remove this soon, only using it to showOnInvoke accs that completed tutorial island.
         /*Log.severe("ACCOUNTS THAT HAVE COMPLETED TUTORIAL ISLAND");
         for (String account : Vars.get().TEMP)
             Log.info(account);*/

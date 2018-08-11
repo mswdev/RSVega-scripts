@@ -9,12 +9,10 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox fx:controller="sphiinx.script.public_script.spx_aio_walking.GUIController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: #1a1818;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:controller="sphiinx.script.public_script.spx_aio_walking.WalkingGUI" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" spacing="10.0" style="-fx-background-color: #1a1818;" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="CENTER">
          <children>
@@ -28,22 +26,27 @@
             <Insets top="10.0" />
          </VBox.margin>
       </HBox>
-      <Separator prefWidth="270.0" style="-fx-border-radius: 5px;">
-         <VBox.margin>
-            <Insets left="15.0" right="15.0" top="10.0" />
-         </VBox.margin>
-      </Separator>
+      <VBox alignment="TOP_CENTER">
+         <children>
+            <Separator prefWidth="270.0" style="-fx-border-radius: 5px;">
+               <VBox.margin>
+                  <Insets left="15.0" right="15.0" />
+               </VBox.margin>
+            </Separator>
+         </children>
+      </VBox>
       <VBox alignment="CENTER" spacing="15.0" VBox.vgrow="ALWAYS">
          <children>
-            <HBox alignment="CENTER">
+            <ComboBox fx:id="locations" maxWidth="200.0" minWidth="200.0" prefHeight="25.0" prefWidth="200.0" promptText="Location" style="-fx-border-color: #fbf9fa; -fx-background-color: #fbf9fa; -fx-border-radius: 5px;" />
+            <TextField fx:id="location_position" maxWidth="200.0" minWidth="200.0" prefHeight="25.0" prefWidth="200.0" promptText="0000,0000,0" />
+            <HBox alignment="CENTER" spacing="90.0">
                <children>
-                  <ComboBox fx:id="locations" prefHeight="27.0" prefWidth="209.0" promptText="Location" style="-fx-border-color: #fbf9fa; -fx-background-color: #fbf9fa; -fx-border-radius: 5px;" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" spacing="15.0">
-               <children>
-                  <TextField fx:id="location_position" promptText="0000,0000,0" />
-                  <Button fx:id="add_location" mnemonicParsing="false" style="-fx-background-color: #a82219;" text="ADD" textFill="#fbf9fa">
+                  <Hyperlink fx:id="view_map" focusTraversable="false" text="View map">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Hyperlink>
+                  <Button fx:id="add_location" mnemonicParsing="false" prefHeight="25.0" style="-fx-background-color: #a82219;" text="ADD" textFill="#fbf9fa">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -53,23 +56,7 @@
                   <Insets />
                </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER">
-               <children>
-                  <Hyperlink fx:id="view_map" focusTraversable="false" prefWidth="61.0" text="View map">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Hyperlink>
-                  <Region prefHeight="23.0" prefWidth="150.0" />
-               </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
          </children>
-         <VBox.margin>
-            <Insets />
-         </VBox.margin>
       </VBox>
       <VBox alignment="BOTTOM_CENTER">
          <children>
@@ -88,4 +75,7 @@
          </VBox.margin>
       </VBox>
    </children>
+   <padding>
+      <Insets left="20.0" right="20.0" />
+   </padding>
 </VBox>

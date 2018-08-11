@@ -8,7 +8,7 @@ import org.rspeer.script.events.LoginScreen;
 import org.rspeer.script.events.WelcomeScreen;
 import sphiinx.api.SPXScript;
 import sphiinx.api.framework.mission.Mission;
-import sphiinx.api.framework.ui.SPXScriptGUI;
+import sphiinx.api.framework.ui.javafx.FXGUI;
 import sphiinx.script.public_script.spx_account_checker.mission.AccountCheckerMission;
 import sphiinx.script.public_script.spx_account_checker.mission.worker.impl.LoginAccount.BlockLoginEvent;
 import sphiinx.script.public_script.spx_account_checker.mission.worker.impl.LoginAccount.BlockWelcomeScreenEvent;
@@ -45,7 +45,7 @@ public class Main extends SPXScript implements GameStateListener {
     }
 
     @Override
-    public SPXScriptGUI setGUI(SPXScript script) {
+    public FXGUI getFXML() {
         return null;
     }
 

@@ -1,4 +1,4 @@
-package sphiinx.api.framework.ui;
+package sphiinx.api.framework.ui.swing.components;
 
 import sphiinx.api.framework.SPXColor;
 
@@ -14,6 +14,10 @@ public class AutoCompleteComboBox extends JComboBox {
 
     private JTextField text_field = null;
     private int caret_position = 0;
+
+    public AutoCompleteComboBox(Object[] elements, String place_holder) {
+        this(elements, place_holder, 200, 25);
+    }
 
     public AutoCompleteComboBox(Object[] elements, String place_holder, int width, int height) {
         super(elements);

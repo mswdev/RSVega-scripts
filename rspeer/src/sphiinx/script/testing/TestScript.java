@@ -10,24 +10,24 @@ import org.rspeer.script.ScriptMeta;
 import org.rspeer.ui.Log;
 
 import java.awt.*;
-import java.util.logging.Level;
 
-@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.MONEY_MAKING, name = "Test Script", desc = "Test Script")
+@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.TOOL, name = "Test Script", desc = "Test Script")
 public class TestScript extends Script implements RenderListener, LoginMessageListener {
 
     @Override
     public void onStart() {
+        Log.fine(getMeta().name() + " has started.");
     }
-
 
     @Override
     public int loop() {
-        return 150000;
+        Log.fine("Is running");
+        return 150;
     }
 
     @Override
     public void onStop() {
-        Log.log(Level.WARNING, "Info", "[DEBUG]: SwingGUIExample script stopped");
+        Log.fine(getMeta().name() + " has ended.");
         super.onStop();
     }
 
