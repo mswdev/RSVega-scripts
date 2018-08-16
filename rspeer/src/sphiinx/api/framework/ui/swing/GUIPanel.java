@@ -1,6 +1,6 @@
 package sphiinx.api.framework.ui.swing;
 
-import sphiinx.api.framework.SPXColor;
+import sphiinx.api.SPXStyle;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,15 +12,15 @@ public class GUIPanel {
     private final JLabel LOGO_LABEL = new JLabel();
     private final JButton START_BUTTON = new JButton();
     private final JSeparator SEPARATOR = new JSeparator();
-    private final SPXGUI SPX_GUI;
+    private final GUI SPX_GUI;
 
-    GUIPanel(SPXGUI spx_gui) {
+    GUIPanel(GUI spx_gui) {
         this.SPX_GUI = spx_gui;
     }
 
     void initialize() {
         SPX_GUI.getPanel().setLayout(new GridBagLayout());
-        SPX_GUI.getPanel().setBackground(SPXColor.SPX_GRAY.getColor());
+        SPX_GUI.getPanel().setBackground(SPXStyle.SPX_GRAY.getColor());
 
         LOGO.setImage(SPX_GUI.getLogo());
 
@@ -40,8 +40,8 @@ public class GUIPanel {
         SPX_GUI.getConstraints().anchor = GridBagConstraints.SOUTH;
         START_BUTTON.setText("START");
         START_BUTTON.setPreferredSize(new Dimension(100, 30));
-        START_BUTTON.setBackground(SPXColor.SPX_RED.getColor());
-        START_BUTTON.setForeground(SPXColor.SPX_WHITE.getColor());
+        START_BUTTON.setBackground(SPXStyle.SPX_RED.getColor());
+        START_BUTTON.setForeground(SPXStyle.SPX_WHITE.getColor());
         START_BUTTON.setOpaque(true);
         START_BUTTON.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(), BorderFactory.createEmptyBorder(4, 4, 4, 4)));
         START_BUTTON.setFocusPainted(false);

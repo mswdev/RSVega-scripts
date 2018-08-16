@@ -1,6 +1,6 @@
 package sphiinx.api.framework.ui.swing.components;
 
-import sphiinx.api.framework.SPXColor;
+import sphiinx.api.SPXStyle;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicArrowButton;
@@ -32,9 +32,9 @@ public class AutoCompleteComboBox extends JComboBox {
         return new BasicComboBoxUI() {
             @Override
             protected JButton createArrowButton() {
-                final JButton BUTTON = new BasicArrowButton(BasicArrowButton.SOUTH, SPXColor.SPX_WHITE.getColor(), SPXColor.SPX_WHITE.getColor(), SPXColor.SPX_WHITE.getColor(), SPXColor.SPX_WHITE.getColor());
-                BUTTON.setBackground(SPXColor.SPX_RED.getColor());
-                BUTTON.setBorder(BorderFactory.createLineBorder(SPXColor.SPX_RED.getColor(), 3, true));
+                final JButton BUTTON = new BasicArrowButton(BasicArrowButton.SOUTH, SPXStyle.SPX_WHITE.getColor(), SPXStyle.SPX_WHITE.getColor(), SPXStyle.SPX_WHITE.getColor(), SPXStyle.SPX_WHITE.getColor());
+                BUTTON.setBackground(SPXStyle.SPX_RED.getColor());
+                BUTTON.setBorder(BorderFactory.createLineBorder(SPXStyle.SPX_RED.getColor(), 3, true));
                 return BUTTON;
             }
         };

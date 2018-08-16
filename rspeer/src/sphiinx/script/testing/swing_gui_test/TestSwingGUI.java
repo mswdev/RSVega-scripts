@@ -1,7 +1,7 @@
 package sphiinx.script.testing.swing_gui_test;
 
 import sphiinx.api.framework.ui.swing.components.AutoCompleteComboBox;
-import sphiinx.api.framework.ui.swing.SPXGUI;
+import sphiinx.api.framework.ui.swing.GUI;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class TestSwingGUI extends SPXGUI {
+public class TestSwingGUI extends GUI {
 
     private final JFrame FRAME = new JFrame();
     private final JPanel PANEL = new JPanel();

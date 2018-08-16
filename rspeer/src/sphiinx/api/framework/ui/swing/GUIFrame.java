@@ -2,9 +2,9 @@ package sphiinx.api.framework.ui.swing;
 
 public class GUIFrame {
 
-    private final SPXGUI SPX_GUI;
+    private final GUI SPX_GUI;
 
-    GUIFrame(SPXGUI spx_gui) {
+    GUIFrame(GUI spx_gui) {
         this.SPX_GUI = spx_gui;
     }
 

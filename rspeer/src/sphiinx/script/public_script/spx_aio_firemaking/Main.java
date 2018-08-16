@@ -13,7 +13,7 @@ import sphiinx.script.public_script.spx_aio_firemaking.mission.FireMakingMission
 import java.util.LinkedList;
 import java.util.Queue;
 
-@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.FIREMAKING, name = "[SPX] AIO Firemaking", desc = "AIO Firemaking")
+@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.FIREMAKING, name = "[SPX] AIO Firemaking", desc = "")
 public class Main extends SPXScript {
 
     @Override
@@ -30,7 +30,7 @@ public class Main extends SPXScript {
     }
 
     @Override
-    public FXGUI getFXML() {
+    public FXGUI getFXGUI() {
         return null;
     }
 

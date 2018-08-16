@@ -6,25 +6,25 @@ public class GUIHandler {
 
     private final GUIFrame FRAME;
     private final GUIPanel PANEL;
-    private final SPXGUI SPX_GUI;
+    private final GUI GUI;
 
-    public GUIHandler(SPXGUI spx_gui) {
-        SPX_GUI = spx_gui;
-        FRAME = new GUIFrame(spx_gui);
-        PANEL = new GUIPanel(spx_gui);
+    public GUIHandler(GUI gui) {
+        GUI = gui;
+        FRAME = new GUIFrame(gui);
+        PANEL = new GUIPanel(gui);
     }
 
-    public void initialize() {
+    public void invokeGUI() {
         SwingUtilities.invokeLater(() -> {
             FRAME.initialize();
             PANEL.initialize();
-            SPX_GUI.getFrame().add(SPX_GUI.getPanel());
+            GUI.getFrame().add(GUI.getPanel());
         });
-        SPX_GUI.getFrame().setVisible(true);
+        GUI.getFrame().setVisible(true);
     }
 
-    public SPXGUI getGUI() {
-        return SPX_GUI;
+    public GUI getGUI() {
+        return GUI;
     }
 }
 

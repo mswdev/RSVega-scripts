@@ -1,7 +1,5 @@
 package sphiinx.script.testing;
 
-import org.rspeer.runetek.api.Game;
-import org.rspeer.runetek.api.Login;
 import org.rspeer.script.Script;
 import org.rspeer.script.ScriptBlockingEvent;
 import org.rspeer.script.events.LoginScreen;
@@ -17,13 +15,7 @@ public class BlockEventTest extends ScriptBlockingEvent {
 
     @Override
     public void process() {
-        System.out.println("VALIDATING");
         SCREEN.process();
-        System.out.println("PROCESSED");
-        System.out.println("Game: " + Game.getState());
-        System.out.println("Login: " + Login.getState());
-        System.out.println("Loggedin: " + Game.isLoggedIn());
-        System.out.println("------------------------");
     }
 
     @Override

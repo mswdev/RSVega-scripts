@@ -15,7 +15,7 @@ public class TestSwingGUIScript extends Script {
     @Override
     public void onStart() {
         spx_gui_handler = new GUIHandler(new TestSwingGUI());
-        spx_gui_handler.initialize();
+        spx_gui_handler.invokeGUI();
 
         Log.fine(getMeta().name() + " has started.");
     }

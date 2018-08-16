@@ -2,25 +2,28 @@ package sphiinx.api.framework.ui.javafx;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.rspeer.ui.Log;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.stream.Collectors;
 
 public class FXGUIBuilder extends Application {
 
     private final FXGUI FX_GUI;
     private Stage stage;
     private Scene scene;
-    private boolean is_invoking;
+    private boolean is_invoking = true;
 
     public FXGUIBuilder(FXGUI fx_gui) {
         this.FX_GUI = fx_gui;
@@ -30,11 +33,29 @@ public class FXGUIBuilder extends Application {
     public void start(Stage primaryStage) throws Exception {
         stage = primaryStage;
 
-        final FXMLLoader LOADER = new FXMLLoader();
+        FXMLLoader LOADER = new FXMLLoader();
         LOADER.setClassLoader(getClass().getClassLoader());
-        final Parent ROOT = LOADER.load(getFXML());
+        byte[] fxml_bytes = null;
+        switch (FX_GUI.getFXMLType()) {
+            case URL:
+                final URLConnection CONNECTION = new URL(FX_GUI.getFXML()).openConnection();
+                final BufferedReader READER = new BufferedReader(new InputStreamReader(CONNECTION.getInputStream()));
+                fxml_bytes = READER.lines().collect(Collectors.joining("\n")).getBytes();
+                break;
+            case FILE:
+                final Path PATH = Paths.get(FX_GUI.getFXML());
+                fxml_bytes = Files.readAllBytes(PATH);
+                break;
+            case STRING:
+                fxml_bytes = FX_GUI.getFXML().getBytes();
+                break;
+        }
+
+        final Parent ROOT = LOADER.load(new ByteArrayInputStream(fxml_bytes));
         scene = new Scene(ROOT, FX_GUI.getWidth(), FX_GUI.getHeight());
 
+        stage.setTitle(FX_GUI.getTitle());
+        stage.setResizable(FX_GUI.isResizable());
         stage.setAlwaysOnTop(true);
         stage.setScene(scene);
 
@@ -42,34 +63,19 @@ public class FXGUIBuilder extends Application {
             stage.show();
 
         Platform.setImplicitExit(false);
-    }
-
-    private InputStream getFXML() throws IOException {
-        switch (FX_GUI.getFXMLType()) {
-            case URL:
-                final URLConnection CONNECTION = new URL(FX_GUI.getFXML()).openConnection();
-                //final BufferedReader READER = new BufferedReader(new InputStreamReader(CONNECTION.getInputStream()));
-                return CONNECTION.getInputStream();
-            case FILE:
-                final Path PATH = Paths.get(FX_GUI.getFXML());
-                return new ByteArrayInputStream(new String(Files.readAllBytes(PATH)).getBytes());
-            case STRING:
-                return new ByteArrayInputStream(FX_GUI.getFXML().getBytes());
-        }
-
-        return null;
+        is_invoking = false;
     }
 
     public void invokeGUI() {
-        is_invoking = true;
+        if (FX_GUI == null)
+            return;
+
+        new JFXPanel();
         Platform.runLater(() -> {
             try {
                 start(new Stage());
                 is_invoking = false;
             } catch (Exception e) {
-                Log.severe("EXCEPTION");
-                Log.severe(e.getCause());
-                Log.severe(e.getStackTrace());
                 e.printStackTrace();
             }
         });
@@ -101,6 +107,9 @@ public class FXGUIBuilder extends Application {
     }
 
     public boolean isInvoked() {
+        if (FX_GUI == null)
+            return false;
+
         return is_invoking || stage.isShowing();
     }
 }

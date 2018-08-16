@@ -21,7 +21,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.stream.Stream;
 
-@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.TOOL, name = "[SPX] Account Checker", desc = "Checks Accounts")
+@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.TOOL, name = "[SPX] Account Checker", desc = "")
 public class Main extends SPXScript implements GameStateListener {
 
     private final String ACCOUNT_DEATILS_FILE_PATH = "/Users/matt/Desktop/Runescape/Accounts/test_list.txt";
@@ -45,7 +45,7 @@ public class Main extends SPXScript implements GameStateListener {
     }
 
     @Override
-    public FXGUI getFXML() {
+    public FXGUI getFXGUI() {
         return null;
     }
 

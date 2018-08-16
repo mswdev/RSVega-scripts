@@ -10,18 +10,18 @@ import sphiinx.script.public_script.spx_aio_walking.mission.WalkingMission;
 import java.util.LinkedList;
 import java.util.Queue;
 
-@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.OTHER, name = "[SPX] AIO Walking", desc = "AIO Walking")
+@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.OTHER, name = "[SPX] AIO Walking", desc = "")
 public class Main extends SPXScript {
 
     @Override
     public Queue<Mission> createMissionQueue() {
         LinkedList<Mission> MISSIONS = new LinkedList<>();
-        MISSIONS.add(new WalkingMission(null));
+        MISSIONS.add(new WalkingMission());
         return MISSIONS;
     }
 
     @Override
-    public FXGUI getFXML() {
+    public FXGUI getFXGUI() {
         return new WalkingGUI();
     }
 }

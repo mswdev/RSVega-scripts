@@ -1,23 +1,24 @@
 package sphiinx.script.testing.fxml_gui_test;
 
+import sphiinx.api.SPXFXML;
 import sphiinx.api.framework.ui.javafx.FXGUI;
 import sphiinx.api.framework.ui.javafx.FXMLType;
 
 public class TestFXGUI extends FXGUI {
 
     @Override
-    public String getName() {
+    public String getTitle() {
         return "Test FXML GUI";
     }
 
     @Override
     public String getFXML() {
-        return "https://pastebin.com/raw/3XFXACwQ";
+        return SPXFXML.SPX_TEMPLATE.getFXML();
     }
 
     @Override
     public FXMLType getFXMLType() {
-        return FXMLType.URL;
+        return FXMLType.STRING;
     }
 
     @Override

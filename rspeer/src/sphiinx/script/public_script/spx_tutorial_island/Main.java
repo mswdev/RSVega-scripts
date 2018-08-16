@@ -22,7 +22,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.stream.Stream;
 
-@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.OTHER, name = "[SPX] Tutorial Island", desc = "Completes tutorial island.")
+@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.OTHER, name = "[SPX] Tutorial Island", desc = "")
 public class Main extends SPXScript implements GameStateListener {
 
     private final LinkedList<Mission> MISSIONS = new LinkedList<>();
@@ -49,7 +49,7 @@ public class Main extends SPXScript implements GameStateListener {
     }
 
     @Override
-    public FXGUI getFXML() {
+    public FXGUI getFXGUI() {
         return null;
     }
 

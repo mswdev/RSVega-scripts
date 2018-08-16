@@ -2,17 +2,19 @@ package sphiinx.api.framework.ui.javafx;
 
 public abstract class FXGUI {
 
-    public abstract String getName();
+    public abstract String getTitle();
 
-    public String getFXML() {
-        return null;
-    }
+    public abstract String getFXML();
 
     public abstract FXMLType getFXMLType();
 
-    public abstract int getWidth();
+    public int getWidth() {
+        return -1;
+    }
 
-    public abstract int getHeight();
+    public int getHeight() {
+        return -1;
+    }
 
     public abstract boolean showOnInvoke();
 
