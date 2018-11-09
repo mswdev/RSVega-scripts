@@ -1,13 +1,13 @@
 package sphiinx.script.public_script.spx_aio_walking.mission;
 
-import sphiinx.api.framework.goal.GoalList;
-import sphiinx.api.framework.mission.Mission;
-import sphiinx.api.framework.worker.Worker;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.goal.GoalList;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.mission.Mission;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
 import sphiinx.script.public_script.spx_aio_walking.mission.worker.WalkingWorkerHandler;
 
 public class WalkingMission extends Mission {
 
-    public final WalkingWorkerHandler MANAGER = new WalkingWorkerHandler(this);
+    private final WalkingWorkerHandler handler = new WalkingWorkerHandler(this);
 
     @Override
     public String getMissionName() {
@@ -16,13 +16,13 @@ public class WalkingMission extends Mission {
 
     @Override
     public String getWorkerName() {
-        Worker<WalkingMission> c = MANAGER.getCurrent();
+        Worker<WalkingMission> c = handler.getCurrent();
         return c == null ? "WORKER" : c.getClass().getSimpleName();
     }
 
     @Override
     public String getWorkerString() {
-        Worker<WalkingMission> c = MANAGER.getCurrent();
+        Worker<WalkingMission> c = handler.getCurrent();
         return c == null ? "WORKER" : c.toString();
     }
 
@@ -43,8 +43,8 @@ public class WalkingMission extends Mission {
 
     @Override
     public int execute() {
-        MANAGER.work();
-        return 150;
+        handler.work();
+        return 100;
     }
 
     @Override

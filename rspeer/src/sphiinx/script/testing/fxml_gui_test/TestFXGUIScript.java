@@ -4,9 +4,9 @@ import org.rspeer.script.Script;
 import org.rspeer.script.ScriptCategory;
 import org.rspeer.script.ScriptMeta;
 import org.rspeer.ui.Log;
-import sphiinx.api.framework.ui.javafx.FXGUIBuilder;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.ui.fxui.FXGUIBuilder;
 
-@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.TOOL, name = "Test FX GUI Script", desc = "Test FX GUI Script")
+@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.TOOL, name = "[SPX] Test FX GUI Script", desc = "Test FX GUI Script")
 public class TestFXGUIScript extends Script {
 
     private static FXGUIBuilder FX_GUI_BUILDER = new FXGUIBuilder(new TestFXGUI());
@@ -20,11 +20,11 @@ public class TestFXGUIScript extends Script {
     @Override
     public int loop() {
         if (FX_GUI_BUILDER.isInvoked())
-            return 150;
+            return 100;
 
 
         Log.fine("Looping");
-        return 150;
+        return 100;
     }
 
     @Override

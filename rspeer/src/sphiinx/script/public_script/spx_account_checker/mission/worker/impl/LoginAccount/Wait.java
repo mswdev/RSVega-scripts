@@ -12,7 +12,6 @@ public class Wait extends AccountCheckerWorker {
 
     @Override
     public void work() {
-
     }
 
     @Override

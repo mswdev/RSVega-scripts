@@ -1,7 +1,7 @@
 package sphiinx.script.testing.swing_gui_test;
 
-import sphiinx.api.framework.ui.swing.components.AutoCompleteComboBox;
-import sphiinx.api.framework.ui.swing.GUI;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.ui.swingui.components.AutoCompleteComboBox;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.ui.swingui.GUI;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -13,9 +13,9 @@ import java.util.ArrayList;
 
 public class TestSwingGUI extends GUI {
 
-    private final JFrame FRAME = new JFrame();
-    private final JPanel PANEL = new JPanel();
-    private final GridBagConstraints CONSTRAINTS = new GridBagConstraints();
+    private final JFrame frame = new JFrame();
+    private final JPanel panel = new JPanel();
+    private final GridBagConstraints constraints = new GridBagConstraints();
 
     @Override
     public void initialize() {
@@ -23,26 +23,26 @@ public class TestSwingGUI extends GUI {
         list.add("LUMBRIDGE");
         list.add("VARROCK");
         list.add("EDGEVILLE");
-        CONSTRAINTS.gridx = 0;
-        CONSTRAINTS.gridy = 1;
-        CONSTRAINTS.anchor = GridBagConstraints.CENTER;
+        constraints.gridx = 0;
+        constraints.gridy = 1;
+        constraints.anchor = GridBagConstraints.CENTER;
         JComboBox COMBO_BOX = new AutoCompleteComboBox(list.toArray(), "Location");
-        PANEL.add(COMBO_BOX, CONSTRAINTS);
+        panel.add(COMBO_BOX, constraints);
     }
 
     @Override
     public JFrame getFrame() {
-        return FRAME;
+        return frame;
     }
 
     @Override
     public JPanel getPanel() {
-        return PANEL;
+        return panel;
     }
 
     @Override
     public GridBagConstraints getConstraints() {
-        return CONSTRAINTS;
+        return constraints;
     }
 
     @Override
@@ -78,9 +78,7 @@ public class TestSwingGUI extends GUI {
 
     @Override
     public ActionListener onStart() {
-        return e -> {
-            FRAME.setVisible(false);
-        };
+        return e -> frame.setVisible(false);
     }
 
 }

@@ -1,27 +1,27 @@
 package sphiinx.script.public_script.spx_air_orbs.mission.level.worker.impl.defence.level_to_30;
 
 import org.rspeer.runetek.adapter.component.Item;
-import org.rspeer.runetek.api.commons.Time;
-import org.rspeer.runetek.api.component.tab.Equipment;
-import org.rspeer.runetek.api.component.tab.Inventory;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.script.workers.ItemActionWorker;
 import sphiinx.script.public_script.spx_air_orbs.mission.level.AirOrbLevelMission;
 import sphiinx.script.public_script.spx_air_orbs.mission.level.worker.AirOrbLevelWorker;
 
+import java.util.function.Predicate;
+
 public class EquipBronzeSword extends AirOrbLevelWorker {
 
+    public static final String ITEM_NAME = "Bronze sword";
+    private final Predicate<Item> item = a -> a.getName().equals(ITEM_NAME);
+    private final ItemActionWorker equip_bronze_sword;
 
     public EquipBronzeSword(AirOrbLevelMission mission) {
         super(mission);
+        equip_bronze_sword = new ItemActionWorker<>(item);
     }
 
     @Override
     public void work() {
-        final Item ITEM = Inventory.getFirst(GetBronzeSword.BRONZE_SWORD);
-        if (ITEM == null)
-            return;
-
-        if (ITEM.click())
-            Time.sleepUntil(() -> Equipment.contains("Bronze sword"), 1500);
+        equip_bronze_sword.work();
+        mission.can_end = equip_bronze_sword.itemNotFound();
     }
 
     @Override

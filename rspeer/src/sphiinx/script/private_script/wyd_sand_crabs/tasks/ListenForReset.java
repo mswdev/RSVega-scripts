@@ -27,7 +27,7 @@ public class ListenForReset extends Task {
             START_TIME = 0;
         }
 
-        return 150;
+        return 100;
     }
 
     @Override

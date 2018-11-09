@@ -5,16 +5,16 @@ import org.rspeer.script.Script;
 import org.rspeer.script.ScriptCategory;
 import org.rspeer.script.ScriptMeta;
 import org.rspeer.ui.Log;
-import sphiinx.api.framework.ui.swing.GUIHandler;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.ui.swingui.GUIBuilder;
 
-@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.TOOL, name = "Test Swing GUI Script", desc = "Test Swing GUI Script")
+@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.TOOL, name = "[SPX] Test Swing GUI Script", desc = "Test Swing GUI Script")
 public class TestSwingGUIScript extends Script {
 
-    private GUIHandler spx_gui_handler;
+    private GUIBuilder spx_gui_handler;
 
     @Override
     public void onStart() {
-        spx_gui_handler = new GUIHandler(new TestSwingGUI());
+        spx_gui_handler = new GUIBuilder(new TestSwingGUI());
         spx_gui_handler.invokeGUI();
 
         Log.fine(getMeta().name() + " has started.");
@@ -23,11 +23,11 @@ public class TestSwingGUIScript extends Script {
     @Override
     public int loop() {
         while (spx_gui_handler.getGUI().getFrame().isVisible()) {
-            Time.sleep(150);
+            Time.sleep(100);
         }
 
         Log.fine("Looping");
-        return 150;
+        return 100;
     }
 
     @Override

@@ -1,8 +1,8 @@
 package sphiinx.script.public_script.spx_aio_walking;
 
-import sphiinx.api.SPXFXML;
-import sphiinx.api.framework.ui.javafx.FXGUI;
-import sphiinx.api.framework.ui.javafx.FXMLType;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.script.SPXFXML;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.ui.fxui.FXGUI;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.ui.fxui.FXMLType;
 
 public class WalkingGUI extends FXGUI {
 
@@ -13,7 +13,7 @@ public class WalkingGUI extends FXGUI {
 
     @Override
     public String getFXML() {
-        return  SPXFXML.SPX_AIO_WALKER.getFXML();
+        return SPXFXML.SPX_AIO_WALKER.getFXML();
     }
 
     @Override

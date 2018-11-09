@@ -1,8 +1,8 @@
 package sphiinx.script.testing.fxml_gui_test;
 
-import sphiinx.api.SPXFXML;
-import sphiinx.api.framework.ui.javafx.FXGUI;
-import sphiinx.api.framework.ui.javafx.FXMLType;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.script.SPXFXML;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.ui.fxui.FXGUI;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.ui.fxui.FXMLType;
 
 public class TestFXGUI extends FXGUI {
 

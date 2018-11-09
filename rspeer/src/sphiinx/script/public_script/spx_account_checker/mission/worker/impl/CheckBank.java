@@ -6,14 +6,17 @@ import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.Bank;
 import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.scene.Players;
-import sphiinx.api.game.pricechecking.PriceChecking;
+import org.rspeer.ui.Log;
+import sphiinx.script.public_script.spx_tutorial_island.api.game_util.pricechecking.PriceCheck;
 import sphiinx.script.public_script.spx_account_checker.data.Vars;
 import sphiinx.script.public_script.spx_account_checker.mission.AccountCheckerMission;
 import sphiinx.script.public_script.spx_account_checker.mission.worker.AccountCheckerWorker;
 
+import java.io.IOException;
+
 public class CheckBank extends AccountCheckerWorker {
 
-    private final int COINS_ID = 995;
+    private final int coins_id = 995;
 
     public CheckBank(AccountCheckerMission mission) {
         super(mission);
@@ -25,10 +28,10 @@ public class CheckBank extends AccountCheckerWorker {
             return;
 
         if (Bank.isOpen()) {
-            Vars.get().ACCOUNT_DATA.putIfAbsent("bank_worth", getBankWorth());
+            Vars.get().osrs_data.putIfAbsent("bank_worth", getBankWorth());
             Vars.get().check_bank = false;
         } else {
-            if (BankLocation.getNearestDepositBox().getPosition().distance() <= 15) {
+            if (BankLocation.getNearestWithdrawable().getPosition().distance() <= 15) {
                 if (Bank.open(BankLocation.getNearestWithdrawable()))
                     Time.sleepUntil(Bank::isOpen, 1500);
             } else {
@@ -40,16 +43,26 @@ public class CheckBank extends AccountCheckerWorker {
 
     private String getBankWorth() {
         int total = 0;
-        for (Item item : Bank.getItems()) {
-            if (item.getId() == COINS_ID) {
+        final Item[] items = Bank.getItems();
+        if (items == null)
+            return "0";
+
+        for (Item item : items) {
+            if (item.getId() == coins_id) {
                 total += item.getStackSize();
                 continue;
             }
 
-            total += PriceChecking.getRSPrice(item.getId()) * item.getStackSize();
+            try {
+                total += PriceCheck.getOSBuddyPrice(item.getId()) * item.getStackSize();
+            } catch (IOException e) {
+                e.printStackTrace();
+                Log.severe("[ACCOUNT CHECKER]: Unable to get OSBuddy prices.");
+                mission.main.setStopping(true);
+            }
         }
 
-        return total > 0 ? String.valueOf(total) : null;
+        return total > 0 ? String.valueOf(total) : "0";
     }
 
     @Override

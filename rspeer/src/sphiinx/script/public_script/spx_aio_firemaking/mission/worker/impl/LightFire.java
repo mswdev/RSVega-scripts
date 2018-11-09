@@ -5,11 +5,11 @@ import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.ui.Log;
-import sphiinx.script.public_script.spx_aio_firemaking.data.Vars;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
+import sphiinx.script.public_script.spx_aio_firemaking.Main;
 import sphiinx.script.public_script.spx_aio_firemaking.mission.FireMakingMission;
-import sphiinx.script.public_script.spx_aio_firemaking.mission.worker.FireMakingWorker;
 
-public class LightFire extends FireMakingWorker {
+public class LightFire extends Worker<FireMakingMission> {
 
     public LightFire(FireMakingMission mission) {
         super(mission);
@@ -20,16 +20,16 @@ public class LightFire extends FireMakingWorker {
         if (Players.getLocal().getAnimation() != -1 || Players.getLocal().isMoving())
             return;
 
-        final Item TINDERBOX = Inventory.getFirst(GetTinderBox.TINDERBOX);
-        final Item LOGS = Inventory.getFirst(Vars.get().log_type.getName());
-        if (TINDERBOX == null || LOGS == null)
+        final Item tinderbox = Inventory.getFirst(WithdrawTinderBox.TINDERBOX);
+        final Item logs = Inventory.getFirst(Main.ARGS.log_type.getName());
+        if (tinderbox == null || logs == null)
             return;
 
-        if (Inventory.use(GetTinderBox.TINDERBOX, LOGS))
+        if (Inventory.use(WithdrawTinderBox.TINDERBOX, logs))
             if (!Time.sleepUntil(() -> Players.getLocal().getAnimation() != -1 || Players.getLocal().isMoving(), 2500)) {
                 Log.severe("[STUCK]: Cannot light fire; moving to next lane");
-                mission.ignored_tiles.add(Players.getLocal().getPosition());
-                mission.is_stuck_in_lane = true;
+                mission.getIgnoredTiles().add(Players.getLocal().getPosition());
+                mission.setIsStuckInLane(true);
             }
     }
 

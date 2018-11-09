@@ -2,54 +2,30 @@ package sphiinx.script.public_script.spx_aio_firemaking;
 
 import org.rspeer.script.ScriptCategory;
 import org.rspeer.script.ScriptMeta;
-import org.rspeer.ui.Log;
-import sphiinx.api.SPXScript;
-import sphiinx.api.framework.mission.Mission;
-import sphiinx.api.framework.ui.javafx.FXGUI;
-import sphiinx.script.public_script.spx_aio_firemaking.data.LogType;
-import sphiinx.script.public_script.spx_aio_firemaking.data.Vars;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.mission.Mission;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.script.SPXScript;
+import sphiinx.script.public_script.spx_aio_firemaking.data.Args;
 import sphiinx.script.public_script.spx_aio_firemaking.mission.FireMakingMission;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
+// [TODO - 2018-10-26]: Experiment with a linear no branching design style. Test it out with this script.
 @ScriptMeta(developer = "Sphiinx", category = ScriptCategory.FIREMAKING, name = "[SPX] AIO Firemaking", desc = "")
 public class Main extends SPXScript {
 
+    public static final Args ARGS = new Args();
+
     @Override
-    public void onStart() {
-        loadScriptArgs();
-        super.onStart();
+    public Object getArguments() {
+        return ARGS;
     }
 
     @Override
     public Queue<Mission> createMissionQueue() {
-        LinkedList<Mission> MISSIONS = new LinkedList<>();
-        MISSIONS.add(new FireMakingMission());
-        return MISSIONS;
-    }
-
-    @Override
-    public FXGUI getFXGUI() {
-        return null;
-    }
-
-    private void loadScriptArgs() {
-        final String ARG = getArgs();
-        if (ARG == null) {
-            Log.fine("[ARGS]: No script arguments found; using default settings");
-            return;
-        }
-
-        for (LogType LOG : LogType.values()) {
-            if (LOG.getName().equalsIgnoreCase(getArgs()))
-                continue;
-
-            Vars.get().log_type = LOG;
-            Vars.get().is_progressive = false;
-        }
-
-        Log.fine("[ARGS]: Loaded script arguments");
+        final LinkedList<Mission> missions = new LinkedList<>();
+        missions.add(new FireMakingMission());
+        return missions;
     }
 }
 

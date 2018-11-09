@@ -19,7 +19,7 @@ public class FixAutoRetaliate extends Task {
         if (Tabs.isOpen(Tab.COMBAT)) {
             final InterfaceComponent AUTO_RETALIATE = Interfaces.getComponent(INTER_MASTER, INTER_RETALIATE_BUTTON);
             if (AUTO_RETALIATE == null)
-                return 150;
+                return 100;
 
             if (AUTO_RETALIATE.interact(a -> true))
                 Time.sleepUntil(() -> Varps.get(172) == 1, 1500);
@@ -34,7 +34,7 @@ public class FixAutoRetaliate extends Task {
         }
 
 
-        return 150;
+        return 100;
     }
 
     @Override

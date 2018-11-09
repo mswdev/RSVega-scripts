@@ -1,31 +1,18 @@
 package sphiinx.script.public_script.spx_account_checker.mission;
 
-import org.rspeer.runetek.api.Login;
-import org.rspeer.script.GameAccount;
-import org.rspeer.ui.Log;
-import sphiinx.api.SPXScript;
-import sphiinx.api.framework.goal.GoalList;
-import sphiinx.api.framework.mission.Mission;
-import sphiinx.api.framework.worker.Worker;
-import sphiinx.script.public_script.spx_account_checker.data.Vars;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.goal.GoalList;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.mission.Mission;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
+import sphiinx.script.public_script.spx_account_checker.Main;
 import sphiinx.script.public_script.spx_account_checker.mission.worker.AccountCheckerWorkerHandler;
-
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class AccountCheckerMission extends Mission {
 
-    private final AccountCheckerWorkerHandler MANAGER = new AccountCheckerWorkerHandler(this);
-    private final LinkedHashMap<String, String> ACCOUNT_DETAILS;
-    private static Iterator<Map.Entry<String, String>> ITERATOR;
-    private static SPXScript SCRIPT;
-    private static  boolean can_end;
+    private final AccountCheckerWorkerHandler handler = new AccountCheckerWorkerHandler(this);
+    public final Main main;
 
-    public AccountCheckerMission(SPXScript script, LinkedHashMap<String, String> account_details) {
-        SCRIPT = script;
-        this.ACCOUNT_DETAILS = account_details;
-        ITERATOR = account_details.entrySet().iterator();
+    public AccountCheckerMission(Main main) {
+        this.main = main;
     }
 
     @Override
@@ -35,13 +22,13 @@ public class AccountCheckerMission extends Mission {
 
     @Override
     public String getWorkerName() {
-        Worker<AccountCheckerMission> c = MANAGER.getCurrent();
+        Worker<AccountCheckerMission> c = handler.getCurrent();
         return c == null ? "WORKER" : c.getClass().getSimpleName();
     }
 
     @Override
     public String getWorkerString() {
-        Worker<AccountCheckerMission> c = MANAGER.getCurrent();
+        Worker<AccountCheckerMission> c = handler.getCurrent();
         return c == null ? "Waiting for worker" : c.toString();
     }
 
@@ -52,7 +39,7 @@ public class AccountCheckerMission extends Mission {
 
     @Override
     public boolean canEnd() {
-        return can_end;
+        return false;
     }
 
     @Override
@@ -62,14 +49,12 @@ public class AccountCheckerMission extends Mission {
 
     @Override
     public int execute() {
-        MANAGER.work();
-        return 150;
+        handler.work();
+        return 100;
     }
 
     @Override
     public void onMissionStart() {
-        nextAccount();
-        Log.fine(ACCOUNT_DETAILS.size() + " accounts loaded.");
     }
 
     @Override
@@ -85,22 +70,6 @@ public class AccountCheckerMission extends Mission {
     @Override
     public void resetPaint() {
 
-    }
-
-    public static void nextAccount() {
-        if (!ITERATOR.hasNext()) {
-            can_end = true;
-            return;
-        }
-
-        final Map.Entry<String, String> ENTRY = ITERATOR.next();
-        final String USERNAME = ENTRY.getKey();
-        final String PASSWORD = ENTRY.getValue();
-        Vars.get().ACCOUNT_DATA.putIfAbsent("username", USERNAME);
-        Vars.get().ACCOUNT_DATA.putIfAbsent("password", PASSWORD);
-        Login.enterCredentials(USERNAME, PASSWORD);
-        System.out.println(ENTRY.getKey() + " | " + ENTRY.getValue());
-        SCRIPT.setAccount(new GameAccount(USERNAME, PASSWORD));
     }
 }
 

@@ -30,7 +30,7 @@ public class WalkToFightTile extends Task {
                 Time.sleepUntil(() -> Vars.get().FIGHT_TILE == Players.getLocal().getPosition(), 1500);
         }
 
-        return 150;
+        return 100;
     }
 
     @Override

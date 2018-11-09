@@ -40,7 +40,7 @@ public class Reset extends Task {
             Vars.get().needs_reset = false;
         }
 
-        return 150;
+        return 100;
     }
 
     @Override

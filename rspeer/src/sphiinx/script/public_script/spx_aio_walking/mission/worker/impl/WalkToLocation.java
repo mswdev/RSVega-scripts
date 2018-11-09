@@ -22,7 +22,7 @@ public class WalkToLocation extends WalkingWorker {
         if (Vars.get().location.getPosition().distance() <= 5)
             return;
 
-        if (Players.getLocal().isMoving())
+        if (Players.getLocal().isMoving() && Movement.getDestinationDistance() > 10)
             return;
 
         if (Movement.walkTo(Vars.get().location.getPosition()))

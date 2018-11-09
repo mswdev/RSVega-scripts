@@ -15,7 +15,9 @@ public class BlockEventTest extends ScriptBlockingEvent {
 
     @Override
     public void process() {
+        System.out.println("Processing");
         SCREEN.process();
+        System.out.println("Processed");
     }
 
     @Override

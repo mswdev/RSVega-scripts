@@ -11,12 +11,13 @@ import org.rspeer.runetek.api.movement.position.Position;
 import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.runetek.api.scene.Scene;
 import org.rspeer.runetek.api.scene.SceneObjects;
-import sphiinx.api.framework.worker.Worker;
-import sphiinx.api.framework.worker.WorkerHandler;
-import sphiinx.script.public_script.spx_aio_firemaking.data.Vars;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.WorkerHandler;
+import sphiinx.script.public_script.spx_tutorial_island.api.game_util.skills.firemaking.FiremakingUtil;
+import sphiinx.script.public_script.spx_aio_firemaking.Main;
 import sphiinx.script.public_script.spx_aio_firemaking.mission.FireMakingMission;
-import sphiinx.script.public_script.spx_aio_firemaking.mission.worker.impl.GetLogs;
-import sphiinx.script.public_script.spx_aio_firemaking.mission.worker.impl.GetTinderBox;
+import sphiinx.script.public_script.spx_aio_firemaking.mission.worker.impl.WithdrawLogs;
+import sphiinx.script.public_script.spx_aio_firemaking.mission.worker.impl.WithdrawTinderBox;
 import sphiinx.script.public_script.spx_aio_firemaking.mission.worker.impl.LightFire;
 import sphiinx.script.public_script.spx_aio_firemaking.mission.worker.impl.WalkToLane;
 
@@ -24,17 +25,17 @@ import java.util.LinkedList;
 
 public class FireMakingWorkerHandler extends WorkerHandler<FireMakingMission> {
 
-    private final FireMakingWorker GET_LOGS;
-    private final FireMakingWorker GET_TINDER_BOX;
-    private final FireMakingWorker WALK_TO_LANE;
-    private final FireMakingWorker LIGHT_FIRE;
+    private final WithdrawLogs get_logs;
+    private final WithdrawTinderBox get_tinder_box;
+    private final WalkToLane walk_to_lane;
+    private final LightFire light_fire;
 
     public FireMakingWorkerHandler(FireMakingMission mission) {
         super(mission);
-        GET_LOGS = new GetLogs(mission);
-        GET_TINDER_BOX = new GetTinderBox(mission);
-        WALK_TO_LANE = new WalkToLane(mission);
-        LIGHT_FIRE = new LightFire(mission);
+        get_logs = new WithdrawLogs(mission);
+        get_tinder_box = new WithdrawTinderBox(mission);
+        walk_to_lane = new WalkToLane(mission);
+        light_fire = new LightFire(mission);
     }
 
     @Override
@@ -42,30 +43,30 @@ public class FireMakingWorkerHandler extends WorkerHandler<FireMakingMission> {
         if (!Game.isLoggedIn())
             return null;
 
-        if (Vars.get().log_type == null)
-            Vars.get().log_type = mission.getBestUsableLog(true, false);
+        if (Main.ARGS.log_type == null)
+            Main.ARGS.log_type = FiremakingUtil.getBestUsableLog(true, false);
 
-        if (mission.search_position == null)
-            mission.search_position = Players.getLocal().getPosition();
+        if (mission.getSearchPosition() == null)
+            mission.setSearchPosition(Players.getLocal().getPosition());
 
-        if (Inventory.getCount(GetTinderBox.TINDERBOX) <= 0)
-            return GET_TINDER_BOX;
+        if (Inventory.getCount(WithdrawTinderBox.TINDERBOX) <= 0)
+            return get_tinder_box;
 
-        if (Inventory.getCount(Vars.get().log_type.getName()) <= 0)
-            return GET_LOGS;
+        if (Inventory.getCount(Main.ARGS.log_type.getName()) <= 0)
+            return get_logs;
 
-        if (mission.current_lane_start_position == null || mission.is_stuck_in_lane) {
-            mission.current_lane_start_position = getBestPosition(mission.search_position, mission.search_distance, mission.lane_length, mission.minimum_score, mission.ignored_tiles);
-            mission.is_stuck_in_lane = false;
-            return WALK_TO_LANE;
+        if (mission.getCurrentLaneStartPosition() == null || mission.isStuckInLane()) {
+            mission.setCurrentLaneStartPosition(getBestPosition(mission.getSearchPosition(), FireMakingMission.SEARCH_DISTANCE, FireMakingMission.LANE_LENGTH, FireMakingMission.MINIMUM_SCORE, mission.getIgnoredTiles()));
+            mission.setIsStuckInLane(false);
+            return walk_to_lane;
         }
 
-        if (Players.getLocal().getY() != mission.current_lane_start_position.getY() || Players.getLocal().getX() <= mission.current_lane_start_position.getX() - mission.lane_length) {
-            mission.current_lane_start_position = getBestPosition(mission.search_position, mission.search_distance, mission.lane_length, mission.minimum_score, mission.ignored_tiles);
-            return WALK_TO_LANE;
+        if (Players.getLocal().getY() != mission.getCurrentLaneStartPosition().getY() || Players.getLocal().getX() <= mission.getCurrentLaneStartPosition().getX() - FireMakingMission.LANE_LENGTH) {
+            mission.setCurrentLaneStartPosition(getBestPosition(mission.getSearchPosition(), FireMakingMission.SEARCH_DISTANCE, FireMakingMission.LANE_LENGTH, FireMakingMission.MINIMUM_SCORE, mission.getIgnoredTiles()));
+            return walk_to_lane;
         }
 
-        return LIGHT_FIRE;
+        return light_fire;
     }
 
     /**
@@ -76,14 +77,14 @@ public class FireMakingWorkerHandler extends WorkerHandler<FireMakingMission> {
      * @return True if a fire can be lit in the specified position; false otherwise.
      */
     private boolean canLightFire(Position position) {
-        final SceneObject POSITION_OBJECT = SceneObjects.getFirstAt(position);
+        final SceneObject position_object = SceneObjects.getFirstAt(position);
         if (!Movement.isWalkable(position, false))
             return false;
 
         if (!CollisionFlags.checkWalkable(Direction.WEST, Scene.getCollisionFlag(position), Scene.getCollisionFlag(position), false))
             return false;
 
-        return POSITION_OBJECT == null || !POSITION_OBJECT.getName().contains("Fire");
+        return position_object == null || !position_object.getName().contains("Fire");
     }
 
     /**
@@ -95,11 +96,11 @@ public class FireMakingWorkerHandler extends WorkerHandler<FireMakingMission> {
      * @return The score of the lane.
      */
     private int getLaneScore(Position position, int length) {
-        final Position END_POSITION = new Position(position.getX() - length, position.getY(), position.getFloorLevel());
+        final Position end_position = new Position(position.getX() - length, position.getY(), position.getFloorLevel());
         int score = 0;
         for (int i = 0; i < length; i++) {
-            final Position POSITION = new Position(END_POSITION.getX() + i, END_POSITION.getY(), END_POSITION.getFloorLevel());
-            if (!canLightFire(POSITION))
+            final Position pos = new Position(end_position.getX() + i, end_position.getY(), end_position.getFloorLevel());
+            if (!canLightFire(pos))
                 score++;
         }
 
@@ -118,8 +119,8 @@ public class FireMakingWorkerHandler extends WorkerHandler<FireMakingMission> {
      * @return The best lane start position.
      */
     private Position getBestPosition(Position position, int distance, int length, int score, LinkedList<Position> ignored_tiles) {
-        final Area SURROUNDING_AREA = Area.surrounding(position, distance);
-        return SURROUNDING_AREA.getTiles().stream()
+        final Area surrounding_area = Area.surrounding(position, distance);
+        return surrounding_area.getTiles().stream()
                 .sorted((o1, o2) -> (int) (o1.distance(position) - o2.distance(position)))
                 .filter(a -> canLightFire(a) && getLaneScore(a, length) <= score && !ignored_tiles.contains(a))
                 .findFirst()

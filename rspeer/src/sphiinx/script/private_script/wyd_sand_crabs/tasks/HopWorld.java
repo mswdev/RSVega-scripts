@@ -29,7 +29,7 @@ public class HopWorld extends Task {
                 Time.sleepUntil(() -> Players.getLocal().getTargetIndex() == -1 && !Players.getLocal().isHealthBarVisible(), 1500);
         }
 
-        return 150;
+        return 100;
     }
 
     @Override

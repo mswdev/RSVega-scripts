@@ -1,6 +1,6 @@
 package sphiinx.script.public_script.spx_air_orbs.mission.level.worker;
 
-import sphiinx.api.framework.worker.Worker;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
 import sphiinx.script.public_script.spx_air_orbs.mission.level.AirOrbLevelMission;
 
 public abstract class AirOrbLevelWorker extends Worker<AirOrbLevelMission> {

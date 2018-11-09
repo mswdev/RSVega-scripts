@@ -3,47 +3,34 @@ package sphiinx.script.public_script.spx_tutorial_island.mission.worker.impl.at_
 import org.rspeer.runetek.adapter.component.Item;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.tab.Inventory;
-import sphiinx.script.public_script.spx_tutorial_island.data.Vars;
-import sphiinx.script.public_script.spx_tutorial_island.mission.TIMission;
-import sphiinx.script.public_script.spx_tutorial_island.mission.worker.TIWorker;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
+import sphiinx.script.public_script.spx_tutorial_island.mission.TutorialIslandMission;
 
 import java.util.function.Predicate;
 
-public class DropItems extends TIWorker {
+public class DropItems extends Worker<TutorialIslandMission> {
 
     private final Predicate<String> DROP = a -> a.equals("Drop");
 
-    public DropItems(TIMission mission) {
-        super(mission);
-    }
-
     @Override
-    public boolean shouldExecute() {
-        if (!Vars.get().at_end_drop_items)
-            return false;
-
+    public boolean needsRepeat() {
         return Inventory.getCount() > 0;
     }
 
     @Override
     public void work() {
-        final Item[] ITEMS = Inventory.getItems();
-        if (ITEMS == null)
+        final Item item = Inventory.getItems()[0];
+        if (item == null)
             return;
 
-        for (Item item : ITEMS) {
-            if (item == null)
-                continue;
-
-            final int CACHE = Inventory.getCount();
-            if (item.interact(DROP))
-                Time.sleepUntil(() -> Inventory.getCount() < CACHE, 1500);
-        }
+        final int CACHE = Inventory.getCount();
+        if (item.interact(DROP))
+            Time.sleepUntil(() -> Inventory.getCount() < CACHE, 1500);
     }
 
     @Override
     public String toString() {
-        return "[END]: Dropping items";
+        return "Dropping items";
     }
 }
 

@@ -3,10 +3,10 @@ package sphiinx.script.public_script.spx_aio_firemaking.mission.worker.impl;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.scene.Players;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
 import sphiinx.script.public_script.spx_aio_firemaking.mission.FireMakingMission;
-import sphiinx.script.public_script.spx_aio_firemaking.mission.worker.FireMakingWorker;
 
-public class WalkToLane extends FireMakingWorker {
+public class WalkToLane extends Worker<FireMakingMission> {
 
     public WalkToLane(FireMakingMission mission) {
         super(mission);
@@ -14,8 +14,11 @@ public class WalkToLane extends FireMakingWorker {
 
     @Override
     public void work() {
-        if (Movement.walkTo(mission.current_lane_start_position))
-            Time.sleepUntil(() -> Players.getLocal().getPosition().equals(mission.current_lane_start_position), 1500);
+        if (Players.getLocal().isMoving() && Movement.getDestinationDistance() > 10)
+            return;
+
+        if (Movement.walkTo(mission.getCurrentLaneStartPosition()))
+            Time.sleepUntil(() -> Players.getLocal().getPosition().equals(mission.getCurrentLaneStartPosition()), 1500);
     }
 
 

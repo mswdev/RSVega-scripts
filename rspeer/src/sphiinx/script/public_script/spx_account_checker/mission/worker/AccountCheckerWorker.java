@@ -1,6 +1,6 @@
 package sphiinx.script.public_script.spx_account_checker.mission.worker;
 
-import sphiinx.api.framework.worker.Worker;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
 import sphiinx.script.public_script.spx_account_checker.mission.AccountCheckerMission;
 
 public abstract class AccountCheckerWorker extends Worker<AccountCheckerMission> {

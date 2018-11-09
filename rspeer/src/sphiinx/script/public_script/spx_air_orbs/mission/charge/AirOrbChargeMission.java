@@ -1,14 +1,22 @@
 package sphiinx.script.public_script.spx_air_orbs.mission.charge;
 
-import sphiinx.api.framework.goal.GoalList;
-import sphiinx.api.framework.mission.Mission;
-import sphiinx.api.framework.worker.Worker;
+import org.rspeer.runetek.api.component.tab.Skill;
+import org.rspeer.runetek.api.component.tab.Skills;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.goal.GoalList;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.mission.Mission;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.script.SPXScript;
 import sphiinx.script.public_script.spx_air_orbs.mission.charge.worker.AirOrbChargeWorkerHandler;
 
 public class AirOrbChargeMission extends Mission {
 
-    private final AirOrbChargeWorkerHandler MANAGER = new AirOrbChargeWorkerHandler(this);
     public boolean can_end;
+    public final SPXScript script;
+    private final AirOrbChargeWorkerHandler handler = new AirOrbChargeWorkerHandler(this);
+
+    public AirOrbChargeMission(SPXScript script) {
+        this.script = script;
+    }
 
     @Override
     public String getMissionName() {
@@ -17,13 +25,13 @@ public class AirOrbChargeMission extends Mission {
 
     @Override
     public String getWorkerName() {
-        Worker<AirOrbChargeMission> c = MANAGER.getCurrent();
+        Worker<AirOrbChargeMission> c = handler.getCurrent();
         return c == null ? "WORKER" : c.getClass().getSimpleName();
     }
 
     @Override
     public String getWorkerString() {
-        Worker<AirOrbChargeMission> c = MANAGER.getCurrent();
+        Worker<AirOrbChargeMission> c = handler.getCurrent();
         return c == null ? "WORKER" : c.toString();
     }
 
@@ -34,7 +42,7 @@ public class AirOrbChargeMission extends Mission {
 
     @Override
     public boolean canEnd() {
-        return can_end;
+        return can_end || Skills.getLevel(Skill.MAGIC) < 66 || Skills.getLevel(Skill.DEFENCE) < 30;
     }
 
     @Override
@@ -44,8 +52,8 @@ public class AirOrbChargeMission extends Mission {
 
     @Override
     public int execute() {
-        MANAGER.work();
-        return 150;
+        handler.work();
+        return 100;
     }
 
     @Override

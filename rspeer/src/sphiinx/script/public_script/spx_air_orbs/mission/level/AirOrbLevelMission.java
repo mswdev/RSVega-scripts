@@ -3,16 +3,16 @@ package sphiinx.script.public_script.spx_air_orbs.mission.level;
 import org.rspeer.runetek.api.component.Dialog;
 import org.rspeer.runetek.api.component.tab.Skill;
 import org.rspeer.runetek.api.component.tab.Skills;
-import sphiinx.api.framework.goal.GoalList;
-import sphiinx.api.framework.mission.Mission;
-import sphiinx.api.framework.worker.Worker;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.goal.GoalList;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.mission.Mission;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
 import sphiinx.script.public_script.spx_air_orbs.mission.level.worker.AirOrbLevelWorkerHandler;
 
 public class AirOrbLevelMission extends Mission {
 
-    private final AirOrbLevelWorkerHandler MANAGER = new AirOrbLevelWorkerHandler(this);
     public boolean can_end;
     public boolean has_loaded_magic;
+    private final AirOrbLevelWorkerHandler handler = new AirOrbLevelWorkerHandler(this);
 
     @Override
     public String getMissionName() {
@@ -21,13 +21,13 @@ public class AirOrbLevelMission extends Mission {
 
     @Override
     public String getWorkerName() {
-        Worker<AirOrbLevelMission> c = MANAGER.getCurrent();
+        Worker<AirOrbLevelMission> c = handler.getCurrent();
         return c == null ? "WORKER" : c.getClass().getSimpleName();
     }
 
     @Override
     public String getWorkerString() {
-        Worker<AirOrbLevelMission> c = MANAGER.getCurrent();
+        Worker<AirOrbLevelMission> c = handler.getCurrent();
         return c == null ? "WORKER" : c.toString();
     }
 
@@ -38,7 +38,7 @@ public class AirOrbLevelMission extends Mission {
 
     @Override
     public boolean canEnd() {
-        return Skills.getLevel(Skill.MAGIC) >= 66 && Skills.getLevel(Skill.DEFENCE) >= 30;
+        return can_end || (Skills.getLevel(Skill.MAGIC) >= 66 && Skills.getLevel(Skill.DEFENCE) >= 30);
     }
 
     @Override
@@ -51,8 +51,8 @@ public class AirOrbLevelMission extends Mission {
         if (Dialog.canContinue())
             Dialog.processContinue();
 
-        MANAGER.work();
-        return 150;
+        handler.work();
+        return 100;
     }
 
     @Override

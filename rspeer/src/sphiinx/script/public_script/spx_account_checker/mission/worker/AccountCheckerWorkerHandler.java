@@ -1,7 +1,9 @@
 package sphiinx.script.public_script.spx_account_checker.mission.worker;
 
-import sphiinx.api.framework.worker.Worker;
-import sphiinx.api.framework.worker.WorkerHandler;
+import org.rspeer.runetek.api.commons.Time;
+import org.rspeer.runetek.api.movement.Movement;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.WorkerHandler;
 import sphiinx.script.public_script.spx_account_checker.data.Vars;
 import sphiinx.script.public_script.spx_account_checker.mission.AccountCheckerMission;
 import sphiinx.script.public_script.spx_account_checker.mission.worker.impl.CheckAge;
@@ -11,31 +13,35 @@ import sphiinx.script.public_script.spx_account_checker.mission.worker.impl.Logi
 
 public class AccountCheckerWorkerHandler extends WorkerHandler<AccountCheckerMission> {
 
-    private final CheckAge CHECK_AGE;
-    private final CheckBank CHECK_BANK;
-    private final Logout LOGOUT;
-    private final Wait WAIT;
+    private final CheckAge check_age;
+    private final CheckBank check_bank;
+    private final Logout logout;
+    private final Wait wait;
 
     public AccountCheckerWorkerHandler(AccountCheckerMission mission) {
         super(mission);
-        CHECK_AGE = new CheckAge(mission);
-        CHECK_BANK = new CheckBank(mission);
-        LOGOUT = new Logout(mission);
-        WAIT = new Wait(mission);
+        check_age = new CheckAge(mission);
+        check_bank = new CheckBank(mission);
+        logout = new Logout(mission);
+        wait = new Wait(mission);
     }
 
     @Override
     public Worker<AccountCheckerMission> decide() {
-        if (Vars.get().can_logout)
-            return LOGOUT;
+        if (Vars.get().can_logout && !Vars.get().check_bank && !Vars.get().check_age)
+            return logout;
 
-        if (Vars.get().check_bank)
-            return CHECK_BANK;
+        if (!Movement.isRunEnabled() && Movement.getRunEnergy() > 20)
+            if (Movement.toggleRun(true))
+                Time.sleepUntil(Movement::isRunEnabled, 1500);
 
         if (Vars.get().check_age)
-            return CHECK_AGE;
+            return check_age;
 
-        return WAIT;
+        if (Vars.get().check_bank)
+            return check_bank;
+
+        return wait;
     }
 }
 

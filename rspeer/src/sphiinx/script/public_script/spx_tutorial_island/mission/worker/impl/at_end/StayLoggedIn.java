@@ -1,20 +1,10 @@
 package sphiinx.script.public_script.spx_tutorial_island.mission.worker.impl.at_end;
 
-import sphiinx.script.public_script.spx_tutorial_island.data.Vars;
-import sphiinx.script.public_script.spx_tutorial_island.mission.TIMission;
-import sphiinx.script.public_script.spx_tutorial_island.mission.worker.TIWorker;
+import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
+import sphiinx.script.public_script.spx_tutorial_island.mission.TutorialIslandMission;
 
-public class StayLoggedIn extends TIWorker {
+public class StayLoggedIn extends Worker<TutorialIslandMission> {
 
-
-    public StayLoggedIn(TIMission mission) {
-        super(mission);
-    }
-
-    @Override
-    public boolean shouldExecute() {
-        return Vars.get().at_end_stay_logged_in;
-    }
 
     @Override
     public void work() {
@@ -22,7 +12,7 @@ public class StayLoggedIn extends TIWorker {
 
     @Override
     public String toString() {
-        return "[END]: Staying logged in";
+        return "Staying logged in";
     }
 }
 
