@@ -6,17 +6,21 @@ import org.rspeer.runetek.api.component.tab.Equipment;
 import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.scene.Npcs;
 import org.rspeer.runetek.api.scene.Players;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.script.workers.ItemActionWorker;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
+import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.script.impl.worker.interactables.ItemWorker;
 import sphiinx.script.public_script.spx_tutorial_island.data.TutorialState;
-import sphiinx.script.public_script.spx_tutorial_island.mission.TutorialIslandMission;
 
 import java.util.function.Predicate;
 
-public class FightRat extends Worker<TutorialIslandMission> {
+public class FightRat extends Worker {
 
     private static final Predicate<Npc> RAT = a -> a.getName().equals("Giant rat") && a.getTargetIndex() == -1;
-    private static final ItemActionWorker EQUIP_BOW_AND_ARROWS = new ItemActionWorker<>(a -> a.getName().equals("Shortbow") || a.getName().equals("Bronze arrow"));
+    private static final ItemWorker EQUIP_BOW_AND_ARROWS = new ItemWorker(a -> a.getName().equals("Shortbow") || a.getName().equals("Bronze arrow"));
+
+    @Override
+    public boolean needsRepeat() {
+        return false;
+    }
 
     @Override
     public void work() {
@@ -45,7 +49,7 @@ public class FightRat extends Worker<TutorialIslandMission> {
 
     @Override
     public String toString() {
-        return "Fighting rat";
+        return "Fighting rat.";
     }
 }
 

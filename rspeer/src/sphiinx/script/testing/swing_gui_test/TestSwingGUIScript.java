@@ -5,7 +5,7 @@ import org.rspeer.script.Script;
 import org.rspeer.script.ScriptCategory;
 import org.rspeer.script.ScriptMeta;
 import org.rspeer.ui.Log;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.ui.swingui.GUIBuilder;
+import sphiinx.api.ui.swingui.GUIBuilder;
 
 @ScriptMeta(developer = "Sphiinx", category = ScriptCategory.TOOL, name = "[SPX] Test Swing GUI Script", desc = "Test Swing GUI Script")
 public class TestSwingGUIScript extends Script {

@@ -4,25 +4,23 @@ import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.GrandExchange;
 import org.rspeer.runetek.api.component.GrandExchangeSetup;
 import org.rspeer.runetek.providers.RSGrandExchangeOffer;
-import sphiinx.script.public_script.spx_tutorial_island.api.game_util.BankCache;
-import sphiinx.script.public_script.spx_air_orbs.mission.restock.AirOrbRestockMission;
-import sphiinx.script.public_script.spx_air_orbs.mission.restock.worker.AirOrbRestockWorker;
+import sphiinx.api.script.framework.worker.Worker;
 import sphiinx.script.public_script.spx_air_orbs.mission.restock.worker.impl.OpenGrandExchange;
 
-public class BuyMindRune extends AirOrbRestockWorker {
+public class BuyMindRune extends Worker {
 
     public boolean has_item;
     private final int mind_rune_id = 558;
-    private final OpenGrandExchange open_grand_exchange;
+    private final OpenGrandExchange open_grand_exchange = new OpenGrandExchange();
 
-    public BuyMindRune(AirOrbRestockMission mission) {
-        super(mission);
-        open_grand_exchange = new OpenGrandExchange(mission);
+    @Override
+    public boolean needsRepeat() {
+        return false;
     }
 
     @Override
     public void work() {
-        final int amount_in_bank = BankCache.getValue(mind_rune_id);
+        final int amount_in_bank = 0;//BankCache.getValue(mind_rune_id);
         final int amount_to_buy = 1500 - amount_in_bank;
         if (amount_to_buy <= 0) {
             has_item = true;
@@ -56,7 +54,7 @@ public class BuyMindRune extends AirOrbRestockWorker {
 
     @Override
     public String toString() {
-        return "Buying Mind rune";
+        return "Buying Mind rune.";
     }
 }
 

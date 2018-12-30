@@ -8,24 +8,24 @@ import org.rspeer.runetek.api.component.Dialog;
 import org.rspeer.runetek.api.component.Interfaces;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.scene.Npcs;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.script.workers.WithdrawItemWorker;
+import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.script.impl.worker.banking.WithdrawWorker;
 import sphiinx.script.private_script.saranga07.blast_furnace.mission.BlastFurnaceMission;
-import sphiinx.script.private_script.saranga07.blast_furnace.mission.worker.BlastFurnaceWorker;
 
 import java.util.function.Predicate;
 
-public class PayForeman extends BlastFurnaceWorker {
+public class PayForeman extends Worker {
 
     private static final int DEPOSIT_AMOUNT = 2500;
     private static final Predicate<InterfaceComponent> PAY_FOREMAN = a -> a.getText().contains("You must ask the foreman");
     private static final Predicate<Npc> FOREMAN = a -> a.getName().equals("Blast Furnace Foreman");
     private static final Predicate<String> PAY = a -> a.equals("Pay");
-    private final WithdrawItemWorker withdraw_coins;
+    private final WithdrawWorker withdraw_worker  = new WithdrawWorker(BlastFurnaceMission.COINS, Bank.WithdrawMode.ITEM, 2500);
     public boolean paid_foreman;
+    private final BlastFurnaceMission mission;
 
     public PayForeman(BlastFurnaceMission mission) {
-        super(mission);
-        withdraw_coins = new WithdrawItemWorker(BlastFurnaceMission.COINS, Bank.WithdrawMode.ITEM, 2500);
+        this.mission = mission;
     }
 
     public static boolean shouldPayForeman() {
@@ -37,11 +37,16 @@ public class PayForeman extends BlastFurnaceWorker {
     }
 
     @Override
+    public boolean needsRepeat() {
+        return false;
+    }
+
+    @Override
     public void work() {
         paid_foreman = false;
         if (Inventory.getCount(true, BlastFurnaceMission.COINS) < DEPOSIT_AMOUNT) {
-            withdraw_coins.work();
-            mission.can_end = withdraw_coins.itemNotFound();
+            withdraw_worker.work();
+            mission.can_end = withdraw_worker.itemNotFound();
         } else {
             final Npc npc = Npcs.getFirst(FOREMAN);
             if (npc == null)

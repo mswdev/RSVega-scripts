@@ -4,17 +4,22 @@ import org.rspeer.runetek.adapter.component.Item;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.Dialog;
 import org.rspeer.runetek.api.scene.Players;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.script.workers.ItemActionWorker;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
+import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.script.impl.worker.interactables.ItemWorker;
 import sphiinx.script.private_script.zerker.revenants.mission.RevenantMission;
 
 import java.util.function.Predicate;
 
-public class TeleportToLavaMaze extends Worker<RevenantMission> {
+public class TeleportToLavaMaze extends Worker {
 
     static final Predicate<Item> BURNING_AMULET = a -> a.getName().contains("Burning amulet(");
     private static final Predicate<String> RUB_OPTION = a -> a.equals("Lava Maze") || a.contains("Okay, teleport to");
-    private static final ItemActionWorker RUB_BURNING_AMULET = new ItemActionWorker(BURNING_AMULET, a -> a.equals("Rub"));
+    private static final ItemWorker RUB_BURNING_AMULET = new ItemWorker(BURNING_AMULET, a -> a.equals("Rub"));
+    private final RevenantMission mission;
+
+    public TeleportToLavaMaze(RevenantMission mission) {
+        this.mission = mission;
+    }
 
     @Override
     public boolean needsRepeat() {
@@ -37,7 +42,7 @@ public class TeleportToLavaMaze extends Worker<RevenantMission> {
 
     @Override
     public String toString() {
-        return "Teleporting to Lava Maze";
+        return "Teleporting to Lava Maze.";
     }
 }
 

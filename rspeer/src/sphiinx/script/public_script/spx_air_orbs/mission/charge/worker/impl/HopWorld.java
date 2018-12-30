@@ -3,15 +3,15 @@ package sphiinx.script.public_script.spx_air_orbs.mission.charge.worker.impl;
 import org.rspeer.runetek.api.Game;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.WorldHopper;
-import sphiinx.script.public_script.spx_air_orbs.mission.charge.AirOrbChargeMission;
-import sphiinx.script.public_script.spx_air_orbs.mission.charge.worker.AirOrbChargeWorker;
+import sphiinx.api.script.framework.worker.Worker;
 
-public class HopWorld extends AirOrbChargeWorker {
+public class HopWorld extends Worker {
 
     public boolean should_hop_world;
 
-    public HopWorld(AirOrbChargeMission mission) {
-        super(mission);
+    @Override
+    public boolean needsRepeat() {
+        return false;
     }
 
     @Override
@@ -29,7 +29,7 @@ public class HopWorld extends AirOrbChargeWorker {
 
     @Override
     public String toString() {
-        return "Hopping worlds";
+        return "Hopping worlds.";
     }
 }
 

@@ -6,11 +6,15 @@ import org.rspeer.runetek.api.component.Bank;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.scene.Players;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
-import sphiinx.script.public_script.spx_tutorial_island.mission.TutorialIslandMission;
+import sphiinx.api.script.framework.worker.Worker;
 
-public class DepositItems extends Worker<TutorialIslandMission> {
+public class DepositItems extends Worker {
 
+
+    @Override
+    public boolean needsRepeat() {
+        return false;
+    }
 
     @Override
     public void work() {
@@ -28,7 +32,7 @@ public class DepositItems extends Worker<TutorialIslandMission> {
 
     @Override
     public String toString() {
-        return "Depositing items";
+        return "Depositing items.";
     }
 }
 

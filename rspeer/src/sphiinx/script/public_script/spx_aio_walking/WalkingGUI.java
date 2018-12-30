@@ -1,8 +1,8 @@
 package sphiinx.script.public_script.spx_aio_walking;
 
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.script.SPXFXML;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.ui.fxui.FXGUI;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.ui.fxui.FXMLType;
+import sphiinx.api.ui.SPXFXML;
+import sphiinx.api.ui.fxui.FXGUI;
+import sphiinx.api.ui.fxui.FXMLType;
 
 public class WalkingGUI extends FXGUI {
 

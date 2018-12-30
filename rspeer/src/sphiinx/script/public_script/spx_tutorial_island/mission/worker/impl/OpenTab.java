@@ -5,15 +5,19 @@ import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.Interfaces;
 import org.rspeer.runetek.api.component.tab.Tab;
 import org.rspeer.runetek.api.component.tab.Tabs;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
-import sphiinx.script.public_script.spx_tutorial_island.mission.TutorialIslandMission;
+import sphiinx.api.script.framework.worker.Worker;
 
-public class OpenTab extends Worker<TutorialIslandMission> {
+public class OpenTab extends Worker {
 
     private final Tab tab;
 
     public OpenTab(Tab tab) {
         this.tab = tab;
+    }
+
+    @Override
+    public boolean needsRepeat() {
+        return false;
     }
 
     @Override
@@ -28,7 +32,7 @@ public class OpenTab extends Worker<TutorialIslandMission> {
 
     @Override
     public String toString() {
-        return "Opening game tab";
+        return "Opening game tab.";
     }
 }
 

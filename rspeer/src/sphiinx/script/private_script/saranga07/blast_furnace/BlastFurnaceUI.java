@@ -1,8 +1,8 @@
 package sphiinx.script.private_script.saranga07.blast_furnace;
 
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.ui.swingui.GUI;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.ui.swingui.components.AutoCompleteComboBox;
-import sphiinx.script.public_script.spx_tutorial_island.api.game_util.skills.smithing.BarType;
+import sphiinx.api.ui.swingui.GUI;
+import sphiinx.api.ui.swingui.components.AutoCompleteComboBox;
+import sphiinx.api.game.skills.smithing.BarType;
 import sphiinx.script.private_script.saranga07.blast_furnace.mission.BlastFurnaceMission;
 
 import javax.imageio.ImageIO;

@@ -7,26 +7,26 @@ import org.rspeer.runetek.api.component.Interfaces;
 import org.rspeer.runetek.api.input.menu.ActionOpcodes;
 import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.script.GameAccount;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.goal.GoalList;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.goal.impl.InfiniteGoal;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.mission.Mission;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.script.SPXScript;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
+import sphiinx.api.script.framework.goal.GoalList;
+import sphiinx.api.script.framework.goal.impl.InfiniteGoal;
+import sphiinx.api.script.framework.mission.Mission;
+import sphiinx.api.script.SPXScript;
+import sphiinx.api.script.framework.worker.Worker;
 import sphiinx.script.public_script.spx_tutorial_island.mission.worker.TutorialIslandWorkerHandler;
 
 public class TutorialIslandMission extends Mission {
 
     public static final int TUTORIAL_ISLAND_VARP = 281;
+    public static String USERNAME;
+    public static String PASSWORD;
     private final TutorialIslandWorkerHandler worker_handler;
     private final SPXScript script;
-    private final String username;
-    private final String password;
     private boolean should_stop;
 
     public TutorialIslandMission(SPXScript script, String username, String password) {
         this.script = script;
-        this.username = username;
-        this.password = password;
+        USERNAME = username;
+        PASSWORD = password;
         worker_handler = new TutorialIslandWorkerHandler(this);
     }
 
@@ -38,13 +38,13 @@ public class TutorialIslandMission extends Mission {
 
     @Override
     public String getWorkerName() {
-        Worker<TutorialIslandMission> c = worker_handler.getCurrent();
+        Worker c = worker_handler.getCurrent();
         return c == null ? "WORKER" : c.getClass().getSimpleName();
     }
 
     @Override
     public String getWorkerString() {
-        Worker<TutorialIslandMission> c = worker_handler.getCurrent();
+        Worker c = worker_handler.getCurrent();
         return c == null ? "Loading next available worker" : c.toString();
     }
 
@@ -89,7 +89,7 @@ public class TutorialIslandMission extends Mission {
 
     @Override
     public void onMissionStart() {
-        script.setAccount(new GameAccount(username, password));
+        script.setAccount(new GameAccount(USERNAME, PASSWORD));
     }
 
     @Override

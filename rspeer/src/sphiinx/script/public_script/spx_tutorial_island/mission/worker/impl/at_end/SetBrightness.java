@@ -4,12 +4,16 @@ import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.InterfaceOptions;
 import org.rspeer.runetek.api.component.tab.Tab;
 import org.rspeer.runetek.api.component.tab.Tabs;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
-import sphiinx.script.public_script.spx_tutorial_island.api.game_util.ClientSettings;
+import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.game.ClientSettings;
 import sphiinx.script.public_script.spx_tutorial_island.Main;
-import sphiinx.script.public_script.spx_tutorial_island.mission.TutorialIslandMission;
 
-public class SetBrightness extends Worker<TutorialIslandMission> {
+public class SetBrightness extends Worker {
+
+    @Override
+    public boolean needsRepeat() {
+        return false;
+    }
 
     @Override
     public void work() {
@@ -23,7 +27,7 @@ public class SetBrightness extends Worker<TutorialIslandMission> {
 
     @Override
     public String toString() {
-        return "Setting brightness";
+        return "Setting brightness.";
     }
 }
 

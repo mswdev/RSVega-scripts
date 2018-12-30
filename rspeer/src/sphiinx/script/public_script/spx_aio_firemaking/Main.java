@@ -2,8 +2,8 @@ package sphiinx.script.public_script.spx_aio_firemaking;
 
 import org.rspeer.script.ScriptCategory;
 import org.rspeer.script.ScriptMeta;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.mission.Mission;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.script.SPXScript;
+import sphiinx.api.script.framework.mission.Mission;
+import sphiinx.api.script.SPXScript;
 import sphiinx.script.public_script.spx_aio_firemaking.data.Args;
 import sphiinx.script.public_script.spx_aio_firemaking.mission.FireMakingMission;
 

@@ -11,40 +11,41 @@ import org.rspeer.runetek.api.movement.position.Position;
 import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.runetek.api.scene.Scene;
 import org.rspeer.runetek.api.scene.SceneObjects;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.WorkerHandler;
-import sphiinx.script.public_script.spx_tutorial_island.api.game_util.skills.firemaking.FiremakingUtil;
+import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.script.framework.worker.WorkerHandler;
+import sphiinx.api.game.skills.firemaking.FiremakingUtil;
 import sphiinx.script.public_script.spx_aio_firemaking.Main;
 import sphiinx.script.public_script.spx_aio_firemaking.mission.FireMakingMission;
-import sphiinx.script.public_script.spx_aio_firemaking.mission.worker.impl.WithdrawLogs;
-import sphiinx.script.public_script.spx_aio_firemaking.mission.worker.impl.WithdrawTinderBox;
 import sphiinx.script.public_script.spx_aio_firemaking.mission.worker.impl.LightFire;
 import sphiinx.script.public_script.spx_aio_firemaking.mission.worker.impl.WalkToLane;
+import sphiinx.script.public_script.spx_aio_firemaking.mission.worker.impl.WithdrawLogs;
+import sphiinx.script.public_script.spx_aio_firemaking.mission.worker.impl.WithdrawTinderBox;
 
 import java.util.LinkedList;
 
-public class FireMakingWorkerHandler extends WorkerHandler<FireMakingMission> {
+public class FireMakingWorkerHandler extends WorkerHandler {
 
     private final WithdrawLogs get_logs;
     private final WithdrawTinderBox get_tinder_box;
     private final WalkToLane walk_to_lane;
     private final LightFire light_fire;
+    private final FireMakingMission mission;
 
     public FireMakingWorkerHandler(FireMakingMission mission) {
-        super(mission);
+        this.mission = mission;
         get_logs = new WithdrawLogs(mission);
-        get_tinder_box = new WithdrawTinderBox(mission);
+        get_tinder_box = new WithdrawTinderBox();
         walk_to_lane = new WalkToLane(mission);
         light_fire = new LightFire(mission);
     }
 
     @Override
-    public Worker<FireMakingMission> decide() {
+    public Worker decide() {
         if (!Game.isLoggedIn())
             return null;
 
         if (Main.ARGS.log_type == null)
-            Main.ARGS.log_type = FiremakingUtil.getBestUsableLog(true, false);
+            Main.ARGS.log_type = FiremakingUtil.getAppropriateOwnedLogs();
 
         if (mission.getSearchPosition() == null)
             mission.setSearchPosition(Players.getLocal().getPosition());

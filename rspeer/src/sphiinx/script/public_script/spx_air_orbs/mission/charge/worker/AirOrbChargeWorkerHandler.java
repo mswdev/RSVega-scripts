@@ -12,8 +12,8 @@ import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.runetek.api.scene.SceneObjects;
 import org.rspeer.ui.Log;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.WorkerHandler;
+import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.script.framework.worker.WorkerHandler;
 import sphiinx.script.public_script.spx_air_orbs.mission.charge.AirOrbChargeMission;
 import sphiinx.script.public_script.spx_air_orbs.mission.charge.worker.impl.ChargeOrbs;
 import sphiinx.script.public_script.spx_air_orbs.mission.charge.worker.impl.HopWorld;
@@ -23,7 +23,7 @@ import sphiinx.script.public_script.spx_air_orbs.mission.charge.worker.impl.at_b
 
 import java.util.Arrays;
 
-public class AirOrbChargeWorkerHandler extends WorkerHandler<AirOrbChargeMission> {
+public class AirOrbChargeWorkerHandler extends WorkerHandler {
 
     private final DrinkStamina drink_stamina;
     private final EatFood eat_food;
@@ -38,22 +38,21 @@ public class AirOrbChargeWorkerHandler extends WorkerHandler<AirOrbChargeMission
     private final DepositInventory deposit_inventory;
 
     public AirOrbChargeWorkerHandler(AirOrbChargeMission mission) {
-        super(mission);
-        drink_stamina = new DrinkStamina(mission);
+        drink_stamina = new DrinkStamina();
         eat_food = new EatFood(mission);
         equip_glory = new EquipGlory(mission);
         equip_staff_of_air = new EquipStaffOfAir(mission);
         withdraw_cosmic_runes = new WithdrawCosmicRunes(mission);
         withdraw_unpowered_orbs = new WithdrawUnpoweredOrbs(mission);
-        charge_orbs = new ChargeOrbs(mission);
+        charge_orbs = new ChargeOrbs();
         teleport_to_edgeville = new TeleportToEdgeville(mission);
         walk_to_obelisk = new WalkToObelisk(mission);
-        hop_world = new HopWorld(mission);
-        deposit_inventory = new DepositInventory(mission);
+        hop_world = new HopWorld();
+        deposit_inventory = new DepositInventory();
     }
 
     @Override
-    public Worker<AirOrbChargeMission> decide() {
+    public Worker decide() {
         if (Combat.isAutoRetaliateOn())
             if (Combat.toggleAutoRetaliate(false))
                 Time.sleepUntil(() -> !Combat.isAutoRetaliateOn(), 1500);

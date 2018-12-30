@@ -7,11 +7,10 @@ import org.rspeer.runetek.api.input.menu.ActionOpcodes;
 import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.movement.position.Position;
 import org.rspeer.runetek.api.scene.Players;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
-import sphiinx.script.public_script.spx_tutorial_island.api.game_util.Wilderness;
-import sphiinx.script.private_script.zerker.revenants.mission.RevenantMission;
+import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.game.Wilderness;
 
-public class TeleportToEdgeville extends Worker<RevenantMission> {
+public class TeleportToEdgeville extends Worker {
 
     private static final Position TELEPORT_POSITION = new Position(3252, 10143, 0);
 
@@ -36,7 +35,7 @@ public class TeleportToEdgeville extends Worker<RevenantMission> {
 
     @Override
     public String toString() {
-        return "Teleporting to Edgeville";
+        return "Teleporting to Edgeville.";
     }
 }
 

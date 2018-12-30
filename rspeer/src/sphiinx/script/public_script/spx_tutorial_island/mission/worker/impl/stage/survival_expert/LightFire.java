@@ -8,15 +8,19 @@ import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.runetek.api.scene.SceneObjects;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
-import sphiinx.script.public_script.spx_tutorial_island.api.game_util.skills.firemaking.LogType;
-import sphiinx.script.public_script.spx_tutorial_island.mission.TutorialIslandMission;
+import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.game.skills.firemaking.LogType;
 
 import java.util.function.Predicate;
 
-public class LightFire extends Worker<TutorialIslandMission> {
+public class LightFire extends Worker {
 
     private static final Predicate<Item> TINDERBOX = a -> a.getName().equals("Tinderbox");
+
+    @Override
+    public boolean needsRepeat() {
+        return false;
+    }
 
     @Override
     public void work() {
@@ -42,7 +46,7 @@ public class LightFire extends Worker<TutorialIslandMission> {
 
     @Override
     public String toString() {
-        return "Lighting fire";
+        return "Lighting fire.";
     }
 }
 

@@ -7,16 +7,15 @@ import org.rspeer.runetek.api.movement.position.Area;
 import org.rspeer.runetek.api.movement.position.Position;
 import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.runetek.api.scene.SceneObjects;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
-import sphiinx.script.private_script.zerker.revenants.mission.RevenantMission;
+import sphiinx.api.script.framework.worker.Worker;
 
 import java.util.function.Predicate;
 
-public class EnterRevenantCave extends Worker<RevenantMission> {
+public class EnterRevenantCave extends Worker {
 
+    public static final Area REVENANT_AREA = Area.rectangular(3227, 10187, 3259, 10136);
     private static final Predicate<SceneObject> CAVERN_ENTRANCE = a -> a.getName().equals("Cavern");
     private static final Position CAVERN_ENTRANCE_POSITION = new Position(3124, 3831, 0);
-    public static final Area REVENANT_AREA = Area.rectangular(3227, 10187, 3259, 10136);
 
     @Override
     public boolean needsRepeat() {
@@ -45,7 +44,7 @@ public class EnterRevenantCave extends Worker<RevenantMission> {
 
     @Override
     public String toString() {
-        return "Entering revenant cave";
+        return "Entering revenant cave.";
     }
 }
 

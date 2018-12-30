@@ -4,25 +4,23 @@ import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.GrandExchange;
 import org.rspeer.runetek.api.component.GrandExchangeSetup;
 import org.rspeer.runetek.providers.RSGrandExchangeOffer;
-import sphiinx.script.public_script.spx_tutorial_island.api.game_util.BankCache;
-import sphiinx.script.public_script.spx_air_orbs.mission.restock.AirOrbRestockMission;
-import sphiinx.script.public_script.spx_air_orbs.mission.restock.worker.AirOrbRestockWorker;
+import sphiinx.api.script.framework.worker.Worker;
 import sphiinx.script.public_script.spx_air_orbs.mission.restock.worker.impl.OpenGrandExchange;
 
-public class BuyFood extends AirOrbRestockWorker {
+public class BuyFood extends Worker {
 
     public boolean has_item;
     private final int jug_of_wine_id = 1993;
-    private final OpenGrandExchange open_grand_exchange;
+    private final OpenGrandExchange open_grand_exchange = new OpenGrandExchange();
 
-    public BuyFood(AirOrbRestockMission mission) {
-        super(mission);
-        open_grand_exchange = new OpenGrandExchange(mission);
+    @Override
+    public boolean needsRepeat() {
+        return false;
     }
 
     @Override
     public void work() {
-        final int amount_in_bank = BankCache.getValue(jug_of_wine_id);
+        final int amount_in_bank = 0;//BankCache.getValue(jug_of_wine_id);
         final int amount_to_buy = 5000 - amount_in_bank;
         if (amount_to_buy <= 0) {
             has_item = true;
@@ -56,7 +54,7 @@ public class BuyFood extends AirOrbRestockWorker {
 
     @Override
     public String toString() {
-        return "Buying Food";
+        return "Buying Food.";
     }
 }
 

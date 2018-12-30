@@ -6,22 +6,20 @@ import org.rspeer.runetek.api.component.GrandExchange;
 import org.rspeer.runetek.api.component.GrandExchangeSetup;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.providers.RSGrandExchangeOffer;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.script.workers.WithdrawItemWorker;
-import sphiinx.script.public_script.spx_air_orbs.mission.restock.AirOrbRestockMission;
-import sphiinx.script.public_script.spx_air_orbs.mission.restock.worker.AirOrbRestockWorker;
+import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.script.impl.worker.banking.WithdrawWorker;
 import sphiinx.script.public_script.spx_air_orbs.mission.restock.worker.impl.OpenGrandExchange;
 
-public class SellGlory extends AirOrbRestockWorker {
+public class SellGlory extends Worker {
 
     public boolean has_listed_item;
     private final int amulet_of_glory_id = 1704;
-    private final WithdrawItemWorker withdraw_amulet_of_glory;
-    private final OpenGrandExchange open_grand_exchange;
+    private final WithdrawWorker withdraw_amulet_of_glory = new WithdrawWorker(a -> a.getId() == amulet_of_glory_id, Bank.WithdrawMode.NOTE, 0);
+    private final OpenGrandExchange open_grand_exchange = new OpenGrandExchange();
 
-    public SellGlory(AirOrbRestockMission mission) {
-        super(mission);
-        withdraw_amulet_of_glory = new WithdrawItemWorker<>(a -> a.getId() == amulet_of_glory_id, Bank.WithdrawMode.NOTE, 0);
-        this.open_grand_exchange = new OpenGrandExchange(mission);
+    @Override
+    public boolean needsRepeat() {
+        return false;
     }
 
     @Override
@@ -54,7 +52,7 @@ public class SellGlory extends AirOrbRestockWorker {
 
     @Override
     public String toString() {
-        return "Selling Amulet of glory";
+        return "Selling Amulet of glory.";
     }
 }
 

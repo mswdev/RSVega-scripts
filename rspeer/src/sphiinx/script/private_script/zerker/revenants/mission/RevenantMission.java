@@ -1,16 +1,16 @@
 package sphiinx.script.private_script.zerker.revenants.mission;
 
 import org.rspeer.runetek.api.movement.Movement;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.goal.GoalList;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.goal.impl.InfiniteGoal;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.mission.Mission;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
+import sphiinx.api.script.framework.goal.GoalList;
+import sphiinx.api.script.framework.goal.impl.InfiniteGoal;
+import sphiinx.api.script.framework.mission.Mission;
+import sphiinx.api.script.framework.worker.Worker;
 import sphiinx.script.private_script.zerker.revenants.mission.worker.RevenantWorkerHandler;
 
 public class RevenantMission extends Mission {
 
-    public boolean can_end;
     private final RevenantWorkerHandler worker_handler = new RevenantWorkerHandler(this);
+    public boolean can_end;
 
     @Override
     public String getMissionName() {
@@ -19,13 +19,13 @@ public class RevenantMission extends Mission {
 
     @Override
     public String getWorkerName() {
-        final Worker<RevenantMission> c = worker_handler.getCurrent();
+        final Worker c = worker_handler.getCurrent();
         return c == null ? "WORKER" : c.getClass().getSimpleName();
     }
 
     @Override
     public String getWorkerString() {
-        final Worker<RevenantMission> c = worker_handler.getCurrent();
+        final Worker c = worker_handler.getCurrent();
         return c == null ? "Waiting for worker" : c.toString();
     }
 

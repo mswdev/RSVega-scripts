@@ -5,17 +5,23 @@ import org.rspeer.runetek.api.component.tab.Equipment;
 import org.rspeer.runetek.api.component.tab.EquipmentSlot;
 import org.rspeer.runetek.api.input.menu.ActionOpcodes;
 import org.rspeer.runetek.api.scene.Players;
+import sphiinx.api.script.framework.worker.Worker;
 import sphiinx.script.public_script.spx_air_orbs.mission.charge.AirOrbChargeMission;
-import sphiinx.script.public_script.spx_air_orbs.mission.charge.worker.AirOrbChargeWorker;
 import sphiinx.script.public_script.spx_air_orbs.mission.charge.worker.impl.at_bank.EquipGlory;
 
-public class TeleportToEdgeville extends AirOrbChargeWorker {
+public class TeleportToEdgeville extends Worker {
 
     private final EquipGlory equip_glory;
+    private final AirOrbChargeMission mission;
 
     public TeleportToEdgeville(AirOrbChargeMission mission) {
-        super(mission);
+        this.mission = mission;
         equip_glory = new EquipGlory(mission);
+    }
+
+    @Override
+    public boolean needsRepeat() {
+        return false;
     }
 
     @Override
@@ -33,7 +39,7 @@ public class TeleportToEdgeville extends AirOrbChargeWorker {
 
     @Override
     public String toString() {
-        return "Teleporting to Edgeville";
+        return "Teleporting to Edgeville.";
     }
 }
 

@@ -4,15 +4,15 @@ import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.movement.position.Position;
 import org.rspeer.runetek.api.scene.Players;
-import sphiinx.script.public_script.spx_air_orbs.mission.level.AirOrbLevelMission;
-import sphiinx.script.public_script.spx_air_orbs.mission.level.worker.AirOrbLevelWorker;
+import sphiinx.api.script.framework.worker.Worker;
 
-public class WalkToSeagulls extends AirOrbLevelWorker {
+public class WalkToSeagulls extends Worker {
 
     private final Position seagulls_position = new Position(3028, 3235, 0);
 
-    public WalkToSeagulls(AirOrbLevelMission mission) {
-        super(mission);
+    @Override
+    public boolean needsRepeat() {
+        return false;
     }
 
     @Override
@@ -26,7 +26,7 @@ public class WalkToSeagulls extends AirOrbLevelWorker {
 
     @Override
     public String toString() {
-        return "Walking to Seagulls";
+        return "Walking to Seagulls.";
     }
 }
 

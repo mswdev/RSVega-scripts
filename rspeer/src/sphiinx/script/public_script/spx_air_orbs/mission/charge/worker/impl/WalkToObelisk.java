@@ -6,24 +6,30 @@ import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.movement.position.Position;
 import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.runetek.api.scene.SceneObjects;
-import sphiinx.script.public_script.spx_tutorial_island.api.game_util.Wilderness;
+import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.game.Wilderness;
 import sphiinx.script.public_script.spx_air_orbs.mission.charge.AirOrbChargeMission;
-import sphiinx.script.public_script.spx_air_orbs.mission.charge.worker.AirOrbChargeWorker;
 import sphiinx.script.public_script.spx_air_orbs.mission.charge.worker.impl.at_bank.EquipGlory;
 
 import java.util.Arrays;
 
-public class WalkToObelisk extends AirOrbChargeWorker {
+public class WalkToObelisk extends Worker {
 
     public final Position trap_door_position = new Position(3097, 3468, 0);
     private final Position ladder_position = new Position(3088, 9971, 0);
     private final EquipGlory equip_glory;
     private final TeleportToEdgeville teleport_to_edgeville;
+    private final AirOrbChargeMission mission;
 
     public WalkToObelisk(AirOrbChargeMission mission) {
-        super(mission);
+        this.mission = mission;
         equip_glory = new EquipGlory(mission);
         teleport_to_edgeville = new TeleportToEdgeville(mission);
+    }
+
+    @Override
+    public boolean needsRepeat() {
+        return false;
     }
 
     @Override
@@ -62,7 +68,7 @@ public class WalkToObelisk extends AirOrbChargeWorker {
 
     @Override
     public String toString() {
-        return "Walking to Obelisk of air";
+        return "Walking to Obelisk of air.";
     }
 }
 

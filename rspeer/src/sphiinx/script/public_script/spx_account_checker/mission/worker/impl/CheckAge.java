@@ -13,13 +13,12 @@ import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.movement.position.Position;
 import org.rspeer.runetek.api.scene.Npcs;
 import org.rspeer.runetek.api.scene.Players;
+import sphiinx.api.script.framework.worker.Worker;
 import sphiinx.script.public_script.spx_account_checker.data.Vars;
-import sphiinx.script.public_script.spx_account_checker.mission.AccountCheckerMission;
-import sphiinx.script.public_script.spx_account_checker.mission.worker.AccountCheckerWorker;
 
 import java.util.function.Predicate;
 
-public class CheckAge extends AccountCheckerWorker {
+public class CheckAge extends Worker {
 
     private final int hans_chat_interface_id = 231;
     private final int hans_chat_interface_child_id = 4;
@@ -27,8 +26,9 @@ public class CheckAge extends AccountCheckerWorker {
     private final Predicate<String> age_hans = a -> a.equals("Age");
     private final Position hans_position = new Position(3218, 3228, 0);
 
-    public CheckAge(AccountCheckerMission mission) {
-        super(mission);
+    @Override
+    public boolean needsRepeat() {
+        return false;
     }
 
     @Override

@@ -4,7 +4,7 @@ import org.rspeer.script.Script;
 import org.rspeer.script.ScriptCategory;
 import org.rspeer.script.ScriptMeta;
 import org.rspeer.ui.Log;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.ui.fxui.FXGUIBuilder;
+import sphiinx.api.ui.fxui.FXGUIBuilder;
 
 @ScriptMeta(developer = "Sphiinx", category = ScriptCategory.TOOL, name = "[SPX] Test FX GUI Script", desc = "Test FX GUI Script")
 public class TestFXGUIScript extends Script {

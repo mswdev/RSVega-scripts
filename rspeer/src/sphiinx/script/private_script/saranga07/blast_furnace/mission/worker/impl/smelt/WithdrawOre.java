@@ -6,29 +6,30 @@ import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.Bank;
 import org.rspeer.runetek.api.component.Dialog;
 import org.rspeer.runetek.api.component.tab.Inventory;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.script.workers.WithdrawItemWorker;
+import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.script.impl.worker.banking.WithdrawWorker;
 import sphiinx.script.private_script.saranga07.blast_furnace.mission.BlastFurnaceMission;
-import sphiinx.script.private_script.saranga07.blast_furnace.mission.worker.BlastFurnaceWorker;
 import sphiinx.script.private_script.saranga07.blast_furnace.mission.worker.impl.WithdrawCoalBag;
 
 import java.util.function.Predicate;
 
-public class WithdrawOre extends BlastFurnaceWorker {
+public class WithdrawOre extends Worker {
 
     private static final int COAL_VARP = 547;
-    private final int ingrediant_one_minimum;
-    private final Predicate<Item> ingrediant_one;
-    private final Predicate<Item> ingrediant_two;
-    private final WithdrawItemWorker withdraw_ingrediant_one;
-    private final WithdrawItemWorker withdraw_ingrediant_two;
+    private final int ingrediant_one_minimum = (BlastFurnaceMission.bar_type.getIngrediantOneAmount() / 2) * 27;
+    private final Predicate<Item> ingrediant_one = a -> a.getName().equals(BlastFurnaceMission.bar_type.getIngrediantOne().getName());
+    private final Predicate<Item> ingrediant_two = a -> a.getName().equals(BlastFurnaceMission.bar_type.getIngrediantTwo().getName());
+    private final WithdrawWorker withdraw_worker_ingrediant_one = new WithdrawWorker(ingrediant_one, Bank.WithdrawMode.ITEM, 0);
+    private final WithdrawWorker withdraw_worker_ingrediant_two = new WithdrawWorker(ingrediant_two, Bank.WithdrawMode.ITEM, 0);
+    private final BlastFurnaceMission mission;
 
     public WithdrawOre(BlastFurnaceMission mission) {
-        super(mission);
-        ingrediant_one_minimum = (mission.bar_type.ingrediant_one_amount / 2) * 27;
-        ingrediant_one = a -> a.getName().equals(mission.bar_type.getIngrediantOne().getName());
-        ingrediant_two = a -> a.getName().equals(mission.bar_type.getIngrediantTwo().getName());
-        withdraw_ingrediant_one = new WithdrawItemWorker(ingrediant_one, Bank.WithdrawMode.ITEM, 0);
-        withdraw_ingrediant_two = new WithdrawItemWorker(ingrediant_two, Bank.WithdrawMode.ITEM, 0);
+        this.mission = mission;
+    }
+
+    @Override
+    public boolean needsRepeat() {
+        return false;
     }
 
     @Override
@@ -62,18 +63,18 @@ public class WithdrawOre extends BlastFurnaceWorker {
     }
 
     private void withdrawIngrediantOne() {
-        withdraw_ingrediant_one.work();
-        mission.can_end = withdraw_ingrediant_one.itemNotFound();
+        withdraw_worker_ingrediant_one.work();
+        mission.can_end = withdraw_worker_ingrediant_one.itemNotFound();
     }
 
     private void withdrawIngrediantTwo() {
-        withdraw_ingrediant_two.work();
-        mission.can_end = withdraw_ingrediant_two.itemNotFound();
+        withdraw_worker_ingrediant_two.work();
+        mission.can_end = withdraw_worker_ingrediant_two.itemNotFound();
     }
 
     @Override
     public String toString() {
-        return "Withdrawing ore";
+        return "Withdrawing ore.";
     }
 }
 

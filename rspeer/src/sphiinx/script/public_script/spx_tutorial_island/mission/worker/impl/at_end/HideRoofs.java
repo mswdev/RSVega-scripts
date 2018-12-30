@@ -2,12 +2,16 @@ package sphiinx.script.public_script.spx_tutorial_island.mission.worker.impl.at_
 
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.InterfaceOptions;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
-import sphiinx.script.public_script.spx_tutorial_island.api.game_util.ClientSettings;
-import sphiinx.script.public_script.spx_tutorial_island.mission.TutorialIslandMission;
+import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.game.ClientSettings;
 
-public class HideRoofs extends Worker<TutorialIslandMission> {
+public class HideRoofs extends Worker {
 
+
+    @Override
+    public boolean needsRepeat() {
+        return false;
+    }
 
     @Override
     public void work() {
@@ -17,7 +21,7 @@ public class HideRoofs extends Worker<TutorialIslandMission> {
 
     @Override
     public String toString() {
-        return "Hiding roofs";
+        return "Hiding roofs.";
     }
 }
 

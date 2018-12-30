@@ -3,11 +3,11 @@ package sphiinx.script.private_script.saranga07.blast_furnace.mission;
 import org.rspeer.runetek.adapter.component.Item;
 import org.rspeer.runetek.api.component.Dialog;
 import org.rspeer.runetek.api.movement.Movement;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.goal.GoalList;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.goal.impl.InfiniteGoal;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.mission.Mission;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
-import sphiinx.script.public_script.spx_tutorial_island.api.game_util.skills.smithing.BarType;
+import sphiinx.api.script.framework.goal.GoalList;
+import sphiinx.api.script.framework.goal.impl.InfiniteGoal;
+import sphiinx.api.script.framework.mission.Mission;
+import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.game.skills.smithing.BarType;
 import sphiinx.script.private_script.saranga07.blast_furnace.mission.worker.BlastFurnaceWorkerHandler;
 
 import java.util.function.Predicate;
@@ -28,13 +28,13 @@ public class BlastFurnaceMission extends Mission {
 
     @Override
     public String getWorkerName() {
-        final Worker<BlastFurnaceMission> c = worker_handler.getCurrent();
+        final Worker c = worker_handler.getCurrent();
         return c == null ? "WORKER" : c.getClass().getSimpleName();
     }
 
     @Override
     public String getWorkerString() {
-        final Worker<BlastFurnaceMission> c = worker_handler.getCurrent();
+        final Worker c = worker_handler.getCurrent();
         return c == null ? "Waiting for worker" : c.toString();
     }
 

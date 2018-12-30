@@ -5,19 +5,25 @@ import org.rspeer.runetek.adapter.scene.SceneObject;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.scene.SceneObjects;
+import sphiinx.api.script.framework.worker.Worker;
 import sphiinx.script.private_script.saranga07.blast_furnace.mission.BlastFurnaceMission;
-import sphiinx.script.private_script.saranga07.blast_furnace.mission.worker.BlastFurnaceWorker;
 import sphiinx.script.private_script.saranga07.blast_furnace.mission.worker.impl.WithdrawCoalBag;
 
 import java.util.function.Predicate;
 
-public class SmeltBars extends BlastFurnaceWorker {
+public class SmeltBars extends Worker {
 
     private static final Predicate<SceneObject> CONVEYOR_BELT = a -> a.getName().equals("Conveyor belt") && a.containsAction("Put-ore-on");
     private static final Predicate<String> EMPTY_COAL_BAG = a -> a.equals("Empty");
+    private final BlastFurnaceMission mission;
 
     public SmeltBars(BlastFurnaceMission mission) {
-        super(mission);
+        this.mission = mission;
+    }
+
+    @Override
+    public boolean needsRepeat() {
+        return false;
     }
 
     @Override
@@ -45,7 +51,7 @@ public class SmeltBars extends BlastFurnaceWorker {
 
     @Override
     public String toString() {
-        return "Smelting bars";
+        return "Smelting bars.";
     }
 }
 

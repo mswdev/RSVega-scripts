@@ -2,20 +2,25 @@ package sphiinx.script.public_script.spx_air_orbs.mission.level.worker.impl.magi
 
 import org.rspeer.runetek.adapter.component.Item;
 import org.rspeer.runetek.api.component.Bank;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.script.workers.WithdrawItemWorker;
+import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.script.impl.worker.banking.WithdrawWorker;
 import sphiinx.script.public_script.spx_air_orbs.mission.level.AirOrbLevelMission;
-import sphiinx.script.public_script.spx_air_orbs.mission.level.worker.AirOrbLevelWorker;
 
 import java.util.function.Predicate;
 
-public class WithdrawLawRunes extends AirOrbLevelWorker {
+public class WithdrawLawRunes extends Worker {
 
     public static final Predicate<Item> ITEM = a -> a.getName().equals("Law rune");
-    private final WithdrawItemWorker withdraw_law_runes;
+    private final WithdrawWorker withdraw_law_runes = new WithdrawWorker(ITEM, Bank.WithdrawMode.ITEM, 0);
+    private final AirOrbLevelMission mission;
 
     public WithdrawLawRunes(AirOrbLevelMission mission) {
-        super(mission);
-        withdraw_law_runes = new WithdrawItemWorker(ITEM, Bank.WithdrawMode.ITEM, 0);
+        this.mission = mission;
+    }
+
+    @Override
+    public boolean needsRepeat() {
+        return false;
     }
 
     @Override
@@ -26,7 +31,7 @@ public class WithdrawLawRunes extends AirOrbLevelWorker {
 
     @Override
     public String toString() {
-        return "Withdrawing Law runes";
+        return "Withdrawing Law runes.";
     }
 }
 

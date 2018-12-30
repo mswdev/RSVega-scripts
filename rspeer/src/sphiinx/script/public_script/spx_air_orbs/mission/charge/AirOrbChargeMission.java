@@ -2,10 +2,10 @@ package sphiinx.script.public_script.spx_air_orbs.mission.charge;
 
 import org.rspeer.runetek.api.component.tab.Skill;
 import org.rspeer.runetek.api.component.tab.Skills;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.goal.GoalList;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.mission.Mission;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.script.SPXScript;
+import sphiinx.api.script.framework.goal.GoalList;
+import sphiinx.api.script.framework.mission.Mission;
+import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.script.SPXScript;
 import sphiinx.script.public_script.spx_air_orbs.mission.charge.worker.AirOrbChargeWorkerHandler;
 
 public class AirOrbChargeMission extends Mission {
@@ -25,13 +25,13 @@ public class AirOrbChargeMission extends Mission {
 
     @Override
     public String getWorkerName() {
-        Worker<AirOrbChargeMission> c = handler.getCurrent();
+        Worker c = handler.getCurrent();
         return c == null ? "WORKER" : c.getClass().getSimpleName();
     }
 
     @Override
     public String getWorkerString() {
-        Worker<AirOrbChargeMission> c = handler.getCurrent();
+        Worker c = handler.getCurrent();
         return c == null ? "WORKER" : c.toString();
     }
 

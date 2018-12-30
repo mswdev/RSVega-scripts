@@ -7,19 +7,25 @@ import org.rspeer.runetek.api.component.Bank;
 import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.ui.Log;
-import sphiinx.script.public_script.spx_tutorial_island.api.game_util.pricechecking.PriceCheck;
+import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.game.pricechecking.PriceCheck;
 import sphiinx.script.public_script.spx_account_checker.data.Vars;
 import sphiinx.script.public_script.spx_account_checker.mission.AccountCheckerMission;
-import sphiinx.script.public_script.spx_account_checker.mission.worker.AccountCheckerWorker;
 
 import java.io.IOException;
 
-public class CheckBank extends AccountCheckerWorker {
+public class CheckBank extends Worker {
 
     private final int coins_id = 995;
+    private final AccountCheckerMission mission;
 
     public CheckBank(AccountCheckerMission mission) {
-        super(mission);
+        this.mission = mission;
+    }
+
+    @Override
+    public boolean needsRepeat() {
+        return false;
     }
 
     @Override

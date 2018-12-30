@@ -5,8 +5,8 @@ import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.Interfaces;
 import org.rspeer.runetek.api.component.tab.*;
 import org.rspeer.runetek.api.scene.Npcs;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.WorkerHandler;
+import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.script.framework.worker.WorkerHandler;
 import sphiinx.script.public_script.spx_air_orbs.mission.level.AirOrbLevelMission;
 import sphiinx.script.public_script.spx_air_orbs.mission.level.worker.impl.FightSeagulls;
 import sphiinx.script.public_script.spx_air_orbs.mission.level.worker.impl.WalkToSeagulls;
@@ -18,33 +18,34 @@ import sphiinx.script.public_script.spx_air_orbs.mission.level.worker.impl.magic
 import sphiinx.script.public_script.spx_air_orbs.mission.level.worker.impl.magic.level_to_45.WithdrawFireRunes;
 import sphiinx.script.public_script.spx_air_orbs.mission.level.worker.impl.magic.level_to_66.CastCamelotTeleport;
 
-public class AirOrbLevelWorkerHandler extends WorkerHandler<AirOrbLevelMission> {
+public class AirOrbLevelWorkerHandler extends WorkerHandler {
 
-    private final AirOrbLevelWorker equip_staff_of_air;
-    private final AirOrbLevelWorker withdraw_mind_runes;
-    private final AirOrbLevelWorker walk_to_seagulls;
-    private final AirOrbLevelWorker fight_seagulls;
-    private final AirOrbLevelWorker withdraw_fire_runes;
-    private final AirOrbLevelWorker withdraw_law_runes;
-    private final AirOrbLevelWorker cast_varrock_teleport;
-    private final AirOrbLevelWorker cast_camelot_teleport;
-    private final AirOrbLevelWorker equip_bronze_sword;
+    private final EquipStaffOfAir equip_staff_of_air;
+    private final WithdrawMindRunes withdraw_mind_runes;
+    private final WalkToSeagulls walk_to_seagulls;
+    private final FightSeagulls fight_seagulls;
+    private final WithdrawFireRunes withdraw_fire_runes;
+    private final WithdrawLawRunes withdraw_law_runes;
+    private final CastVarrockTeleport cast_varrock_teleport;
+    private final CastCamelotTeleport cast_camelot_teleport;
+    private final EquipBronzeSword equip_bronze_sword;
+    private final AirOrbLevelMission mission;
 
     public AirOrbLevelWorkerHandler(AirOrbLevelMission mission) {
-        super(mission);
+        this.mission = mission;
         equip_staff_of_air = new EquipStaffOfAir(mission);
         withdraw_mind_runes = new WithdrawMindRunes(mission);
-        walk_to_seagulls = new WalkToSeagulls(mission);
-        fight_seagulls = new FightSeagulls(mission);
+        walk_to_seagulls = new WalkToSeagulls();
+        fight_seagulls = new FightSeagulls();
         withdraw_fire_runes = new WithdrawFireRunes(mission);
         withdraw_law_runes = new WithdrawLawRunes(mission);
-        cast_varrock_teleport = new CastVarrockTeleport(mission);
-        cast_camelot_teleport = new CastCamelotTeleport(mission);
+        cast_varrock_teleport = new CastVarrockTeleport();
+        cast_camelot_teleport = new CastCamelotTeleport();
         equip_bronze_sword = new EquipBronzeSword(mission);
     }
 
     @Override
-    public Worker<AirOrbLevelMission> decide() {
+    public Worker decide() {
         final int magic_level = Skills.getLevel(Skill.MAGIC);
         if (magic_level < 66) {
             //todo Temporary until ghost loading is added.
@@ -93,7 +94,7 @@ public class AirOrbLevelWorkerHandler extends WorkerHandler<AirOrbLevelMission> 
         return handleSeagulls();
     }
 
-    private Worker<AirOrbLevelMission> handleSeagulls() {
+    private Worker handleSeagulls() {
         if (Npcs.getNearest(FightSeagulls.SEAGULL) == null)
             return walk_to_seagulls;
 

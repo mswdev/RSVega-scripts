@@ -1,13 +1,13 @@
 package sphiinx.script.public_script.spx_account_checker.mission.worker.impl.LoginAccount;
 
-import sphiinx.script.public_script.spx_account_checker.mission.AccountCheckerMission;
-import sphiinx.script.public_script.spx_account_checker.mission.worker.AccountCheckerWorker;
+import sphiinx.api.script.framework.worker.Worker;
 
-public class Wait extends AccountCheckerWorker {
+public class Wait extends Worker {
 
 
-    public Wait(AccountCheckerMission mission) {
-        super(mission);
+    @Override
+    public boolean needsRepeat() {
+        return false;
     }
 
     @Override

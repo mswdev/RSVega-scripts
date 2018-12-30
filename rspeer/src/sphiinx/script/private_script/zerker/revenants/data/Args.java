@@ -16,5 +16,8 @@ public class Args {
     @Parameter(names = "-ge_auto_sell")
     public boolean GE_AUTO_SELL;
 
+    public boolean refill_toxic_blowpipe;
+    public boolean refill_craws_bow;
+
 }
 

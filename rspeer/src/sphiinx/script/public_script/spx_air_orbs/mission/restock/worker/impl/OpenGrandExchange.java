@@ -7,13 +7,14 @@ import org.rspeer.runetek.api.component.GrandExchange;
 import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.scene.Npcs;
 import org.rspeer.runetek.api.scene.Players;
-import sphiinx.script.public_script.spx_air_orbs.mission.restock.AirOrbRestockMission;
-import sphiinx.script.public_script.spx_air_orbs.mission.restock.worker.AirOrbRestockWorker;
+import sphiinx.api.script.framework.worker.Worker;
 
-public class OpenGrandExchange extends AirOrbRestockWorker {
+public class OpenGrandExchange extends Worker {
 
-    public OpenGrandExchange(AirOrbRestockMission mission) {
-        super(mission);
+
+    @Override
+    public boolean needsRepeat() {
+        return false;
     }
 
     @Override
@@ -33,7 +34,7 @@ public class OpenGrandExchange extends AirOrbRestockWorker {
 
     @Override
     public String toString() {
-        return "Walking to Grand Exchange";
+        return "Walking to Grand Exchange.";
     }
 }
 

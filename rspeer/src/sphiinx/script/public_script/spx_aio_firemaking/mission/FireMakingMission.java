@@ -1,10 +1,10 @@
 package sphiinx.script.public_script.spx_aio_firemaking.mission;
 
 import org.rspeer.runetek.api.movement.position.Position;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.goal.GoalList;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.goal.impl.InfiniteGoal;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.mission.Mission;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
+import sphiinx.api.script.framework.goal.GoalList;
+import sphiinx.api.script.framework.goal.impl.InfiniteGoal;
+import sphiinx.api.script.framework.mission.Mission;
+import sphiinx.api.script.framework.worker.Worker;
 import sphiinx.script.public_script.spx_aio_firemaking.mission.worker.FireMakingWorkerHandler;
 
 import java.util.LinkedList;
@@ -33,13 +33,13 @@ public class FireMakingMission extends Mission {
 
     @Override
     public String getWorkerName() {
-        Worker<FireMakingMission> c = worker_handler.getCurrent();
+        Worker c = worker_handler.getCurrent();
         return c == null ? "WORKER" : c.getClass().getSimpleName();
     }
 
     @Override
     public String getWorkerString() {
-        Worker<FireMakingMission> c = worker_handler.getCurrent();
+        Worker c = worker_handler.getCurrent();
         return c == null ? "Waiting for worker" : c.toString();
     }
 

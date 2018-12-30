@@ -1,10 +1,14 @@
 package sphiinx.script.public_script.spx_tutorial_island.mission.worker.impl.at_end;
 
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
-import sphiinx.script.public_script.spx_tutorial_island.mission.TutorialIslandMission;
+import sphiinx.api.script.framework.worker.Worker;
 
-public class StayLoggedIn extends Worker<TutorialIslandMission> {
+public class StayLoggedIn extends Worker {
 
+
+    @Override
+    public boolean needsRepeat() {
+        return false;
+    }
 
     @Override
     public void work() {
@@ -12,7 +16,7 @@ public class StayLoggedIn extends Worker<TutorialIslandMission> {
 
     @Override
     public String toString() {
-        return "Staying logged in";
+        return "Staying logged in.";
     }
 }
 

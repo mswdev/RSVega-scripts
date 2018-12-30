@@ -1,9 +1,9 @@
 package sphiinx.script.public_script.spx_air_orbs.mission.restock;
 
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.goal.GoalList;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.mission.Mission;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.script.SPXScript;
+import sphiinx.api.script.framework.goal.GoalList;
+import sphiinx.api.script.framework.mission.Mission;
+import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.script.SPXScript;
 import sphiinx.script.public_script.spx_air_orbs.mission.charge.AirOrbChargeMission;
 import sphiinx.script.public_script.spx_air_orbs.mission.level.AirOrbLevelMission;
 import sphiinx.script.public_script.spx_air_orbs.mission.restock.worker.AirOrbRestockWorkerHandler;
@@ -26,13 +26,13 @@ public class AirOrbRestockMission extends Mission {
 
     @Override
     public String getWorkerName() {
-        Worker<AirOrbRestockMission> c = handler.getCurrent();
+        Worker c = handler.getCurrent();
         return c == null ? "WORKER" : c.getClass().getSimpleName();
     }
 
     @Override
     public String getWorkerString() {
-        Worker<AirOrbRestockMission> c = handler.getCurrent();
+        Worker c = handler.getCurrent();
         return c == null ? "WORKER" : c.toString();
     }
 

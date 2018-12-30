@@ -1,21 +1,26 @@
 package sphiinx.script.public_script.spx_air_orbs.mission.charge.worker.impl.at_bank;
 
 import org.rspeer.runetek.adapter.component.Item;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.script.workers.ItemActionWorker;
+import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.script.impl.worker.interactables.ItemWorker;
 import sphiinx.script.public_script.spx_air_orbs.mission.charge.AirOrbChargeMission;
-import sphiinx.script.public_script.spx_air_orbs.mission.charge.worker.AirOrbChargeWorker;
 
 import java.util.function.Predicate;
 
-public class EquipStaffOfAir extends AirOrbChargeWorker {
+public class EquipStaffOfAir extends Worker {
 
     public static final String ITEM_NAME = "Staff of air";
     private final Predicate<Item> staff_of_air = a -> a.getName().equals(ITEM_NAME);
-    private final ItemActionWorker equip_staff_of_air;
+    private final ItemWorker equip_staff_of_air = new ItemWorker(staff_of_air);
+    private final AirOrbChargeMission mission;
 
     public EquipStaffOfAir(AirOrbChargeMission mission) {
-        super(mission);
-        equip_staff_of_air = new ItemActionWorker(staff_of_air);
+        this.mission = mission;
+    }
+
+    @Override
+    public boolean needsRepeat() {
+        return false;
     }
 
     @Override
@@ -26,7 +31,7 @@ public class EquipStaffOfAir extends AirOrbChargeWorker {
 
     @Override
     public String toString() {
-        return "Equipping Staff of air";
+        return "Equipping Staff of air.";
     }
 }
 

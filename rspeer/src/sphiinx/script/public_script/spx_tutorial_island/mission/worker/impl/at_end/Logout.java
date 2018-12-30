@@ -2,13 +2,20 @@ package sphiinx.script.public_script.spx_tutorial_island.mission.worker.impl.at_
 
 import org.rspeer.runetek.api.Game;
 import org.rspeer.runetek.api.commons.Time;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
+import sphiinx.api.script.framework.worker.Worker;
 import sphiinx.script.public_script.spx_tutorial_island.mission.TutorialIslandMission;
 
-public class Logout extends Worker<TutorialIslandMission> {
+public class Logout extends Worker {
+
+    private final TutorialIslandMission mission;
 
     public Logout(TutorialIslandMission mission) {
-        super(mission);
+        this.mission = mission;
+    }
+
+    @Override
+    public boolean needsRepeat() {
+        return false;
     }
 
     @Override
@@ -23,7 +30,7 @@ public class Logout extends Worker<TutorialIslandMission> {
 
     @Override
     public String toString() {
-        return "Logging out";
+        return "Logging out.";
     }
 }
 

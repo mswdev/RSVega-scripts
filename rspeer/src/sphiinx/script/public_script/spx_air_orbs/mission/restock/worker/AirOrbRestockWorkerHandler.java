@@ -7,8 +7,8 @@ import org.rspeer.runetek.api.component.tab.Skill;
 import org.rspeer.runetek.api.component.tab.Skills;
 import org.rspeer.runetek.providers.RSGrandExchangeOffer;
 import org.rspeer.ui.Log;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.WorkerHandler;
+import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.script.framework.worker.WorkerHandler;
 import sphiinx.script.public_script.spx_air_orbs.mission.restock.AirOrbRestockMission;
 import sphiinx.script.public_script.spx_air_orbs.mission.restock.worker.impl.DepositInventory;
 import sphiinx.script.public_script.spx_air_orbs.mission.restock.worker.impl.WithdrawCoins;
@@ -16,7 +16,7 @@ import sphiinx.script.public_script.spx_air_orbs.mission.restock.worker.impl.buy
 import sphiinx.script.public_script.spx_air_orbs.mission.restock.worker.impl.selling.SellAirOrb;
 import sphiinx.script.public_script.spx_air_orbs.mission.restock.worker.impl.selling.SellGlory;
 
-public class AirOrbRestockWorkerHandler extends WorkerHandler<AirOrbRestockMission> {
+public class AirOrbRestockWorkerHandler extends WorkerHandler {
 
 
     private final SellAirOrb sell_air_orb;
@@ -32,26 +32,27 @@ public class AirOrbRestockWorkerHandler extends WorkerHandler<AirOrbRestockMissi
     private final BuyLawRune buy_law_rune;
     private final WithdrawCoins withdraw_coins;
     private final DepositInventory deposit_inventory;
+    private final AirOrbRestockMission mission;
 
     public AirOrbRestockWorkerHandler(AirOrbRestockMission mission) {
-        super(mission);
-        sell_air_orb = new SellAirOrb(mission);
-        sell_glory = new SellGlory(mission);
-        buy_unpowered_orb = new BuyUnpoweredOrb(mission);
-        buy_glory = new BuyGlory(mission);
-        buy_stamina = new BuyStamina(mission);
-        buy_cosmic_rune = new BuyCosmicRune(mission);
-        buy_food = new BuyFood(mission);
-        buy_staff_of_air = new BuyStaffOfAir(mission);
-        buy_mind_rune = new BuyMindRune(mission);
-        buy_fire_rune = new BuyFireRune(mission);
-        buy_law_rune = new BuyLawRune(mission);
-        withdraw_coins = new WithdrawCoins(mission);
-        deposit_inventory = new DepositInventory(mission);
+        this.mission = mission;
+        sell_air_orb = new SellAirOrb();
+        sell_glory = new SellGlory();
+        buy_unpowered_orb = new BuyUnpoweredOrb();
+        buy_glory = new BuyGlory();
+        buy_stamina = new BuyStamina();
+        buy_cosmic_rune = new BuyCosmicRune();
+        buy_food = new BuyFood();
+        buy_staff_of_air = new BuyStaffOfAir();
+        buy_mind_rune = new BuyMindRune();
+        buy_fire_rune = new BuyFireRune();
+        buy_law_rune = new BuyLawRune();
+        withdraw_coins = new WithdrawCoins();
+        deposit_inventory = new DepositInventory();
     }
 
     @Override
-    public Worker<AirOrbRestockMission> decide() {
+    public Worker decide() {
         if (GrandExchange.isOpen() && GrandExchange.getOffers(a -> a.getProgress() == RSGrandExchangeOffer.Progress.IN_PROGRESS).length > 0) {
             Log.fine("Waiting for items to buy/sell");
             return null;

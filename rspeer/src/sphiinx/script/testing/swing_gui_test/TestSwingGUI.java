@@ -1,7 +1,7 @@
 package sphiinx.script.testing.swing_gui_test;
 
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.ui.swingui.components.AutoCompleteComboBox;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.ui.swingui.GUI;
+import sphiinx.api.ui.swingui.components.AutoCompleteComboBox;
+import sphiinx.api.ui.swingui.GUI;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

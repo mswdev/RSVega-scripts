@@ -5,20 +5,26 @@ import okhttp3.RequestBody;
 import org.rspeer.runetek.api.Game;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.ui.Log;
+import sphiinx.api.script.framework.worker.Worker;
 import sphiinx.script.public_script.spx_account_checker.data.Vars;
 import sphiinx.script.public_script.spx_account_checker.http.AccountData;
 import sphiinx.script.public_script.spx_account_checker.http.AccountDataType;
 import sphiinx.script.public_script.spx_account_checker.mission.AccountCheckerMission;
-import sphiinx.script.public_script.spx_account_checker.mission.worker.AccountCheckerWorker;
 
 import java.util.Map;
 
 
-public class Logout extends AccountCheckerWorker {
+public class Logout extends Worker {
 
+    private final AccountCheckerMission mission;
 
     public Logout(AccountCheckerMission mission) {
-        super(mission);
+        this.mission = mission;
+    }
+
+    @Override
+    public boolean needsRepeat() {
+        return false;
     }
 
     @Override

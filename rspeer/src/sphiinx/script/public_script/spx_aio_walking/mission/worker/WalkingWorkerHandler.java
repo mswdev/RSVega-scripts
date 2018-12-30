@@ -1,22 +1,17 @@
 package sphiinx.script.public_script.spx_aio_walking.mission.worker;
 
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.WorkerHandler;
-import sphiinx.script.public_script.spx_aio_walking.mission.WalkingMission;
-import sphiinx.script.public_script.spx_aio_walking.mission.worker.impl.WalkToLocation;
+import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.script.framework.worker.WorkerHandler;
+import sphiinx.api.script.impl.worker.MovementWorker;
+import sphiinx.script.public_script.spx_aio_walking.Main;
 
-public class WalkingWorkerHandler extends WorkerHandler<WalkingMission> {
+public class WalkingWorkerHandler extends WorkerHandler {
 
-    private final WalkingWorker walk_to_location;
-
-    public WalkingWorkerHandler(WalkingMission mission) {
-        super(mission);
-        walk_to_location = new WalkToLocation(mission);
-    }
+    private final MovementWorker movement_worker = new MovementWorker(Main.ARGS.LOCATION.getPosition());;
 
     @Override
-    public Worker<WalkingMission> decide() {
-        return walk_to_location;
+    public Worker decide() {
+        return movement_worker;
     }
 }
 

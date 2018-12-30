@@ -9,13 +9,17 @@ import org.rspeer.runetek.api.movement.position.Position;
 import org.rspeer.runetek.api.scene.Npcs;
 import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.runetek.api.scene.SceneObjects;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
-import sphiinx.script.public_script.spx_tutorial_island.mission.TutorialIslandMission;
+import sphiinx.api.script.framework.worker.Worker;
 
 import java.util.function.BooleanSupplier;
 import java.util.stream.Stream;
 
-public class HintWorker extends Worker<TutorialIslandMission> {
+public class HintWorker extends Worker {
+
+    @Override
+    public boolean needsRepeat() {
+        return false;
+    }
 
     @Override
     public void work() {
@@ -67,7 +71,7 @@ public class HintWorker extends Worker<TutorialIslandMission> {
 
     @Override
     public String toString() {
-        return "Executing hint worker";
+        return "Executing hint worker.";
     }
 }
 

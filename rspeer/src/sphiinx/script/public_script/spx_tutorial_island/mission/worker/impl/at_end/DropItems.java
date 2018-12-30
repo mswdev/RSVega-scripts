@@ -3,12 +3,11 @@ package sphiinx.script.public_script.spx_tutorial_island.mission.worker.impl.at_
 import org.rspeer.runetek.adapter.component.Item;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.tab.Inventory;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
-import sphiinx.script.public_script.spx_tutorial_island.mission.TutorialIslandMission;
+import sphiinx.api.script.framework.worker.Worker;
 
 import java.util.function.Predicate;
 
-public class DropItems extends Worker<TutorialIslandMission> {
+public class DropItems extends Worker {
 
     private final Predicate<String> DROP = a -> a.equals("Drop");
 
@@ -30,7 +29,7 @@ public class DropItems extends Worker<TutorialIslandMission> {
 
     @Override
     public String toString() {
-        return "Dropping items";
+        return "Dropping items.";
     }
 }
 

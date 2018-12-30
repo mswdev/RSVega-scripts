@@ -3,17 +3,16 @@ package sphiinx.script.public_script.spx_air_orbs.mission.charge.worker.impl.at_
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.Bank;
 import org.rspeer.runetek.api.component.tab.Inventory;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.script.workers.OpenBankWorker;
-import sphiinx.script.public_script.spx_air_orbs.mission.charge.AirOrbChargeMission;
-import sphiinx.script.public_script.spx_air_orbs.mission.charge.worker.AirOrbChargeWorker;
+import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.script.impl.worker.banking.OpenBankWorker;
 
-public class DepositInventory extends AirOrbChargeWorker {
+public class DepositInventory extends Worker {
 
-    private final OpenBankWorker open_bank;
+    private final OpenBankWorker open_bank = new OpenBankWorker(false);
 
-    public DepositInventory(AirOrbChargeMission mission) {
-        super(mission);
-        this.open_bank = new OpenBankWorker(false);
+    @Override
+    public boolean needsRepeat() {
+        return false;
     }
 
     @Override
@@ -28,7 +27,7 @@ public class DepositInventory extends AirOrbChargeWorker {
 
     @Override
     public String toString() {
-        return "Depositing inventory";
+        return "Depositing inventory.";
     }
 }
 

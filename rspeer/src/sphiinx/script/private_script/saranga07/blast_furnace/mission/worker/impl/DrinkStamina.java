@@ -5,50 +5,51 @@ import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.Bank;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.movement.Movement;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.script.workers.ItemActionWorker;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.script.workers.OpenBankWorker;
-import sphiinx.script.private_script.saranga07.blast_furnace.mission.BlastFurnaceMission;
-import sphiinx.script.private_script.saranga07.blast_furnace.mission.worker.BlastFurnaceWorker;
+import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.script.impl.worker.banking.DepositWorker;
+import sphiinx.api.script.impl.worker.banking.OpenBankWorker;
+import sphiinx.api.script.impl.worker.interactables.ItemWorker;
 
 import java.util.function.Predicate;
 
-public class DrinkStamina extends BlastFurnaceWorker {
+public class DrinkStamina extends Worker {
 
     public static final Predicate<Item> stamina = a -> a.getName().contains("Stamina");
     public static final Predicate<Item> vial = a -> a.getName().equals("Vial");
-    private final ItemActionWorker drink_stamina_potion;
-    private final OpenBankWorker open_bank;
+    private final ItemWorker item_worker = new ItemWorker(stamina);
+    private final OpenBankWorker open_bank_worker = new OpenBankWorker(false);
+    private final DepositWorker deposit_worker = new DepositWorker();
     public boolean out_of_stamina;
 
-    public DrinkStamina(BlastFurnaceMission mission) {
-        super(mission);
-        drink_stamina_potion = new ItemActionWorker(stamina);
-        open_bank = new OpenBankWorker(false);
+    @Override
+    public boolean needsRepeat() {
+        return false;
     }
 
     @Override
     public void work() {
-        // [TODO - 2018-10-26]: Remove this once the deposit worker is added.
-        if (Movement.isStaminaEnhancementActive() && Inventory.contains(stamina)) {
+        if (Movement.isStaminaEnhancementActive()) {
             if (Bank.isOpen()) {
-                if (Inventory.contains(vial))
-                    if (Bank.depositAll(vial))
-                        Time.sleepUntil(() -> !Inventory.contains(vial), 1500);
+                if (Bank.depositAll(vial))
+                    Time.sleepUntil(() -> !Inventory.contains(vial), 1500);
 
                 if (Bank.depositAll(stamina))
                     Time.sleepUntil(() -> !Inventory.contains(stamina), 1500);
             } else {
-                open_bank.work();
+                open_bank_worker.work();
             }
         } else {
-            drink_stamina_potion.work();
-            out_of_stamina = drink_stamina_potion.itemNotFound();
+            if (Inventory.isFull())
+                deposit_worker.work();
+
+            item_worker.work();
+            out_of_stamina = item_worker.itemNotFound();
         }
     }
 
     @Override
     public String toString() {
-        return "Drinking Stamina potion";
+        return "Drinking Stamina potion.";
     }
 }
 

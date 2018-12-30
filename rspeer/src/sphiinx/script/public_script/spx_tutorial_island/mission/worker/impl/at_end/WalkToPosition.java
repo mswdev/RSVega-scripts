@@ -3,12 +3,16 @@ package sphiinx.script.public_script.spx_tutorial_island.mission.worker.impl.at_
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.scene.Players;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
+import sphiinx.api.script.framework.worker.Worker;
 import sphiinx.script.public_script.spx_tutorial_island.Main;
-import sphiinx.script.public_script.spx_tutorial_island.mission.TutorialIslandMission;
 
-public class WalkToPosition extends Worker<TutorialIslandMission> {
+public class WalkToPosition extends Worker {
 
+
+    @Override
+    public boolean needsRepeat() {
+        return false;
+    }
 
     @Override
     public void work() {
@@ -21,7 +25,7 @@ public class WalkToPosition extends Worker<TutorialIslandMission> {
 
     @Override
     public String toString() {
-        return "Walking to position";
+        return "Walking to position.";
     }
 }
 

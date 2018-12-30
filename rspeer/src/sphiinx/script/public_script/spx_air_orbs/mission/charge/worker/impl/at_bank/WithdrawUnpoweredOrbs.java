@@ -2,20 +2,25 @@ package sphiinx.script.public_script.spx_air_orbs.mission.charge.worker.impl.at_
 
 import org.rspeer.runetek.adapter.component.Item;
 import org.rspeer.runetek.api.component.Bank;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.script.workers.WithdrawItemWorker;
+import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.script.impl.worker.banking.WithdrawWorker;
 import sphiinx.script.public_script.spx_air_orbs.mission.charge.AirOrbChargeMission;
-import sphiinx.script.public_script.spx_air_orbs.mission.charge.worker.AirOrbChargeWorker;
 
 import java.util.function.Predicate;
 
-public class WithdrawUnpoweredOrbs extends AirOrbChargeWorker {
+public class WithdrawUnpoweredOrbs extends Worker {
 
     public static final Predicate<Item> UNPOWERED_ORB = a -> a.getName().equals("Unpowered orb");
-    private final WithdrawItemWorker withdraw_unpowered_orbs;
+    private final WithdrawWorker withdraw_unpowered_orbs = new WithdrawWorker(UNPOWERED_ORB, Bank.WithdrawMode.ITEM, 0);
+    private final AirOrbChargeMission mission;
 
     public WithdrawUnpoweredOrbs(AirOrbChargeMission mission) {
-        super(mission);
-        withdraw_unpowered_orbs = new WithdrawItemWorker<>(UNPOWERED_ORB, Bank.WithdrawMode.ITEM, 0);
+        this.mission = mission;
+    }
+
+    @Override
+    public boolean needsRepeat() {
+        return false;
     }
 
     @Override
@@ -26,7 +31,7 @@ public class WithdrawUnpoweredOrbs extends AirOrbChargeWorker {
 
     @Override
     public String toString() {
-        return "Withdrawing Unpowered orbs";
+        return "Withdrawing Unpowered orbs.";
     }
 }
 

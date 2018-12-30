@@ -7,12 +7,11 @@ import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.scene.Pickables;
 import org.rspeer.runetek.api.scene.SceneObjects;
-import sphiinx.script.private_script.saranga07.blast_furnace.mission.BlastFurnaceMission;
-import sphiinx.script.private_script.saranga07.blast_furnace.mission.worker.BlastFurnaceWorker;
+import sphiinx.api.script.framework.worker.Worker;
 
 import java.util.function.Predicate;
 
-public class UseWaterBucket extends BlastFurnaceWorker {
+public class UseWaterBucket extends Worker {
 
 
     private static final Predicate<Pickable> BUCKET_PICKABLE = a -> a.getName().equals("Bucket");
@@ -20,8 +19,9 @@ public class UseWaterBucket extends BlastFurnaceWorker {
     private static final Predicate<Item> BUCKET_OF_WATER_ITEM = a -> a.getName().equals("Bucket of water");
     private static final Predicate<SceneObject> SINK = a -> a.getName().equals("Sink");
 
-    public UseWaterBucket(BlastFurnaceMission mission) {
-        super(mission);
+    @Override
+    public boolean needsRepeat() {
+        return false;
     }
 
     @Override
@@ -58,7 +58,7 @@ public class UseWaterBucket extends BlastFurnaceWorker {
 
     @Override
     public String toString() {
-        return "Using water bucket";
+        return "Using water bucket.";
     }
 }
 

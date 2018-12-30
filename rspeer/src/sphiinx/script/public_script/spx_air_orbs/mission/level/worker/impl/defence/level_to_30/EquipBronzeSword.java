@@ -1,21 +1,26 @@
 package sphiinx.script.public_script.spx_air_orbs.mission.level.worker.impl.defence.level_to_30;
 
 import org.rspeer.runetek.adapter.component.Item;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.script.workers.ItemActionWorker;
+import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.script.impl.worker.interactables.ItemWorker;
 import sphiinx.script.public_script.spx_air_orbs.mission.level.AirOrbLevelMission;
-import sphiinx.script.public_script.spx_air_orbs.mission.level.worker.AirOrbLevelWorker;
 
 import java.util.function.Predicate;
 
-public class EquipBronzeSword extends AirOrbLevelWorker {
+public class EquipBronzeSword extends Worker {
 
     public static final String ITEM_NAME = "Bronze sword";
     private final Predicate<Item> item = a -> a.getName().equals(ITEM_NAME);
-    private final ItemActionWorker equip_bronze_sword;
+    private final ItemWorker equip_bronze_sword = new ItemWorker(item);
+    private final AirOrbLevelMission mission;
 
     public EquipBronzeSword(AirOrbLevelMission mission) {
-        super(mission);
-        equip_bronze_sword = new ItemActionWorker<>(item);
+        this.mission = mission;
+    }
+
+    @Override
+    public boolean needsRepeat() {
+        return false;
     }
 
     @Override
@@ -26,7 +31,7 @@ public class EquipBronzeSword extends AirOrbLevelWorker {
 
     @Override
     public String toString() {
-        return "Equipping Bronze sword";
+        return "Equipping Bronze sword.";
     }
 }
 

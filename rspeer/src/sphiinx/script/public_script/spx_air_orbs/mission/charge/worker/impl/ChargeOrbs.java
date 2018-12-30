@@ -7,18 +7,18 @@ import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.component.tab.Magic;
 import org.rspeer.runetek.api.component.tab.Spell;
 import org.rspeer.runetek.api.scene.SceneObjects;
-import sphiinx.script.public_script.spx_air_orbs.mission.charge.AirOrbChargeMission;
-import sphiinx.script.public_script.spx_air_orbs.mission.charge.worker.AirOrbChargeWorker;
+import sphiinx.api.script.framework.worker.Worker;
 import sphiinx.script.public_script.spx_air_orbs.mission.charge.worker.impl.at_bank.WithdrawUnpoweredOrbs;
 
 import java.util.function.Predicate;
 
-public class ChargeOrbs extends AirOrbChargeWorker {
+public class ChargeOrbs extends Worker {
 
     public static final Predicate<SceneObject> OBELISK = a -> a.getName().equals("Obelisk of Air");
 
-    public ChargeOrbs(AirOrbChargeMission mission) {
-        super(mission);
+    @Override
+    public boolean needsRepeat() {
+        return false;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class ChargeOrbs extends AirOrbChargeWorker {
 
     @Override
     public String toString() {
-        return "Charging Unpowered orb";
+        return "Charging Unpowered orb.";
     }
 }
 

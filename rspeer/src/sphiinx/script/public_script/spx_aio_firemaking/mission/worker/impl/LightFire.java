@@ -5,14 +5,21 @@ import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.ui.Log;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
+import sphiinx.api.script.framework.worker.Worker;
 import sphiinx.script.public_script.spx_aio_firemaking.Main;
 import sphiinx.script.public_script.spx_aio_firemaking.mission.FireMakingMission;
 
-public class LightFire extends Worker<FireMakingMission> {
+public class LightFire extends Worker {
+
+    private final FireMakingMission mission;
 
     public LightFire(FireMakingMission mission) {
-        super(mission);
+        this.mission = mission;
+    }
+
+    @Override
+    public boolean needsRepeat() {
+        return false;
     }
 
     @Override
@@ -35,7 +42,7 @@ public class LightFire extends Worker<FireMakingMission> {
 
     @Override
     public String toString() {
-        return "Lighting fire";
+        return "Lighting fire.";
     }
 
 }

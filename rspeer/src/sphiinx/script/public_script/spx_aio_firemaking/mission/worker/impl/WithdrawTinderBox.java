@@ -1,30 +1,29 @@
 package sphiinx.script.public_script.spx_aio_firemaking.mission.worker.impl;
 
 import org.rspeer.runetek.adapter.component.Item;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.script.workers.WithdrawItemWorker;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
-import sphiinx.script.public_script.spx_aio_firemaking.mission.FireMakingMission;
+import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.script.impl.worker.banking.WithdrawWorker;
 
 import java.util.function.Predicate;
 
-public class WithdrawTinderBox extends Worker<FireMakingMission> {
+public class WithdrawTinderBox extends Worker {
 
     public static final Predicate<Item> TINDERBOX = a -> a.getName().equals("Tinderbox");
-    private final WithdrawItemWorker withdraw_tinder_box;
+    private final WithdrawWorker withdraw_worker = new WithdrawWorker(TINDERBOX);
 
-    public WithdrawTinderBox(FireMakingMission mission) {
-        super(mission);
-        withdraw_tinder_box = new WithdrawItemWorker<>(TINDERBOX);
+    @Override
+    public boolean needsRepeat() {
+        return false;
     }
 
     @Override
     public void work() {
-        withdraw_tinder_box.work();
+        withdraw_worker.work();
     }
 
     @Override
     public String toString() {
-        return "Withdrawing Tinderbox";
+        return "Withdrawing Tinderbox.";
     }
 }
 

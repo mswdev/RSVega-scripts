@@ -1,5 +1,6 @@
 package sphiinx.script.testing;
 
+import org.rspeer.runetek.api.Varps;
 import org.rspeer.runetek.event.listeners.LoginResponseListener;
 import org.rspeer.runetek.event.types.LoginResponseEvent;
 import org.rspeer.script.Script;
@@ -13,17 +14,22 @@ import org.rspeer.ui.Log;
 public class TestScript extends Script implements LoginResponseListener {
     // [TODO - 2018-10-26]: Go through old tribot and other client apis to see what stuff is useful
 
+    //private BankCache bank_cache;
+
     @Override
     public void onStart() {
+        Log.fine(getMeta().name() + " has started.");
         removeBlockingEvent(LoginScreen.class);
         removeBlockingEvent(WelcomeScreen.class);
         //addBlockingEvent(new BlockEventTest(this));
-        Log.fine(getMeta().name() + " has started.");
+        //bank_cache = new BankCache(this);
+        //bank_cache.start();
     }
 
     @Override
     public int loop() {
-        return 150;
+        System.out.println(Varps.getBitValue(5605));
+        return 25000;
     }
 
     @Override

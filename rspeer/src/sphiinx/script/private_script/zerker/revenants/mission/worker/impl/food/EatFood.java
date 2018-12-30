@@ -1,12 +1,11 @@
 package sphiinx.script.private_script.zerker.revenants.mission.worker.impl.food;
 
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.script.workers.ItemActionWorker;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
-import sphiinx.script.private_script.zerker.revenants.mission.RevenantMission;
+import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.script.impl.worker.interactables.ItemWorker;
 
-public class EatFood extends Worker<RevenantMission> {
+public class EatFood extends Worker {
 
-    private static final ItemActionWorker eat_food = new ItemActionWorker(WithdrawFood.FOOD);
+    private static final ItemWorker eat_food = new ItemWorker(WithdrawFood.FOOD);
 
     @Override
     public boolean needsRepeat() {
@@ -20,7 +19,7 @@ public class EatFood extends Worker<RevenantMission> {
 
     @Override
     public String toString() {
-        return "Eating food";
+        return "Eating food.";
     }
 }
 

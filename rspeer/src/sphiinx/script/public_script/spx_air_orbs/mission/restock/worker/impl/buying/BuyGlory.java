@@ -4,25 +4,23 @@ import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.GrandExchange;
 import org.rspeer.runetek.api.component.GrandExchangeSetup;
 import org.rspeer.runetek.providers.RSGrandExchangeOffer;
-import sphiinx.script.public_script.spx_tutorial_island.api.game_util.BankCache;
-import sphiinx.script.public_script.spx_air_orbs.mission.restock.AirOrbRestockMission;
-import sphiinx.script.public_script.spx_air_orbs.mission.restock.worker.AirOrbRestockWorker;
+import sphiinx.api.script.framework.worker.Worker;
 import sphiinx.script.public_script.spx_air_orbs.mission.restock.worker.impl.OpenGrandExchange;
 
-public class BuyGlory extends AirOrbRestockWorker {
+public class BuyGlory extends Worker {
 
     public boolean has_item;
     private final int amulet_of_glory_id = 11978;
-    private final OpenGrandExchange open_grand_exchange;
+    private final OpenGrandExchange open_grand_exchange = new OpenGrandExchange();
 
-    public BuyGlory(AirOrbRestockMission mission) {
-        super(mission);
-        open_grand_exchange = new OpenGrandExchange(mission);
+    @Override
+    public boolean needsRepeat() {
+        return false;
     }
 
     @Override
     public void work() {
-        final int amount_in_bank = (int) Math.round((BankCache.getValue(11978) * 6) + (BankCache.getValue(11976) * 5) + (BankCache.getValue(1712) * 4) + (BankCache.getValue(1710) * 3) + (BankCache.getValue(1708) * 2) + BankCache.getValue(1706) / 6.0);
+        final int amount_in_bank = 0;//(int) Math.round((BankCache.getValue(11978) * 6) + (BankCache.getValue(11976) * 5) + (BankCache.getValue(1712) * 4) + (BankCache.getValue(1710) * 3) + (BankCache.getValue(1708) * 2) + BankCache.getValue(1706) / 6.0);
         final int amount_to_buy = 40 - amount_in_bank;
         if (amount_to_buy <= 0) {
             has_item = true;
@@ -56,7 +54,7 @@ public class BuyGlory extends AirOrbRestockWorker {
 
     @Override
     public String toString() {
-        return "Buying Amulet of glory";
+        return "Buying Amulet of glory.";
     }
 }
 

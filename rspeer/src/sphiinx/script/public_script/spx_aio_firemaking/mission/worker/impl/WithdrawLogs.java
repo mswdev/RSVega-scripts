@@ -6,19 +6,24 @@ import org.rspeer.runetek.api.component.Bank;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.ui.Log;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.script.workers.OpenBankWorker;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
-import sphiinx.script.public_script.spx_tutorial_island.api.game_util.skills.firemaking.FiremakingUtil;
+import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.script.impl.worker.banking.OpenBankWorker;
+import sphiinx.api.game.skills.firemaking.FiremakingUtil;
 import sphiinx.script.public_script.spx_aio_firemaking.Main;
 import sphiinx.script.public_script.spx_aio_firemaking.mission.FireMakingMission;
 
-public class WithdrawLogs extends Worker<FireMakingMission> {
+public class WithdrawLogs extends Worker {
 
-    private final OpenBankWorker open_bank;
+    private final OpenBankWorker open_bank_worker = new OpenBankWorker(false);
+    private final FireMakingMission mission;
 
     public WithdrawLogs(FireMakingMission mission) {
-        super(mission);
-        open_bank = new OpenBankWorker<>(false);
+       this.mission = mission;
+    }
+
+    @Override
+    public boolean needsRepeat() {
+        return false;
     }
 
     @Override
@@ -28,7 +33,7 @@ public class WithdrawLogs extends Worker<FireMakingMission> {
 
         if (Bank.isOpen()) {
             if (Main.ARGS.set_progressive)
-                Main.ARGS.log_type = FiremakingUtil.getBestUsableLog(false, true);
+                Main.ARGS.log_type = FiremakingUtil.getAppropriateOwnedLogs();
 
             if (Main.ARGS.log_type != null && Bank.contains(Main.ARGS.log_type.getName())) {
                 if (Bank.withdrawAll(Main.ARGS.log_type.getName()))
@@ -38,13 +43,13 @@ public class WithdrawLogs extends Worker<FireMakingMission> {
                 mission.setShouldStop(true);
             }
         } else {
-            open_bank.work();
+            open_bank_worker.work();
         }
     }
 
     @Override
     public String toString() {
-        return "Withdrawing logs";
+        return "Withdrawing logs.";
     }
 }
 

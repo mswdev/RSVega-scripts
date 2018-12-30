@@ -9,12 +9,11 @@ import org.rspeer.runetek.api.component.tab.Magic;
 import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.scene.Npcs;
 import org.rspeer.runetek.api.scene.Players;
-import sphiinx.script.public_script.spx_air_orbs.mission.level.AirOrbLevelMission;
-import sphiinx.script.public_script.spx_air_orbs.mission.level.worker.AirOrbLevelWorker;
+import sphiinx.api.script.framework.worker.Worker;
 
 import java.util.function.Predicate;
 
-public class FightSeagulls extends AirOrbLevelWorker {
+public class FightSeagulls extends Worker {
 
     public static final Predicate<Npc> SEAGULL = a -> a.getName().equals("Seagull") && a.getTargetIndex() == -1;
     private final int defensive_inter_master = 593;
@@ -22,8 +21,9 @@ public class FightSeagulls extends AirOrbLevelWorker {
     private final int wind_strike_inter_master = 201;
     private final int wind_strike_inter_comp = 1;
 
-    public FightSeagulls(AirOrbLevelMission mission) {
-        super(mission);
+    @Override
+    public boolean needsRepeat() {
+        return false;
     }
 
     @Override
@@ -86,7 +86,7 @@ public class FightSeagulls extends AirOrbLevelWorker {
 
     @Override
     public String toString() {
-        return "Fighting Seagull";
+        return "Fighting Seagull.";
     }
 }
 

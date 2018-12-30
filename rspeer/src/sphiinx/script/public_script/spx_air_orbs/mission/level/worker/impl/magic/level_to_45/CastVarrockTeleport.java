@@ -4,14 +4,14 @@ import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.tab.Magic;
 import org.rspeer.runetek.api.component.tab.Spell;
 import org.rspeer.runetek.api.scene.Players;
-import sphiinx.script.public_script.spx_air_orbs.mission.level.AirOrbLevelMission;
-import sphiinx.script.public_script.spx_air_orbs.mission.level.worker.AirOrbLevelWorker;
+import sphiinx.api.script.framework.worker.Worker;
 
-public class CastVarrockTeleport extends AirOrbLevelWorker {
+public class CastVarrockTeleport extends Worker {
 
 
-    public CastVarrockTeleport(AirOrbLevelMission mission) {
-        super(mission);
+    @Override
+    public boolean needsRepeat() {
+        return false;
     }
 
     @Override
@@ -28,7 +28,7 @@ public class CastVarrockTeleport extends AirOrbLevelWorker {
 
     @Override
     public String toString() {
-        return "Casting Varrock teleport";
+        return "Casting Varrock teleport.";
     }
 }
 

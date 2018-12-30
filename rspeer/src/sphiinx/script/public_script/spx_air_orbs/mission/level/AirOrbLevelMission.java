@@ -3,9 +3,9 @@ package sphiinx.script.public_script.spx_air_orbs.mission.level;
 import org.rspeer.runetek.api.component.Dialog;
 import org.rspeer.runetek.api.component.tab.Skill;
 import org.rspeer.runetek.api.component.tab.Skills;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.goal.GoalList;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.mission.Mission;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
+import sphiinx.api.script.framework.goal.GoalList;
+import sphiinx.api.script.framework.mission.Mission;
+import sphiinx.api.script.framework.worker.Worker;
 import sphiinx.script.public_script.spx_air_orbs.mission.level.worker.AirOrbLevelWorkerHandler;
 
 public class AirOrbLevelMission extends Mission {
@@ -21,13 +21,13 @@ public class AirOrbLevelMission extends Mission {
 
     @Override
     public String getWorkerName() {
-        Worker<AirOrbLevelMission> c = handler.getCurrent();
+        Worker c = handler.getCurrent();
         return c == null ? "WORKER" : c.getClass().getSimpleName();
     }
 
     @Override
     public String getWorkerString() {
-        Worker<AirOrbLevelMission> c = handler.getCurrent();
+        Worker c = handler.getCurrent();
         return c == null ? "WORKER" : c.toString();
     }
 

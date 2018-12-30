@@ -1,21 +1,26 @@
 package sphiinx.script.public_script.spx_air_orbs.mission.charge.worker.impl.at_bank;
 
 import org.rspeer.runetek.adapter.component.Item;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.script.workers.ItemActionWorker;
+import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.script.impl.worker.interactables.ItemWorker;
 import sphiinx.script.public_script.spx_air_orbs.mission.charge.AirOrbChargeMission;
-import sphiinx.script.public_script.spx_air_orbs.mission.charge.worker.AirOrbChargeWorker;
 
 import java.util.function.Predicate;
 
-public class EquipGlory extends AirOrbChargeWorker {
+public class EquipGlory extends Worker {
 
     public final String item_name = "glory(";
     private final Predicate<Item> item = a -> a.getName().contains(item_name);
-    private final ItemActionWorker equip_glory;
+    private final ItemWorker equip_glory = new ItemWorker(item);
+    private final AirOrbChargeMission mission;
 
     public EquipGlory(AirOrbChargeMission mission) {
-        super(mission);
-        equip_glory = new ItemActionWorker<>(item);
+        this.mission = mission;
+    }
+
+    @Override
+    public boolean needsRepeat() {
+        return false;
     }
 
     @Override
@@ -26,7 +31,7 @@ public class EquipGlory extends AirOrbChargeWorker {
 
     @Override
     public String toString() {
-        return "Equipping Amulet of glory";
+        return "Equipping Amulet of glory.";
     }
 }
 

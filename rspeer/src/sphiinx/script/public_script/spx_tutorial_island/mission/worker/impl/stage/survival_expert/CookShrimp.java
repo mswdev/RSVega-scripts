@@ -5,15 +5,19 @@ import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.runetek.api.scene.SceneObjects;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
-import sphiinx.script.public_script.spx_tutorial_island.api.game_util.skills.fishing.FishType;
-import sphiinx.script.public_script.spx_tutorial_island.mission.TutorialIslandMission;
+import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.game.skills.fishing.FishType;
 
 import java.util.function.Predicate;
 
-public class CookShrimp extends Worker<TutorialIslandMission> {
+public class CookShrimp extends Worker {
 
     private static final Predicate<SceneObject> FIRE = a -> a.getName().equals("Fire");
+
+    @Override
+    public boolean needsRepeat() {
+        return false;
+    }
 
     @Override
     public void work() {
@@ -30,7 +34,7 @@ public class CookShrimp extends Worker<TutorialIslandMission> {
 
     @Override
     public String toString() {
-        return "Cooking shrimp";
+        return "Cooking shrimp.";
     }
 }
 

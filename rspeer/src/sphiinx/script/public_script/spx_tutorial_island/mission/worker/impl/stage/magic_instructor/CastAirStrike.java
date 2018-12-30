@@ -8,15 +8,19 @@ import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.movement.position.Position;
 import org.rspeer.runetek.api.scene.Npcs;
 import org.rspeer.runetek.api.scene.Players;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
-import sphiinx.script.public_script.spx_tutorial_island.mission.TutorialIslandMission;
+import sphiinx.api.script.framework.worker.Worker;
 
 import java.util.function.Predicate;
 
-public class CastAirStrike extends Worker<TutorialIslandMission> {
+public class CastAirStrike extends Worker {
 
     private static final Predicate<Npc> CHICKEN = a -> a.getName().equals("Chicken") && a.getTargetIndex() == -1;
     private static final Position CAST_TILE = new Position(3139, 3091, 0);
+
+    @Override
+    public boolean needsRepeat() {
+        return false;
+    }
 
     @Override
     public void work() {
@@ -38,7 +42,7 @@ public class CastAirStrike extends Worker<TutorialIslandMission> {
 
     @Override
     public String toString() {
-        return "Casting air strike";
+        return "Casting air strike.";
     }
 }
 

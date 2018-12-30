@@ -2,13 +2,17 @@ package sphiinx.script.public_script.spx_tutorial_island.mission.worker.impl.sta
 
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.Dialog;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
-import sphiinx.script.public_script.spx_tutorial_island.mission.TutorialIslandMission;
+import sphiinx.api.script.framework.worker.Worker;
 import sphiinx.script.public_script.spx_tutorial_island.mission.worker.impl.HintWorker;
 
-public class PollBooth extends Worker<TutorialIslandMission> {
+public class PollBooth extends Worker {
 
     private static final HintWorker HINT_WORKER = new HintWorker();
+
+    @Override
+    public boolean needsRepeat() {
+        return false;
+    }
 
     @Override
     public void work() {
@@ -22,7 +26,7 @@ public class PollBooth extends Worker<TutorialIslandMission> {
 
     @Override
     public String toString() {
-        return "Executing chat dialog worker";
+        return "Executing chat dialog worker.";
     }
 }
 

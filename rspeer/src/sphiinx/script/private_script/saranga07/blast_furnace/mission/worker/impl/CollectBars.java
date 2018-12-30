@@ -8,22 +8,27 @@ import org.rspeer.runetek.api.component.Bank;
 import org.rspeer.runetek.api.component.Production;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.scene.SceneObjects;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.script.workers.OpenBankWorker;
+import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.script.impl.worker.banking.OpenBankWorker;
 import sphiinx.script.private_script.saranga07.blast_furnace.mission.BlastFurnaceMission;
-import sphiinx.script.private_script.saranga07.blast_furnace.mission.worker.BlastFurnaceWorker;
 
 import java.util.function.Predicate;
 
-public class CollectBars extends BlastFurnaceWorker {
+public class CollectBars extends Worker {
 
     public static final int COLLECT_BARS_VARP = 543;
     public static final int COLLECT_BARS_COOLED_SETTING = 768;
     static final Predicate<SceneObject> COLLECT_BARS = a -> a.getName().equals("Bar dispenser");
-    private final OpenBankWorker open_bank;
+    private final OpenBankWorker open_bank_worker = new OpenBankWorker(false);
+    private final BlastFurnaceMission mission;
 
     public CollectBars(BlastFurnaceMission mission) {
-        super(mission);
-        open_bank = new OpenBankWorker<>(false);
+        this.mission = mission;
+    }
+
+    @Override
+    public boolean needsRepeat() {
+        return false;
     }
 
     @Override
@@ -34,7 +39,7 @@ public class CollectBars extends BlastFurnaceWorker {
                 if (Bank.depositAll("Steel bar"))
                     Time.sleepUntil(() -> Inventory.getFirst("Steel bar") == null, 1500);
             } else {
-                open_bank.work();
+                open_bank_worker.work();
             }
         } else if (Production.isOpen()) {
             if (Production.initiate(0))
@@ -56,7 +61,7 @@ public class CollectBars extends BlastFurnaceWorker {
 
     @Override
     public String toString() {
-        return "Collecting smelted bars";
+        return "Collecting smelted bars.";
     }
 }
 

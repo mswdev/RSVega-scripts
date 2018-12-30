@@ -1,14 +1,13 @@
 package sphiinx.script.public_script.spx_tutorial_island;
 
-import org.rspeer.runetek.api.Game;
 import org.rspeer.runetek.event.listeners.LoginResponseListener;
 import org.rspeer.runetek.event.types.LoginResponseEvent;
 import org.rspeer.script.ScriptCategory;
 import org.rspeer.script.ScriptMeta;
 import org.rspeer.script.events.LoginScreen;
 import org.rspeer.ui.Log;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.mission.Mission;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.script.SPXScript;
+import sphiinx.api.script.framework.mission.Mission;
+import sphiinx.api.script.SPXScript;
 import sphiinx.script.public_script.spx_tutorial_island.data.args.Args;
 import sphiinx.script.public_script.spx_tutorial_island.mission.TutorialIslandMission;
 
@@ -22,7 +21,7 @@ import java.util.stream.Stream;
 
 // [TODO - 2018-10-30]: Add script statics api such as my logo, SPX name, etc..
 // [TODO - 2018-10-30]: Convert everything to a mission in my api and then the script pulls from that.
-@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.OTHER, name = "[SPX] Tutorial Island", desc = "")
+@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.OTHER, name = "SPX Tutorial Island", desc = "")
 public class Main extends SPXScript implements LoginResponseListener {
 
     public static final Args ARGS = new Args();
@@ -42,8 +41,7 @@ public class Main extends SPXScript implements LoginResponseListener {
     @Override
     public Queue<Mission> createMissionQueue() {
         final LinkedList<Mission> missions = new LinkedList<>();
-        if (Game.isLoggedIn())
-            missions.add(new TutorialIslandMission(this, getAccount().getUsername(), getAccount().getPassword()));
+        missions.add(new TutorialIslandMission(this, getAccount().getUsername(), getAccount().getPassword()));
 
         final String delimiter = ":";
         try (Stream<String> lines = Files.lines(Paths.get(script_data_path + File.separator + ARGS.load_accounts))) {

@@ -11,8 +11,8 @@ import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.script.Script;
 import org.rspeer.script.ScriptBlockingEvent;
 import org.rspeer.script.events.WelcomeScreen;
-import sphiinx.script.public_script.spx_tutorial_island.api.game_util.pricechecking.PriceCheck;
-import sphiinx.script.public_script.spx_tutorial_island.api.game_util.questing.QuestingUtil;
+import sphiinx.api.game.pricechecking.PriceCheck;
+import sphiinx.api.game.questing.QuestingUtil;
 import sphiinx.script.public_script.spx_account_checker.data.Vars;
 
 import java.io.IOException;
@@ -81,7 +81,7 @@ public class BlockWelcomeScreenEvent extends ScriptBlockingEvent {
             Vars.get().osrs_data.put("level_runecrafting", String.valueOf(Skills.getLevel(Skill.RUNECRAFTING)));
             Vars.get().osrs_data.put("level_hunter", String.valueOf(Skills.getLevel(Skill.HUNTER)));
             Vars.get().osrs_data.put("level_construction", String.valueOf(Skills.getLevel(Skill.CONSTRUCTION)));
-            Vars.get().osrs_data.put("quest_points", String.valueOf(QuestingUtil.getQuestPoints()));
+            Vars.get().osrs_data.put("quest_points", String.valueOf(QuestingUtil.getPoints()));
             Vars.get().osrs_data.put("quests_complete", getCompletedQuests());
             Vars.get().can_logout = true;
         });

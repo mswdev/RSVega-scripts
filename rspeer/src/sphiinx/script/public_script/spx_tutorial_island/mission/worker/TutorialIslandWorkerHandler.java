@@ -3,15 +3,15 @@ package sphiinx.script.public_script.spx_tutorial_island.mission.worker;
 import org.rspeer.runetek.api.Varps;
 import org.rspeer.runetek.api.component.InterfaceOptions;
 import org.rspeer.runetek.api.component.tab.Inventory;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.WorkerHandler;
-import sphiinx.script.public_script.spx_tutorial_island.api.game_util.ClientSettings;
+import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.script.framework.worker.WorkerHandler;
+import sphiinx.api.game.ClientSettings;
 import sphiinx.script.public_script.spx_tutorial_island.Main;
 import sphiinx.script.public_script.spx_tutorial_island.data.TutorialState;
 import sphiinx.script.public_script.spx_tutorial_island.mission.TutorialIslandMission;
 import sphiinx.script.public_script.spx_tutorial_island.mission.worker.impl.at_end.*;
 
-public class TutorialIslandWorkerHandler extends WorkerHandler<TutorialIslandMission> {
+public class TutorialIslandWorkerHandler extends WorkerHandler {
 
     private final HideRoofs hide_roofs;
     private final SetAudio set_audio;
@@ -24,7 +24,6 @@ public class TutorialIslandWorkerHandler extends WorkerHandler<TutorialIslandMis
     private final Logout logout;
 
     public TutorialIslandWorkerHandler(TutorialIslandMission mission) {
-        super(mission);
         hide_roofs = new HideRoofs();
         set_audio = new SetAudio();
         set_brightness = new SetBrightness();
@@ -37,7 +36,7 @@ public class TutorialIslandWorkerHandler extends WorkerHandler<TutorialIslandMis
     }
 
     @Override
-    public Worker<TutorialIslandMission> decide() {
+    public Worker decide() {
         if (Varps.get(TutorialIslandMission.TUTORIAL_ISLAND_VARP) >= 1000) {
             if (Main.ARGS.drop_items && Inventory.getCount() > 0)
                 return drop_items;

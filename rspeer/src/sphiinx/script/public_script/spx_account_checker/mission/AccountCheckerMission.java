@@ -1,8 +1,8 @@
 package sphiinx.script.public_script.spx_account_checker.mission;
 
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.goal.GoalList;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.mission.Mission;
-import sphiinx.script.public_script.spx_tutorial_island.api.framework.worker.Worker;
+import sphiinx.api.script.framework.goal.GoalList;
+import sphiinx.api.script.framework.mission.Mission;
+import sphiinx.api.script.framework.worker.Worker;
 import sphiinx.script.public_script.spx_account_checker.Main;
 import sphiinx.script.public_script.spx_account_checker.mission.worker.AccountCheckerWorkerHandler;
 
@@ -22,13 +22,13 @@ public class AccountCheckerMission extends Mission {
 
     @Override
     public String getWorkerName() {
-        Worker<AccountCheckerMission> c = handler.getCurrent();
+        Worker c = handler.getCurrent();
         return c == null ? "WORKER" : c.getClass().getSimpleName();
     }
 
     @Override
     public String getWorkerString() {
-        Worker<AccountCheckerMission> c = handler.getCurrent();
+        Worker c = handler.getCurrent();
         return c == null ? "Waiting for worker" : c.toString();
     }
 
