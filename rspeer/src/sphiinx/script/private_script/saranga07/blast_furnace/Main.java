@@ -5,7 +5,7 @@ import org.rspeer.script.ScriptMeta;
 import sphiinx.api.script.framework.mission.Mission;
 import sphiinx.api.script.SPXScript;
 import sphiinx.api.ui.swingui.GUI;
-import sphiinx.script.private_script.saranga07.blast_furnace.mission.BlastFurnaceMission;
+import sphiinx.api.script.impl.mission.blast_furnace_mission.BlastFurnaceMission;
 
 import java.util.LinkedList;
 import java.util.Queue;

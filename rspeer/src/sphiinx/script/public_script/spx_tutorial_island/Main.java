@@ -6,10 +6,10 @@ import org.rspeer.script.ScriptCategory;
 import org.rspeer.script.ScriptMeta;
 import org.rspeer.script.events.LoginScreen;
 import org.rspeer.ui.Log;
-import sphiinx.api.script.framework.mission.Mission;
 import sphiinx.api.script.SPXScript;
-import sphiinx.script.public_script.spx_tutorial_island.data.args.Args;
-import sphiinx.script.public_script.spx_tutorial_island.mission.TutorialIslandMission;
+import sphiinx.api.script.framework.mission.Mission;
+import sphiinx.api.script.impl.mission.tutorial_island_mission.TutorialIslandMission;
+import sphiinx.api.script.impl.mission.tutorial_island_mission.data.args.Args;
 
 import java.io.File;
 import java.io.IOException;
@@ -60,7 +60,6 @@ public class Main extends SPXScript implements LoginResponseListener {
         Log.severe("Login failed; setting next account");
         setAccount(null);
         getMissionHandler().endCurrent();
-
     }
 }
 

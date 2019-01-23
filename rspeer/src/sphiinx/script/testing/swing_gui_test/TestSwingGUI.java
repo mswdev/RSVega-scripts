@@ -47,7 +47,7 @@ public class TestSwingGUI extends GUI {
 
     @Override
     public String getName() {
-        return "TestSwingGUI WalkingGUI";
+        return "TestSwingGUI";
     }
 
     @Override

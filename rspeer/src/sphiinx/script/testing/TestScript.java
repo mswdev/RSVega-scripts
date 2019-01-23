@@ -1,6 +1,5 @@
 package sphiinx.script.testing;
 
-import org.rspeer.runetek.api.Varps;
 import org.rspeer.runetek.event.listeners.LoginResponseListener;
 import org.rspeer.runetek.event.types.LoginResponseEvent;
 import org.rspeer.script.Script;
@@ -28,8 +27,16 @@ public class TestScript extends Script implements LoginResponseListener {
 
     @Override
     public int loop() {
-        System.out.println(Varps.getBitValue(5605));
-        return 25000;
+        getAcc();
+        return 2500;
+    }
+
+    private void getAcc() {
+        System.out.println("GetAccount null: " + (getAccount() == null));
+        System.out.println("GetAccount valid: " + getAccount().validate());
+        System.out.println("GetAccount user: " + getAccount().getUsername());
+        System.out.println("GetAccount pass: " + getAccount().getPassword());
+        System.out.println("--------------------------");
     }
 
     @Override

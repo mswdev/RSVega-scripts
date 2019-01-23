@@ -37,7 +37,6 @@ public class OpenBankWorker extends Worker {
             return;
         }
 
-
         // [TODO - 2018-12-13]: Temporary until Blast Furnace bank locations are fixed.
         Position temp_blast_furnace_position = new Position(1948, 4957);
         if (temp_blast_furnace_position.distance() <= 25) {

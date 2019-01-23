@@ -2,9 +2,9 @@ package sphiinx.script.public_script.spx_aio_walking;
 
 import org.rspeer.script.ScriptCategory;
 import org.rspeer.script.ScriptMeta;
-import sphiinx.api.script.framework.mission.Mission;
 import sphiinx.api.script.SPXScript;
-import sphiinx.api.ui.fxui.FXGUI;
+import sphiinx.api.script.framework.mission.Mission;
+import sphiinx.api.ui.swingui.GUI;
 import sphiinx.script.public_script.spx_aio_walking.data.args.Args;
 import sphiinx.script.public_script.spx_aio_walking.mission.WalkingMission;
 
@@ -29,9 +29,8 @@ public class Main extends SPXScript {
     }
 
     @Override
-    public FXGUI getFXGUI() {
-        return new WalkingGUI();
+    public GUI getGUI() {
+        return new TempWalkingGUI();
     }
-
 }
 

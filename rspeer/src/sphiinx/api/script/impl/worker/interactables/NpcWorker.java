@@ -69,7 +69,7 @@ public class NpcWorker extends Worker {
             return;
         }
 
-        final Npc npc = Npcs.getFirst(npc_predicate);
+        final Npc npc = Npcs.getNearest(npc_predicate);
         if (npc == null) {
             if (movement_worker == null)
                 return;

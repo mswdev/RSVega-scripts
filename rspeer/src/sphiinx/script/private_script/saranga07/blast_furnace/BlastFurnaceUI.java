@@ -3,7 +3,7 @@ package sphiinx.script.private_script.saranga07.blast_furnace;
 import sphiinx.api.ui.swingui.GUI;
 import sphiinx.api.ui.swingui.components.AutoCompleteComboBox;
 import sphiinx.api.game.skills.smithing.BarType;
-import sphiinx.script.private_script.saranga07.blast_furnace.mission.BlastFurnaceMission;
+import sphiinx.api.script.impl.mission.blast_furnace_mission.BlastFurnaceMission;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

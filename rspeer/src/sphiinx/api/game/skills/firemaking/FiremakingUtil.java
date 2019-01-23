@@ -16,7 +16,7 @@ public class FiremakingUtil {
      */
     public static LogType getAppropriateOwnedLogs() {
         return Arrays.stream(LogType.values())
-                .filter(log_type -> Skills.getLevel(Skill.FIREMAKING) >= log_type.getRequiredFiremakingLevel() && Inventory.contains(log_type.getItemID()) || Bank.contains(log_type.getItemID()))
+                .filter(log_type -> Skills.getLevel(Skill.FIREMAKING) >= log_type.getRequiredFiremakingLevel() && (Inventory.contains(log_type.getItemID()) || Bank.contains(log_type.getItemID())))
                 .reduce((first, second) -> second)
                 .orElse(LogType.LOGS);
     }

@@ -7,11 +7,9 @@ import sphiinx.script.public_script.spx_aio_walking.Main;
 
 public class WalkingWorkerHandler extends WorkerHandler {
 
-    private final MovementWorker movement_worker = new MovementWorker(Main.ARGS.LOCATION.getPosition());;
-
     @Override
     public Worker decide() {
-        return movement_worker;
+        return new MovementWorker(Main.ARGS.LOCATION.getPosition());
     }
 }
 
