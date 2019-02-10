@@ -65,7 +65,7 @@ public class CharacterDesignWorker extends Worker {
 
     @Override
     public String toString() {
-        return "Executing character setup worker.";
+        return "Executing character design worker.";
     }
 }
 

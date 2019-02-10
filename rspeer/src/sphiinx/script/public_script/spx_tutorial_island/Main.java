@@ -21,7 +21,7 @@ import java.util.stream.Stream;
 
 // [TODO - 2018-10-30]: Add script statics api such as my logo, SPX name, etc..
 // [TODO - 2018-10-30]: Convert everything to a mission in my api and then the script pulls from that.
-@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.OTHER, name = "SPX Tutorial Island", desc = "")
+@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.OTHER, name = "[SPX] Tutorial Island", desc = "")
 public class Main extends SPXScript implements LoginResponseListener {
 
     public static final Args ARGS = new Args();
@@ -41,7 +41,8 @@ public class Main extends SPXScript implements LoginResponseListener {
     @Override
     public Queue<Mission> createMissionQueue() {
         final LinkedList<Mission> missions = new LinkedList<>();
-        missions.add(new TutorialIslandMission(this, getAccount().getUsername(), getAccount().getPassword()));
+        if (!getAccount().getUsername().isEmpty() && !getAccount().getPassword().isEmpty())
+            missions.add(new TutorialIslandMission(this, getAccount().getUsername(), getAccount().getPassword()));
 
         final String delimiter = ":";
         try (Stream<String> lines = Files.lines(Paths.get(script_data_path + File.separator + ARGS.load_accounts))) {
@@ -57,7 +58,7 @@ public class Main extends SPXScript implements LoginResponseListener {
 
     @Override
     public void notify(LoginResponseEvent loginResponseEvent) {
-        Log.severe("Login failed; setting next account");
+        Log.severe("Login failed; setting next account.");
         setAccount(null);
         getMissionHandler().endCurrent();
     }

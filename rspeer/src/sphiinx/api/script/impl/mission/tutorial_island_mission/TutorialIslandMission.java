@@ -17,16 +17,16 @@ import sphiinx.api.script.impl.mission.tutorial_island_mission.worker.TutorialIs
 public class TutorialIslandMission extends Mission {
 
     public static final int TUTORIAL_ISLAND_VARP = 281;
-    public static String USERNAME;
-    public static String PASSWORD;
+    private final String username;
+    private final String password;
     private final TutorialIslandWorkerHandler worker_handler;
     private final SPXScript script;
     private boolean should_stop;
 
     public TutorialIslandMission(SPXScript script, String username, String password) {
         this.script = script;
-        USERNAME = username;
-        PASSWORD = password;
+        this.username = username;
+        this.password = password;
         worker_handler = new TutorialIslandWorkerHandler(this);
     }
 
@@ -89,7 +89,7 @@ public class TutorialIslandMission extends Mission {
 
     @Override
     public void onMissionStart() {
-        script.setAccount(new GameAccount(USERNAME, PASSWORD));
+        script.setAccount(new GameAccount(username, password));
     }
 
     @Override

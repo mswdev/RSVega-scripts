@@ -1,7 +1,10 @@
 package sphiinx.script.testing;
 
+import org.rspeer.runetek.api.Login;
+import org.rspeer.runetek.api.Varps;
 import org.rspeer.runetek.event.listeners.LoginResponseListener;
 import org.rspeer.runetek.event.types.LoginResponseEvent;
+import org.rspeer.script.GameAccount;
 import org.rspeer.script.Script;
 import org.rspeer.script.ScriptCategory;
 import org.rspeer.script.ScriptMeta;
@@ -18,6 +21,9 @@ public class TestScript extends Script implements LoginResponseListener {
     @Override
     public void onStart() {
         Log.fine(getMeta().name() + " has started.");
+        System.out.println("1: " + (getAccount() == null));
+        setAccount(new GameAccount("Test", "Playa"));
+        System.out.println("2: " + (getAccount() == null));
         removeBlockingEvent(LoginScreen.class);
         removeBlockingEvent(WelcomeScreen.class);
         //addBlockingEvent(new BlockEventTest(this));
@@ -27,8 +33,11 @@ public class TestScript extends Script implements LoginResponseListener {
 
     @Override
     public int loop() {
-        getAcc();
-        return 2500;
+        System.out.println("3: " + (getAccount() == null));
+        setAccount(null);
+        System.out.println("4: " + (getAccount() == null));
+        //getAcc();
+        return 500;
     }
 
     private void getAcc() {

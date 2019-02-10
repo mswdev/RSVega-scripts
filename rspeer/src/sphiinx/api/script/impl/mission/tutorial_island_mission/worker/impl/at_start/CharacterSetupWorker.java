@@ -16,7 +16,7 @@ public class CharacterSetupWorker extends Worker {
 
     @Override
     public void work() {
-        if (Varps.getBitValue(CharacterDisplayNameWorker.DISPLAY_NAME_VARPBIT) != 5) {
+        if (Varps.getBitValue(CharacterDisplayNameWorker.DISPLAY_NAME_VARPBIT) != 0 && Varps.getBitValue(CharacterDisplayNameWorker.DISPLAY_NAME_VARPBIT) != 5) {
             character_display_name_worker.work();
             return;
         }

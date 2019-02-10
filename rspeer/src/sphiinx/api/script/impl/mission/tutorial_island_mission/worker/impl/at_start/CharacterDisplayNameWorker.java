@@ -35,7 +35,7 @@ public class CharacterDisplayNameWorker extends Worker {
                 Time.sleepUntil(EnterInput::isOpen, 1500);
             }
 
-            String display_name = TutorialIslandMission.USERNAME.split("@")[0];
+            String display_name = "";//TutorialIslandMission.USERNAME.split("@")[0];
             if (lookup_count > 1)
                 display_name += Random.nextInt(0, 1000);
 
@@ -53,7 +53,7 @@ public class CharacterDisplayNameWorker extends Worker {
 
     @Override
     public String toString() {
-        return "Executing character setup worker.";
+        return "Executing character display name worker.";
     }
 }
 

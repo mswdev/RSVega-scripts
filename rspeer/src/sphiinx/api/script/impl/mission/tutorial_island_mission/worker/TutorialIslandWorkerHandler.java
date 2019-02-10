@@ -38,15 +38,6 @@ public class TutorialIslandWorkerHandler extends WorkerHandler {
     @Override
     public Worker decide() {
         if (Varps.get(TutorialIslandMission.TUTORIAL_ISLAND_VARP) >= 1000) {
-            if (Main.ARGS.drop_items && Inventory.getCount() > 0)
-                return drop_items;
-
-            if (Main.ARGS.bank_items && Inventory.getCount() > 0)
-                return bank_items;
-
-            if (Main.ARGS.walk_position != null && Main.ARGS.walk_position.distance() > 10)
-                return walk_to_position;
-
             if (Main.ARGS.hide_roofs && !InterfaceOptions.Display.isRoofsHidden())
                 return hide_roofs;
 
@@ -58,6 +49,15 @@ public class TutorialIslandWorkerHandler extends WorkerHandler {
 
             if (Main.ARGS.set_zoom > 0 && ClientSettings.getZoomLevel() != Main.ARGS.set_zoom)
                 return set_zoom;
+
+            if (Main.ARGS.drop_items && Inventory.getCount() > 0)
+                return drop_items;
+
+            if (Main.ARGS.bank_items && Inventory.getCount() > 0)
+                return bank_items;
+
+            if (Main.ARGS.walk_position != null && Main.ARGS.walk_position.distance() > 10)
+                return walk_to_position;
 
             if (Main.ARGS.stay_logged_in)
                 return stay_logged_in;
