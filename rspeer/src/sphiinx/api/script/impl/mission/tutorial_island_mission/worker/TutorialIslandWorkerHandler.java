@@ -68,4 +68,3 @@ public class TutorialIslandWorkerHandler extends WorkerHandler {
         return TutorialState.getValidState().getWorker();
     }
 }
-
