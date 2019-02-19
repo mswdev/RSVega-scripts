@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.*;
-import sphiinx.api.ui.SPXStyle;
+import sphiinx.script.public_script.spx_tutorial_island.api.ui.SPXStyle;
 import sphiinx.script.public_script.spx_aio_walking.data.Location;
 
 import java.awt.*;

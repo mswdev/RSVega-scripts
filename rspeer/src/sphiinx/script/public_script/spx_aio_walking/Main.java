@@ -2,9 +2,9 @@ package sphiinx.script.public_script.spx_aio_walking;
 
 import org.rspeer.script.ScriptCategory;
 import org.rspeer.script.ScriptMeta;
-import sphiinx.api.script.SPXScript;
-import sphiinx.api.script.framework.mission.Mission;
-import sphiinx.api.ui.swingui.GUI;
+import sphiinx.script.public_script.spx_tutorial_island.api.script.SPXScript;
+import sphiinx.script.public_script.spx_tutorial_island.api.script.framework.mission.Mission;
+import sphiinx.script.public_script.spx_tutorial_island.api.ui.swingui.GUI;
 import sphiinx.script.public_script.spx_aio_walking.data.args.Args;
 import sphiinx.script.public_script.spx_aio_walking.mission.WalkingMission;
 

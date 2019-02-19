@@ -1,7 +1,7 @@
 package sphiinx.script.public_script.spx_aio_walking;
 
-import sphiinx.api.ui.swingui.GUI;
-import sphiinx.api.ui.swingui.components.AutoCompleteComboBox;
+import sphiinx.script.public_script.spx_tutorial_island.api.ui.swingui.GUI;
+import sphiinx.script.public_script.spx_tutorial_island.api.ui.swingui.components.AutoCompleteComboBox;
 import sphiinx.script.public_script.spx_aio_walking.data.Location;
 
 import javax.imageio.ImageIO;

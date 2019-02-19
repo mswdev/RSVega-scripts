@@ -1,8 +1,8 @@
 package sphiinx.script.public_script.spx_aio_walking.mission;
 
-import sphiinx.api.script.framework.goal.GoalList;
-import sphiinx.api.script.framework.mission.Mission;
-import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.script.public_script.spx_tutorial_island.api.script.framework.goal.GoalList;
+import sphiinx.script.public_script.spx_tutorial_island.api.script.framework.mission.Mission;
+import sphiinx.script.public_script.spx_tutorial_island.api.script.framework.worker.Worker;
 import sphiinx.script.public_script.spx_aio_walking.mission.worker.WalkingWorkerHandler;
 
 public class WalkingMission extends Mission {
