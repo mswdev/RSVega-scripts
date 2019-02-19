@@ -5,6 +5,7 @@
     <mapping directory="$PROJECT_DIR$/rspeer/src/sphiinx/script/public_script/spx-aio-walking" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/rspeer/src/sphiinx/script/public_script/spx_aio_firemaking" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/rspeer/src/sphiinx/script/public_script/spx_aio_questing" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/rspeer/src/sphiinx/script/public_script/spx_aio_walking" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/rspeer/src/sphiinx/script/public_script/spx_tutorial_island" vcs="Git" />
   </component>
 </project>
