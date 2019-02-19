@@ -11,8 +11,8 @@ import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.script.Script;
 import org.rspeer.script.ScriptBlockingEvent;
 import org.rspeer.script.events.WelcomeScreen;
-import sphiinx.script.public_script.spx_tutorial_island.api.game.pricechecking.PriceCheck;
-import sphiinx.script.public_script.spx_tutorial_island.api.game.questing.QuestingUtil;
+import sphiinx.api.game.pricechecking.PriceCheck;
+import sphiinx.api.game.questing.QuestingUtil;
 import sphiinx.script.public_script.spx_account_checker.data.Vars;
 
 import java.io.IOException;

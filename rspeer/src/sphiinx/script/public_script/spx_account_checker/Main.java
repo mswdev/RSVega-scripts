@@ -13,9 +13,9 @@ import org.rspeer.script.ScriptMeta;
 import org.rspeer.script.events.LoginScreen;
 import org.rspeer.script.events.WelcomeScreen;
 import org.rspeer.ui.Log;
-import sphiinx.script.public_script.spx_tutorial_island.api.client.screenshot.Screenshot;
-import sphiinx.script.public_script.spx_tutorial_island.api.script.framework.mission.Mission;
-import sphiinx.script.public_script.spx_tutorial_island.api.script.SPXScript;
+import sphiinx.api.client.screenshot.Screenshot;
+import sphiinx.api.script.framework.mission.Mission;
+import sphiinx.api.script.SPXScript;
 import sphiinx.script.public_script.spx_account_checker.data.Vars;
 import sphiinx.script.public_script.spx_account_checker.http.AccountData;
 import sphiinx.script.public_script.spx_account_checker.http.AccountDataType;
@@ -53,7 +53,7 @@ public class Main extends SPXScript implements LoginResponseListener, GameStateL
     @Override
     public Queue<Mission> createMissionQueue() {
         final LinkedList<Mission> missions = new LinkedList<>();
-        missions.add(new AccountCheckerMission(this));
+        missions.add(new AccountCheckerMission(this, this));
         return missions;
     }
 

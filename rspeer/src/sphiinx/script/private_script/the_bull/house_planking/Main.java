@@ -37,7 +37,7 @@ public class Main extends SPXScript implements RenderListener {
     @Override
     public Queue<Mission> createMissionQueue() {
         final LinkedList<Mission> missions = new LinkedList<>();
-        missions.add(new HousePlankingMission());
+        missions.add(new HousePlankingMission(this));
         return missions;
     }
 

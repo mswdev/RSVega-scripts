@@ -3,7 +3,7 @@ package sphiinx.script.public_script.spx_account_checker.http;
 import com.google.gson.JsonObject;
 import org.rspeer.script.GameAccount;
 import org.rspeer.ui.Log;
-import sphiinx.script.public_script.spx_tutorial_island.api.script.SPXScript;
+import sphiinx.api.script.SPXScript;
 
 public class AccountManager {
 

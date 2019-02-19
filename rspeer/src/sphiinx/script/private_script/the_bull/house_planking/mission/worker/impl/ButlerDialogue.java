@@ -41,7 +41,7 @@ public class ButlerDialogue extends Worker {
                 Movement.walkTo(new Position(Players.getLocal().getX() - 1, Players.getLocal().getY()));
 
             if (!is_setup)
-                if (Inventory.use(a -> a.getId() == Main.ARGS.LOG_TYPE.getItemID(), servant))
+                if (Inventory.use(a -> a.getId() == Main.ARGS.LOG_TYPE1.getItemID(), servant))
                     is_setup = true;
 
             if (EnterInput.isOpen())

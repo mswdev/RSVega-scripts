@@ -28,10 +28,6 @@ public class WithdrawEarthRune extends Worker {
 
     @Override
     public void work() {
-        if (!Bank.isOpen())
-            if (SceneObjects.getNearest("Bank chest").click())
-                Time.sleepUntil(Bank::isOpen, 1500);
-
         WITHDRAW_EARTH_RUNE.work();
         if (WITHDRAW_EARTH_RUNE.itemNotFound())
             mission.can_end = true;

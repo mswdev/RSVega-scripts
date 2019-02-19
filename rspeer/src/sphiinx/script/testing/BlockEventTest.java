@@ -3,6 +3,7 @@ package sphiinx.script.testing;
 import org.rspeer.script.Script;
 import org.rspeer.script.ScriptBlockingEvent;
 import org.rspeer.script.events.LoginScreen;
+import org.rspeer.ui.Log;
 
 public class BlockEventTest extends ScriptBlockingEvent {
 
@@ -15,9 +16,9 @@ public class BlockEventTest extends ScriptBlockingEvent {
 
     @Override
     public void process() {
-        System.out.println("Processing");
+        Log.info("Processing");
         SCREEN.process();
-        System.out.println("Processed");
+        Log.info("Processed");
     }
 
     @Override

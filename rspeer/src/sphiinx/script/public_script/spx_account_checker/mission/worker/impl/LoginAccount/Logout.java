@@ -5,7 +5,7 @@ import okhttp3.RequestBody;
 import org.rspeer.runetek.api.Game;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.ui.Log;
-import sphiinx.script.public_script.spx_tutorial_island.api.script.framework.worker.Worker;
+import sphiinx.api.script.framework.worker.Worker;
 import sphiinx.script.public_script.spx_account_checker.data.Vars;
 import sphiinx.script.public_script.spx_account_checker.http.AccountData;
 import sphiinx.script.public_script.spx_account_checker.http.AccountDataType;

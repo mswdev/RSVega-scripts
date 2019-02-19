@@ -5,8 +5,14 @@ import sphiinx.api.game.skills.firemaking.LogType;
 
 public class Args {
 
-    @Parameter(names = "-log_type")
-    public LogType LOG_TYPE = LogType.TEAK;
+    @Parameter(names = "-log_type1")
+    public LogType LOG_TYPE1 = LogType.OAK;
+
+    @Parameter(names = "-log_type1_quantity")
+    public int LOG_TYPE1_QUANTITY = 5500;
+
+    @Parameter(names = "-log_type1_price")
+    public int LOG_TYPE1_PRICE = 50;
 
 }
 

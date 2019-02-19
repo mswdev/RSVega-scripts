@@ -1,8 +1,9 @@
 package sphiinx.script.public_script.spx_account_checker.mission;
 
-import sphiinx.script.public_script.spx_tutorial_island.api.script.framework.goal.GoalList;
-import sphiinx.script.public_script.spx_tutorial_island.api.script.framework.mission.Mission;
-import sphiinx.script.public_script.spx_tutorial_island.api.script.framework.worker.Worker;
+import sphiinx.api.script.SPXScript;
+import sphiinx.api.script.framework.goal.GoalList;
+import sphiinx.api.script.framework.mission.Mission;
+import sphiinx.api.script.framework.worker.Worker;
 import sphiinx.script.public_script.spx_account_checker.Main;
 import sphiinx.script.public_script.spx_account_checker.mission.worker.AccountCheckerWorkerHandler;
 
@@ -11,7 +12,8 @@ public class AccountCheckerMission extends Mission {
     private final AccountCheckerWorkerHandler handler = new AccountCheckerWorkerHandler(this);
     public final Main main;
 
-    public AccountCheckerMission(Main main) {
+    public AccountCheckerMission(SPXScript script, Main main) {
+        super(script);
         this.main = main;
     }
 
@@ -29,7 +31,7 @@ public class AccountCheckerMission extends Mission {
     @Override
     public String getWorkerString() {
         Worker c = handler.getCurrent();
-        return c == null ? "Waiting for worker" : c.toString();
+        return c == null ? "Waiting for worker." : c.toString();
     }
 
     @Override
@@ -38,7 +40,7 @@ public class AccountCheckerMission extends Mission {
     }
 
     @Override
-    public boolean canEnd() {
+    public boolean shouldEnd() {
         return false;
     }
 
@@ -59,16 +61,6 @@ public class AccountCheckerMission extends Mission {
 
     @Override
     public void onMissionEnd() {
-
-    }
-
-    @Override
-    public String[] getMissionPaint() {
-        return new String[0];
-    }
-
-    @Override
-    public void resetPaint() {
 
     }
 }

@@ -1,8 +1,9 @@
 package sphiinx.script.private_script.the_bull.house_planking.mission.worker;
 
-import org.rspeer.runetek.adapter.scene.SceneObject;
+import org.rspeer.runetek.api.commons.BankLocation;
+import org.rspeer.runetek.api.component.tab.Equipment;
 import org.rspeer.runetek.api.component.tab.Inventory;
-import org.rspeer.runetek.api.scene.SceneObjects;
+import org.rspeer.runetek.api.scene.House;
 import sphiinx.api.script.framework.worker.Worker;
 import sphiinx.api.script.framework.worker.WorkerHandler;
 import sphiinx.script.private_script.the_bull.house_planking.Main;
@@ -35,34 +36,36 @@ public class HousePlankingWorkerHandler extends WorkerHandler {
 
     @Override
     public Worker decide() {
-        final SceneObject bank_chest = SceneObjects.getNearest("Bank chest");
-        if (bank_chest != null) {
-            // [TODO - 2018-11-28]: Add when lumbridge pvp bank chest is supported
-            //if (!Equipment.contains(EquipStaffOfAir.STAFF_OF_AIR))
-                //return equip_staff_of_air;
+        if (House.isInside()) {
+            if (Inventory.contains(Main.ARGS.LOG_TYPE1.getItemID()))
+                return butler_dialogue;
 
-            if (Inventory.getCount(Main.ARGS.LOG_TYPE.getItemID() + 1) <= 0)
-                return withdraw_logs;
-
-            if (Inventory.getCount(true, WithdrawCoins.COINS) < 6000)
-                return withdraw_coins;
-
-            if (Inventory.getCount(WithdrawEarthRune.EARTH_RUNE) <= 0)
-                return withdraw_earth_rune;
-
-            if (Inventory.getCount(WithdrawLawRune.LAW_RUNE) <= 0)
-                return withdraw_law_rune;
-
-            if (Inventory.getCount(Main.ARGS.LOG_TYPE.getItemID()) <= 0)
-                return unnote_logs;
-
-            return teleport_to_house;
+            return teleport_to_lumbridge;
         }
 
-        if (Inventory.getCount(Main.ARGS.LOG_TYPE.getItemID()) <= 0)
-            return teleport_to_lumbridge;
+        if (!Equipment.contains(EquipStaffOfAir.STAFF_OF_AIR))
+            return equip_staff_of_air;
 
-        return butler_dialogue;
+        if (Inventory.getCount(Main.ARGS.LOG_TYPE1.getItemID() + 1) <= 0)
+            return withdraw_logs;
+
+        if (Inventory.getCount(true, WithdrawCoins.COINS) < 6000)
+            return withdraw_coins;
+
+        if (Inventory.getCount(WithdrawEarthRune.EARTH_RUNE) <= 0)
+            return withdraw_earth_rune;
+
+        if (Inventory.getCount(WithdrawLawRune.LAW_RUNE) <= 0)
+            return withdraw_law_rune;
+
+        if (!Inventory.contains(Main.ARGS.LOG_TYPE1.getItemID())) {
+            if (BankLocation.LUMBRIDGE_PVP.getPosition().distance() > 10)
+                return teleport_to_lumbridge;
+
+            return unnote_logs;
+        }
+
+        return teleport_to_house;
     }
 }
 

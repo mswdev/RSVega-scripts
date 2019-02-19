@@ -24,12 +24,12 @@ public class UnnoteLogs extends Worker {
             return;
 
         if (!Dialog.isOpen())
-            if (Inventory.use(a -> a.getName().equals(Main.ARGS.LOG_TYPE.getName()), bank_chest))
+            if (Inventory.use(a -> a.getName().equals(Main.ARGS.LOG_TYPE1.getName()), bank_chest))
                 Time.sleepUntil(Dialog::isOpen, 1500);
 
-        final int inventory_cache = Inventory.getItems().length;
+        final int inventory_cache = Inventory.getCount();
         if (Dialog.process(a -> a.equals("Yes"))) {
-            Time.sleepUntil(() -> Inventory.getItems().length != inventory_cache, 1500);
+            Time.sleepUntil(() -> Inventory.getCount() != inventory_cache, 1500);
             Log.severe("Sleeping 450ms to ensure butler has returned from the bank...");
             Time.sleep(450);
         }

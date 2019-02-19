@@ -3,6 +3,7 @@ package sphiinx.script.private_script.the_bull.house_planking.mission.worker.imp
 import org.rspeer.runetek.adapter.component.Item;
 import org.rspeer.runetek.api.component.tab.Equipment;
 import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.script.impl.worker.banking.WithdrawWorker;
 import sphiinx.api.script.impl.worker.interactables.ItemWorker;
 import sphiinx.script.private_script.the_bull.house_planking.mission.HousePlankingMission;
 
@@ -12,7 +13,8 @@ public class EquipStaffOfAir extends Worker {
 
     public static final String STAFF_OF_AIR = "Staff of air";
     private final Predicate<Item> staff_of_air = a -> a.getName().equals(STAFF_OF_AIR);
-    private final ItemWorker equip_staff_of_air = new ItemWorker(staff_of_air);
+    private final WithdrawWorker withdraw_staff_of_air = new WithdrawWorker(staff_of_air);
+    private final ItemWorker equip_staff_of_air = new ItemWorker(staff_of_air, withdraw_staff_of_air);
     private final HousePlankingMission mission;
 
     public EquipStaffOfAir(HousePlankingMission mission) {

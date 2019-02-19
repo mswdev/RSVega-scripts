@@ -2,8 +2,8 @@ package sphiinx.script.public_script.spx_account_checker.mission.worker;
 
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.movement.Movement;
-import sphiinx.script.public_script.spx_tutorial_island.api.script.framework.worker.Worker;
-import sphiinx.script.public_script.spx_tutorial_island.api.script.framework.worker.WorkerHandler;
+import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.script.framework.worker.WorkerHandler;
 import sphiinx.script.public_script.spx_account_checker.data.Vars;
 import sphiinx.script.public_script.spx_account_checker.mission.AccountCheckerMission;
 import sphiinx.script.public_script.spx_account_checker.mission.worker.impl.CheckAge;

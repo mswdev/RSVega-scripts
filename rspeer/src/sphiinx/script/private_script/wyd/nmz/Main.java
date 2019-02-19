@@ -24,7 +24,7 @@ public class Main extends SPXScript {
     @Override
     public Queue<Mission> createMissionQueue() {
         final LinkedList<Mission> missions = new LinkedList<>();
-        missions.add(new NMZMission());
+        missions.add(new NMZMission(this));
         return missions;
     }
 }

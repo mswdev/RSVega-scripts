@@ -2,10 +2,10 @@ package sphiinx.script.public_script.spx_aio_firemaking;
 
 import org.rspeer.script.ScriptCategory;
 import org.rspeer.script.ScriptMeta;
-import sphiinx.script.public_script.spx_aio_firemaking.api.script.framework.mission.Mission;
-import sphiinx.script.public_script.spx_aio_firemaking.api.script.SPXScript;
+import sphiinx.api.script.framework.mission.Mission;
+import sphiinx.api.script.SPXScript;
 import sphiinx.script.public_script.spx_aio_firemaking.data.Args;
-import sphiinx.script.public_script.spx_aio_firemaking.api.script.impl.mission.firemaking_mission.FireMakingMission;
+import sphiinx.api.script.impl.mission.firemaking_mission.FireMakingMission;
 
 import java.util.LinkedList;
 import java.util.Queue;

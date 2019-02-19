@@ -17,7 +17,7 @@ public class Main extends SPXScript {
     @Override
     public Queue<Mission> createMissionQueue() {
         final LinkedList<Mission> missions = new LinkedList<>();
-        missions.add(new BlastFurnaceMission());
+        missions.add(new BlastFurnaceMission(this));
         return missions;
     }
 

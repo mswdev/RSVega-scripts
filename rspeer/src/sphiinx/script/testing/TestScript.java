@@ -2,6 +2,8 @@ package sphiinx.script.testing;
 
 import org.rspeer.runetek.api.Login;
 import org.rspeer.runetek.api.Varps;
+import org.rspeer.runetek.api.commons.BankLocation;
+import org.rspeer.runetek.api.component.GrandExchangeSetup;
 import org.rspeer.runetek.event.listeners.LoginResponseListener;
 import org.rspeer.runetek.event.types.LoginResponseEvent;
 import org.rspeer.script.GameAccount;
@@ -20,10 +22,6 @@ public class TestScript extends Script implements LoginResponseListener {
 
     @Override
     public void onStart() {
-        Log.fine(getMeta().name() + " has started.");
-        System.out.println("1: " + (getAccount() == null));
-        setAccount(new GameAccount("Test", "Playa"));
-        System.out.println("2: " + (getAccount() == null));
         removeBlockingEvent(LoginScreen.class);
         removeBlockingEvent(WelcomeScreen.class);
         //addBlockingEvent(new BlockEventTest(this));
@@ -33,19 +31,16 @@ public class TestScript extends Script implements LoginResponseListener {
 
     @Override
     public int loop() {
-        System.out.println("3: " + (getAccount() == null));
-        setAccount(null);
-        System.out.println("4: " + (getAccount() == null));
-        //getAcc();
-        return 500;
+        Log.fine(GrandExchangeSetup.getItem().getId() != 556);
+        return 150;
     }
 
     private void getAcc() {
-        System.out.println("GetAccount null: " + (getAccount() == null));
-        System.out.println("GetAccount valid: " + getAccount().validate());
-        System.out.println("GetAccount user: " + getAccount().getUsername());
-        System.out.println("GetAccount pass: " + getAccount().getPassword());
-        System.out.println("--------------------------");
+        Log.info("GetAccount null: " + (getAccount() == null));
+        Log.info("GetAccount valid: " + getAccount().validate());
+        Log.info("GetAccount user: " + getAccount().getUsername());
+        Log.info("GetAccount pass: " + getAccount().getPassword());
+        Log.info("--------------------------");
     }
 
     @Override
@@ -55,10 +50,10 @@ public class TestScript extends Script implements LoginResponseListener {
 
     @Override
     public void notify(LoginResponseEvent loginResponseEvent) {
-        System.out.println("Exec");
+        Log.info("Exec");
         if (loginResponseEvent.getResponse() != null) {
-            System.out.println(loginResponseEvent.getResponse());
-            System.out.println(loginResponseEvent.getResponse().getCode());
+            Log.info(loginResponseEvent.getResponse());
+            Log.info(loginResponseEvent.getResponse().getCode());
         }
     }
 }

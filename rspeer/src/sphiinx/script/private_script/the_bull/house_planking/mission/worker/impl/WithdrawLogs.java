@@ -11,7 +11,7 @@ import sphiinx.script.private_script.the_bull.house_planking.mission.HousePlanki
 public class WithdrawLogs extends Worker {
 
 
-    private static final WithdrawWorker WITHDRAW_LOGS = new WithdrawWorker(a -> a.getName().equals(Main.ARGS.LOG_TYPE.getName()), Bank.WithdrawMode.NOTE, 0);
+    private static final WithdrawWorker WITHDRAW_LOGS = new WithdrawWorker(a -> a.getName().equals(Main.ARGS.LOG_TYPE1.getName()), 0, Bank.WithdrawMode.NOTE);
     private final HousePlankingMission mission;
 
     public WithdrawLogs(HousePlankingMission mission) {
@@ -25,13 +25,9 @@ public class WithdrawLogs extends Worker {
 
     @Override
     public void work() {
-        if (!Bank.isOpen())
-            if (SceneObjects.getNearest("Bank chest").click())
-                Time.sleepUntil(Bank::isOpen, 1500);
-
         WITHDRAW_LOGS.work();
-        if (WITHDRAW_LOGS.itemNotFound())
-            mission.can_end = true;
+        /*if (WITHDRAW_LOGS.itemNotFound())
+            mission.can_end = true;*/
     }
 
     @Override

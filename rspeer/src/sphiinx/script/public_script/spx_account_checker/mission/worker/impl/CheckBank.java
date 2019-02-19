@@ -7,8 +7,8 @@ import org.rspeer.runetek.api.component.Bank;
 import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.ui.Log;
-import sphiinx.script.public_script.spx_tutorial_island.api.script.framework.worker.Worker;
-import sphiinx.script.public_script.spx_tutorial_island.api.game.pricechecking.PriceCheck;
+import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.game.pricechecking.PriceCheck;
 import sphiinx.script.public_script.spx_account_checker.data.Vars;
 import sphiinx.script.public_script.spx_account_checker.mission.AccountCheckerMission;
 
@@ -64,7 +64,7 @@ public class CheckBank extends Worker {
             } catch (IOException e) {
                 e.printStackTrace();
                 Log.severe("[ACCOUNT CHECKER]: Unable to get OSBuddy prices.");
-                mission.main.setStopping(true);
+                mission.getScript().setStopping(true);
             }
         }
 

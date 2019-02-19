@@ -28,10 +28,6 @@ public class WithdrawCoins extends Worker {
 
     @Override
     public void work() {
-        if (!Bank.isOpen())
-            if (SceneObjects.getNearest("Bank chest").click())
-                Time.sleepUntil(Bank::isOpen, 1500);
-
         WITHDRAW_COINS.work();
         if (WITHDRAW_COINS.itemNotFound())
             mission.can_end = true;
