@@ -1,12 +1,12 @@
 package sphiinx.script.public_script.spx_aio_walking.data.args;
 
 import com.beust.jcommander.Parameter;
-import sphiinx.script.public_script.spx_aio_walking.data.Location;
+import org.rspeer.runetek.api.commons.BankLocation;
 
 public class Args {
 
     @Parameter(names = "-location")
-    public Location LOCATION = Location.LUMBRIDGE;
+    public BankLocation LOCATION;
 
 }
 

@@ -2,6 +2,7 @@ package sphiinx.script.private_script.the_bull.house_planking.mission;
 
 import org.rspeer.runetek.api.component.Dialog;
 import org.rspeer.runetek.api.component.tab.Inventory;
+import org.rspeer.runetek.api.scene.House;
 import sphiinx.api.game.skills.magic.RuneType;
 import sphiinx.api.script.SPXScript;
 import sphiinx.api.script.framework.goal.GoalList;
@@ -17,7 +18,7 @@ public class HousePlankingMission extends Mission implements ItemManagement {
 
     public boolean can_end;
     private final HousePlankingWorkerHandler worker_handler = new HousePlankingWorkerHandler(this);
-    private final int OAK_PLANK_ID = 8788;
+    private final int OAK_PLANK_ID = 8778;
 
     public HousePlankingMission(SPXScript script) {
         super(script);
@@ -77,11 +78,10 @@ public class HousePlankingMission extends Mission implements ItemManagement {
 
     @Override
     public ItemManagementEntry[] itemsToBuy() {
-        // [TODO - 2/18/2019]: Convert price to use a price modifier and API so you don't have to specify.
         return new ItemManagementEntry[]{
-                new ItemManagementEntry(this, Main.ARGS.LOG_TYPE1.getItemID(), Main.ARGS.LOG_TYPE1_QUANTITY, Main.ARGS.LOG_TYPE1_PRICE, () -> getScript().bank_cache.get().getOrDefault(Main.ARGS.LOG_TYPE1.getItemID(), 0) <= 0 && Inventory.getCount(true, Main.ARGS.LOG_TYPE1.getItemID() + 1) <= 0),
-                new ItemManagementEntry(this, RuneType.LAW.getItemID(), 1251, 250, () -> getScript().bank_cache.get().getOrDefault(RuneType.LAW.getItemID(), 0) <= 0 && Inventory.getCount(true, RuneType.LAW.getItemID()) <= 0),
-                new ItemManagementEntry(this, RuneType.EARTH.getItemID(), 1251, 10, () -> getScript().bank_cache.get().getOrDefault(RuneType.EARTH.getItemID(), 0) <= 0 && Inventory.getCount(true, RuneType.EARTH.getItemID()) <= 0),
+                new ItemManagementEntry(this, Main.ARGS.LOG_TYPE1.getItemID(), Main.ARGS.LOG_TYPE1_QUANTITY, () -> getScript().bank_cache.get().getOrDefault(Main.ARGS.LOG_TYPE1.getItemID(), 0) <= 0 && Inventory.getCount(true, Main.ARGS.LOG_TYPE1.getItemID()) <= 0 && Inventory.getCount(Main.ARGS.LOG_TYPE1.getItemID() + 1) <= 0 && !House.isInside()),
+                new ItemManagementEntry(this, RuneType.LAW.getItemID(), (Main.ARGS.LOG_TYPE1_QUANTITY / 24) * 2 + 1, () -> getScript().bank_cache.get().getOrDefault(RuneType.LAW.getItemID(), 0) <= 0 && Inventory.getCount(true, RuneType.LAW.getItemID()) <= 0),
+                new ItemManagementEntry(this, RuneType.EARTH.getItemID(), (Main.ARGS.LOG_TYPE1_QUANTITY / 24) * 2 + 1, () -> getScript().bank_cache.get().getOrDefault(RuneType.EARTH.getItemID(), 0) <= 0 && Inventory.getCount(true, RuneType.EARTH.getItemID()) <= 0),
         };
     }
 
@@ -90,6 +90,16 @@ public class HousePlankingMission extends Mission implements ItemManagement {
         return new int[]{
                 OAK_PLANK_ID,
         };
+    }
+
+    @Override
+    public double sellPriceModifier() {
+        return 0.8;
+    }
+
+    @Override
+    public double buyPriceModifier() {
+        return 1.5;
     }
 }
 

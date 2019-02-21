@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/rspeer/rspeer.iml" filepath="$PROJECT_DIR$/rspeer/rspeer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../runescape/rspeer-build-obf/rspeer-build-obf.iml" filepath="$PROJECT_DIR$/../runescape/rspeer-build-obf/rspeer-build-obf.iml" />
     </modules>
   </component>
 </project>

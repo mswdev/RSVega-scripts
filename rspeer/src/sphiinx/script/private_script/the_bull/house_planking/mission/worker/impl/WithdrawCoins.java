@@ -29,8 +29,6 @@ public class WithdrawCoins extends Worker {
     @Override
     public void work() {
         WITHDRAW_COINS.work();
-        if (WITHDRAW_COINS.itemNotFound())
-            mission.can_end = true;
     }
 
     @Override

@@ -7,8 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.*;
+import org.rspeer.runetek.api.commons.BankLocation;
 import sphiinx.api.ui.SPXStyle;
-import sphiinx.script.public_script.spx_aio_walking.data.Location;
 
 import java.awt.*;
 import java.io.IOException;
@@ -28,7 +28,7 @@ public class WalkingGUIController {
 
     @DoNotRename
     @FXML
-    private ComboBox<Location> locations;
+    private ComboBox<BankLocation> locations;
 
     @DoNotRename
     @FXML
@@ -61,7 +61,7 @@ public class WalkingGUIController {
 
         logo_first.getStylesheets().add(SPXStyle.getLogoFontStyle());
         logo_second.getStylesheets().add(SPXStyle.getLogoFontStyle());
-        locations.getItems().setAll(Location.values());
+        locations.getItems().setAll(BankLocation.values());
 
         add_location.setOnAction(event -> {
 

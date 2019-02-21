@@ -4,10 +4,15 @@ import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.scene.Players;
 import sphiinx.api.script.framework.worker.Worker;
-import sphiinx.script.public_script.spx_tutorial_island.Main;
+import sphiinx.api.script.impl.mission.tutorial_island_mission.TutorialIslandMission;
 
 public class WalkToPosition extends Worker {
 
+    private final TutorialIslandMission mission;
+
+    public WalkToPosition(TutorialIslandMission mission) {
+        this.mission = mission;
+    }
 
     @Override
     public boolean needsRepeat() {
@@ -19,7 +24,7 @@ public class WalkToPosition extends Worker {
         if (Players.getLocal().isMoving() && Movement.getDestinationDistance() > 10)
             return;
 
-        if (Movement.walkTo(Main.ARGS.walk_position))
+        if (Movement.walkTo(mission.getArgs().walk_position))
             Time.sleepUntil(() -> Players.getLocal().isMoving(), 1500);
     }
 

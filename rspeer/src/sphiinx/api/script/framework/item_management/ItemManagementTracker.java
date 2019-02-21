@@ -8,23 +8,15 @@ import java.io.IOException;
 
 public class ItemManagementTracker {
 
-    public static final double SELL_PRICE_MODIFIER = 0.7;
     public static final int GOLD_ID = 995;
-
     public final SPXScript script;
     public final ItemManagement item_management;
-    public final int[] items_to_sell;
-    private final ItemManagementEntry[] items_to_buy;
-
-
     private long total_gold;
     private long total_sellable_value;
 
     public ItemManagementTracker(SPXScript script, ItemManagement item_management) {
         this.script = script;
         this.item_management = item_management;
-        this.items_to_sell = item_management.itemsToSell();
-        this.items_to_buy = item_management.itemsToBuy();
     }
 
     public void update() {
@@ -33,12 +25,12 @@ public class ItemManagementTracker {
         total_gold = inventory_gold + bank_gold;
 
         total_sellable_value = 0;
-        for (int id : items_to_sell) {
+        for (int id : item_management.itemsToSell()) {
             final long inventory_amount = Inventory.getCount(id);
             final long bank_amount = script.bank_cache.get().getOrDefault(id, 0);
 
             try {
-                total_sellable_value += (inventory_amount + bank_amount) * (PriceCheck.getOSBuddyPrice(id) * SELL_PRICE_MODIFIER);
+                total_sellable_value += (inventory_amount + bank_amount) * (PriceCheck.getOSBuddyPrice(id) * item_management.sellPriceModifier());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -46,8 +38,8 @@ public class ItemManagementTracker {
     }
 
     public ItemManagementEntry needsToBuy() {
-        for (ItemManagementEntry item_management_entry : items_to_buy) {
-            if (item_management_entry.shouldBuy(getTotalValue()))
+        for (ItemManagementEntry item_management_entry : item_management.itemsToBuy()) {
+            if (item_management_entry.shouldBuy(getTotalValue(), item_management.buyPriceModifier()))
                 return item_management_entry;
         }
 

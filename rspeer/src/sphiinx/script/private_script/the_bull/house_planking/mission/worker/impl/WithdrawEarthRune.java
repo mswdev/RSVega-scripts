@@ -29,8 +29,6 @@ public class WithdrawEarthRune extends Worker {
     @Override
     public void work() {
         WITHDRAW_EARTH_RUNE.work();
-        if (WITHDRAW_EARTH_RUNE.itemNotFound())
-            mission.can_end = true;
     }
 
     @Override

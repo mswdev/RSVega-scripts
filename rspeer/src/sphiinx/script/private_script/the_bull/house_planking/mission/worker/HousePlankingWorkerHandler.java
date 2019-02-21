@@ -46,9 +46,6 @@ public class HousePlankingWorkerHandler extends WorkerHandler {
         if (!Equipment.contains(EquipStaffOfAir.STAFF_OF_AIR))
             return equip_staff_of_air;
 
-        if (Inventory.getCount(Main.ARGS.LOG_TYPE1.getItemID() + 1) <= 0)
-            return withdraw_logs;
-
         if (Inventory.getCount(true, WithdrawCoins.COINS) < 6000)
             return withdraw_coins;
 
@@ -61,6 +58,9 @@ public class HousePlankingWorkerHandler extends WorkerHandler {
         if (!Inventory.contains(Main.ARGS.LOG_TYPE1.getItemID())) {
             if (BankLocation.LUMBRIDGE_PVP.getPosition().distance() > 10)
                 return teleport_to_lumbridge;
+
+            if (Inventory.getCount(Main.ARGS.LOG_TYPE1.getItemID() + 1) <= 0)
+                return withdraw_logs;
 
             return unnote_logs;
         }

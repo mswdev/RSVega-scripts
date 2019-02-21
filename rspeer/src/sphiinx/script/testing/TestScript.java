@@ -1,9 +1,18 @@
 package sphiinx.script.testing;
 
+import org.rspeer.runetek.adapter.scene.Npc;
+import org.rspeer.runetek.adapter.scene.Pickable;
+import org.rspeer.runetek.adapter.scene.Player;
+import org.rspeer.runetek.adapter.scene.SceneObject;
+import org.rspeer.runetek.api.Game;
 import org.rspeer.runetek.api.Login;
 import org.rspeer.runetek.api.Varps;
 import org.rspeer.runetek.api.commons.BankLocation;
+import org.rspeer.runetek.api.component.Dialog;
 import org.rspeer.runetek.api.component.GrandExchangeSetup;
+import org.rspeer.runetek.api.component.Interfaces;
+import org.rspeer.runetek.api.movement.pathfinding.region.util.CollisionFlags;
+import org.rspeer.runetek.api.scene.*;
 import org.rspeer.runetek.event.listeners.LoginResponseListener;
 import org.rspeer.runetek.event.types.LoginResponseEvent;
 import org.rspeer.script.GameAccount;
@@ -31,7 +40,6 @@ public class TestScript extends Script implements LoginResponseListener {
 
     @Override
     public int loop() {
-        Log.fine(GrandExchangeSetup.getItem().getId() != 556);
         return 150;
     }
 

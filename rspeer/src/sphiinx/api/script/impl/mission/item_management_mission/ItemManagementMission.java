@@ -12,8 +12,8 @@ import sphiinx.api.script.impl.mission.item_management_mission.worker.ItemManage
 public class ItemManagementMission extends Mission {
 
     private final ItemManagementWorkerHandler worker_handler;
-    public final ItemManagementEntry item_management_entry;
-    public final ItemManagementTracker item_management_tracker;
+    private final ItemManagementEntry item_management_entry;
+    private final ItemManagementTracker item_management_tracker;
     public final int[] items_to_sell;
     public boolean has_put_in_offer;
     public boolean has_withdrawn_sellables;
@@ -71,5 +71,13 @@ public class ItemManagementMission extends Mission {
 
     @Override
     public void onMissionEnd() {
+    }
+
+    public ItemManagementTracker getItemManagementTracker() {
+        return item_management_tracker;
+    }
+
+    public ItemManagementEntry getItemManagementEntry() {
+        return item_management_entry;
     }
 }

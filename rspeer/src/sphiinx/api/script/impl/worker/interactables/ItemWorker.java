@@ -1,6 +1,9 @@
 package sphiinx.api.script.impl.worker.interactables;
 
 import org.rspeer.runetek.adapter.component.Item;
+import org.rspeer.runetek.adapter.scene.Player;
+import org.rspeer.runetek.api.commons.Time;
+import org.rspeer.runetek.api.component.tab.Equipment;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.scene.Players;
 import sphiinx.api.script.framework.worker.Worker;
@@ -51,7 +54,9 @@ public class ItemWorker extends Worker {
             return;
         }
 
-        item.interact(action_predicate);
+        final int equipment_cache = Equipment.getItems().length;
+        if (item.interact(action_predicate))
+            Time.sleepUntil(() -> equipment_cache != Equipment.getItems().length || Players.getLocal().getAnimation() != -1 || Inventory.getSelectedItem() != null, 1500);
     }
 
     public boolean itemNotFound() {

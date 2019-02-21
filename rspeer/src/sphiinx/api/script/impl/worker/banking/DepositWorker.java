@@ -1,6 +1,7 @@
 package sphiinx.api.script.impl.worker.banking;
 
 import org.rspeer.runetek.adapter.component.Item;
+import org.rspeer.runetek.api.commons.BankLocation;
 import org.rspeer.runetek.api.component.Bank;
 import org.rspeer.runetek.api.component.DepositBox;
 import org.rspeer.runetek.api.component.tab.Inventory;
@@ -17,6 +18,10 @@ public class DepositWorker extends Worker {
 
     public DepositWorker() {
         this(null, 0);
+    }
+
+    public DepositWorker(Predicate<Item> item_predicate) {
+        this(item_predicate, 0);
     }
 
     public DepositWorker(Predicate<Item> item_predicate, int amount) {

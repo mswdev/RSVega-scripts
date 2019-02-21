@@ -28,7 +28,7 @@ import java.util.Arrays;
 public enum TutorialState {
 
     //Gielinor Guide
-    CHARACTER_DESIGN(new CharacterSetupWorker(), 1),
+    CHARACTER_DESIGN(null, 1),
     GIELINOR_GUIDE_DIALOGUE(new NpcWorker(a -> a.getName().equals("Gielinor Guide")), 2, 7),
     OPEN_OPTION_TAB(new OpenTab(Tab.OPTIONS), 3),
 
@@ -37,7 +37,7 @@ public enum TutorialState {
     SURVIVAL_EXPERT_DIALOGUE(new NpcWorker(a -> a.getName().equals("Survival Expert")), 20, 60),
     OPEN_INVENTORY_TAB(new OpenTab(Tab.INVENTORY), 30),
     CATCH_SHRIMP(new CatchShrimp(), 40),
-    OPEN_SKILL_TAB(new OpenTab(Tab.STATS), 50),
+    OPEN_SKILL_TAB(new OpenTab(Tab.SKILLS), 50),
     CHOP_TREE(new ChopTree(), 70),
     LIGHT_FIRE(new LightFire(), 80),
     COOK_SHRIMP(new CookShrimp(), 90),

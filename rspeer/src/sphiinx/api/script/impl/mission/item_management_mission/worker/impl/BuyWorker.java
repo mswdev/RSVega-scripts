@@ -1,12 +1,16 @@
 package sphiinx.api.script.impl.mission.item_management_mission.worker.impl;
 
+import org.rspeer.runetek.adapter.component.Item;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.GrandExchange;
 import org.rspeer.runetek.api.component.GrandExchangeSetup;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.providers.RSGrandExchangeOffer;
+import sphiinx.api.game.pricechecking.PriceCheck;
 import sphiinx.api.script.framework.worker.Worker;
 import sphiinx.api.script.impl.mission.item_management_mission.ItemManagementMission;
+
+import java.io.IOException;
 
 public class BuyWorker extends Worker {
 
@@ -24,12 +28,7 @@ public class BuyWorker extends Worker {
 
     @Override
     public void work() {
-        if (Inventory.contains(mission.item_management_entry.id)) {
-            mission.should_end = true;
-            return;
-        }
-
-        final RSGrandExchangeOffer item_management_entry = GrandExchange.getFirst(a -> a.getItemId() == mission.item_management_entry.id);
+        final RSGrandExchangeOffer item_management_entry = GrandExchange.getFirst(a -> a.getItemId() == mission.getItemManagementEntry().id);
         if (item_management_entry != null) {
             mission.has_put_in_offer = true;
 
@@ -50,21 +49,21 @@ public class BuyWorker extends Worker {
                 return;
             }
 
-            if (GrandExchangeSetup.getItem() == null || GrandExchangeSetup.getItem().getId() != mission.item_management_entry.id) {
-                if (GrandExchangeSetup.setItem(mission.item_management_entry.id))
-                    Time.sleepUntil(() -> GrandExchangeSetup.getItem() != null && GrandExchangeSetup.getItem().getId() == mission.item_management_entry.id, 1500);
+            if (GrandExchangeSetup.getItem() == null || GrandExchangeSetup.getItem().getId() != mission.getItemManagementEntry().id) {
+                if (GrandExchangeSetup.setItem(mission.getItemManagementEntry().id))
+                    Time.sleepUntil(() -> GrandExchangeSetup.getItem() != null && GrandExchangeSetup.getItem().getId() == mission.getItemManagementEntry().id, 1500);
                 return;
             }
 
-            if (GrandExchangeSetup.getPricePerItem() != mission.item_management_entry.price) {
-                if (GrandExchangeSetup.setPrice(mission.item_management_entry.price))
-                    Time.sleepUntil(() -> GrandExchangeSetup.getPricePerItem() == mission.item_management_entry.price, 1500);
+            if (GrandExchangeSetup.getPricePerItem() != getItemBuyPrice(mission.getItemManagementEntry().id)) {
+                if (GrandExchangeSetup.setPrice(getItemBuyPrice(mission.getItemManagementEntry().id)))
+                    Time.sleepUntil(() -> GrandExchangeSetup.getPricePerItem() == getItemBuyPrice(mission.getItemManagementEntry().id), 1500);
                 return;
             }
 
-            if (GrandExchangeSetup.getQuantity() != mission.item_management_entry.quantity) {
-                if (GrandExchangeSetup.setQuantity(mission.item_management_entry.quantity))
-                    Time.sleepUntil(() -> GrandExchangeSetup.getQuantity() == mission.item_management_entry.quantity, 1500);
+            if (GrandExchangeSetup.getQuantity() != mission.getItemManagementEntry().quantity) {
+                if (GrandExchangeSetup.setQuantity(mission.getItemManagementEntry().quantity))
+                    Time.sleepUntil(() -> GrandExchangeSetup.getQuantity() == mission.getItemManagementEntry().quantity, 1500);
                 return;
             }
 
@@ -72,6 +71,16 @@ public class BuyWorker extends Worker {
                 if (Time.sleepUntil(() -> GrandExchangeSetup.getItem() == null, 1500))
                     mission.has_put_in_offer = true;
         }
+    }
+
+    private int getItemBuyPrice(int id) {
+        try {
+            return (int) (PriceCheck.getOSBuddyPrice(id) * mission.getItemManagementTracker().item_management.buyPriceModifier());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return 0;
     }
 
     @Override

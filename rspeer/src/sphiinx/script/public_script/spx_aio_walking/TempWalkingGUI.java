@@ -1,8 +1,8 @@
 package sphiinx.script.public_script.spx_aio_walking;
 
+import org.rspeer.runetek.api.commons.BankLocation;
 import sphiinx.api.ui.swingui.GUI;
 import sphiinx.api.ui.swingui.components.AutoCompleteComboBox;
-import sphiinx.script.public_script.spx_aio_walking.data.Location;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -22,8 +22,8 @@ public class TempWalkingGUI extends GUI {
 
     @Override
     public void initialize() {
-        ArrayList<Location> list = new ArrayList<>();
-        Collections.addAll(list, Location.values());
+        ArrayList<BankLocation> list = new ArrayList<>();
+        Collections.addAll(list, BankLocation.values());
         constraints.gridx = 0;
         constraints.gridy = 1;
         constraints.anchor = GridBagConstraints.CENTER;
@@ -80,7 +80,7 @@ public class TempWalkingGUI extends GUI {
     @Override
     public ActionListener onStart() {
         return e -> {
-            Main.ARGS.LOCATION = (Location) combo_box.getSelectedItem();
+            Main.ARGS.LOCATION = (BankLocation) combo_box.getSelectedItem();
             frame.setVisible(false);
         };
     }

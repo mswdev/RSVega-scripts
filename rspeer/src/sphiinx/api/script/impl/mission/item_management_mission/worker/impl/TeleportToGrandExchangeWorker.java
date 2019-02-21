@@ -27,7 +27,7 @@ public class TeleportToGrandExchangeWorker extends Worker {
     @Override
     public void work() {
         if (Equipment.interact(RING_OF_WEALTH, "Grand Exchange"))
-            Time.sleepUntil(() -> Players.getLocal().getAnimation() != -1, 1500);
+            Time.sleepWhile(() -> Players.getLocal().getAnimation() != -1, 2500);
     }
 
     @Override

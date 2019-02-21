@@ -26,8 +26,6 @@ public class WithdrawLogs extends Worker {
     @Override
     public void work() {
         WITHDRAW_LOGS.work();
-        /*if (WITHDRAW_LOGS.itemNotFound())
-            mission.can_end = true;*/
     }
 
     @Override

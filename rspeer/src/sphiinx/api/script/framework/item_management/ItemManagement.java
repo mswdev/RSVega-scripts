@@ -6,4 +6,8 @@ public interface ItemManagement {
 
     int[] itemsToSell();
 
+    double sellPriceModifier();
+
+    double buyPriceModifier();
+
 }

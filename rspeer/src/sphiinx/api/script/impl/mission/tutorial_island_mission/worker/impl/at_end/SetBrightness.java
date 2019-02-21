@@ -6,9 +6,16 @@ import org.rspeer.runetek.api.component.tab.Tab;
 import org.rspeer.runetek.api.component.tab.Tabs;
 import sphiinx.api.script.framework.worker.Worker;
 import sphiinx.api.game.ClientSettings;
+import sphiinx.api.script.impl.mission.tutorial_island_mission.TutorialIslandMission;
 import sphiinx.script.public_script.spx_tutorial_island.Main;
 
 public class SetBrightness extends Worker {
+
+    private final TutorialIslandMission mission;
+
+    public SetBrightness(TutorialIslandMission mission) {
+        this.mission = mission;
+    }
 
     @Override
     public boolean needsRepeat() {
@@ -21,8 +28,8 @@ public class SetBrightness extends Worker {
             if (Tabs.open(Tab.OPTIONS))
                 Time.sleepUntil(() -> Tabs.isOpen(Tab.OPTIONS), 1500);
 
-        if (ClientSettings.setBrightnessLevel(Main.ARGS.set_brightness))
-            Time.sleepUntil(() -> InterfaceOptions.Display.getBrightness() == Main.ARGS.set_brightness, 1500);
+        if (ClientSettings.setBrightnessLevel(mission.getArgs().set_brightness))
+            Time.sleepUntil(() -> InterfaceOptions.Display.getBrightness() == mission.getArgs().set_brightness, 1500);
     }
 
     @Override

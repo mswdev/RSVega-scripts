@@ -1,8 +1,10 @@
 package sphiinx.api.script.impl.worker;
 
+import org.rspeer.runetek.adapter.scene.Player;
 import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.movement.position.Position;
 import org.rspeer.runetek.api.scene.Players;
+import org.rspeer.ui.Log;
 import sphiinx.api.script.framework.worker.Worker;
 
 public class MovementWorker extends Worker {
@@ -27,6 +29,13 @@ public class MovementWorker extends Worker {
     @Override
     public void work() {
         if (Players.getLocal().isMoving() && Movement.getDestinationDistance() > 10)
+            return;
+
+        // [TODO - 2/19/2019]: Temporary until webwalker supports enabling run energy.
+        if (!Movement.isRunEnabled() && Movement.getRunEnergy() > 10)
+            Movement.toggleRun(true);
+
+        if (position.distance() <= off_set + 1)
             return;
 
         Movement.walkTo(position.randomize(off_set));

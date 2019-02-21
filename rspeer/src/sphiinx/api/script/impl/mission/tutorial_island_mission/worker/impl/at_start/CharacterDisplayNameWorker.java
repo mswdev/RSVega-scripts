@@ -16,6 +16,11 @@ public class CharacterDisplayNameWorker extends Worker {
     private static final int CHOOSE_DISPLAY_NAME_LOOKUP_INTER = 17;
     private static final int CHOOSE_DISPLAY_NAME_SET_INTER = 18;
     private int lookup_count;
+    private final TutorialIslandMission mission;
+
+    public CharacterDisplayNameWorker(TutorialIslandMission mission) {
+        this.mission = mission;
+    }
 
     @Override
     public boolean needsRepeat() {
@@ -35,7 +40,7 @@ public class CharacterDisplayNameWorker extends Worker {
                 Time.sleepUntil(EnterInput::isOpen, 1500);
             }
 
-            String display_name = "";//TutorialIslandMission.USERNAME.split("@")[0];
+            String display_name = mission.getUsername().split("@")[0];
             if (lookup_count > 1)
                 display_name += Random.nextInt(0, 1000);
 

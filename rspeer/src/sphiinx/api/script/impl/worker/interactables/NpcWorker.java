@@ -1,11 +1,13 @@
 package sphiinx.api.script.impl.worker.interactables;
 
 import org.rspeer.runetek.adapter.scene.Npc;
+import org.rspeer.runetek.api.Game;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.Dialog;
 import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.scene.Npcs;
 import org.rspeer.runetek.api.scene.Players;
+import org.rspeer.ui.Log;
 import sphiinx.api.script.framework.worker.Worker;
 import sphiinx.api.script.impl.worker.DialogueWorker;
 import sphiinx.api.script.impl.worker.MovementWorker;
@@ -64,7 +66,7 @@ public class NpcWorker extends Worker {
         if (Players.getLocal().getAnimation() != -1)
             return;
 
-        if (Dialog.isOpen()) {
+        if (Dialog.isOpen() || Game.isInCutscene() || Game.isLoadingRegion() || Dialog.isProcessing()) {
             dialogue_worker.work();
             return;
         }

@@ -9,10 +9,7 @@ public class Args {
     public LogType LOG_TYPE1 = LogType.OAK;
 
     @Parameter(names = "-log_type1_quantity")
-    public int LOG_TYPE1_QUANTITY = 5500;
-
-    @Parameter(names = "-log_type1_price")
-    public int LOG_TYPE1_PRICE = 50;
+    public int LOG_TYPE1_QUANTITY = 3800;
 
 }
 

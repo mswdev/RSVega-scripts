@@ -73,8 +73,8 @@ public class TestScriptMission extends Mission implements ItemManagement {
     @Override
     public ItemManagementEntry[] itemsToBuy() {
         return new ItemManagementEntry[] {
-                new ItemManagementEntry(this, AxeType.BRONZE.getItemID(), 1, 3000, new GoalList(new SkillGoal(Skills.getLevel(Skill.WOODCUTTING), AxeType.BRONZE.getRequiredWoodcuttingLevel()))),
-                new ItemManagementEntry(this, AxeType.RUNE.getItemID(), 1, 10000, new GoalList(new SkillGoal(Skills.getLevel(Skill.WOODCUTTING), AxeType.BRONZE.getRequiredWoodcuttingLevel())))
+                new ItemManagementEntry(this, AxeType.BRONZE.getItemID(), 1, new GoalList(new SkillGoal(Skills.getLevel(Skill.WOODCUTTING), AxeType.BRONZE.getRequiredWoodcuttingLevel()))),
+                new ItemManagementEntry(this, AxeType.RUNE.getItemID(), 1, new GoalList(new SkillGoal(Skills.getLevel(Skill.WOODCUTTING), AxeType.BRONZE.getRequiredWoodcuttingLevel())))
         };
     }
 
@@ -84,5 +84,15 @@ public class TestScriptMission extends Mission implements ItemManagement {
                 LogType.MAPLE.getItemID(),
                 LogType.LOGS.getItemID()
         };
+    }
+
+    @Override
+    public double sellPriceModifier() {
+        return 0;
+    }
+
+    @Override
+    public double buyPriceModifier() {
+        return 0;
     }
 }

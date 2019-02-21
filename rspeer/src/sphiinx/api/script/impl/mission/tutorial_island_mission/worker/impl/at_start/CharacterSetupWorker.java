@@ -6,8 +6,13 @@ import sphiinx.api.script.impl.mission.tutorial_island_mission.TutorialIslandMis
 
 public class CharacterSetupWorker extends Worker {
 
-    private final CharacterDesignWorker character_design_worker = new CharacterDesignWorker();
-    private final CharacterDisplayNameWorker character_display_name_worker = new CharacterDisplayNameWorker();
+    private final CharacterDesignWorker character_design_worker;
+    private final CharacterDisplayNameWorker character_display_name_worker;
+
+    public CharacterSetupWorker(TutorialIslandMission mission) {
+        this.character_design_worker = new CharacterDesignWorker();
+        this.character_display_name_worker = new CharacterDisplayNameWorker(mission);
+    }
 
     @Override
     public boolean needsRepeat() {

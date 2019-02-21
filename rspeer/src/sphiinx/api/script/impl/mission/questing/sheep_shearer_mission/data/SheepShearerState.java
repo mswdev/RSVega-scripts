@@ -21,7 +21,7 @@ public enum SheepShearerState {
 
     TALK_TO_FRED(new NpcWorker(a -> a.getName().equals("Fred the Farmer"), new DialogueWorker(a -> a.equals("I'm looking for a quest.") || a.equals("Yes okay. I can do that.") || a.equals("Of course!") || a.equals("I'm something of an expert actually!")), new MovementWorker(new Position(3188, 3277, 0))), null, 0),
 
-    GET_SHEARS(new PickableWorker(a -> a.getName().equals("Shears"), new MovementWorker(new Position(3191, 3272, 0))), () -> !Inventory.contains("Shears"),  1),
+    GET_SHEARS(new PickableWorker(a -> a.getName().equals("Shears"), new MovementWorker(new Position(3191, 3272, 0))), () -> !Inventory.contains("Shears"), 1),
 
     SHEAR_SHEEP(new NpcWorker(a -> a.getName().equals("Sheep") && a.containsAction("Shear") && !a.containsAction("Talk-to"), new MovementWorker(new Position(3202, 3267, 0))), () -> Inventory.getCount("Wool") + Inventory.getCount("Ball of wool") < 20, 1),
 

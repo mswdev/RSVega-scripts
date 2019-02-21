@@ -12,19 +12,23 @@ import sphiinx.api.script.framework.goal.impl.InfiniteGoal;
 import sphiinx.api.script.framework.mission.Mission;
 import sphiinx.api.script.SPXScript;
 import sphiinx.api.script.framework.worker.Worker;
+import sphiinx.api.script.impl.mission.tutorial_island_mission.data.args.Args;
 import sphiinx.api.script.impl.mission.tutorial_island_mission.worker.TutorialIslandWorkerHandler;
 
 public class TutorialIslandMission extends Mission {
 
     public static final int TUTORIAL_ISLAND_VARP = 281;
+
+    private final Args args;
     private final String username;
     private final String password;
     private final TutorialIslandWorkerHandler worker_handler;
     private boolean should_stop;
 
 
-    public TutorialIslandMission(SPXScript script, String username, String password) {
+    public TutorialIslandMission(SPXScript script, Args args, String username, String password) {
         super(script);
+        this.args = args;
         this.username = username;
         this.password = password;
         worker_handler = new TutorialIslandWorkerHandler(this);
@@ -98,6 +102,14 @@ public class TutorialIslandMission extends Mission {
 
     public void setShouldStop(boolean should_stop) {
         this.should_stop = should_stop;
+    }
+
+    public Args getArgs() {
+        return args;
+    }
+
+    public String getUsername() {
+        return username;
     }
 }
 

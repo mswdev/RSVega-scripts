@@ -7,7 +7,6 @@ import java.util.Arrays;
 
 public class FishingUtil {
 
-
     /**
      * Gets the most appropriate progressive fish the player can fish.
      *

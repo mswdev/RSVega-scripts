@@ -24,7 +24,7 @@ import java.util.stream.Stream;
 @ScriptMeta(developer = "Sphiinx", category = ScriptCategory.OTHER, name = "[SPX] Tutorial Island", desc = "")
 public class Main extends SPXScript implements LoginResponseListener {
 
-    public static final Args ARGS = new Args();
+    public final Args args = new Args();
 
     @Override
     public void onStart() {
@@ -35,19 +35,19 @@ public class Main extends SPXScript implements LoginResponseListener {
 
     @Override
     public Object getArguments() {
-        return ARGS;
+        return args;
     }
 
     @Override
     public Queue<Mission> createMissionQueue() {
         final LinkedList<Mission> missions = new LinkedList<>();
         if (!getAccount().getUsername().isEmpty() && !getAccount().getPassword().isEmpty())
-            missions.add(new TutorialIslandMission(this, getAccount().getUsername(), getAccount().getPassword()));
+            missions.add(new TutorialIslandMission(this, args, getAccount().getUsername(), getAccount().getPassword()));
 
         final String delimiter = ":";
-        try (Stream<String> lines = Files.lines(Paths.get(script_data_path + File.separator + ARGS.load_accounts))) {
+        try (Stream<String> lines = Files.lines(Paths.get(script_data_path + File.separator + args.load_accounts))) {
             lines.filter(line -> line.contains(delimiter))
-                    .forEach(line -> missions.add(new TutorialIslandMission(this, line.split(delimiter)[0], line.split(delimiter)[1])));
+                    .forEach(line -> missions.add(new TutorialIslandMission(this, args, line.split(delimiter)[0], line.split(delimiter)[1])));
         } catch (IOException e) {
             e.printStackTrace();
         }

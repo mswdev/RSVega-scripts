@@ -8,11 +8,14 @@ import sphiinx.api.script.framework.worker.Worker;
 import sphiinx.api.script.framework.worker.WorkerHandler;
 import sphiinx.api.script.impl.mission.tutorial_island_mission.TutorialIslandMission;
 import sphiinx.api.script.impl.mission.tutorial_island_mission.worker.impl.at_end.*;
+import sphiinx.api.script.impl.mission.tutorial_island_mission.worker.impl.at_start.CharacterSetupWorker;
 import sphiinx.script.public_script.spx_tutorial_island.Main;
 import sphiinx.api.script.impl.mission.tutorial_island_mission.data.TutorialState;
 
 public class TutorialIslandWorkerHandler extends WorkerHandler {
 
+    private final TutorialIslandMission mission;
+    private final CharacterSetupWorker character_setup_worker;
     private final HideRoofs hide_roofs;
     private final SetAudio set_audio;
     private final SetBrightness set_brightness;
@@ -24,42 +27,47 @@ public class TutorialIslandWorkerHandler extends WorkerHandler {
     private final Logout logout;
 
     public TutorialIslandWorkerHandler(TutorialIslandMission mission) {
+        this.mission = mission;
+        character_setup_worker = new CharacterSetupWorker(mission);
         hide_roofs = new HideRoofs();
-        set_audio = new SetAudio();
-        set_brightness = new SetBrightness();
-        set_zoom = new SetZoom();
+        set_audio = new SetAudio(mission);
+        set_brightness = new SetBrightness(mission);
+        set_zoom = new SetZoom(mission);
         drop_items = new DropItems();
         bank_items = new DepositItems();
         stay_logged_in = new StayLoggedIn();
-        walk_to_position = new WalkToPosition();
+        walk_to_position = new WalkToPosition(mission);
         logout = new Logout(mission);
     }
 
     @Override
     public Worker decide() {
+        if (TutorialState.isInVarp(TutorialState.CHARACTER_DESIGN))
+            return character_setup_worker;
+
         if (Varps.get(TutorialIslandMission.TUTORIAL_ISLAND_VARP) >= 1000) {
-            if (Main.ARGS.hide_roofs && !InterfaceOptions.Display.isRoofsHidden())
+            if (mission.getArgs().hide_roofs && !InterfaceOptions.Display.isRoofsHidden())
                 return hide_roofs;
 
-            if (Main.ARGS.set_audio > 0 && (5 - InterfaceOptions.Audio.getMusicVolume() != Main.ARGS.set_audio || 5 - InterfaceOptions.Audio.getSoundEffectVolume() != Main.ARGS.set_audio || 5 - InterfaceOptions.Audio.getAreaSoundVolume() != Main.ARGS.set_audio))
+            if (mission.getArgs().set_audio > 0 && (5 - InterfaceOptions.Audio.getMusicVolume() != mission.getArgs().set_audio || 5 - InterfaceOptions.Audio.getSoundEffectVolume() != mission.getArgs().set_audio || 5 - InterfaceOptions.Audio.getAreaSoundVolume() != mission.getArgs().set_audio))
                 return set_audio;
 
-            if (Main.ARGS.set_brightness > 0 && InterfaceOptions.Display.getBrightness() != Main.ARGS.set_brightness)
+            if (mission.getArgs().set_brightness > 0 && InterfaceOptions.Display.getBrightness() != mission.getArgs().set_brightness)
                 return set_brightness;
 
-            if (Main.ARGS.set_zoom > 0 && ClientSettings.getZoomLevel() != Main.ARGS.set_zoom)
+            if (mission.getArgs().set_zoom > 0 && ClientSettings.getZoomLevel() != mission.getArgs().set_zoom)
                 return set_zoom;
 
-            if (Main.ARGS.drop_items && Inventory.getCount() > 0)
+            if (mission.getArgs().drop_items && Inventory.getCount() > 0)
                 return drop_items;
 
-            if (Main.ARGS.bank_items && Inventory.getCount() > 0)
+            if (mission.getArgs().bank_items && Inventory.getCount() > 0)
                 return bank_items;
 
-            if (Main.ARGS.walk_position != null && Main.ARGS.walk_position.distance() > 10)
+            if (mission.getArgs().walk_position != null && mission.getArgs().walk_position.distance() > 10)
                 return walk_to_position;
 
-            if (Main.ARGS.stay_logged_in)
+            if (mission.getArgs().stay_logged_in)
                 return stay_logged_in;
 
             return logout;

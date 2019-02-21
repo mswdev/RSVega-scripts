@@ -81,7 +81,7 @@ public abstract class SPXScript extends Script implements RenderListener {
         final ItemManagementEntry items_to_buy = needsItemManagement();
         if (items_to_buy != null || item_management_mission_handler != null) {
             if (item_management_mission_handler == null)
-                item_management_mission_handler = new MissionHandler(new LinkedList<>(Collections.singleton(new ItemManagementMission(this, items_to_buy, item_management_tracker, item_management_tracker.items_to_sell))));
+                item_management_mission_handler = new MissionHandler(new LinkedList<>(Collections.singleton(new ItemManagementMission(this, items_to_buy, item_management_tracker, item_management_tracker.item_management.itemsToSell()))));
 
             if (!item_management_mission_handler.isStopped())
                 return item_management_mission_handler.execute();

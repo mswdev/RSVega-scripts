@@ -1,9 +1,12 @@
 package sphiinx.api.script.impl.mission.item_management_mission.worker;
 
 import org.rspeer.runetek.api.commons.BankLocation;
+import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.GrandExchange;
 import org.rspeer.runetek.api.component.tab.Equipment;
 import org.rspeer.runetek.api.component.tab.Inventory;
+import org.rspeer.runetek.api.component.tab.Tab;
+import org.rspeer.runetek.api.component.tab.Tabs;
 import sphiinx.api.script.framework.item_management.ItemManagementTracker;
 import sphiinx.api.script.framework.worker.Worker;
 import sphiinx.api.script.framework.worker.WorkerHandler;
@@ -41,10 +44,16 @@ public class ItemManagementWorkerHandler extends WorkerHandler {
         if (Inventory.isFull())
             return new DepositWorker();
 
+        if (Inventory.contains(a -> a.getName().equals("Ring of wealth")))
+            return new DepositWorker(a -> a.getName().equals("Ring of wealth"));
+
         if (BankLocation.GRAND_EXCHANGE.getPosition().distance() > 20) {
-            if (Equipment.contains(TeleportToGrandExchangeWorker.RING_OF_WEALTH)) {
+            if (!Tabs.isOpen(Tab.EQUIPMENT))
+                if (Tabs.open(Tab.EQUIPMENT))
+                    Time.sleepUntil(() -> Tabs.isOpen(Tab.EQUIPMENT), 1500);
+
+            if (Equipment.contains(TeleportToGrandExchangeWorker.RING_OF_WEALTH))
                 return teleport_to_grand_exchange_worker;
-            }
 
             if (Inventory.contains(TeleportToGrandExchangeWorker.RING_OF_WEALTH))
                 return new ItemWorker(TeleportToGrandExchangeWorker.RING_OF_WEALTH);
@@ -56,12 +65,12 @@ public class ItemManagementWorkerHandler extends WorkerHandler {
         }
 
         final long inventory_gold = Inventory.getCount(true, ItemManagementTracker.GOLD_ID);
-        if (mission.has_put_in_offer || inventory_gold >= mission.item_management_entry.value_needed) {
+        if (mission.has_put_in_offer || inventory_gold >= mission.getItemManagementEntry().value_needed) {
             if (!GrandExchange.isOpen())
                 return openGrandExchangeWorker();
 
             return buy_worker;
-        } else if (mission.item_management_tracker.getTotalGold() >= mission.item_management_entry.value_needed) {
+        } else if (mission.getItemManagementTracker().getTotalGold() >= mission.getItemManagementEntry().value_needed) {
             return new WithdrawWorker(a -> a.getName().equals("Coins"), 0);
         } else {
             if (!mission.has_withdrawn_sellables) {

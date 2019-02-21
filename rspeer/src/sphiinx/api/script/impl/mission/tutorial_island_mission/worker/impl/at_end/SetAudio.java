@@ -6,10 +6,16 @@ import org.rspeer.runetek.api.component.tab.Tab;
 import org.rspeer.runetek.api.component.tab.Tabs;
 import sphiinx.api.script.framework.worker.Worker;
 import sphiinx.api.game.ClientSettings;
+import sphiinx.api.script.impl.mission.tutorial_island_mission.TutorialIslandMission;
 import sphiinx.script.public_script.spx_tutorial_island.Main;
 
 public class SetAudio extends Worker {
 
+    private final TutorialIslandMission mission;
+
+    public SetAudio(TutorialIslandMission mission) {
+        this.mission = mission;
+    }
 
     @Override
     public boolean needsRepeat() {
@@ -22,14 +28,14 @@ public class SetAudio extends Worker {
             if (Tabs.open(Tab.OPTIONS))
                 Time.sleepUntil(() -> Tabs.isOpen(Tab.OPTIONS), 1500);
 
-        if (ClientSettings.setMusicAudioLevel(Main.ARGS.set_audio))
-            Time.sleepUntil(() -> 5 - InterfaceOptions.Audio.getMusicVolume() == Main.ARGS.set_audio, 1500);
+        if (ClientSettings.setMusicAudioLevel(mission.getArgs().set_audio))
+            Time.sleepUntil(() -> 5 - InterfaceOptions.Audio.getMusicVolume() == mission.getArgs().set_audio, 1500);
 
-        if (ClientSettings.setEffectAudioLevel(Main.ARGS.set_audio))
-            Time.sleepUntil(() -> 5 - InterfaceOptions.Audio.getSoundEffectVolume() == Main.ARGS.set_audio, 1500);
+        if (ClientSettings.setEffectAudioLevel(mission.getArgs().set_audio))
+            Time.sleepUntil(() -> 5 - InterfaceOptions.Audio.getSoundEffectVolume() == mission.getArgs().set_audio, 1500);
 
-        if (ClientSettings.setAreaAudioLevel(Main.ARGS.set_audio))
-            Time.sleepUntil(() -> 5 - InterfaceOptions.Audio.getAreaSoundVolume() == Main.ARGS.set_audio, 1500);
+        if (ClientSettings.setAreaAudioLevel(mission.getArgs().set_audio))
+            Time.sleepUntil(() -> 5 - InterfaceOptions.Audio.getAreaSoundVolume() == mission.getArgs().set_audio, 1500);
     }
 
     @Override

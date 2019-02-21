@@ -29,8 +29,6 @@ public class WithdrawLawRune extends Worker {
     @Override
     public void work() {
         WITHDRAW_LAW_RUNE.work();
-        if (WITHDRAW_LAW_RUNE.itemNotFound())
-            mission.can_end = true;
     }
 
     @Override
