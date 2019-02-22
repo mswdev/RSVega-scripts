@@ -11,6 +11,7 @@ import org.rspeer.runetek.api.commons.BankLocation;
 import org.rspeer.runetek.api.component.Dialog;
 import org.rspeer.runetek.api.component.GrandExchangeSetup;
 import org.rspeer.runetek.api.component.Interfaces;
+import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.movement.pathfinding.region.util.CollisionFlags;
 import org.rspeer.runetek.api.scene.*;
 import org.rspeer.runetek.event.listeners.LoginResponseListener;
@@ -40,6 +41,12 @@ public class TestScript extends Script implements LoginResponseListener {
 
     @Override
     public int loop() {
+        final Pickable pickable = Pickables.getNearest("Shears");
+        if (pickable != null) {
+            Log.fine("Movement: " + Movement.isInteractable(pickable.getPosition(), true));
+            Log.fine("Position: " + pickable.isPositionInteractable());
+        }
+
         return 150;
     }
 
