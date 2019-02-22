@@ -1,4 +1,4 @@
-package sphiinx.script.testing;
+package sphiinx.script.testing.test_script;
 
 import org.rspeer.script.Script;
 import org.rspeer.script.ScriptBlockingEvent;
