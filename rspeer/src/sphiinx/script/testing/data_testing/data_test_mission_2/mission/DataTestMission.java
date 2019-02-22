@@ -1,18 +1,13 @@
-package sphiinx.script.testing.data_test_mission.mission;
+package sphiinx.script.testing.data_testing.data_test_mission_2.mission;
 
-import org.rspeer.runetek.api.component.tab.Skill;
-import org.rspeer.runetek.api.component.tab.Skills;
-import sphiinx.api.game.skills.firemaking.LogType;
-import sphiinx.api.game.skills.woodcutting.AxeType;
 import sphiinx.api.script.SPXScript;
 import sphiinx.api.script.framework.goal.GoalList;
 import sphiinx.api.script.framework.goal.impl.InfiniteGoal;
-import sphiinx.api.script.framework.goal.impl.SkillGoal;
 import sphiinx.api.script.framework.item_management.ItemManagement;
 import sphiinx.api.script.framework.item_management.ItemManagementEntry;
 import sphiinx.api.script.framework.mission.Mission;
 import sphiinx.api.script.framework.worker.Worker;
-import sphiinx.script.testing.data_test_mission.mission.worker.DataTestWorkerHandler;
+import sphiinx.script.testing.data_testing.data_test_mission_2.mission.worker.DataTestWorkerHandler;
 
 public class DataTestMission extends Mission implements ItemManagement {
 
@@ -26,7 +21,7 @@ public class DataTestMission extends Mission implements ItemManagement {
 
     @Override
     public String getMissionName() {
-        return "Test Script Mission";
+        return "Data Test Mission 2";
     }
 
     @Override
@@ -72,12 +67,12 @@ public class DataTestMission extends Mission implements ItemManagement {
 
     @Override
     public ItemManagementEntry[] itemsToBuy() {
-        return null;
+        return new ItemManagementEntry[0];
     }
 
     @Override
     public int[] itemsToSell() {
-        return null;
+        return new int[0];
     }
 
     @Override

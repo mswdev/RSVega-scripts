@@ -1,4 +1,4 @@
-package sphiinx.script.testing;
+package sphiinx.script.testing.test_script;
 
 import org.rspeer.runetek.adapter.scene.Npc;
 import org.rspeer.runetek.adapter.scene.Pickable;
