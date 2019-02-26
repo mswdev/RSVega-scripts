@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../runescape/rspeer/extended-api/extended-api.iml" filepath="$PROJECT_DIR$/../runescape/rspeer/extended-api/extended-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rspeer/rspeer.iml" filepath="$PROJECT_DIR$/rspeer/rspeer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../runescape/rspeer/rspeer-build-obf/rspeer-build-obf.iml" filepath="$PROJECT_DIR$/../runescape/rspeer/rspeer-build-obf/rspeer-build-obf.iml" />
+    </modules>
+  </component>
+</project>
