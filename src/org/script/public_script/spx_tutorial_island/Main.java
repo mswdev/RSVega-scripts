@@ -20,7 +20,7 @@ import java.util.Queue;
 import java.util.stream.Stream;
 
 // [TODO - 2018-10-30]: Add script statics api such as my logo, SPX name, etc..
-// [TODO - 2018-10-30]: Convert everything to a mission in my api and then the script pulls from that.
+// [TODO - 2018-10-30]: Convert everything to a mission in my api and then the script pulls from that..
 @ScriptMeta(developer = "Sphiinx", category = ScriptCategory.OTHER, name = "[SPX] Tutorial Island", desc = "")
 public class Main extends SPXScript implements LoginResponseListener {
 
