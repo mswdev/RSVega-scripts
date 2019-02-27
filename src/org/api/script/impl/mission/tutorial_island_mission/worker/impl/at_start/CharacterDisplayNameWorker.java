@@ -8,6 +8,7 @@ import org.rspeer.runetek.api.component.EnterInput;
 import org.rspeer.runetek.api.component.Interfaces;
 import org.api.script.framework.worker.Worker;
 import org.api.script.impl.mission.tutorial_island_mission.TutorialIslandMission;
+import org.rspeer.ui.Log;
 
 public class CharacterDisplayNameWorker extends Worker {
 

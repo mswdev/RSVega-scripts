@@ -2,6 +2,7 @@ package org.api.script.impl.mission.tutorial_island_mission;
 
 import org.rspeer.runetek.adapter.component.InterfaceComponent;
 import org.rspeer.runetek.api.Game;
+import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.Dialog;
 import org.rspeer.runetek.api.component.Interfaces;
 import org.rspeer.runetek.api.input.menu.ActionOpcodes;
@@ -72,20 +73,17 @@ public class TutorialIslandMission extends Mission {
         if (!Game.isLoggedIn())
             return 100;
 
-        // [TODO - 2018-11-01]: Temporary until the client is forced fixed mode.
+        // [TODO - 2/27/2019]: Temporary until rspeer forces fixed mode upon login.
         if (Game.getClientPreferences().getResizable() == 2) {
-            final InterfaceComponent comp = Interfaces.getComponent(261, 33);
-            if (comp != null)
-                comp.interact(ActionOpcodes.INTERFACE_ACTION, 1);
+            final InterfaceComponent fixed_mode_component = Interfaces.getFirst(a -> a.isVisible() && a.containsAction("Fixed mode"));
+            if (fixed_mode_component != null)
+                if (fixed_mode_component.click())
+                    Time.sleepUntil(() -> Game.getClientPreferences().getResizable() == 1, 2500);
         }
 
         // [TODO - 2018-11-05]: Temporary until the rspeer continue dialog is fixed.
         if (Dialog.canContinue())
             Game.getClient().fireScriptEvent(299, 1, 1);
-
-        // [TODO - 2018-11-05]: Temporary until the movement api supports run energy.
-        if (!Movement.isRunEnabled() && Movement.getRunEnergy() > 10)
-            Movement.toggleRun(true);
 
         worker_handler.work();
         return 100;

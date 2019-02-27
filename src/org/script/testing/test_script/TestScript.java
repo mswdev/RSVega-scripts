@@ -1,5 +1,10 @@
 package org.script.testing.test_script;
 
+import org.api.game.Wilderness;
+import org.rspeer.runetek.adapter.component.InterfaceComponent;
+import org.rspeer.runetek.api.component.Interfaces;
+import org.rspeer.runetek.api.component.tab.Tab;
+import org.rspeer.runetek.api.component.tab.Tabs;
 import org.rspeer.runetek.event.listeners.LoginResponseListener;
 import org.rspeer.runetek.event.types.LoginResponseEvent;
 import org.rspeer.script.Script;
@@ -26,7 +31,13 @@ public class TestScript extends Script implements LoginResponseListener {
 
     @Override
     public int loop() {
-        return 150;
+        final InterfaceComponent comp = Interfaces.getFirst(a -> a.containsAction("Options"));
+        if (comp != null) {
+            Log.fine("Not null");
+            comp.click();
+        }
+        Log.fine(Tabs.isOpen(Tab.OPTIONS));
+        return 1500000;
     }
 
     private void getAcc() {
