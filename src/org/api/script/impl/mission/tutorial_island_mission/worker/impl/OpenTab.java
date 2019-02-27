@@ -1,11 +1,13 @@
 package org.api.script.impl.mission.tutorial_island_mission.worker.impl;
 
+import org.api.script.framework.worker.Worker;
+import org.rspeer.runetek.adapter.component.InterfaceComponent;
 import org.rspeer.runetek.api.Game;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.Interfaces;
 import org.rspeer.runetek.api.component.tab.Tab;
 import org.rspeer.runetek.api.component.tab.Tabs;
-import org.api.script.framework.worker.Worker;
+import org.rspeer.ui.Log;
 
 public class OpenTab extends Worker {
 
@@ -22,11 +24,7 @@ public class OpenTab extends Worker {
 
     @Override
     public void work() {
-        // [TODO - 2018-11-01]: Temporary until the client is forced fixed mode.
-        if (Game.getClientPreferences().getResizable() == 2 && tab == Tab.OPTIONS) {
-            if (Interfaces.getComponent(164, 38).click())
-                Time.sleepUntil(() -> Game.getClientPreferences().getResizable() == 1, 2500);
-        } else if (Tabs.open(tab))
+        if (Tabs.open(tab))
             Time.sleepUntil(() -> Tabs.isOpen(tab), 1500);
     }
 

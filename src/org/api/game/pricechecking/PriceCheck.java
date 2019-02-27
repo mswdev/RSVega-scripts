@@ -6,16 +6,10 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class PriceCheck {
 
-    // [TODO - 2018-11-09]: Rewrite this class.
     private static final OkHttpClient HTTP_CLIENT = new OkHttpClient();
     private static JsonObject OSBUDDY_SUMMARY_JSON;
 
@@ -25,28 +19,7 @@ public class PriceCheck {
      * @param id The id of the item.
      * @return The price of the item; 0 otherwise.
      */
-    public static int getRSPrice(int id) {
-
-        try {
-            final URL url = new URL("http://services.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=" + id);
-
-            final InputStreamReader input = new InputStreamReader(url.openStream());
-            final BufferedReader reader = new BufferedReader(input);
-            final Matcher matcher = Pattern.compile(".*\"price\":\"?(\\d+,?\\.?\\d*)([k|m]?)\"?},\"today\".*").matcher(reader.readLine());
-            reader.close();
-            if (matcher.matches()) {
-                final double price = Double.parseDouble(matcher.group(1).replace(",", ""));
-                final String suffix = matcher.group(2);
-                return (int) (suffix.isEmpty() ? price : price * (suffix.charAt(0) == 'k' ? 1000 : 1000000));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return 0;
-    }
-
-    public static int testPrice(int id) throws IOException {
+    public static int getRSPrice(int id) throws IOException {
         final Request request = new Request.Builder()
                 .url("http://services.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=" + id)
                 .get()
@@ -59,10 +32,13 @@ public class PriceCheck {
             return 0;
 
         final Gson gson = new Gson().newBuilder().create();
-        final JsonObject details_current = gson.fromJson(response.body().string(), JsonObject.class)
+        final String price_text = gson.fromJson(response.body().string(), JsonObject.class)
                 .getAsJsonObject("item")
-                .getAsJsonObject("current");
-        return details_current.get("price").getAsInt();
+                .getAsJsonObject("current")
+                .get("price")
+                .getAsString();
+        final int price = Integer.parseInt(price_text.replaceAll("\\D+", ""));
+        return price_text.matches("[0-9]+") ? price : price * (price_text.charAt(0) == 'k' ? 1000 : 1000000);
     }
 
     /**
@@ -85,7 +61,8 @@ public class PriceCheck {
     }
 
     /**
-     * Gets the price of the item id from the OSBuddy price summary json.
+     * Gets the price of the item id from the OSBuddy price summary json. The entire summary data is stored upon first
+     * retrieval.
      *
      * @param id The id of the item.
      * @return The price of the item; 0 otherwise.
@@ -100,5 +77,4 @@ public class PriceCheck {
 
         return json_objects.get("sell_average").getAsInt();
     }
-
 }
