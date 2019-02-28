@@ -1,4 +1,4 @@
-package org.script.free_script.spx_tutorial_island;
+package org.script.paid_script.spx_tutorial_island;
 
 import org.api.script.SPXScript;
 import org.api.script.framework.mission.Mission;
@@ -19,7 +19,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.stream.Stream;
 
-@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.OTHER, name = "[SPX] Tutorial Island", desc = "")
+@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.OTHER, name = "[SPX] Tutorial Island", desc = "[SPX] Tutorial Island")
 public class Main extends SPXScript implements LoginResponseListener {
 
     public final Args args = new Args();
