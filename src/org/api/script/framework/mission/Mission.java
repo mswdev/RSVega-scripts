@@ -66,26 +66,30 @@ public abstract class Mission {
     /**
      * Executes on the start of the mission.
      */
-    public abstract void onMissionStart();
+    public void onMissionStart() {
+
+    }
 
     /**
      * Executes at the end of the mission.
      */
-    public abstract void onMissionEnd();
+    public void onMissionEnd() {
+
+    }
 
     /**
      * Checks if the mission has started.
      *
      * @return True if the mission has started; false otherwise.
      */
-    public boolean hasStarted() {
+    boolean hasStarted() {
         return has_started;
     }
 
     /**
      * Sets whether the mission has started.
      */
-    public void setStarted(boolean started) {
+    void setStarted(boolean started) {
         has_started = started;
     }
 
