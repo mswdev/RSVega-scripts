@@ -30,7 +30,7 @@ public class EquipIceGloves extends Worker {
         final Item item = Inventory.getFirst(ICE_GLOVES);
         if (item == null) {
             withdraw_worker.work();
-            mission.can_end = withdraw_worker.itemNotFound();
+            mission.should_end = withdraw_worker.itemNotFound();
         } else {
             if (item.click())
                 Time.sleepUntil(() -> Inventory.getFirst(ICE_GLOVES) == null, 1500);

@@ -37,7 +37,7 @@ public class PayCoffer extends Worker {
     public void work() {
         if (Inventory.getCount(true, BlastFurnaceMission.COINS) < DEPOSIT_AMOUNT) {
             withdraw_worker.work();
-            mission.can_end = withdraw_worker.itemNotFound();
+            mission.should_end = withdraw_worker.itemNotFound();
         } else {
             final SceneObject object = SceneObjects.getNearest(COFFER);
             if (object == null)

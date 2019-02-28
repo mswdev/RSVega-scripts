@@ -11,7 +11,7 @@ import org.rspeer.runetek.api.movement.Movement;
 public class NMZMission extends Mission {
 
     private final NMZWorkerHandler worker_handler = new NMZWorkerHandler();
-    public boolean can_end;
+    public boolean should_end;
 
     public NMZMission(SPXScript script) {
         super(script);
@@ -41,7 +41,7 @@ public class NMZMission extends Mission {
 
     @Override
     public boolean shouldEnd() {
-        return can_end;
+        return should_end;
     }
 
     @Override
