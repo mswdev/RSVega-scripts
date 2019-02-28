@@ -26,7 +26,7 @@ public class WithdrawCoalBag extends Worker {
     @Override
     public void work() {
         withdraw_worker.work();
-        mission.can_end = withdraw_worker.itemNotFound();
+        mission.should_end = withdraw_worker.itemNotFound();
     }
 
     @Override

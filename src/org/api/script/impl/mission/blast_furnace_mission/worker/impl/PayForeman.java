@@ -46,7 +46,7 @@ public class PayForeman extends Worker {
         paid_foreman = false;
         if (Inventory.getCount(true, BlastFurnaceMission.COINS) < DEPOSIT_AMOUNT) {
             withdraw_worker.work();
-            mission.can_end = withdraw_worker.itemNotFound();
+            mission.should_end = withdraw_worker.itemNotFound();
         } else {
             final Npc npc = Npcs.getFirst(FOREMAN);
             if (npc == null)

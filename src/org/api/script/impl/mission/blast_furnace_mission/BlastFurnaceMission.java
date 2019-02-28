@@ -20,7 +20,7 @@ public class BlastFurnaceMission extends Mission {
     private final BlastFurnaceWorkerHandler worker_handler = new BlastFurnaceWorkerHandler(this);
     public boolean is_coal_bag_empty = true;
     public boolean is_smelting;
-    public boolean can_end;
+    public boolean should_end;
 
     public BlastFurnaceMission(SPXScript script) {
         super(script);
@@ -50,7 +50,7 @@ public class BlastFurnaceMission extends Mission {
 
     @Override
     public boolean shouldEnd() {
-        return can_end;
+        return should_end;
     }
 
     @Override

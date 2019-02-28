@@ -64,12 +64,12 @@ public class WithdrawOre extends Worker {
 
     private void withdrawIngrediantOne() {
         withdraw_worker_ingrediant_one.work();
-        mission.can_end = withdraw_worker_ingrediant_one.itemNotFound();
+        mission.should_end = withdraw_worker_ingrediant_one.itemNotFound();
     }
 
     private void withdrawIngrediantTwo() {
         withdraw_worker_ingrediant_two.work();
-        mission.can_end = withdraw_worker_ingrediant_two.itemNotFound();
+        mission.should_end = withdraw_worker_ingrediant_two.itemNotFound();
     }
 
     @Override
