@@ -1,8 +1,5 @@
 package org.api.script.impl.mission.questing.sheep_shearer_mission.data;
 
-import org.rspeer.runetek.api.Varps;
-import org.rspeer.runetek.api.component.tab.Inventory;
-import org.rspeer.runetek.api.movement.position.Position;
 import org.api.script.framework.worker.Worker;
 import org.api.script.impl.mission.questing.sheep_shearer_mission.SheepShearerMission;
 import org.api.script.impl.mission.questing.sheep_shearer_mission.worker.impl.SpinWoolWorker;
@@ -11,6 +8,9 @@ import org.api.script.impl.worker.MovementWorker;
 import org.api.script.impl.worker.banking.DepositWorker;
 import org.api.script.impl.worker.interactables.NpcWorker;
 import org.api.script.impl.worker.interactables.PickableWorker;
+import org.rspeer.runetek.api.Varps;
+import org.rspeer.runetek.api.component.tab.Inventory;
+import org.rspeer.runetek.api.movement.position.Position;
 
 import java.util.Arrays;
 import java.util.function.BooleanSupplier;

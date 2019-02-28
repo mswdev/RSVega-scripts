@@ -1,12 +1,12 @@
 package org.script.private_script.the_bull.house_planking;
 
+import org.api.script.SPXScript;
+import org.api.script.framework.mission.Mission;
 import org.rspeer.runetek.api.commons.StopWatch;
 import org.rspeer.runetek.event.listeners.RenderListener;
 import org.rspeer.runetek.event.types.RenderEvent;
 import org.rspeer.script.ScriptCategory;
 import org.rspeer.script.ScriptMeta;
-import org.api.script.framework.mission.Mission;
-import org.api.script.SPXScript;
 import org.script.private_script.the_bull.house_planking.data.Args;
 import org.script.private_script.the_bull.house_planking.mission.HousePlankingMission;
 
@@ -17,9 +17,9 @@ import java.util.Queue;
 @ScriptMeta(developer = "Sphiinx", category = ScriptCategory.MONEY_MAKING, name = "[P-SPX] House Planking", desc = "")
 public class Main extends SPXScript implements RenderListener {
 
+    public static int PLANKS_CREATED = 0;
     private Args args = new Args();
     private StopWatch stop_watch;
-    public static int PLANKS_CREATED = 0;
 
     @Override
     public void onStart() {
@@ -35,7 +35,7 @@ public class Main extends SPXScript implements RenderListener {
     @Override
     public Queue<Mission> createMissionQueue() {
         final LinkedList<Mission> missions = new LinkedList<>();
-        for (int i = 0; i < 50 ; i++) {
+        for (int i = 0; i < 50; i++) {
             missions.add(new HousePlankingMission(this, args.LOG_TYPE1, args.LOG_TYPE1_QUANTITY));
             missions.add(new HousePlankingMission(this, args.LOG_TYPE2, args.LOG_TYPE2_QUANTITY));
         }

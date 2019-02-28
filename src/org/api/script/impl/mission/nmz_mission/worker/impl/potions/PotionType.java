@@ -25,6 +25,10 @@ public enum PotionType {
         this.active_varpbit = active_varpbit;
     }
 
+    public static int getCount(PotionType potion_type) {
+        return Arrays.stream(Inventory.getItems()).filter(a -> a.getName().contains(potion_type.getName())).mapToInt(a -> Integer.parseInt(a.getName().replaceAll("[^0-9]+", ""))).sum();
+    }
+
     public String getName() {
         return name;
     }
@@ -43,10 +47,6 @@ public enum PotionType {
 
     public int getActiveVarpbit() {
         return active_varpbit;
-    }
-
-    public static int getCount(PotionType potion_type) {
-        return Arrays.stream(Inventory.getItems()).filter(a -> a.getName().contains(potion_type.getName())).mapToInt(a -> Integer.parseInt(a.getName().replaceAll("[^0-9]+", ""))).sum();
     }
 }
 

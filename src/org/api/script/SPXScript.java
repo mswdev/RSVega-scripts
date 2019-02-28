@@ -1,11 +1,8 @@
 package org.api.script;
 
 import com.beust.jcommander.JCommander;
-import org.rspeer.runetek.event.listeners.RenderListener;
-import org.rspeer.runetek.event.types.RenderEvent;
-import org.rspeer.script.Script;
-import org.rspeer.ui.Log;
 import org.api.client.screenshot.Screenshot;
+import org.api.game.BankCache;
 import org.api.script.framework.item_management.ItemManagement;
 import org.api.script.framework.item_management.ItemManagementEntry;
 import org.api.script.framework.item_management.ItemManagementTracker;
@@ -16,7 +13,10 @@ import org.api.ui.fxui.FXGUI;
 import org.api.ui.fxui.FXGUIBuilder;
 import org.api.ui.swingui.GUI;
 import org.api.ui.swingui.GUIBuilder;
-import org.api.game.BankCache;
+import org.rspeer.runetek.event.listeners.RenderListener;
+import org.rspeer.runetek.event.types.RenderEvent;
+import org.rspeer.script.Script;
+import org.rspeer.ui.Log;
 
 import java.io.File;
 import java.io.IOException;

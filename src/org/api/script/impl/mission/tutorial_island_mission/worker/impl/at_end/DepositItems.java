@@ -1,12 +1,12 @@
 package org.api.script.impl.mission.tutorial_island_mission.worker.impl.at_end;
 
+import org.api.script.framework.worker.Worker;
 import org.rspeer.runetek.api.commons.BankLocation;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.Bank;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.scene.Players;
-import org.api.script.framework.worker.Worker;
 
 public class DepositItems extends Worker {
 

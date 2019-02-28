@@ -1,8 +1,8 @@
 package org.api.script.framework.item_management;
 
-import org.rspeer.runetek.api.component.tab.Inventory;
 import org.api.game.pricechecking.PriceCheck;
 import org.api.script.SPXScript;
+import org.rspeer.runetek.api.component.tab.Inventory;
 
 import java.io.IOException;
 

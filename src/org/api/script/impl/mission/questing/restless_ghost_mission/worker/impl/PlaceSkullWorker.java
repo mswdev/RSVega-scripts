@@ -1,9 +1,9 @@
 package org.api.script.impl.mission.questing.restless_ghost_mission.worker.impl;
 
+import org.api.script.framework.worker.Worker;
 import org.rspeer.runetek.adapter.scene.SceneObject;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.scene.SceneObjects;
-import org.api.script.framework.worker.Worker;
 
 public class PlaceSkullWorker extends Worker {
 

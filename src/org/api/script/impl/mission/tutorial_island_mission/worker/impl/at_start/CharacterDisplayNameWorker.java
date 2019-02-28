@@ -1,14 +1,13 @@
 package org.api.script.impl.mission.tutorial_island_mission.worker.impl.at_start;
 
+import org.api.script.framework.worker.Worker;
+import org.api.script.impl.mission.tutorial_island_mission.TutorialIslandMission;
 import org.rspeer.runetek.adapter.component.InterfaceComponent;
 import org.rspeer.runetek.api.Varps;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.commons.math.Random;
 import org.rspeer.runetek.api.component.EnterInput;
 import org.rspeer.runetek.api.component.Interfaces;
-import org.api.script.framework.worker.Worker;
-import org.api.script.impl.mission.tutorial_island_mission.TutorialIslandMission;
-import org.rspeer.ui.Log;
 
 public class CharacterDisplayNameWorker extends Worker {
 
@@ -16,8 +15,8 @@ public class CharacterDisplayNameWorker extends Worker {
     private static final int CHOOSE_DISPLAY_NAME_INTER = 558;
     private static final int CHOOSE_DISPLAY_NAME_LOOKUP_INTER = 17;
     private static final int CHOOSE_DISPLAY_NAME_SET_INTER = 18;
-    private int lookup_count;
     private final TutorialIslandMission mission;
+    private int lookup_count;
 
     public CharacterDisplayNameWorker(TutorialIslandMission mission) {
         this.mission = mission;

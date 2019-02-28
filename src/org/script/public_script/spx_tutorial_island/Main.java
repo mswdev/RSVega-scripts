@@ -1,15 +1,15 @@
 package org.script.public_script.spx_tutorial_island;
 
+import org.api.script.SPXScript;
+import org.api.script.framework.mission.Mission;
+import org.api.script.impl.mission.tutorial_island_mission.TutorialIslandMission;
+import org.api.script.impl.mission.tutorial_island_mission.data.args.Args;
 import org.rspeer.runetek.event.listeners.LoginResponseListener;
 import org.rspeer.runetek.event.types.LoginResponseEvent;
 import org.rspeer.script.ScriptCategory;
 import org.rspeer.script.ScriptMeta;
 import org.rspeer.script.events.LoginScreen;
 import org.rspeer.ui.Log;
-import org.api.script.SPXScript;
-import org.api.script.framework.mission.Mission;
-import org.api.script.impl.mission.tutorial_island_mission.TutorialIslandMission;
-import org.api.script.impl.mission.tutorial_island_mission.data.args.Args;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,10 +1,10 @@
 package org.api.script.impl.mission.firemaking_mission.worker.impl;
 
+import org.api.script.framework.worker.Worker;
+import org.api.script.impl.mission.firemaking_mission.FireMakingMission;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.scene.Players;
-import org.api.script.framework.worker.Worker;
-import org.api.script.impl.mission.firemaking_mission.FireMakingMission;
 
 public class WalkToLane extends Worker {
 

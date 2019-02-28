@@ -1,5 +1,6 @@
 package org.script.private_script.the_bull.house_planking.mission.worker.impl;
 
+import org.api.script.framework.worker.Worker;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.tab.Magic;
 import org.rspeer.runetek.api.component.tab.Spell;
@@ -7,7 +8,6 @@ import org.rspeer.runetek.api.component.tab.Tab;
 import org.rspeer.runetek.api.component.tab.Tabs;
 import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.runetek.api.scene.SceneObjects;
-import org.api.script.framework.worker.Worker;
 
 public class TeleportToHouse extends Worker {
 

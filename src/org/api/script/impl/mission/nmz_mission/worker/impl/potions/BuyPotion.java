@@ -1,11 +1,11 @@
 package org.api.script.impl.mission.nmz_mission.worker.impl.potions;
 
+import org.api.script.framework.worker.Worker;
+import org.api.script.impl.worker.interactables.SceneObjectWorker;
 import org.rspeer.runetek.adapter.component.InterfaceComponent;
 import org.rspeer.runetek.adapter.scene.SceneObject;
 import org.rspeer.runetek.api.component.EnterInput;
 import org.rspeer.runetek.api.component.Interfaces;
-import org.api.script.framework.worker.Worker;
-import org.api.script.impl.worker.interactables.SceneObjectWorker;
 
 import java.util.function.Predicate;
 

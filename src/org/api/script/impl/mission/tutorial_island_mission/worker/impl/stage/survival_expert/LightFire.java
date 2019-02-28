@@ -1,5 +1,7 @@
 package org.api.script.impl.mission.tutorial_island_mission.worker.impl.stage.survival_expert;
 
+import org.api.game.skills.firemaking.LogType;
+import org.api.script.framework.worker.Worker;
 import org.rspeer.runetek.adapter.component.Item;
 import org.rspeer.runetek.adapter.scene.SceneObject;
 import org.rspeer.runetek.api.commons.Time;
@@ -8,8 +10,6 @@ import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.runetek.api.scene.SceneObjects;
-import org.api.script.framework.worker.Worker;
-import org.api.game.skills.firemaking.LogType;
 
 import java.util.function.Predicate;
 

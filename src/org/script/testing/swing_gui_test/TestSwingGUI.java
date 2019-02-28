@@ -1,7 +1,7 @@
 package org.script.testing.swing_gui_test;
 
-import org.api.ui.swingui.components.AutoCompleteComboBox;
 import org.api.ui.swingui.GUI;
+import org.api.ui.swingui.components.AutoCompleteComboBox;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

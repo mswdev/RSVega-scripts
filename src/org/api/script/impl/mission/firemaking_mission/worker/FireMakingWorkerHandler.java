@@ -1,5 +1,13 @@
 package org.api.script.impl.mission.firemaking_mission.worker;
 
+import org.api.game.skills.firemaking.FiremakingUtil;
+import org.api.script.framework.worker.Worker;
+import org.api.script.framework.worker.WorkerHandler;
+import org.api.script.impl.mission.firemaking_mission.FireMakingMission;
+import org.api.script.impl.mission.firemaking_mission.worker.impl.LightFire;
+import org.api.script.impl.mission.firemaking_mission.worker.impl.WalkToLane;
+import org.api.script.impl.mission.firemaking_mission.worker.impl.WithdrawLogs;
+import org.api.script.impl.mission.firemaking_mission.worker.impl.WithdrawTinderBox;
 import org.rspeer.runetek.adapter.scene.SceneObject;
 import org.rspeer.runetek.api.Game;
 import org.rspeer.runetek.api.component.tab.Inventory;
@@ -11,14 +19,6 @@ import org.rspeer.runetek.api.movement.position.Position;
 import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.runetek.api.scene.Scene;
 import org.rspeer.runetek.api.scene.SceneObjects;
-import org.api.game.skills.firemaking.FiremakingUtil;
-import org.api.script.framework.worker.Worker;
-import org.api.script.framework.worker.WorkerHandler;
-import org.api.script.impl.mission.firemaking_mission.FireMakingMission;
-import org.api.script.impl.mission.firemaking_mission.worker.impl.LightFire;
-import org.api.script.impl.mission.firemaking_mission.worker.impl.WalkToLane;
-import org.api.script.impl.mission.firemaking_mission.worker.impl.WithdrawLogs;
-import org.api.script.impl.mission.firemaking_mission.worker.impl.WithdrawTinderBox;
 import org.script.public_script.spx_aio_firemaking.Main;
 
 import java.util.LinkedList;

@@ -1,5 +1,12 @@
 package org.api.script.impl.mission.blast_furnace_mission.worker;
 
+import org.api.script.framework.worker.Worker;
+import org.api.script.framework.worker.WorkerHandler;
+import org.api.script.impl.mission.blast_furnace_mission.BlastFurnaceMission;
+import org.api.script.impl.mission.blast_furnace_mission.worker.impl.*;
+import org.api.script.impl.mission.blast_furnace_mission.worker.impl.smelt.SmeltBars;
+import org.api.script.impl.mission.blast_furnace_mission.worker.impl.smelt.WithdrawOre;
+import org.api.script.impl.worker.banking.DepositWorker;
 import org.rspeer.runetek.api.Varps;
 import org.rspeer.runetek.api.component.Bank;
 import org.rspeer.runetek.api.component.tab.Equipment;
@@ -7,13 +14,6 @@ import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.component.tab.Skill;
 import org.rspeer.runetek.api.component.tab.Skills;
 import org.rspeer.runetek.api.movement.Movement;
-import org.api.script.framework.worker.Worker;
-import org.api.script.framework.worker.WorkerHandler;
-import org.api.script.impl.worker.banking.DepositWorker;
-import org.api.script.impl.mission.blast_furnace_mission.BlastFurnaceMission;
-import org.api.script.impl.mission.blast_furnace_mission.worker.impl.*;
-import org.api.script.impl.mission.blast_furnace_mission.worker.impl.smelt.SmeltBars;
-import org.api.script.impl.mission.blast_furnace_mission.worker.impl.smelt.WithdrawOre;
 
 public class BlastFurnaceWorkerHandler extends WorkerHandler {
 

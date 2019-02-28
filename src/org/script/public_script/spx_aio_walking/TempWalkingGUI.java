@@ -1,8 +1,8 @@
 package org.script.public_script.spx_aio_walking;
 
-import org.rspeer.runetek.api.commons.BankLocation;
 import org.api.ui.swingui.GUI;
 import org.api.ui.swingui.components.AutoCompleteComboBox;
+import org.rspeer.runetek.api.commons.BankLocation;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

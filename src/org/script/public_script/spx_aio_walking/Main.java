@@ -1,10 +1,10 @@
 package org.script.public_script.spx_aio_walking;
 
-import org.rspeer.script.ScriptCategory;
-import org.rspeer.script.ScriptMeta;
 import org.api.script.SPXScript;
 import org.api.script.framework.mission.Mission;
 import org.api.ui.swingui.GUI;
+import org.rspeer.script.ScriptCategory;
+import org.rspeer.script.ScriptMeta;
 import org.script.public_script.spx_aio_walking.data.args.Args;
 import org.script.public_script.spx_aio_walking.mission.WalkingMission;
 

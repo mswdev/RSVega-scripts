@@ -1,9 +1,9 @@
 package org.api.script.impl.worker;
 
+import org.api.script.framework.worker.Worker;
 import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.movement.position.Position;
 import org.rspeer.runetek.api.scene.Players;
-import org.api.script.framework.worker.Worker;
 
 public class MovementWorker extends Worker {
 

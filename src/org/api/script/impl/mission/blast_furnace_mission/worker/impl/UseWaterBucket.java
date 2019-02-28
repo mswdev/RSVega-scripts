@@ -1,5 +1,6 @@
 package org.api.script.impl.mission.blast_furnace_mission.worker.impl;
 
+import org.api.script.framework.worker.Worker;
 import org.rspeer.runetek.adapter.component.Item;
 import org.rspeer.runetek.adapter.scene.Pickable;
 import org.rspeer.runetek.adapter.scene.SceneObject;
@@ -7,7 +8,6 @@ import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.scene.Pickables;
 import org.rspeer.runetek.api.scene.SceneObjects;
-import org.api.script.framework.worker.Worker;
 
 import java.util.function.Predicate;
 

@@ -9,8 +9,8 @@ import org.script.public_script.spx_account_checker.mission.worker.AccountChecke
 
 public class AccountCheckerMission extends Mission {
 
-    private final AccountCheckerWorkerHandler handler = new AccountCheckerWorkerHandler(this);
     public final Main main;
+    private final AccountCheckerWorkerHandler handler = new AccountCheckerWorkerHandler(this);
 
     public AccountCheckerMission(SPXScript script, Main main) {
         super(script);

@@ -7,8 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.*;
-import org.rspeer.runetek.api.commons.BankLocation;
 import org.api.ui.SPXStyle;
+import org.rspeer.runetek.api.commons.BankLocation;
 
 import java.awt.*;
 import java.io.IOException;

@@ -1,11 +1,11 @@
 package org.api.script.impl.worker.banking;
 
+import org.api.script.framework.worker.Worker;
 import org.rspeer.runetek.api.commons.BankLocation;
 import org.rspeer.runetek.api.component.Bank;
 import org.rspeer.runetek.api.component.DepositBox;
 import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.scene.Players;
-import org.api.script.framework.worker.Worker;
 
 public class OpenBankWorker extends Worker {
 

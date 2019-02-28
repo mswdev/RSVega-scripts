@@ -1,10 +1,10 @@
 package org.script.testing.fxml_gui_test;
 
+import org.api.ui.fxui.FXGUIBuilder;
 import org.rspeer.script.Script;
 import org.rspeer.script.ScriptCategory;
 import org.rspeer.script.ScriptMeta;
 import org.rspeer.ui.Log;
-import org.api.ui.fxui.FXGUIBuilder;
 
 @ScriptMeta(developer = "Sphiinx", category = ScriptCategory.TOOL, name = "[SPX] Test FX GUI Script", desc = "Test FX GUI Script")
 public class TestFXGUIScript extends Script {

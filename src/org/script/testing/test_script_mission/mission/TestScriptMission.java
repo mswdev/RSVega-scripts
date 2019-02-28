@@ -1,7 +1,5 @@
 package org.script.testing.test_script_mission.mission;
 
-import org.rspeer.runetek.api.component.tab.Skill;
-import org.rspeer.runetek.api.component.tab.Skills;
 import org.api.game.skills.firemaking.LogType;
 import org.api.game.skills.woodcutting.AxeType;
 import org.api.script.SPXScript;
@@ -12,6 +10,8 @@ import org.api.script.framework.item_management.ItemManagement;
 import org.api.script.framework.item_management.ItemManagementEntry;
 import org.api.script.framework.mission.Mission;
 import org.api.script.framework.worker.Worker;
+import org.rspeer.runetek.api.component.tab.Skill;
+import org.rspeer.runetek.api.component.tab.Skills;
 import org.script.testing.test_script_mission.mission.worker.TestScriptWorkerHandler;
 
 public class TestScriptMission extends Mission implements ItemManagement {
@@ -72,7 +72,7 @@ public class TestScriptMission extends Mission implements ItemManagement {
 
     @Override
     public ItemManagementEntry[] itemsToBuy() {
-        return new ItemManagementEntry[] {
+        return new ItemManagementEntry[]{
                 new ItemManagementEntry(this, AxeType.BRONZE.getItemID(), 1, new GoalList(new SkillGoal(Skills.getLevel(Skill.WOODCUTTING), AxeType.BRONZE.getRequiredWoodcuttingLevel()))),
                 new ItemManagementEntry(this, AxeType.RUNE.getItemID(), 1, new GoalList(new SkillGoal(Skills.getLevel(Skill.WOODCUTTING), AxeType.BRONZE.getRequiredWoodcuttingLevel())))
         };
@@ -80,7 +80,7 @@ public class TestScriptMission extends Mission implements ItemManagement {
 
     @Override
     public int[] itemsToSell() {
-        return new int[] {
+        return new int[]{
                 LogType.MAPLE.getItemID(),
                 LogType.LOGS.getItemID()
         };

@@ -1,13 +1,6 @@
 package org.api.script.impl.mission.tutorial_island_mission.data;
 
-import org.rspeer.runetek.api.Varps;
-import org.rspeer.runetek.api.component.tab.Tab;
-import org.rspeer.runetek.api.movement.position.Position;
 import org.api.script.framework.worker.Worker;
-import org.api.script.impl.worker.DialogueWorker;
-import org.api.script.impl.worker.MovementWorker;
-import org.api.script.impl.worker.interactables.ItemWorker;
-import org.api.script.impl.worker.interactables.NpcWorker;
 import org.api.script.impl.mission.tutorial_island_mission.TutorialIslandMission;
 import org.api.script.impl.mission.tutorial_island_mission.worker.impl.HintWorker;
 import org.api.script.impl.mission.tutorial_island_mission.worker.impl.OpenTab;
@@ -21,6 +14,13 @@ import org.api.script.impl.mission.tutorial_island_mission.worker.impl.stage.sur
 import org.api.script.impl.mission.tutorial_island_mission.worker.impl.stage.survival_expert.ChopTree;
 import org.api.script.impl.mission.tutorial_island_mission.worker.impl.stage.survival_expert.CookShrimp;
 import org.api.script.impl.mission.tutorial_island_mission.worker.impl.stage.survival_expert.LightFire;
+import org.api.script.impl.worker.DialogueWorker;
+import org.api.script.impl.worker.MovementWorker;
+import org.api.script.impl.worker.interactables.ItemWorker;
+import org.api.script.impl.worker.interactables.NpcWorker;
+import org.rspeer.runetek.api.Varps;
+import org.rspeer.runetek.api.component.tab.Tab;
+import org.rspeer.runetek.api.movement.position.Position;
 
 import java.util.Arrays;
 

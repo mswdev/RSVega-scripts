@@ -1,14 +1,14 @@
 package org.api.script.impl.mission.nmz_mission.worker;
 
-import org.rspeer.runetek.api.Varps;
 import org.api.script.framework.worker.Worker;
-import org.api.script.impl.worker.interactables.ItemWorker;
 import org.api.script.impl.mission.nmz_mission.worker.impl.EnterDream;
 import org.api.script.impl.mission.nmz_mission.worker.impl.potions.PotionType;
+import org.api.script.impl.worker.interactables.ItemWorker;
+import org.rspeer.runetek.api.Varps;
 
 public class DrinkPotion extends Worker {
 
-    private final ItemWorker item_worker = new ItemWorker(a -> a.getName().contains(PotionType.ABSORPTION.getName()));;
+    private final ItemWorker item_worker = new ItemWorker(a -> a.getName().contains(PotionType.ABSORPTION.getName()));
 
     @Override
     public boolean needsRepeat() {

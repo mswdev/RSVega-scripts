@@ -1,12 +1,12 @@
 package org.api.script.impl.mission.firemaking_mission;
 
-import org.rspeer.runetek.api.movement.position.Position;
 import org.api.script.SPXScript;
 import org.api.script.framework.goal.GoalList;
 import org.api.script.framework.goal.impl.InfiniteGoal;
 import org.api.script.framework.mission.Mission;
 import org.api.script.framework.worker.Worker;
 import org.api.script.impl.mission.firemaking_mission.worker.FireMakingWorkerHandler;
+import org.rspeer.runetek.api.movement.position.Position;
 
 import java.util.LinkedList;
 

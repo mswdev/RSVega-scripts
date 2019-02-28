@@ -1,13 +1,13 @@
 package org.api.script.impl.mission.firemaking_mission.worker.impl;
 
+import org.api.script.framework.worker.Worker;
+import org.api.script.impl.mission.firemaking_mission.FireMakingMission;
 import org.rspeer.runetek.adapter.component.Item;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.ui.Log;
-import org.api.script.framework.worker.Worker;
 import org.script.public_script.spx_aio_firemaking.Main;
-import org.api.script.impl.mission.firemaking_mission.FireMakingMission;
 
 public class LightFire extends Worker {
 

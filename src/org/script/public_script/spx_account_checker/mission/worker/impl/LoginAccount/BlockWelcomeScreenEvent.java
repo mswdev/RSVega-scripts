@@ -1,5 +1,7 @@
 package org.script.public_script.spx_account_checker.mission.worker.impl.LoginAccount;
 
+import org.api.game.pricechecking.PriceCheck;
+import org.api.game.questing.QuestingUtil;
 import org.rspeer.runetek.adapter.component.InterfaceComponent;
 import org.rspeer.runetek.adapter.component.Item;
 import org.rspeer.runetek.api.Varps;
@@ -11,8 +13,6 @@ import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.script.Script;
 import org.rspeer.script.ScriptBlockingEvent;
 import org.rspeer.script.events.WelcomeScreen;
-import org.api.game.pricechecking.PriceCheck;
-import org.api.game.questing.QuestingUtil;
 import org.script.public_script.spx_account_checker.data.Vars;
 
 import java.io.IOException;
@@ -21,8 +21,8 @@ import java.util.Date;
 
 public class BlockWelcomeScreenEvent extends ScriptBlockingEvent {
 
-    private final WelcomeScreen welcome_screen;
     private final static int COINS_ID = 995;
+    private final WelcomeScreen welcome_screen;
 
     public BlockWelcomeScreenEvent(Script ctx) {
         super(ctx);
@@ -95,7 +95,7 @@ public class BlockWelcomeScreenEvent extends ScriptBlockingEvent {
             total += Skills.getLevel(skill);
         }
 
-        return  total;
+        return total;
     }
 
     private String inventoryWorth() {

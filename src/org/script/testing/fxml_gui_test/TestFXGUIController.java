@@ -25,7 +25,7 @@ public class TestFXGUIController {
         logo.setImage(new Image("https://i.imgur.com/SJj0rIs.png"));
         start.setOnAction(event -> {
             Log.fine("START ACTION");
-            ((Node)(event.getSource())).getScene().getWindow().hide();
+            ((Node) (event.getSource())).getScene().getWindow().hide();
         });
     }
 }

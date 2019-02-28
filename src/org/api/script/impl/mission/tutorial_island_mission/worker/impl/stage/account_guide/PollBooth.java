@@ -1,9 +1,9 @@
 package org.api.script.impl.mission.tutorial_island_mission.worker.impl.stage.account_guide;
 
-import org.rspeer.runetek.api.commons.Time;
-import org.rspeer.runetek.api.component.Dialog;
 import org.api.script.framework.worker.Worker;
 import org.api.script.impl.mission.tutorial_island_mission.worker.impl.HintWorker;
+import org.rspeer.runetek.api.commons.Time;
+import org.rspeer.runetek.api.component.Dialog;
 
 public class PollBooth extends Worker {
 

@@ -1,10 +1,10 @@
 package org.api.script.impl.worker.banking;
 
+import org.api.script.framework.worker.Worker;
 import org.rspeer.runetek.adapter.component.Item;
 import org.rspeer.runetek.api.component.Bank;
 import org.rspeer.runetek.api.component.DepositBox;
 import org.rspeer.runetek.api.component.tab.Inventory;
-import org.api.script.framework.worker.Worker;
 
 import java.util.function.Predicate;
 

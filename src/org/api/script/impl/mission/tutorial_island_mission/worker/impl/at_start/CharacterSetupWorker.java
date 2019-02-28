@@ -1,8 +1,8 @@
 package org.api.script.impl.mission.tutorial_island_mission.worker.impl.at_start;
 
-import org.rspeer.runetek.api.Varps;
 import org.api.script.framework.worker.Worker;
 import org.api.script.impl.mission.tutorial_island_mission.TutorialIslandMission;
+import org.rspeer.runetek.api.Varps;
 
 public class CharacterSetupWorker extends Worker {
 

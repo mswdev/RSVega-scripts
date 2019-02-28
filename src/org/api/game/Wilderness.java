@@ -1,8 +1,6 @@
 package org.api.game;
 
 import org.rspeer.runetek.adapter.component.InterfaceComponent;
-import org.rspeer.runetek.api.ClientSupplier;
-import org.rspeer.runetek.api.component.InterfaceAddress;
 import org.rspeer.runetek.api.component.Interfaces;
 
 public class Wilderness {
