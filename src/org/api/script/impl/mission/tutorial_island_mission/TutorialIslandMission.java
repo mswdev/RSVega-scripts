@@ -96,7 +96,7 @@ public class TutorialIslandMission extends Mission {
     public void onMissionEnd() {
     }
 
-    public void setShouldStop(boolean should_stop) {
+    public void setShouldEnd(boolean should_stop) {
         this.should_stop = should_stop;
     }
 

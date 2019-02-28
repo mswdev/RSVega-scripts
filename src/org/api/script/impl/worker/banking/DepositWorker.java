@@ -5,6 +5,7 @@ import org.rspeer.runetek.adapter.component.Item;
 import org.rspeer.runetek.api.component.Bank;
 import org.rspeer.runetek.api.component.DepositBox;
 import org.rspeer.runetek.api.component.tab.Inventory;
+import org.rspeer.ui.Log;
 
 import java.util.function.Predicate;
 
@@ -32,7 +33,7 @@ public class DepositWorker extends Worker {
 
     @Override
     public boolean needsRepeat() {
-        return Inventory.getCount(true) == inventory_cache;
+        return Inventory.getCount(true) == inventory_cache && !Inventory.isEmpty();
     }
 
     @Override

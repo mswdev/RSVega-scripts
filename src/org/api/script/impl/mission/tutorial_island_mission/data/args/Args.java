@@ -29,6 +29,9 @@ public class Args {
     @Parameter(names = "-stay_logged_in", arity = 1)
     public boolean stay_logged_in;
 
+    @Parameter(names = "-end_on_completion")
+    public boolean end_on_completion = true;
+
     @Parameter(names = "-load_accounts")
     public String load_accounts;
 
