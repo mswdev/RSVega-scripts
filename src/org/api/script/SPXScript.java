@@ -42,7 +42,7 @@ public abstract class SPXScript extends Script implements RenderListener {
     public void onStart() {
         Log.log(Level.FINE, "Info", "Starting " + getMeta().name() + "!");
         createDirectoryFolders();
-        if (getArgs() != null && getArgs().length() > 0) {
+        if (getArguments() != null && getArgs() != null && getArgs().length() > 0) {
             JCommander.newBuilder()
                     .addObject(getArguments())
                     .build()

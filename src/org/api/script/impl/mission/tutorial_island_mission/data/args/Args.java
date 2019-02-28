@@ -30,7 +30,7 @@ public class Args {
     public boolean stay_logged_in;
 
     @Parameter(names = "-end_on_completion")
-    public boolean end_on_completion = true;
+    public boolean end_on_completion;
 
     @Parameter(names = "-load_accounts")
     public String load_accounts;
