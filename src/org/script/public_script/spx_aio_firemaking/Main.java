@@ -10,7 +10,6 @@ import org.api.script.impl.mission.firemaking_mission.FireMakingMission;
 import java.util.LinkedList;
 import java.util.Queue;
 
-// [TODO - 2018-10-26]: Experiment with a linear no branching design style. Test it out with this script.
 @ScriptMeta(developer = "Sphiinx", category = ScriptCategory.FIREMAKING, name = "[SPX] AIO Firemaking", desc = "")
 public class Main extends SPXScript {
 

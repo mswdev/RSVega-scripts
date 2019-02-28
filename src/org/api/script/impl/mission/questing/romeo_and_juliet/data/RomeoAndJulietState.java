@@ -22,7 +22,7 @@ public enum RomeoAndJulietState {
 
     TALK_TO_ROMEO(new NpcWorker(a -> a.getName().equals("Romeo"), new DialogueWorker(a -> a.equals("Yes, I have seen her actually!") || a.equals("Yes, ok, I'll let her know.") || a.equals("Ok, thanks.")), new MovementWorker(new Position(3212, 3428, 0))), null, 0),
 
-    // [TODO - 2/19/2019]: Temporary until webwalker supports juliet house stairs.
+    //Temporary until webwalker supports juliet house stairs.
     USE_JULIET_STAIRCASE(new SceneObjectWorker(a -> a.getName().equals("Staircase") && (a.getPosition().equals(new Position(3156, 3435, 0)) || a.getPosition().equals(new Position(3156, 3435, 1))), new MovementWorker(new Position(3159, 3435, 0))), null, 10, 20),
 
     TALK_TO_JULIET(new NpcWorker(a -> a.getName().equals("Juliet"), new MovementWorker(new Position(3158, 3429, 1))), () -> Players.getLocal().getPosition().getFloorLevel() == 1 && !Inventory.contains("Message"), 10, 20),
@@ -33,7 +33,7 @@ public enum RomeoAndJulietState {
 
     PICK_CADAVA_BERRIES(new SceneObjectWorker(a -> a.getName().equals("Cadava bush") && a.getId() == 23625, new MovementWorker(new Position(3270, 3369, 0))), () -> !Inventory.contains("Cadava potion") && !Inventory.contains("Cadava berries"), 40, 50),
 
-    // [TODO - 2/19/2019]: Temporary until webwalker supports juliet house stairs.
+    //Temporary until webwalker supports juliet house stairs.
     USE_JULIET_STAIRCASE_2(new SceneObjectWorker(a -> a.getName().equals("Staircase") && (a.getPosition().equals(new Position(3156, 3435, 0)) || a.getPosition().equals(new Position(3156, 3435, 1))), new MovementWorker(new Position(3159, 3435, 0))), null, 50, 60),
 
     TALK_TO_APOTHECARY(new NpcWorker(a -> a.getName().equals("Apothecary"), new DialogueWorker(a -> a.equals("Talk about something else.") || a.equals("Talk about Romeo & Juliet.")), new MovementWorker(new Position(3193, 3403, 0))), () -> Inventory.contains("Cadava berries"), 40, 50),

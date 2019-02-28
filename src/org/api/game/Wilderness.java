@@ -1,6 +1,8 @@
 package org.api.game;
 
 import org.rspeer.runetek.adapter.component.InterfaceComponent;
+import org.rspeer.runetek.api.ClientSupplier;
+import org.rspeer.runetek.api.component.InterfaceAddress;
 import org.rspeer.runetek.api.component.Interfaces;
 
 public class Wilderness {
@@ -14,7 +16,7 @@ public class Wilderness {
      * @return The wilderness level.
      */
     public static int getLevel() {
-        final InterfaceComponent level = Interfaces.getFirst(a -> a.getParentIndex() ==  INTER_MASTER_WILDERNESS_LEVEL && a.getText().contains("Level: "));
+        final InterfaceComponent level = Interfaces.getFirst(INTER_MASTER_WILDERNESS_LEVEL, a -> a.getText().contains("Level: "));
         return level == null ? 0 : Integer.parseInt(level.getText().replace("Level: ", ""));
     }
 
@@ -24,7 +26,7 @@ public class Wilderness {
      * @return True if the enter wilderness warning interface is present; false otherwise.
      */
     public static boolean hasWarning() {
-        final InterfaceComponent enter_wilderness = Interfaces.getFirst(a -> a.getParentIndex() == INTER_MASTER_ENTER_WILDERNESS_WARNING && a.containsAction("Enter Wilderness"));
+        final InterfaceComponent enter_wilderness = Interfaces.getFirst(INTER_MASTER_ENTER_WILDERNESS_WARNING, a -> a.containsAction("Enter Wilderness"));
         return enter_wilderness != null;
     }
 
@@ -35,11 +37,11 @@ public class Wilderness {
      * @return True if the enter wilderness button was clicked; false otherwise.
      */
     public static boolean enter() {
-        final InterfaceComponent enter_wilderness = Interfaces.getFirst(a -> a.getParentIndex() == INTER_MASTER_ENTER_WILDERNESS_WARNING && a.containsAction("Enter Wilderness"));
+        final InterfaceComponent enter_wilderness = Interfaces.getFirst(INTER_MASTER_ENTER_WILDERNESS_WARNING, a -> a.containsAction("Enter Wilderness"));
         if (enter_wilderness == null)
             return false;
 
-        final InterfaceComponent enter_wilderness_remember = Interfaces.getFirst(a -> a.getParentIndex() == INTER_MASTER_ENTER_WILDERNESS_WARNING && a.containsAction("Disable warning"));
+        final InterfaceComponent enter_wilderness_remember = Interfaces.getFirst(INTER_MASTER_ENTER_WILDERNESS_WARNING, a -> a.containsAction("Disable warning"));
         if (enter_wilderness_remember != null)
             enter_wilderness_remember.click();
 

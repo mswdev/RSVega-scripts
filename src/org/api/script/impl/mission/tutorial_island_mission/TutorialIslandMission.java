@@ -73,7 +73,7 @@ public class TutorialIslandMission extends Mission {
         if (!Game.isLoggedIn())
             return 100;
 
-        // [TODO - 2/27/2019]: Temporary until rspeer forces fixed mode upon login.
+        //Temporary until rspeer forces fixed mode upon login.
         if (Game.getClientPreferences().getResizable() == 2) {
             final InterfaceComponent fixed_mode_component = Interfaces.getFirst(a -> a.isVisible() && a.containsAction("Fixed mode"));
             if (fixed_mode_component != null)
@@ -81,7 +81,7 @@ public class TutorialIslandMission extends Mission {
                     Time.sleepUntil(() -> Game.getClientPreferences().getResizable() == 1, 2500);
         }
 
-        // [TODO - 2018-11-05]: Temporary until the rspeer continue dialog is fixed.
+        //Temporary until the rspeer continue dialog is fixed.
         if (Dialog.canContinue())
             Game.getClient().fireScriptEvent(299, 1, 1);
 

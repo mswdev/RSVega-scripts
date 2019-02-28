@@ -19,8 +19,6 @@ public class Main extends SPXScript implements RenderListener {
 
     private Args args = new Args();
     private StopWatch stop_watch;
-
-    // [TODO - 2018-11-28]: This is temporary.
     public static int PLANKS_CREATED = 0;
 
     @Override
