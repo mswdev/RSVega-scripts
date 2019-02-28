@@ -1,6 +1,5 @@
 package org.api.ui.fxui.components;
 
-//todo Clean this class up.
 public class FXAutoCompleteComboBox {
 
     /*public interface AutoCompleteComparator<T> {

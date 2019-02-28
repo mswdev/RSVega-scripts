@@ -2,9 +2,11 @@ package org.script.testing.test_script;
 
 import org.api.game.Wilderness;
 import org.rspeer.runetek.adapter.component.InterfaceComponent;
+import org.rspeer.runetek.adapter.scene.Player;
 import org.rspeer.runetek.api.component.Interfaces;
 import org.rspeer.runetek.api.component.tab.Tab;
 import org.rspeer.runetek.api.component.tab.Tabs;
+import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.runetek.event.listeners.LoginResponseListener;
 import org.rspeer.runetek.event.types.LoginResponseEvent;
 import org.rspeer.script.Script;
@@ -15,37 +17,18 @@ import org.rspeer.script.events.WelcomeScreen;
 import org.rspeer.ui.Log;
 
 @ScriptMeta(developer = "Sphiinx", category = ScriptCategory.TOOL, name = "[SPX] Test Script", desc = "Test Script")
-public class TestScript extends Script implements LoginResponseListener {
-    // [TODO - 2018-10-26]: Go through old tribot and other client apis to see what stuff is useful
-
-    //private BankCache bank_cache;
+public class TestScript extends Script {
 
     @Override
     public void onStart() {
         removeBlockingEvent(LoginScreen.class);
         removeBlockingEvent(WelcomeScreen.class);
         //addBlockingEvent(new BlockEventTest(this));
-        //bank_cache = new BankCache(this);
-        //bank_cache.start();
     }
 
     @Override
     public int loop() {
-        final InterfaceComponent comp = Interfaces.getFirst(a -> a.containsAction("Options"));
-        if (comp != null) {
-            Log.fine("Not null");
-            comp.click();
-        }
-        Log.fine(Tabs.isOpen(Tab.OPTIONS));
-        return 1500000;
-    }
-
-    private void getAcc() {
-        Log.info("GetAccount null: " + (getAccount() == null));
-        Log.info("GetAccount valid: " + getAccount().validate());
-        Log.info("GetAccount user: " + getAccount().getUsername());
-        Log.info("GetAccount pass: " + getAccount().getPassword());
-        Log.info("--------------------------");
+        return 150;
     }
 
     @Override
@@ -53,13 +36,5 @@ public class TestScript extends Script implements LoginResponseListener {
         Log.fine(getMeta().name() + " has ended.");
     }
 
-    @Override
-    public void notify(LoginResponseEvent loginResponseEvent) {
-        Log.info("Exec");
-        if (loginResponseEvent.getResponse() != null) {
-            Log.info(loginResponseEvent.getResponse());
-            Log.info(loginResponseEvent.getResponse().getCode());
-        }
-    }
 }
 

@@ -88,7 +88,7 @@ public class BlockWelcomeScreenEvent extends ScriptBlockingEvent {
         data_collection.start();
     }
 
-    //todo remove when getTotalLevel is fixed.
+    // [TODO - 2/27/2019]: Remove when getTotalLevel is fixed.
     private int getTotalLevel() {
         int total = 0;
         for (Skill skill : Skill.values()) {

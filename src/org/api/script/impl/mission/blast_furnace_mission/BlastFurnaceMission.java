@@ -60,7 +60,6 @@ public class BlastFurnaceMission extends Mission {
 
     @Override
     public int execute() {
-        //todo Temporary until they fix the method to continue the chat box.
         if (Dialog.canContinue())
             Dialog.processContinue();
 

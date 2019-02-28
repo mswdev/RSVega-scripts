@@ -66,7 +66,6 @@ public class HousePlankingMission extends Mission implements ItemManagement {
 
     @Override
     public int execute() {
-        // [TODO - 2018-11-28]: Temporary until they fix the method to continue the chat box.
         if (Dialog.canContinue())
             Dialog.processContinue();
 

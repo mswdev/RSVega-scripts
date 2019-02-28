@@ -33,9 +33,7 @@ public class TeleportToLumbridge extends Worker {
         if (Magic.cast(Spell.Modern.LUMBRIDGE_TELEPORT))
             Time.sleepUntil(() -> Players.getLocal().getAnimation() != -1 && SceneObjects.getNearest("Bank chest") != null, 3500);
 
-        // [TODO - 2018-11-28]: This is temporary.
         Main.PLANKS_CREATED += 24;
-
         if (Inventory.getCount(mission.getLogType().getNotedItemID()) <= 0)
             mission.should_end = true;
     }

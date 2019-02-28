@@ -29,7 +29,7 @@ public class MovementWorker extends Worker {
         if (Players.getLocal().isMoving() && Movement.getDestinationDistance() > 10)
             return;
 
-        // [TODO - 2/19/2019]: Temporary until webwalker supports enabling run energy.
+        //Temporary until webwalker supports enabling run energy.
         if (!Movement.isRunEnabled() && Movement.getRunEnergy() > 10)
             Movement.toggleRun(true);
 
