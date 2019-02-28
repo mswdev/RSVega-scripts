@@ -1,9 +1,9 @@
 package org.api.script.impl.mission.nmz_mission.worker.impl;
 
-import org.rspeer.runetek.adapter.scene.Npc;
 import org.api.script.framework.worker.Worker;
 import org.api.script.impl.worker.DialogueWorker;
 import org.api.script.impl.worker.interactables.NpcWorker;
+import org.rspeer.runetek.adapter.scene.Npc;
 
 import java.util.function.Predicate;
 

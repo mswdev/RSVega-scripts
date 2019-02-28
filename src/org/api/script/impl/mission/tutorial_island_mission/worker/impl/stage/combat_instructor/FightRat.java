@@ -1,14 +1,14 @@
 package org.api.script.impl.mission.tutorial_island_mission.worker.impl.stage.combat_instructor;
 
+import org.api.script.framework.worker.Worker;
+import org.api.script.impl.mission.tutorial_island_mission.data.TutorialState;
+import org.api.script.impl.worker.interactables.ItemWorker;
 import org.rspeer.runetek.adapter.scene.Npc;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.tab.Equipment;
 import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.scene.Npcs;
 import org.rspeer.runetek.api.scene.Players;
-import org.api.script.framework.worker.Worker;
-import org.api.script.impl.worker.interactables.ItemWorker;
-import org.api.script.impl.mission.tutorial_island_mission.data.TutorialState;
 
 import java.util.function.Predicate;
 

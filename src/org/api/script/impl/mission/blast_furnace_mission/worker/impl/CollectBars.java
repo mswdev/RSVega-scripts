@@ -1,5 +1,8 @@
 package org.api.script.impl.mission.blast_furnace_mission.worker.impl;
 
+import org.api.script.framework.worker.Worker;
+import org.api.script.impl.mission.blast_furnace_mission.BlastFurnaceMission;
+import org.api.script.impl.worker.banking.OpenBankWorker;
 import org.rspeer.runetek.adapter.component.Item;
 import org.rspeer.runetek.adapter.scene.SceneObject;
 import org.rspeer.runetek.api.Varps;
@@ -8,9 +11,6 @@ import org.rspeer.runetek.api.component.Bank;
 import org.rspeer.runetek.api.component.Production;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.scene.SceneObjects;
-import org.api.script.framework.worker.Worker;
-import org.api.script.impl.worker.banking.OpenBankWorker;
-import org.api.script.impl.mission.blast_furnace_mission.BlastFurnaceMission;
 
 import java.util.function.Predicate;
 

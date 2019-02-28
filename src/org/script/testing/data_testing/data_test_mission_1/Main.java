@@ -1,9 +1,9 @@
 package org.script.testing.data_testing.data_test_mission_1;
 
-import org.rspeer.script.ScriptCategory;
-import org.rspeer.script.ScriptMeta;
 import org.api.script.SPXScript;
 import org.api.script.framework.mission.Mission;
+import org.rspeer.script.ScriptCategory;
+import org.rspeer.script.ScriptMeta;
 import org.script.testing.data_testing.data_test_mission_1.mission.DataTestMission;
 
 import java.util.LinkedList;

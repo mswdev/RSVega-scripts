@@ -11,10 +11,10 @@ import org.api.script.impl.mission.item_management_mission.worker.ItemManagement
 
 public class ItemManagementMission extends Mission {
 
+    public final int[] items_to_sell;
     private final ItemManagementWorkerHandler worker_handler;
     private final ItemManagementEntry item_management_entry;
     private final ItemManagementTracker item_management_tracker;
-    public final int[] items_to_sell;
     public boolean has_put_in_offer;
     public boolean has_withdrawn_sellables;
     public boolean should_end;

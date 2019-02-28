@@ -12,8 +12,6 @@ import org.api.script.impl.mission.tutorial_island_mission.data.args.Args;
 import org.rspeer.script.ScriptCategory;
 import org.rspeer.script.ScriptMeta;
 
-
-
 import java.util.LinkedList;
 import java.util.Queue;
 

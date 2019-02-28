@@ -1,12 +1,12 @@
 package org.api.script.impl.mission.questing.sheep_shearer_mission.worker.impl;
 
+import org.api.script.framework.worker.Worker;
+import org.api.script.impl.worker.MovementWorker;
+import org.api.script.impl.worker.interactables.SceneObjectWorker;
 import org.rspeer.runetek.api.commons.StopWatch;
 import org.rspeer.runetek.api.component.Production;
 import org.rspeer.runetek.api.movement.position.Position;
 import org.rspeer.runetek.api.scene.Players;
-import org.api.script.framework.worker.Worker;
-import org.api.script.impl.worker.MovementWorker;
-import org.api.script.impl.worker.interactables.SceneObjectWorker;
 
 public class SpinWoolWorker extends Worker {
 

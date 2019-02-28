@@ -1,5 +1,8 @@
 package org.api.script.impl.worker.interactables;
 
+import org.api.script.framework.worker.Worker;
+import org.api.script.impl.worker.DialogueWorker;
+import org.api.script.impl.worker.MovementWorker;
 import org.rspeer.runetek.adapter.scene.Npc;
 import org.rspeer.runetek.api.Game;
 import org.rspeer.runetek.api.commons.Time;
@@ -7,9 +10,6 @@ import org.rspeer.runetek.api.component.Dialog;
 import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.scene.Npcs;
 import org.rspeer.runetek.api.scene.Players;
-import org.api.script.framework.worker.Worker;
-import org.api.script.impl.worker.DialogueWorker;
-import org.api.script.impl.worker.MovementWorker;
 
 import java.util.function.Predicate;
 
@@ -57,7 +57,7 @@ public class NpcWorker extends Worker {
 
     @Override
     public boolean needsRepeat() {
-        return dialogue_worker.needsRepeat() ||  (movement_worker != null && movement_worker.needsRepeat());
+        return dialogue_worker.needsRepeat() || (movement_worker != null && movement_worker.needsRepeat());
     }
 
     @Override

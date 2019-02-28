@@ -1,10 +1,10 @@
 package org.api.script.framework.item_management;
 
-import org.rspeer.runetek.api.component.tab.Equipment;
-import org.rspeer.runetek.api.component.tab.Inventory;
 import org.api.game.pricechecking.PriceCheck;
 import org.api.script.framework.goal.GoalList;
 import org.api.script.framework.mission.Mission;
+import org.rspeer.runetek.api.component.tab.Equipment;
+import org.rspeer.runetek.api.component.tab.Inventory;
 
 import java.io.IOException;
 import java.util.function.BooleanSupplier;

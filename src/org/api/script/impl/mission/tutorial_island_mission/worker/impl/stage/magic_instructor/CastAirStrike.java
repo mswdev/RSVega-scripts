@@ -1,5 +1,6 @@
 package org.api.script.impl.mission.tutorial_island_mission.worker.impl.stage.magic_instructor;
 
+import org.api.script.framework.worker.Worker;
 import org.rspeer.runetek.adapter.scene.Npc;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.tab.Magic;
@@ -8,7 +9,6 @@ import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.movement.position.Position;
 import org.rspeer.runetek.api.scene.Npcs;
 import org.rspeer.runetek.api.scene.Players;
-import org.api.script.framework.worker.Worker;
 
 import java.util.function.Predicate;
 

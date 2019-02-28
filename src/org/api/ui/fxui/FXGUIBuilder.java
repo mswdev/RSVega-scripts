@@ -1,6 +1,6 @@
 package org.api.ui.fxui;
 
-public class FXGUIBuilder /*extends Application */{
+public class FXGUIBuilder /*extends Application */ {
 
     /*private final FXGUI fx_gui;
     private Stage stage;
@@ -92,6 +92,6 @@ public class FXGUIBuilder /*extends Application */{
 
         return is_invoking || stage.isShowing();*/
 
-       return false;
+        return false;
     }
 }

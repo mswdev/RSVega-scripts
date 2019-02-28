@@ -8,7 +8,7 @@ public class QuestingUtil {
      * Gets the total quest points.
      *
      * @return The total quest points.
-     * */
+     */
     public static int getPoints() {
         return Varps.get(101);
     }

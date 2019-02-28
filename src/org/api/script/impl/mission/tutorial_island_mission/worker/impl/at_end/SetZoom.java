@@ -1,11 +1,11 @@
 package org.api.script.impl.mission.tutorial_island_mission.worker.impl.at_end;
 
+import org.api.game.ClientSettings;
+import org.api.script.framework.worker.Worker;
+import org.api.script.impl.mission.tutorial_island_mission.TutorialIslandMission;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.tab.Tab;
 import org.rspeer.runetek.api.component.tab.Tabs;
-import org.api.script.framework.worker.Worker;
-import org.api.game.ClientSettings;
-import org.api.script.impl.mission.tutorial_island_mission.TutorialIslandMission;
 
 public class SetZoom extends Worker {
 

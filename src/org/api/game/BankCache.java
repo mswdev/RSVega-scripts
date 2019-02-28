@@ -49,7 +49,7 @@ public class BankCache extends Thread {
      * Gets the bank cache;
      *
      * @return The bank cache;
-     * */
+     */
     public Map<Integer, Integer> get() {
         return bank_cache;
     }

@@ -1,15 +1,15 @@
 package org.api.script.impl.mission.tutorial_island_mission.worker;
 
-import org.rspeer.runetek.api.Varps;
-import org.rspeer.runetek.api.component.InterfaceOptions;
-import org.rspeer.runetek.api.component.tab.Inventory;
 import org.api.game.ClientSettings;
 import org.api.script.framework.worker.Worker;
 import org.api.script.framework.worker.WorkerHandler;
 import org.api.script.impl.mission.tutorial_island_mission.TutorialIslandMission;
+import org.api.script.impl.mission.tutorial_island_mission.data.TutorialState;
 import org.api.script.impl.mission.tutorial_island_mission.worker.impl.at_end.*;
 import org.api.script.impl.mission.tutorial_island_mission.worker.impl.at_start.CharacterSetupWorker;
-import org.api.script.impl.mission.tutorial_island_mission.data.TutorialState;
+import org.rspeer.runetek.api.Varps;
+import org.rspeer.runetek.api.component.InterfaceOptions;
+import org.rspeer.runetek.api.component.tab.Inventory;
 
 public class TutorialIslandWorkerHandler extends WorkerHandler {
 

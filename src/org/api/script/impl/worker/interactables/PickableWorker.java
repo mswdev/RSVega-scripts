@@ -1,12 +1,12 @@
 package org.api.script.impl.worker.interactables;
 
+import org.api.script.framework.worker.Worker;
+import org.api.script.impl.worker.MovementWorker;
 import org.rspeer.runetek.adapter.scene.Pickable;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.scene.Pickables;
 import org.rspeer.runetek.api.scene.Players;
-import org.api.script.framework.worker.Worker;
-import org.api.script.impl.worker.MovementWorker;
 
 import java.util.function.Predicate;
 
@@ -29,9 +29,9 @@ public class PickableWorker extends Worker {
     }
 
     public PickableWorker(Predicate<Pickable> pickable_predicate, Predicate<String> action, MovementWorker movement_worker) {
-     this.pickable_predicate = pickable_predicate;
-     this.action = action;
-     this.movement_worker = movement_worker;
+        this.pickable_predicate = pickable_predicate;
+        this.action = action;
+        this.movement_worker = movement_worker;
     }
 
     @Override

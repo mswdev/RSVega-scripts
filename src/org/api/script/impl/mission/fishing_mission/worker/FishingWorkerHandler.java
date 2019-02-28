@@ -1,6 +1,5 @@
 package org.api.script.impl.mission.fishing_mission.worker;
 
-import org.rspeer.runetek.api.component.tab.Inventory;
 import org.api.game.skills.fishing.FishType;
 import org.api.script.framework.worker.Worker;
 import org.api.script.framework.worker.WorkerHandler;
@@ -8,6 +7,7 @@ import org.api.script.impl.worker.MovementWorker;
 import org.api.script.impl.worker.banking.DepositWorker;
 import org.api.script.impl.worker.banking.WithdrawWorker;
 import org.api.script.impl.worker.interactables.NpcWorker;
+import org.rspeer.runetek.api.component.tab.Inventory;
 
 public class FishingWorkerHandler extends WorkerHandler {
 

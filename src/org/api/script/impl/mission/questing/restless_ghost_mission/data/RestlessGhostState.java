@@ -1,10 +1,5 @@
 package org.api.script.impl.mission.questing.restless_ghost_mission.data;
 
-import org.rspeer.runetek.api.Varps;
-import org.rspeer.runetek.api.component.tab.Equipment;
-import org.rspeer.runetek.api.component.tab.Inventory;
-import org.rspeer.runetek.api.movement.position.Position;
-import org.rspeer.runetek.api.scene.Npcs;
 import org.api.script.framework.worker.Worker;
 import org.api.script.impl.mission.questing.restless_ghost_mission.RestlessGhostMission;
 import org.api.script.impl.mission.questing.restless_ghost_mission.worker.impl.PlaceSkullWorker;
@@ -14,6 +9,11 @@ import org.api.script.impl.worker.banking.DepositWorker;
 import org.api.script.impl.worker.interactables.ItemWorker;
 import org.api.script.impl.worker.interactables.NpcWorker;
 import org.api.script.impl.worker.interactables.SceneObjectWorker;
+import org.rspeer.runetek.api.Varps;
+import org.rspeer.runetek.api.component.tab.Equipment;
+import org.rspeer.runetek.api.component.tab.Inventory;
+import org.rspeer.runetek.api.movement.position.Position;
+import org.rspeer.runetek.api.scene.Npcs;
 
 import java.util.Arrays;
 import java.util.function.BooleanSupplier;

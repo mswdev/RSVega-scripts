@@ -1,8 +1,8 @@
 package org.api.script.framework.goal;
 
-import org.rspeer.ui.Log;
 import org.api.script.framework.goal.impl.ResourceGoal;
 import org.api.script.framework.goal.impl.TimeGoal;
+import org.rspeer.ui.Log;
 
 import java.util.ArrayList;
 import java.util.Arrays;

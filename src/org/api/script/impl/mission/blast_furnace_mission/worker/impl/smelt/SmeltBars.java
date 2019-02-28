@@ -1,13 +1,13 @@
 package org.api.script.impl.mission.blast_furnace_mission.worker.impl.smelt;
 
+import org.api.script.framework.worker.Worker;
+import org.api.script.impl.mission.blast_furnace_mission.BlastFurnaceMission;
+import org.api.script.impl.mission.blast_furnace_mission.worker.impl.WithdrawCoalBag;
 import org.rspeer.runetek.adapter.component.Item;
 import org.rspeer.runetek.adapter.scene.SceneObject;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.scene.SceneObjects;
-import org.api.script.framework.worker.Worker;
-import org.api.script.impl.mission.blast_furnace_mission.BlastFurnaceMission;
-import org.api.script.impl.mission.blast_furnace_mission.worker.impl.WithdrawCoalBag;
 
 import java.util.function.Predicate;
 

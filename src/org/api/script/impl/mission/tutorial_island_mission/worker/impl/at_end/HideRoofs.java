@@ -1,9 +1,9 @@
 package org.api.script.impl.mission.tutorial_island_mission.worker.impl.at_end;
 
+import org.api.game.ClientSettings;
+import org.api.script.framework.worker.Worker;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.InterfaceOptions;
-import org.api.script.framework.worker.Worker;
-import org.api.game.ClientSettings;
 
 public class HideRoofs extends Worker {
 

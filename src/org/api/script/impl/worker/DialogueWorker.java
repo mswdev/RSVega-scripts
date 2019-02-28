@@ -1,8 +1,8 @@
 package org.api.script.impl.worker;
 
+import org.api.script.framework.worker.Worker;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.Dialog;
-import org.api.script.framework.worker.Worker;
 
 import java.util.function.BooleanSupplier;
 import java.util.function.Predicate;

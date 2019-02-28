@@ -1,16 +1,16 @@
 package org.api.script.impl.mission.firemaking_mission.worker.impl;
 
 
+import org.api.game.skills.firemaking.FiremakingUtil;
+import org.api.script.framework.worker.Worker;
+import org.api.script.impl.mission.firemaking_mission.FireMakingMission;
+import org.api.script.impl.worker.banking.OpenBankWorker;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.Bank;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.ui.Log;
-import org.api.script.framework.worker.Worker;
-import org.api.script.impl.worker.banking.OpenBankWorker;
-import org.api.game.skills.firemaking.FiremakingUtil;
 import org.script.public_script.spx_aio_firemaking.Main;
-import org.api.script.impl.mission.firemaking_mission.FireMakingMission;
 
 public class WithdrawLogs extends Worker {
 
@@ -18,7 +18,7 @@ public class WithdrawLogs extends Worker {
     private final FireMakingMission mission;
 
     public WithdrawLogs(FireMakingMission mission) {
-       this.mission = mission;
+        this.mission = mission;
     }
 
     @Override

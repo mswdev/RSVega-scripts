@@ -1,9 +1,9 @@
 package org.script.public_script.spx_account_checker.http;
 
 import com.google.gson.JsonObject;
+import org.api.script.SPXScript;
 import org.rspeer.script.GameAccount;
 import org.rspeer.ui.Log;
-import org.api.script.SPXScript;
 
 public class AccountManager {
 

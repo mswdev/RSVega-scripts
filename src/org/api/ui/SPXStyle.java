@@ -4,7 +4,7 @@ import java.awt.*;
 
 public enum SPXStyle {
 
-    SPX_RED(new Color(168,34, 25)),
+    SPX_RED(new Color(168, 34, 25)),
     SPX_GRAY(new Color(26, 24, 24)),
     SPX_WHITE(new Color(251, 249, 250));
 
@@ -13,10 +13,6 @@ public enum SPXStyle {
 
     SPXStyle(Color color) {
         this.color = color;
-    }
-
-    public Color getColor() {
-        return color;
     }
 
     public static String getLogoFontStyle() {
@@ -37,6 +33,10 @@ public enum SPXStyle {
         }
 
         return Math.round(number) / 1000000 + "m";
+    }
+
+    public Color getColor() {
+        return color;
     }
 
 }
