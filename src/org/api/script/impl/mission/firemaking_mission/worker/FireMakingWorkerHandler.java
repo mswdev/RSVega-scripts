@@ -19,7 +19,7 @@ import org.rspeer.runetek.api.movement.position.Position;
 import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.runetek.api.scene.Scene;
 import org.rspeer.runetek.api.scene.SceneObjects;
-import org.script.public_script.spx_aio_firemaking.Main;
+import org.script.free_script.spx_aio_firemaking.Main;
 
 import java.util.LinkedList;
 

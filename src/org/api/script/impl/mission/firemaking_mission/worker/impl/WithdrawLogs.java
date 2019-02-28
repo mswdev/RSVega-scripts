@@ -10,7 +10,7 @@ import org.rspeer.runetek.api.component.Bank;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.ui.Log;
-import org.script.public_script.spx_aio_firemaking.Main;
+import org.script.free_script.spx_aio_firemaking.Main;
 
 public class WithdrawLogs extends Worker {
 
