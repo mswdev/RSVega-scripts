@@ -6,7 +6,7 @@ import org.api.game.skills.firemaking.LogType;
 public class Args {
 
     @Parameter(names = "-log_type1")
-    public LogType LOG_TYPE1 = LogType.OAK;
+    public LogType LOG_TYPE1 = LogType.MAHOGANY;
 
     @Parameter(names = "-log_type1_quantity")
     public int LOG_TYPE1_QUANTITY = 48;

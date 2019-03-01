@@ -35,7 +35,7 @@ public class Main extends SPXScript implements RenderListener {
     @Override
     public Queue<Mission> createMissionQueue() {
         final LinkedList<Mission> missions = new LinkedList<>();
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 75; i++) {
             missions.add(new HousePlankingMission(this, args.LOG_TYPE1, args.LOG_TYPE1_QUANTITY));
             missions.add(new HousePlankingMission(this, args.LOG_TYPE2, args.LOG_TYPE2_QUANTITY));
         }

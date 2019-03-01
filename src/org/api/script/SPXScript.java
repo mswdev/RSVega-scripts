@@ -78,10 +78,10 @@ public abstract class SPXScript extends Script implements RenderListener {
         if (mission_handler.isStopped())
             setStopping(true);
 
-        final ItemManagementEntry items_to_buy = needsItemManagement();
-        if (items_to_buy != null || item_management_mission_handler != null) {
+        final ItemManagementEntry item_management_entry = getReadyItemManagementEntry();
+        if (item_management_entry != null || item_management_mission_handler != null) {
             if (item_management_mission_handler == null)
-                item_management_mission_handler = new MissionHandler(new LinkedList<>(Collections.singleton(new ItemManagementMission(this, items_to_buy, item_management_tracker, item_management_tracker.item_management.itemsToSell()))));
+                item_management_mission_handler = new MissionHandler(new LinkedList<>(Collections.singleton(new ItemManagementMission(this, item_management_entry, item_management_tracker, item_management_tracker.getItemManagement().itemsToSell()))));
 
             if (!item_management_mission_handler.isStopped())
                 return item_management_mission_handler.execute();
@@ -92,17 +92,22 @@ public abstract class SPXScript extends Script implements RenderListener {
         return mission_handler.execute();
     }
 
-    private ItemManagementEntry needsItemManagement() {
+
+    /**
+     * Gets a ready item management entry that has an item that can be bought.
+     *
+     * @return A ready item management entry.
+     */
+    private ItemManagementEntry getReadyItemManagementEntry() {
         final Mission current_mission = mission_handler.getCurrent();
-        if (current_mission instanceof ItemManagement) {
-            if (item_management_tracker == null || item_management_tracker.item_management != current_mission)
-                item_management_tracker = new ItemManagementTracker(this, (ItemManagement) current_mission);
+        if (!(current_mission instanceof ItemManagement))
+            return null;
 
-            item_management_tracker.update();
-            return item_management_tracker.needsToBuy();
-        }
+        if (item_management_tracker == null || item_management_tracker.getItemManagement() != current_mission)
+            item_management_tracker = new ItemManagementTracker(this, (ItemManagement) current_mission);
 
-        return null;
+        item_management_tracker.update();
+        return item_management_tracker.shouldBuy();
     }
 
     @Override
