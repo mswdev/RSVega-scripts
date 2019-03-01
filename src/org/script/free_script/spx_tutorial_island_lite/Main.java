@@ -8,7 +8,6 @@ import org.rspeer.script.ScriptCategory;
 import org.rspeer.script.ScriptMeta;
 import org.rspeer.script.events.LoginScreen;
 import org.rspeer.ui.Log;
-import org.script.free_script.spx_account_checker.mission.worker.impl.LoginAccount.BlockLoginEvent;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -21,7 +20,6 @@ public class Main extends SPXScript {
     @Override
     public void onStart() {
         removeBlockingEvent(LoginScreen.class);
-        addBlockingEvent(new BlockLoginEvent(this));
         super.onStart();
     }
 
