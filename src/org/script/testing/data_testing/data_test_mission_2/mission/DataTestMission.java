@@ -9,7 +9,7 @@ import org.api.script.framework.mission.Mission;
 import org.api.script.framework.worker.Worker;
 import org.script.testing.data_testing.data_test_mission_2.mission.worker.DataTestWorkerHandler;
 
-public class DataTestMission extends Mission implements ItemManagement {
+public class DataTestMission extends Mission {
 
     private final DataTestWorkerHandler worker_handler;
 
@@ -63,25 +63,5 @@ public class DataTestMission extends Mission implements ItemManagement {
 
     @Override
     public void onMissionEnd() {
-    }
-
-    @Override
-    public ItemManagementEntry[] itemsToBuy() {
-        return new ItemManagementEntry[0];
-    }
-
-    @Override
-    public int[] itemsToSell() {
-        return new int[0];
-    }
-
-    @Override
-    public double sellPriceModifier() {
-        return 0;
-    }
-
-    @Override
-    public double buyPriceModifier() {
-        return 0;
     }
 }

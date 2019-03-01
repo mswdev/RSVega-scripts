@@ -1,6 +1,7 @@
 package org.api.script.impl.mission.item_management_mission.worker.impl;
 
 import org.api.game.pricechecking.PriceCheck;
+import org.api.script.framework.item_management.ItemManagementTracker;
 import org.api.script.framework.worker.Worker;
 import org.api.script.impl.mission.item_management_mission.ItemManagementMission;
 import org.rspeer.runetek.api.commons.Time;
@@ -27,7 +28,12 @@ public class BuyWorker extends Worker {
 
     @Override
     public void work() {
-        final RSGrandExchangeOffer item_management_entry = GrandExchange.getFirst(a -> a.getItemId() == mission.getItemManagementEntry().id);
+        if (mission.getItemManagementEntry().getId() == ItemManagementTracker.GOLD_ID) {
+            mission.should_end = true;
+            return;
+        }
+
+        final RSGrandExchangeOffer item_management_entry = GrandExchange.getFirst(a -> a.getItemId() == mission.getItemManagementEntry().getId());
         if (item_management_entry != null) {
             mission.has_put_in_offer = true;
 
@@ -48,21 +54,21 @@ public class BuyWorker extends Worker {
                 return;
             }
 
-            if (GrandExchangeSetup.getItem() == null || GrandExchangeSetup.getItem().getId() != mission.getItemManagementEntry().id) {
-                if (GrandExchangeSetup.setItem(mission.getItemManagementEntry().id))
-                    Time.sleepUntil(() -> GrandExchangeSetup.getItem() != null && GrandExchangeSetup.getItem().getId() == mission.getItemManagementEntry().id, 1500);
+            if (GrandExchangeSetup.getItem() == null || GrandExchangeSetup.getItem().getId() != mission.getItemManagementEntry().getId()) {
+                if (GrandExchangeSetup.setItem(mission.getItemManagementEntry().getId()))
+                    Time.sleepUntil(() -> GrandExchangeSetup.getItem() != null && GrandExchangeSetup.getItem().getId() == mission.getItemManagementEntry().getId(), 1500);
                 return;
             }
 
-            if (GrandExchangeSetup.getPricePerItem() != getItemBuyPrice(mission.getItemManagementEntry().id)) {
-                if (GrandExchangeSetup.setPrice(getItemBuyPrice(mission.getItemManagementEntry().id)))
-                    Time.sleepUntil(() -> GrandExchangeSetup.getPricePerItem() == getItemBuyPrice(mission.getItemManagementEntry().id), 1500);
+            if (GrandExchangeSetup.getPricePerItem() != getItemBuyPrice(mission.getItemManagementEntry().getId())) {
+                if (GrandExchangeSetup.setPrice(getItemBuyPrice(mission.getItemManagementEntry().getId())))
+                    Time.sleepUntil(() -> GrandExchangeSetup.getPricePerItem() == getItemBuyPrice(mission.getItemManagementEntry().getId()), 1500);
                 return;
             }
 
-            if (GrandExchangeSetup.getQuantity() != mission.getItemManagementEntry().quantity) {
-                if (GrandExchangeSetup.setQuantity(mission.getItemManagementEntry().quantity))
-                    Time.sleepUntil(() -> GrandExchangeSetup.getQuantity() == mission.getItemManagementEntry().quantity, 1500);
+            if (GrandExchangeSetup.getQuantity() != mission.getItemManagementEntry().getQuantity()) {
+                if (GrandExchangeSetup.setQuantity(mission.getItemManagementEntry().getQuantity()))
+                    Time.sleepUntil(() -> GrandExchangeSetup.getQuantity() == mission.getItemManagementEntry().getQuantity(), 1500);
                 return;
             }
 
@@ -74,7 +80,7 @@ public class BuyWorker extends Worker {
 
     private int getItemBuyPrice(int id) {
         try {
-            return (int) (PriceCheck.getOSBuddyPrice(id) * mission.getItemManagementTracker().item_management.buyPriceModifier());
+            return (int) (PriceCheck.getOSBuddyPrice(id) * mission.getItemManagementTracker().getItemManagement().buyPriceModifier());
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -65,7 +65,7 @@ public class SellWorker extends Worker {
 
     private int getItemSellPrice(Item item_to_sell) {
         try {
-            return (int) (PriceCheck.getOSBuddyPrice(item_to_sell.getId() - 1) * mission.getItemManagementTracker().item_management.sellPriceModifier());
+            return (int) (PriceCheck.getOSBuddyPrice(item_to_sell.getId() - 1) * mission.getItemManagementTracker().getItemManagement().sellPriceModifier());
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -65,12 +65,12 @@ public class ItemManagementWorkerHandler extends WorkerHandler {
         }
 
         final long inventory_gold = Inventory.getCount(true, ItemManagementTracker.GOLD_ID);
-        if (mission.has_put_in_offer || inventory_gold >= mission.getItemManagementEntry().value_needed) {
+        if (mission.has_put_in_offer || inventory_gold >= mission.getItemManagementEntry().getValueNeeded(mission.getItemManagementTracker().getItemManagement().buyPriceModifier())) {
             if (!GrandExchange.isOpen())
                 return openGrandExchangeWorker();
 
             return buy_worker;
-        } else if (mission.getItemManagementTracker().getTotalGold() >= mission.getItemManagementEntry().value_needed) {
+        } else if (mission.getItemManagementTracker().getTotalGold() >= mission.getItemManagementEntry().getValueNeeded(mission.getItemManagementTracker().getItemManagement().buyPriceModifier())) {
             return new WithdrawWorker(a -> a.getName().equals("Coins"), 0);
         } else {
             if (!mission.has_withdrawn_sellables)

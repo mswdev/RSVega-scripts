@@ -1,5 +1,6 @@
 package org.script.private_script.the_bull.house_planking.mission;
 
+import org.api.game.skills.contruction.PlankType;
 import org.api.game.skills.firemaking.LogType;
 import org.api.game.skills.magic.RuneType;
 import org.api.script.SPXScript;
@@ -7,11 +8,13 @@ import org.api.script.framework.goal.GoalList;
 import org.api.script.framework.goal.impl.InfiniteGoal;
 import org.api.script.framework.item_management.ItemManagement;
 import org.api.script.framework.item_management.ItemManagementEntry;
+import org.api.script.framework.item_management.ItemManagementTracker;
 import org.api.script.framework.mission.Mission;
 import org.api.script.framework.worker.Worker;
 import org.rspeer.runetek.api.component.Dialog;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.scene.House;
+import org.rspeer.ui.Log;
 import org.script.private_script.the_bull.house_planking.mission.worker.HousePlankingWorkerHandler;
 
 public class HousePlankingMission extends Mission implements ItemManagement {
@@ -85,6 +88,7 @@ public class HousePlankingMission extends Mission implements ItemManagement {
     @Override
     public ItemManagementEntry[] itemsToBuy() {
         return new ItemManagementEntry[]{
+                new ItemManagementEntry(this, ItemManagementTracker.GOLD_ID, getRequiredGold(), () -> Inventory.getCount(true, ItemManagementTracker.GOLD_ID) < getRequiredGold()),
                 new ItemManagementEntry(this, getLogType().getItemID(), getQuantity(), () -> getScript().bank_cache.get().getOrDefault(getLogType().getItemID(), 0) <= 0 && Inventory.getCount(true, getLogType().getItemID()) <= 0 && Inventory.getCount(getLogType().getNotedItemID()) <= 0 && !House.isInside() && !should_end),
                 new ItemManagementEntry(this, RuneType.LAW.getItemID(), ((getQuantity()) / 24) * 2 + 1, () -> getScript().bank_cache.get().getOrDefault(RuneType.LAW.getItemID(), 0) <= 0 && Inventory.getCount(true, RuneType.LAW.getItemID()) <= 0 && !should_end),
                 new ItemManagementEntry(this, RuneType.EARTH.getItemID(), ((getQuantity()) / 24) * 2 + 1, () -> getScript().bank_cache.get().getOrDefault(RuneType.EARTH.getItemID(), 0) <= 0 && Inventory.getCount(true, RuneType.EARTH.getItemID()) <= 0 && !should_end),
@@ -115,8 +119,30 @@ public class HousePlankingMission extends Mission implements ItemManagement {
         return log_type;
     }
 
-    public int getQuantity() {
+    private int getQuantity() {
         return quantity;
+    }
+
+    private int getRequiredGold() {
+        final int amount_of_logs = Inventory.getCount(true, getLogType().getName());
+        final int butler_payment = ((amount_of_logs / 24) / 8) * 10000;
+        int sawmill_cost = 0;
+        switch (getLogType()) {
+            case LOGS:
+                sawmill_cost = PlankType.PLANK.getSawmillCost() * amount_of_logs;
+                break;
+            case OAK:
+                sawmill_cost = PlankType.OAK.getSawmillCost() * amount_of_logs;
+                break;
+            case TEAK:
+                sawmill_cost = PlankType.TEAK.getSawmillCost() * amount_of_logs;
+                break;
+            case MAHOGANY:
+                sawmill_cost = PlankType.MAHOGANY.getSawmillCost() * amount_of_logs;
+                break;
+        }
+
+        return sawmill_cost + butler_payment;
     }
 }
 

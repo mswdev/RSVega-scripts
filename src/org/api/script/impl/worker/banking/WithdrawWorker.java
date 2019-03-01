@@ -74,15 +74,17 @@ public class WithdrawWorker extends Worker {
         final int withdraw_cache = Inventory.getCount(true);
         BooleanSupplier boolean_supplier = () -> withdraw_cache != Inventory.getCount(true);
         if (amount == 0) {
-            if (!Bank.withdrawAll(item))
+            if (Bank.withdrawAll(item))
+                Time.sleepUntil(boolean_supplier, 2500);
+            else
                 setItemNotFound();
-            Time.sleepUntil(boolean_supplier, 2500);
             return;
         }
 
-        if (!Bank.withdraw(item, amount))
+        if (Bank.withdraw(item, amount))
+            Time.sleepUntil(boolean_supplier, 2500);
+        else
             setItemNotFound();
-        Time.sleepUntil(boolean_supplier, 2500);
     }
 
     private void setItemNotFound() {

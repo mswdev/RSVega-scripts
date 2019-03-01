@@ -5,20 +5,17 @@ import org.api.script.framework.goal.GoalList;
 import org.api.script.framework.mission.Mission;
 import org.rspeer.runetek.api.component.tab.Equipment;
 import org.rspeer.runetek.api.component.tab.Inventory;
+import org.rspeer.ui.Log;
 
 import java.io.IOException;
 import java.util.function.BooleanSupplier;
 
 public class ItemManagementEntry {
 
-    public final int id;
-    public final int quantity;
-    public GoalList goals;
-    public BooleanSupplier goal_override;
-
-    // [TODO - 2/24/2019]: Fix buy price modifier
-    public int value_needed;
-
+    private final int id;
+    private final int quantity;
+    private GoalList goals;
+    private BooleanSupplier goal_override;
     private Mission mission;
 
     public ItemManagementEntry(Mission mission, int id, int quantity, GoalList goals) {
@@ -35,30 +32,79 @@ public class ItemManagementEntry {
         this.quantity = quantity;
         this.goals = goals;
         this.goal_override = goal_override;
-        try {
-            // [TODO - 2/24/2019]: Fix buy price modifier
-            value_needed = (int) (PriceCheck.getOSBuddyPrice(id) * quantity * 1.5);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
-    public boolean shouldOverride() {
+    /**
+     * Determines whether the goal should be overridden by the goal override boolean supplier.
+     *
+     * @return True if the goal should be overridden; false otherwise.
+     */
+    private boolean shouldOverride() {
         if (goals != null && goal_override != null)
             return goals.hasReachedGoals() && goal_override.getAsBoolean();
 
         return goals != null ? goals.hasReachedGoals() && !playerHasEntry() : goal_override != null && goal_override.getAsBoolean();
     }
 
-    public boolean shouldBuy(long total_value, double buy_price_modifier) {
-        return !mission.getScript().bank_cache.get().isEmpty() && total_value >= value_needed * buy_price_modifier && shouldOverride();
+    /**
+     * Determines whether the player can buy the specified entry.
+     *
+     * @param total_value        The total value of gold and sellables the player has taking into account the sell price
+     *                           modifier.
+     * @param buy_price_modifier The buy price modifier.
+     * @return True if the entry can be bought; false otherwise.
+     */
+    boolean canBuy(long total_value, double buy_price_modifier) {
+        return !mission.getScript().bank_cache.get().isEmpty() && total_value >= getValueNeeded(buy_price_modifier) && shouldOverride();
     }
 
-    public boolean playerHasEntry() {
-        boolean in_inventory = Inventory.contains(id, id + 1);
-        boolean in_equipment = Equipment.contains(id);
-        boolean in_bank = mission.getScript().bank_cache.get().containsKey(id);
+    /**
+     * Determines whether the player already has the entry in their inventory, bank, or equipment.
+     *
+     * @return True if the player has the entry; false otherwise.
+     */
+    private boolean playerHasEntry() {
+        final boolean in_inventory = Inventory.contains(id, id + 1);
+        final boolean in_equipment = Equipment.contains(id);
+        final boolean in_bank = mission.getScript().bank_cache.get().containsKey(id);
 
         return in_inventory || in_equipment || in_bank;
+    }
+
+    /**
+     * Gets the item id.
+     *
+     * @return The item id.
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Gets the value needed to buy the item taking into consideration the price, quantity, and buy price modifier.
+     *
+     * @param buy_price_modifier The buy price modifier.
+     * @return The value needed to buy the item; 0 otherwise.
+     */
+    public int getValueNeeded(double buy_price_modifier) {
+        if (id == ItemManagementTracker.GOLD_ID)
+            return quantity;
+
+        try {
+            return (int) (PriceCheck.getOSBuddyPrice(id) * quantity * buy_price_modifier);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
+    /**
+     * Gets the quantity of item to buy.
+     *
+     * @return The quantity of item to buy.
+     */
+    public int getQuantity() {
+        return quantity;
     }
 }
