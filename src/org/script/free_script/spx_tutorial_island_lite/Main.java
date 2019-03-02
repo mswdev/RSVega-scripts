@@ -6,7 +6,6 @@ import org.api.script.impl.mission.tutorial_island_mission.TutorialIslandMission
 import org.api.script.impl.mission.tutorial_island_mission.data.args.Args;
 import org.rspeer.script.ScriptCategory;
 import org.rspeer.script.ScriptMeta;
-import org.rspeer.script.events.LoginScreen;
 import org.rspeer.ui.Log;
 
 import java.util.LinkedList;
@@ -16,12 +15,6 @@ import java.util.Queue;
 public class Main extends SPXScript {
 
     public final Args args = new Args();
-
-    @Override
-    public void onStart() {
-        removeBlockingEvent(LoginScreen.class);
-        super.onStart();
-    }
 
     @Override
     public Queue<Mission> createMissionQueue() {
