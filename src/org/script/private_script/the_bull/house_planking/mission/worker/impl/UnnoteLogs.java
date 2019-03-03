@@ -35,8 +35,8 @@ public class UnnoteLogs extends Worker {
         final int inventory_cache = Inventory.getCount();
         if (Dialog.process(a -> a.equals("Yes"))) {
             Time.sleepUntil(() -> Inventory.getCount() != inventory_cache, 1500);
-            Log.severe("Sleeping 450ms to ensure butler has returned from the bank...");
-            Time.sleep(450);
+            Log.severe("Sleeping 700ms to ensure butler has returned from the bank...");
+            Time.sleep(700);
         }
     }
 

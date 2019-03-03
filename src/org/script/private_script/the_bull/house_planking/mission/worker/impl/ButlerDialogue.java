@@ -16,6 +16,7 @@ import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.movement.position.Position;
 import org.rspeer.runetek.api.scene.Npcs;
 import org.rspeer.runetek.api.scene.Players;
+import org.rspeer.ui.Log;
 import org.script.private_script.the_bull.house_planking.mission.HousePlankingMission;
 
 public class ButlerDialogue extends Worker {
@@ -37,33 +38,36 @@ public class ButlerDialogue extends Worker {
     @Override
     public void work() {
         final Npc servant = Npcs.getNearest("Demon butler");
-        if (servant == null) {
-            callServant();
-        } else {
-            if (!Dialog.isOpen())
+        if (servant == null)
+            return;
+
+        if (isServantStuck(servant))
+            Movement.walkTo(new Position(Players.getLocal().getX() - 1, Players.getLocal().getY()));
+
+        if (Varps.getBitValue(4380) != 4 || !is_setup) {
+            if (servant.distance() > 1) {
                 callServant();
-
-            if (isServantStuck(servant))
-                Movement.walkTo(new Position(Players.getLocal().getX() - 1, Players.getLocal().getY()));
-
-            if (Varps.getBitValue(4380) != 4 || !is_setup) {
-                Inventory.use(a -> a.getId() == mission.getLogType().getItemID(), servant);
-                Time.sleep(1000);
-                Dialog.processContinue();
-                Time.sleep(1000);
-                Dialog.process(a -> a.equals("Sawmill"));
-                Time.sleep(1000);
-                EnterInput.initiate(24);
-                Time.sleep(1000);
-                if (Dialog.process(a -> a.equals("Yes")))
-                    is_setup = true;
+                return;
             }
 
-            if (EnterInput.isOpen())
-                EnterInput.initiate(24);
+            if (Interfaces.getFirst(a -> a.getText().equals("Something else...")) != null || !Dialog.isOpen()) {
+                if (Inventory.use(a -> a.getId() == mission.getLogType().getItemID(), servant))
+                    Time.sleepUntil(Dialog::isOpen, 1500);
+                return;
+            }
 
             BUTLER_DIALOGUE.work();
+            is_setup = true;
+            Log.fine("True");
         }
+
+        if (!Dialog.isOpen())
+            callServant();
+
+        if (EnterInput.isOpen())
+            EnterInput.initiate(24);
+
+        BUTLER_DIALOGUE.work();
     }
 
     private boolean isServantStuck(Npc servant) {
