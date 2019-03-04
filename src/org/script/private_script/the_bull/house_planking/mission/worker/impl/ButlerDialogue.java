@@ -24,7 +24,6 @@ public class ButlerDialogue extends Worker {
 
     private static final DialogueWorker BUTLER_DIALOGUE = new DialogueWorker(a -> a.contains("Sawmill") || a.equals("Yes") || a.equals("Okay, here's 10,000 coins.") || a.contains("Take to sawmill"));
     private HousePlankingMission mission;
-    private boolean is_setup;
 
     public ButlerDialogue(HousePlankingMission mission) {
         this.mission = mission;
@@ -44,25 +43,12 @@ public class ButlerDialogue extends Worker {
         if (isServantStuck(servant))
             Movement.walkTo(new Position(Players.getLocal().getX() - 1, Players.getLocal().getY()));
 
-        if (Varps.getBitValue(4380) != 4 || !is_setup) {
-            if (servant.distance() > 1) {
-                callServant();
-                return;
-            }
-
-            if (Interfaces.getFirst(a -> a.getText().equals("Something else...")) != null || !Dialog.isOpen()) {
-                if (Inventory.use(a -> a.getId() == mission.getLogType().getItemID(), servant))
-                    Time.sleepUntil(Dialog::isOpen, 1500);
-                return;
-            }
-
-            BUTLER_DIALOGUE.work();
-            is_setup = true;
-            Log.fine("True");
-        }
-
         if (!Dialog.isOpen())
             callServant();
+
+        if (Interfaces.getFirst(a -> a.getText().contains("Go to the sawmill...")) != null)
+            if (Inventory.use(a -> a.getId() == mission.getLogType().getItemID(), servant))
+                Time.sleepUntil(Dialog::isOpen, 1500);
 
         if (EnterInput.isOpen())
             EnterInput.initiate(24);

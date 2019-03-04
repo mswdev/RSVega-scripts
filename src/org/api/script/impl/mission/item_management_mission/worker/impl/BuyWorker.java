@@ -37,7 +37,7 @@ public class BuyWorker extends Worker {
         if (item_management_entry != null) {
             mission.has_put_in_offer = true;
 
-            if (item_management_entry.getProgress() == RSGrandExchangeOffer.Progress.FINISHED) {
+            if (GrandExchange.getFirst(a -> a.getProgress() == RSGrandExchangeOffer.Progress.FINISHED) != null && GrandExchange.getView() == GrandExchange.View.OVERVIEW) {
                 final int inventory_cache = Inventory.getCount(true);
                 if (GrandExchange.collectAll())
                     if (Time.sleepUntil(() -> Inventory.getCount(true) != inventory_cache, 1500))

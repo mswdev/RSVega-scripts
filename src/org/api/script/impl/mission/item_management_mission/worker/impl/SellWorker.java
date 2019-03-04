@@ -28,8 +28,8 @@ public class SellWorker extends Worker {
 
     @Override
     public void work() {
-        final int inventory_cache = Inventory.getCount(true);
         if (GrandExchange.getFirst(a -> a.getProgress() == RSGrandExchangeOffer.Progress.FINISHED) != null && GrandExchange.getView() == GrandExchange.View.OVERVIEW) {
+            final int inventory_cache = Inventory.getCount(true);
             if (GrandExchange.collectAll())
                 Time.sleepUntil(() -> inventory_cache != Inventory.getCount(true), 1500);
             return;
