@@ -14,7 +14,6 @@ import org.api.script.framework.worker.Worker;
 import org.rspeer.runetek.api.component.Dialog;
 import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.scene.House;
-import org.rspeer.ui.Log;
 import org.script.private_script.the_bull.house_planking.mission.worker.HousePlankingWorkerHandler;
 
 public class HousePlankingMission extends Mission implements ItemManagement {
@@ -26,6 +25,14 @@ public class HousePlankingMission extends Mission implements ItemManagement {
     private final int OAK_PLANK_ID = 8778;
     private final int MAHOGANY_PLANK_ID = 8782;
     private final int TEAK_PLANK_ID = 8780;
+    public static final int[] RING_OF_WEALTH_IDS = new int[]{
+            2572,
+            11988,
+            11986,
+            11984,
+            11982,
+            11980
+    };
     public boolean should_end;
 
     public HousePlankingMission(SPXScript script, LogType log_type, int quantity) {
@@ -88,10 +95,11 @@ public class HousePlankingMission extends Mission implements ItemManagement {
     @Override
     public ItemManagementEntry[] itemsToBuy() {
         return new ItemManagementEntry[]{
+                new ItemManagementEntry(this, RING_OF_WEALTH_IDS[5], 10, () -> getScript().bank_cache.get().getOrDefault(RING_OF_WEALTH_IDS[1], 0) <= 0 && getScript().bank_cache.get().getOrDefault(RING_OF_WEALTH_IDS[2], 0) <= 0 && getScript().bank_cache.get().getOrDefault(RING_OF_WEALTH_IDS[3], 0) <= 0 && getScript().bank_cache.get().getOrDefault(RING_OF_WEALTH_IDS[4], 0) <= 0 && getScript().bank_cache.get().getOrDefault(RING_OF_WEALTH_IDS[5], 0) <= 0 && Inventory.getCount(RING_OF_WEALTH_IDS[5] + 1) <= 0),
                 new ItemManagementEntry(this, ItemManagementTracker.GOLD_ID, getRequiredGold(), () -> Inventory.getCount(true, ItemManagementTracker.GOLD_ID) < getRequiredGold()),
                 new ItemManagementEntry(this, getLogType().getItemID(), getQuantity(), () -> getScript().bank_cache.get().getOrDefault(getLogType().getItemID(), 0) <= 0 && Inventory.getCount(true, getLogType().getItemID()) <= 0 && Inventory.getCount(getLogType().getNotedItemID()) <= 0 && !House.isInside() && !should_end),
                 new ItemManagementEntry(this, RuneType.LAW.getItemID(), ((getQuantity()) / 24) * 2 + 1, () -> getScript().bank_cache.get().getOrDefault(RuneType.LAW.getItemID(), 0) <= 0 && Inventory.getCount(true, RuneType.LAW.getItemID()) <= 0 && !should_end),
-                new ItemManagementEntry(this, RuneType.EARTH.getItemID(), ((getQuantity()) / 24) * 2 + 1, () -> getScript().bank_cache.get().getOrDefault(RuneType.EARTH.getItemID(), 0) <= 0 && Inventory.getCount(true, RuneType.EARTH.getItemID()) <= 0 && !should_end),
+                new ItemManagementEntry(this, RuneType.EARTH.getItemID(), ((getQuantity()) / 24) * 2 + 1, () -> getScript().bank_cache.get().getOrDefault(RuneType.EARTH.getItemID(), 0) <= 0 && Inventory.getCount(true, RuneType.EARTH.getItemID()) <= 0 && !should_end)
         };
     }
 
@@ -101,7 +109,8 @@ public class HousePlankingMission extends Mission implements ItemManagement {
                 PLANK_ID,
                 OAK_PLANK_ID,
                 MAHOGANY_PLANK_ID,
-                TEAK_PLANK_ID
+                TEAK_PLANK_ID,
+                RING_OF_WEALTH_IDS[0],
         };
     }
 

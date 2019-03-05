@@ -2,6 +2,7 @@ package org.script.private_script.the_bull.house_planking.mission.worker;
 
 import org.api.script.framework.worker.Worker;
 import org.api.script.framework.worker.WorkerHandler;
+import org.api.script.impl.worker.banking.DepositWorker;
 import org.rspeer.runetek.api.commons.BankLocation;
 import org.rspeer.runetek.api.component.tab.Equipment;
 import org.rspeer.runetek.api.component.tab.Inventory;
@@ -37,6 +38,9 @@ public class HousePlankingWorkerHandler extends WorkerHandler {
 
     @Override
     public Worker decide() {
+        if (Inventory.contains(HousePlankingMission.RING_OF_WEALTH_IDS[5] + 1))
+            return new DepositWorker(a -> a.getId() == HousePlankingMission.RING_OF_WEALTH_IDS[5] + 1);
+
         if (House.isInside()) {
             if (Inventory.contains(mission.getLogType().getItemID()))
                 return butler_dialogue;
