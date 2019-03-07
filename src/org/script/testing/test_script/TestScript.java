@@ -1,6 +1,5 @@
 package org.script.testing.test_script;
 
-import org.rspeer.runetek.adapter.scene.SceneObject;
 import org.rspeer.runetek.api.commons.StopWatch;
 import org.rspeer.runetek.api.scene.SceneObjects;
 import org.rspeer.script.Script;
