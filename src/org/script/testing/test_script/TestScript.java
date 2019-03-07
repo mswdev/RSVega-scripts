@@ -1,5 +1,8 @@
 package org.script.testing.test_script;
 
+import org.rspeer.runetek.adapter.scene.SceneObject;
+import org.rspeer.runetek.api.commons.StopWatch;
+import org.rspeer.runetek.api.scene.SceneObjects;
 import org.rspeer.script.Script;
 import org.rspeer.script.ScriptCategory;
 import org.rspeer.script.ScriptMeta;
@@ -12,9 +15,7 @@ public class TestScript extends Script {
 
     @Override
     public void onStart() {
-        removeBlockingEvent(LoginScreen.class);
-        removeBlockingEvent(WelcomeScreen.class);
-        //addBlockingEvent(new BlockEventTest(this));
+        Log.fine("[SPX] Test Script has started.");
     }
 
     @Override
@@ -24,8 +25,8 @@ public class TestScript extends Script {
 
     @Override
     public void onStop() {
-        Log.fine(getMeta().name() + " has ended.");
+        Log.fine("[SPX] Test Script has started.");
     }
-
 }
+
 
