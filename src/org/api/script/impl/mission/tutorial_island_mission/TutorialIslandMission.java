@@ -79,6 +79,9 @@ public class TutorialIslandMission extends Mission {
                     Time.sleepUntil(() -> Game.getClientPreferences().getResizable() == 1, 2500);
         }
 
+        if (Dialog.canContinue())
+            Dialog.processContinue();
+
         worker_handler.work();
         return 100;
     }

@@ -13,7 +13,12 @@ import org.api.script.framework.mission.Mission;
 import org.api.script.framework.worker.Worker;
 import org.rspeer.runetek.api.component.Dialog;
 import org.rspeer.runetek.api.component.tab.Inventory;
+import org.rspeer.runetek.api.movement.Movement;
+import org.rspeer.runetek.api.movement.position.Area;
+import org.rspeer.runetek.api.movement.position.Position;
 import org.rspeer.runetek.api.scene.House;
+import org.rspeer.runetek.api.scene.Players;
+import org.rspeer.ui.Log;
 import org.script.private_script.the_bull.house_planking.mission.worker.HousePlankingWorkerHandler;
 
 public class HousePlankingMission extends Mission implements ItemManagement {
@@ -33,6 +38,8 @@ public class HousePlankingMission extends Mission implements ItemManagement {
             11982,
             11980
     };
+    private static final Area GRAND_EXCHANGE = Area.rectangular(3137, 3518, 3191, 3466);
+    private static final Area LUMBRIDGE_PVP = Area.rectangular(3219, 3216, 3224, 3220);
     public boolean should_end;
 
     public HousePlankingMission(SPXScript script, LogType log_type, int quantity) {
@@ -78,7 +85,18 @@ public class HousePlankingMission extends Mission implements ItemManagement {
         if (Dialog.canContinue())
             Dialog.processContinue();
 
-        worker_handler.work();
+        if (!House.isInside() && !GRAND_EXCHANGE.contains(Players.getLocal()) && !LUMBRIDGE_PVP.contains(Players.getLocal())) {
+            final Position safe_position = new Position(3220, 3217, 0);
+            if (safe_position.distance() >= 2) {
+                Movement.walkTo(safe_position);
+                Log.severe("We've somehow managed to accidentially leave the pvp area. Walking back and stopping.");
+            } else  {
+                should_end = true;
+            }
+        } else {
+            worker_handler.work();
+        }
+
         return 150;
     }
 
