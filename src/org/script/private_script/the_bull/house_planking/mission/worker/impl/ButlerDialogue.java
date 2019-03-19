@@ -4,7 +4,6 @@ import org.api.script.framework.worker.Worker;
 import org.api.script.impl.worker.DialogueWorker;
 import org.rspeer.runetek.adapter.component.InterfaceComponent;
 import org.rspeer.runetek.adapter.scene.Npc;
-import org.rspeer.runetek.api.Varps;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.Dialog;
 import org.rspeer.runetek.api.component.EnterInput;
@@ -16,7 +15,6 @@ import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.movement.position.Position;
 import org.rspeer.runetek.api.scene.Npcs;
 import org.rspeer.runetek.api.scene.Players;
-import org.rspeer.ui.Log;
 import org.script.private_script.the_bull.house_planking.mission.HousePlankingMission;
 
 public class ButlerDialogue extends Worker {

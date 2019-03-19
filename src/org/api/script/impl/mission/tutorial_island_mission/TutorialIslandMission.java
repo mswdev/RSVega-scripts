@@ -79,8 +79,12 @@ public class TutorialIslandMission extends Mission {
                     Time.sleepUntil(() -> Game.getClientPreferences().getResizable() == 1, 2500);
         }
 
-        if (Dialog.canContinue())
+        //Temporary until the rspeer continue dialog is fixed.
+        if (Dialog.canContinue()) {
             Dialog.processContinue();
+            Game.getClient().fireScriptEvent(299, 1, 1);
+        }
+
 
         worker_handler.work();
         return 100;

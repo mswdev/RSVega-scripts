@@ -2,12 +2,6 @@ package org.script.testing.test_script_mission;
 
 import org.api.script.SPXScript;
 import org.api.script.framework.mission.Mission;
-import org.api.script.impl.mission.fishing_mission.Fishingmission;
-import org.api.script.impl.mission.questing.restless_ghost_mission.RestlessGhostMission;
-import org.api.script.impl.mission.questing.romeo_and_juliet.RomeoAndJulietMission;
-import org.api.script.impl.mission.questing.rune_mysteries_mission.RuneMysteriesMission;
-import org.api.script.impl.mission.questing.sheep_shearer_mission.SheepShearerMission;
-import org.api.script.impl.mission.tutorial_island_mission.TutorialIslandMission;
 import org.api.script.impl.mission.tutorial_island_mission.data.args.Args;
 import org.rspeer.script.ScriptCategory;
 import org.rspeer.script.ScriptMeta;
