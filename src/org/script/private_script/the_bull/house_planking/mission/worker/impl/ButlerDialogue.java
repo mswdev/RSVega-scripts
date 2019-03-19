@@ -15,6 +15,7 @@ import org.rspeer.runetek.api.movement.Movement;
 import org.rspeer.runetek.api.movement.position.Position;
 import org.rspeer.runetek.api.scene.Npcs;
 import org.rspeer.runetek.api.scene.Players;
+import org.rspeer.ui.Log;
 import org.script.private_script.the_bull.house_planking.mission.HousePlankingMission;
 
 public class ButlerDialogue extends Worker {
@@ -38,8 +39,12 @@ public class ButlerDialogue extends Worker {
         if (servant == null)
             return;
 
-        if (isServantStuck(servant))
+        if (isServantStuck(servant)) {
+            Log.severe("The servant is stuck, attempting to fix positioning.");
+            Log.fine("[Player position]: " + Players.getLocal().getPosition().toString() + " | [Servant position]: " + servant.getPosition().toString());
             Movement.walkTo(new Position(Players.getLocal().getX() - 1, Players.getLocal().getY()));
+            return;
+        }
 
         if (!Dialog.isOpen())
             callServant();
