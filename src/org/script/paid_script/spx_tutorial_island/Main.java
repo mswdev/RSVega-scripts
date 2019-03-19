@@ -17,6 +17,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.logging.Level;
 import java.util.stream.Stream;
 
 @ScriptMeta(developer = "Sphiinx", category = ScriptCategory.OTHER, name = "[SPX] Tutorial Island", desc = "[SPX] Tutorial Island")
@@ -50,7 +51,7 @@ public class Main extends SPXScript implements LoginResponseListener {
             e.printStackTrace();
         }
 
-        Log.fine("Loaded " + missions.size() + " account(s)");
+        Log.log(Level.WARNING, "Info", "[Loaded Accounts]: " + missions.size() + " | [Loaded File]: " + args.load_accounts);
         return missions;
     }
 
