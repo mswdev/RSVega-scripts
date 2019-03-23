@@ -54,12 +54,4 @@ public class DataTestMission extends Mission {
         worker_handler.work();
         return 100;
     }
-
-    @Override
-    public void onMissionStart() {
-    }
-
-    @Override
-    public void onMissionEnd() {
-    }
 }

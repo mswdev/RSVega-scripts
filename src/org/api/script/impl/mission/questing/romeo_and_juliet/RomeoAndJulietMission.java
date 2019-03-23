@@ -53,15 +53,5 @@ public class RomeoAndJulietMission extends Mission {
         handler.work();
         return 100;
     }
-
-    @Override
-    public void onMissionStart() {
-
-    }
-
-    @Override
-    public void onMissionEnd() {
-
-    }
 }
 
