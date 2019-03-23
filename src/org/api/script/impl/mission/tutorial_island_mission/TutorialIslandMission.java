@@ -95,10 +95,6 @@ public class TutorialIslandMission extends Mission {
         script.setAccount(new GameAccount(username, password));
     }
 
-    @Override
-    public void onMissionEnd() {
-    }
-
     public void setShouldEnd(boolean should_stop) {
         this.should_stop = should_stop;
     }

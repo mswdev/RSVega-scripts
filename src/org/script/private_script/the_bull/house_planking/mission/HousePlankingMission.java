@@ -87,16 +87,6 @@ public class HousePlankingMission extends Mission implements ItemManagement {
     }
 
     @Override
-    public void onMissionStart() {
-
-    }
-
-    @Override
-    public void onMissionEnd() {
-
-    }
-
-    @Override
     public ItemManagementEntry[] itemsToBuy() {
         return new ItemManagementEntry[]{
                 new ItemManagementEntry(this, RING_OF_WEALTH_IDS[5], 10, () -> getScript().bank_cache.get().getOrDefault(RING_OF_WEALTH_IDS[1], 0) <= 0 && getScript().bank_cache.get().getOrDefault(RING_OF_WEALTH_IDS[2], 0) <= 0 && getScript().bank_cache.get().getOrDefault(RING_OF_WEALTH_IDS[3], 0) <= 0 && getScript().bank_cache.get().getOrDefault(RING_OF_WEALTH_IDS[4], 0) <= 0 && getScript().bank_cache.get().getOrDefault(RING_OF_WEALTH_IDS[5], 0) <= 0 && Inventory.getCount(RING_OF_WEALTH_IDS[5] + 1) <= 0),

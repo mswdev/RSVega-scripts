@@ -46,8 +46,10 @@ public class ButlerDialogue extends Worker {
             return;
         }
 
-        if (!Dialog.isOpen())
+        if (!Dialog.isOpen()) {
             callServant();
+            Log.severe("CALLING BUTLER");
+        }
 
         if (Interfaces.getFirst(a -> a.getText().contains("Go to the sawmill...")) != null)
             if (Inventory.use(a -> a.getId() == mission.getLogType().getItemID(), servant))

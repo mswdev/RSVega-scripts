@@ -60,14 +60,6 @@ public class TestScriptMission extends Mission implements ItemManagement {
     }
 
     @Override
-    public void onMissionStart() {
-    }
-
-    @Override
-    public void onMissionEnd() {
-    }
-
-    @Override
     public ItemManagementEntry[] itemsToBuy() {
         return new ItemManagementEntry[]{
                 /*new ItemManagementEntry(this, AxeType.BRONZE.getItemID(), 1, new GoalList(new SkillGoal(Skills.getLevel(Skill.WOODCUTTING), AxeType.BRONZE.getRequiredWoodcuttingLevel()))),
