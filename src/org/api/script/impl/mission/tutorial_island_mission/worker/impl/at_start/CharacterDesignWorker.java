@@ -16,10 +16,10 @@ import java.util.List;
 public class CharacterDesignWorker extends Worker {
 
     private static final int INTER_MASTER = 269;
-    private static final int INTER_ACCEPT_BUTTON = 99;
+    private static final int INTER_ACCEPT_COMPONENT = 99;
 
     private boolean shouldExecute() {
-        final InterfaceComponent CHARACTER_DESIGN = Interfaces.getComponent(INTER_MASTER, INTER_ACCEPT_BUTTON);
+        final InterfaceComponent CHARACTER_DESIGN = Interfaces.getFirst(INTER_MASTER, a -> a.getIndex() == INTER_ACCEPT_COMPONENT);
         return CHARACTER_DESIGN != null && CHARACTER_DESIGN.isVisible();
     }
 
@@ -36,26 +36,22 @@ public class CharacterDesignWorker extends Worker {
         design_options.add(0, DesignOption.GENDER);
 
         for (DesignOption option : design_options) {
-            final InterfaceComponent left_option = Interfaces.getComponent(INTER_MASTER, option.getLeft());
-            final InterfaceComponent right_option = Interfaces.getComponent(INTER_MASTER, option.getRight());
+            final InterfaceComponent left_option = Interfaces.getFirst(INTER_MASTER, a -> a.getIndex() == option.getComponentIndexLeft());
+            final InterfaceComponent right_option = Interfaces.getFirst(INTER_MASTER, a -> a.getIndex() == option.getComponentIndexRight());
             if (left_option == null || right_option == null)
                 continue;
 
-            int left_clicks = Random.nextInt(0, 6);
-            int right_clicks = Random.nextInt(0, 6);
-            while (left_clicks > 0 || right_clicks > 0) {
-                final boolean LEFT_CLICK = Random.nextInt(0, 1) == 0;
-                if (LEFT_CLICK && left_clicks-- >= 0) {
-                    left_option.interact(a -> true);
-                } else if (right_clicks-- >= 0) {
+            int options = Random.nextInt(0, option.getTotalOptions());
+            for (int i = 0; i < options; i++) {
+                final boolean right_click = Random.nextInt(0, 1) == 0;
+                if (right_click)
                     right_option.interact(a -> true);
-                }
-
-                Time.sleep(100, 200);
+                else
+                    left_option.interact(a -> true);
             }
         }
 
-        final InterfaceComponent ACCEPT_BUTTON = Interfaces.getComponent(INTER_MASTER, INTER_ACCEPT_BUTTON);
+        final InterfaceComponent ACCEPT_BUTTON = Interfaces.getFirst(INTER_MASTER, a -> a.getIndex() == INTER_ACCEPT_COMPONENT);
         if (ACCEPT_BUTTON == null)
             return;
 

@@ -2,6 +2,7 @@ package org.api.script.impl.mission.tutorial_island_mission.worker.impl.at_start
 
 import org.api.script.framework.worker.Worker;
 import org.api.script.impl.mission.tutorial_island_mission.TutorialIslandMission;
+import org.api.script.impl.mission.tutorial_island_mission.data.DisplayNameType;
 import org.rspeer.runetek.adapter.component.InterfaceComponent;
 import org.rspeer.runetek.api.Varps;
 import org.rspeer.runetek.api.commons.Time;
@@ -11,14 +12,11 @@ import org.rspeer.runetek.api.component.Interfaces;
 
 public class CharacterDisplayNameWorker extends Worker {
 
-    public static final int DISPLAY_NAME_VARPBIT = 5605;
+    static final int DISPLAY_NAME_VARPBIT = 5605;
     private static final int CHOOSE_DISPLAY_NAME_INTER = 558;
-    private static final int CHOOSE_DISPLAY_NAME_LOOKUP_INTER = 17;
-    private static final int CHOOSE_DISPLAY_NAME_SET_INTER = 18;
     private final TutorialIslandMission mission;
-    private int lookup_count;
 
-    public CharacterDisplayNameWorker(TutorialIslandMission mission) {
+    CharacterDisplayNameWorker(TutorialIslandMission mission) {
         this.mission = mission;
     }
 
@@ -29,9 +27,17 @@ public class CharacterDisplayNameWorker extends Worker {
 
     @Override
     public void work() {
-        if (Varps.getBitValue(DISPLAY_NAME_VARPBIT) != 4) {
-            lookup_count++;
-            final InterfaceComponent lookup_display_name = Interfaces.getComponent(CHOOSE_DISPLAY_NAME_INTER, CHOOSE_DISPLAY_NAME_LOOKUP_INTER);
+        if (Varps.getBitValue(DISPLAY_NAME_VARPBIT) == DisplayNameType.SEARCHING.getVarpbitValue())
+            return;
+
+        if (Varps.getBitValue(DISPLAY_NAME_VARPBIT) == DisplayNameType.NOT_AVAILABLE.getVarpbitValue()) {
+            final InterfaceComponent display_name_suggestion = Interfaces.getFirst(CHOOSE_DISPLAY_NAME_INTER, a -> a.getIndex() == Random.nextInt(14, 16));
+            if (display_name_suggestion != null && display_name_suggestion.isVisible()) {
+                display_name_suggestion.click();
+                return;
+            }
+
+            final InterfaceComponent lookup_display_name = Interfaces.getFirst(CHOOSE_DISPLAY_NAME_INTER, a -> a.containsAction("Look up name"));
             if (lookup_display_name == null)
                 return;
 
@@ -41,19 +47,15 @@ public class CharacterDisplayNameWorker extends Worker {
             }
 
             String display_name = mission.getUsername().split("@")[0];
-            if (lookup_count > 1)
-                display_name += Random.nextInt(0, 1000);
-
             EnterInput.initiate(display_name);
-            return;
         }
 
-        final InterfaceComponent set_display_name = Interfaces.getComponent(CHOOSE_DISPLAY_NAME_INTER, CHOOSE_DISPLAY_NAME_SET_INTER);
+        final InterfaceComponent set_display_name = Interfaces.getFirst(CHOOSE_DISPLAY_NAME_INTER, a -> a.containsAction("Set name") && a.isVisible() && a.getText().isEmpty());
         if (set_display_name == null)
             return;
 
-        lookup_count = 0;
         set_display_name.click();
+        Time.sleepUntil(() -> Varps.getBitValue(DISPLAY_NAME_VARPBIT) == DisplayNameType.SET.getVarpbitValue(), 1500);
     }
 
     @Override
