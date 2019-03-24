@@ -2,6 +2,7 @@ package org.api.script.impl.mission.tutorial_island_mission.worker.impl.at_start
 
 import org.api.script.framework.worker.Worker;
 import org.api.script.impl.mission.tutorial_island_mission.TutorialIslandMission;
+import org.api.script.impl.mission.tutorial_island_mission.data.DisplayNameType;
 import org.rspeer.runetek.api.Varps;
 
 public class CharacterSetupWorker extends Worker {
@@ -21,12 +22,10 @@ public class CharacterSetupWorker extends Worker {
 
     @Override
     public void work() {
-        if (Varps.getBitValue(CharacterDisplayNameWorker.DISPLAY_NAME_VARPBIT) != 0 && Varps.getBitValue(CharacterDisplayNameWorker.DISPLAY_NAME_VARPBIT) != 5) {
-            character_display_name_worker.work();
-            return;
-        }
+        if (Varps.getBitValue(CharacterDisplayNameWorker.DISPLAY_NAME_VARPBIT) == DisplayNameType.UNKNOWN.getVarpbitValue() || Varps.getBitValue(CharacterDisplayNameWorker.DISPLAY_NAME_VARPBIT) == DisplayNameType.SET.getVarpbitValue())
+            character_design_worker.work();
 
-        character_design_worker.work();
+        character_display_name_worker.work();
     }
 
     @Override
