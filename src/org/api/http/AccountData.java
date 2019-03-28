@@ -15,8 +15,8 @@ public class AccountData {
     private static int ACCOUNT_ID;
 
     public static boolean insertAccount(RequestBody request_body) {
-        try {
-            return Request.post(RSVegaTracker.API_URL + "/account/add", request_body).isSuccessful();
+        try (final Response response = Request.post(RSVegaTracker.API_URL + "/account/add", request_body)) {
+            return response.isSuccessful();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -24,10 +24,10 @@ public class AccountData {
         return false;
     }
 
-    public static boolean insertAccountData() {
+    public static RequestBody getAccountDataRequestBody() {
         final FormBody.Builder form_builder = new FormBody.Builder();
         form_builder.add("username", Script.getRSPeerUser().getUsername());
-        return insertAccount(form_builder.build());
+        return form_builder.build();
     }
 
     /**
@@ -36,10 +36,8 @@ public class AccountData {
      * @param username The username of the rspeer user.
      * @return A json array of the rspeer users account data; null otherwise.
      */
-    public static JsonArray getAccountByUsername(String username) {
-        try {
-            final Response response = Request.get(RSVegaTracker.API_URL + "/account/user/" + username);
-
+    private static JsonArray getAccountByUsername(String username) {
+        try (final Response response = Request.get(RSVegaTracker.API_URL + "/account/user/" + username)) {
             if (!response.isSuccessful())
                 return null;
 

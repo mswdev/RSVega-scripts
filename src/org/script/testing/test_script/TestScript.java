@@ -24,7 +24,9 @@ import org.rspeer.script.events.LoginScreen;
 import org.rspeer.script.events.WelcomeScreen;
 import org.rspeer.ui.Log;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.stream.Stream;
 
 @ScriptMeta(developer = "Sphiinx", category = ScriptCategory.TOOL, name = "[SPX] Test Script", desc = "Test Script")

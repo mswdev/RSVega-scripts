@@ -26,6 +26,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collections;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
@@ -47,7 +48,9 @@ public abstract class SPXScript extends Script implements RenderListener {
     public void onStart() {
         Log.log(Level.FINE, "Info", "Starting " + getMeta().name() + "!");
 
-        RSVegaTracker.onStart();
+        RSVegaTracker.insertAccount();
+        RSVegaTracker.insertBot();
+        RSVegaTracker.insertSession(getMeta().name(), new Date());
         scheduleThreadPool();
 
         createDirectoryFolders();
@@ -103,7 +106,9 @@ public abstract class SPXScript extends Script implements RenderListener {
 
     @Override
     public void onStop() {
+        RSVegaTracker.updateSession(new Date());
         thread_pool_executor.shutdown();
+
         if (fx_gui_builder != null)
             fx_gui_builder.close();
 

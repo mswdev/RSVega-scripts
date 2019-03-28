@@ -2,10 +2,10 @@ package org.api.http.bot.stats;
 
 import okhttp3.FormBody;
 import okhttp3.RequestBody;
+import okhttp3.Response;
 import org.api.game.player.Player;
 import org.api.game.questing.Questing;
 import org.api.http.RSVegaTracker;
-import org.api.http.bot.BotData;
 import org.api.http.wrappers.Request;
 import org.rspeer.runetek.api.component.tab.Skill;
 import org.rspeer.runetek.api.component.tab.Skills;
@@ -16,8 +16,8 @@ import java.io.IOException;
 public class StatsOSRS {
 
     public static boolean updateStatsOSRS(int bot_id, RequestBody request_body) {
-        try {
-            return Request.put(RSVegaTracker.API_URL + "/bot/id/" + bot_id + "/stats/osrs/update", request_body).isSuccessful();
+        try (final Response response = Request.put(RSVegaTracker.API_URL + "/bot/id/" + bot_id + "/stats/osrs/update", request_body)) {
+            return response.isSuccessful();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -25,11 +25,7 @@ public class StatsOSRS {
         return false;
     }
 
-    public static boolean updateStatsOSRSData() {
-        return updateStatsOSRS(BotData.getBotID(), getStatsOSRSDataRequestBody());
-    }
-
-    private static RequestBody getStatsOSRSDataRequestBody() {
+    public static RequestBody getStatsOSRSDataRequestBody() {
         final FormBody.Builder form_builder = new FormBody.Builder();
         form_builder.add("is_tutorial", String.valueOf(Player.isTutorial()));
         form_builder.add("ironman_state", String.valueOf(Player.getIronManState().getState()));

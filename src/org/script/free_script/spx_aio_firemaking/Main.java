@@ -20,6 +20,7 @@ public class Main extends SPXScript {
         return ARGS;
     }
 
+
     @Override
     public Queue<Mission> createMissionQueue() {
         final LinkedList<Mission> missions = new LinkedList<>();

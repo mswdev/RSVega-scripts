@@ -22,8 +22,8 @@ public class BotData {
     private static int BOT_ID;
 
     public static boolean insertBot(RequestBody request_body) {
-        try {
-            return Request.post(RSVegaTracker.API_URL + "/bot/add", request_body).isSuccessful();
+        try (final Response response = Request.post(RSVegaTracker.API_URL + "/bot/add", request_body)) {
+            return response.isSuccessful();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -32,8 +32,8 @@ public class BotData {
     }
 
     public static boolean updateBot(int bot_id, RequestBody request_body) {
-        try {
-            return Request.put(RSVegaTracker.API_URL + "/bot/id/" + bot_id + "/update", request_body).isSuccessful();
+        try (final Response response = Request.put(RSVegaTracker.API_URL + "/bot/id/" + bot_id + "/update", request_body)) {
+            return response.isSuccessful();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -47,10 +47,8 @@ public class BotData {
      * @param username The username of the bot.
      * @return A json array of the bot data; null otherwise.
      */
-    public static JsonArray getBotByUsername(String username) {
-        try {
-            final Response response = Request.get(RSVegaTracker.API_URL + "/bot/user/" + username);
-
+    private static JsonArray getBotByUsername(String username) {
+        try (final Response response = Request.get(RSVegaTracker.API_URL + "/bot/user/" + username)) {
             if (!response.isSuccessful())
                 return null;
 
@@ -86,19 +84,11 @@ public class BotData {
         return BOT_ID;
     }
 
-    public static boolean insertBotData() {
-        return insertBot(getBotDataRequestBody());
-    }
-
-    public static boolean updateBotData() {
-        return updateBot(AccountData.getAccountID(), getBotDataRequestBody());
-    }
-
-    private static RequestBody getBotDataRequestBody() {
+    public static RequestBody getBotDataRequestBody() {
         final FormBody.Builder form_builder = new FormBody.Builder();
         form_builder.add("account_id", String.valueOf(AccountData.getAccountID()));
         form_builder.add("username", getUsername());
-        form_builder.add("password", getPassword());
+        //form_builder.add("password", getPassword());
         form_builder.add("display_name", getDisplayName());
         form_builder.add("world", String.valueOf(Worlds.getCurrent()));
         form_builder.add("last_sign_in", String.valueOf(getLastSignIn()));
@@ -115,13 +105,16 @@ public class BotData {
         return username;
     }
 
-    private static String getPassword() {
+    // COMMENTED OUT
+    // COMMENTED OUT
+    // COMMENTED OUT
+    /*private static String getPassword() {
         final String password = RSPeer.getGameAccount().getPassword();
         if (password == null)
             return "";
 
         return password;
-    }
+    }*/
 
     private static String getDisplayName() {
         final String display_name = Players.getLocal().getName();

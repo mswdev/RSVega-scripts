@@ -12,10 +12,10 @@ public class RSVegaTrackerThread implements Runnable {
     @Override
     public void run() {
         Log.log(Level.WARNING, "Info", "Executing RSVegaTracker data collection.");
-        if (!BotData.updateBotData())
+        if (!BotData.updateBot(BotData.getBotID(), BotData.getBotDataRequestBody()))
             Log.severe("Bot data update HTTP request failed.");
 
-        if (!StatsOSRS.updateStatsOSRSData())
+        if (!StatsOSRS.updateStatsOSRS(BotData.getBotID(), StatsOSRS.getStatsOSRSDataRequestBody()))
             Log.severe("Stats OSRS data update HTTP request failed.");
     }
 }
