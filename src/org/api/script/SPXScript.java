@@ -154,7 +154,7 @@ public abstract class SPXScript extends Script implements RenderListener {
      */
     private void scheduleThreadPool() {
         thread_pool_executor = new ScheduledThreadPoolExecutor(1);
-        thread_pool_executor.scheduleAtFixedRate(new RSVegaTrackerThread(), 5, 5, TimeUnit.SECONDS);
+        thread_pool_executor.scheduleAtFixedRate(new RSVegaTrackerThread(), 2, 2, TimeUnit.MINUTES);
     }
 
     /**
