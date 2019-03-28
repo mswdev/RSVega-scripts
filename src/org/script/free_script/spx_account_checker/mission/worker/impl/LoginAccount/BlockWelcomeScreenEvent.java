@@ -1,7 +1,7 @@
 package org.script.free_script.spx_account_checker.mission.worker.impl.LoginAccount;
 
 import org.api.game.pricechecking.PriceCheck;
-import org.api.game.questing.QuestingUtil;
+import org.api.game.questing.Questing;
 import org.rspeer.runetek.adapter.component.InterfaceComponent;
 import org.rspeer.runetek.adapter.component.Item;
 import org.rspeer.runetek.api.Varps;
@@ -81,7 +81,7 @@ public class BlockWelcomeScreenEvent extends ScriptBlockingEvent {
             Vars.get().osrs_data.put("level_runecrafting", String.valueOf(Skills.getLevel(Skill.RUNECRAFTING)));
             Vars.get().osrs_data.put("level_hunter", String.valueOf(Skills.getLevel(Skill.HUNTER)));
             Vars.get().osrs_data.put("level_construction", String.valueOf(Skills.getLevel(Skill.CONSTRUCTION)));
-            Vars.get().osrs_data.put("quest_points", String.valueOf(QuestingUtil.getPoints()));
+            Vars.get().osrs_data.put("quest_points", String.valueOf(Questing.getPoints()));
             Vars.get().osrs_data.put("quests_complete", getCompletedQuests());
             Vars.get().can_logout = true;
         });

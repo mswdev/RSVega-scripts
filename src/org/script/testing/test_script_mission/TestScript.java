@@ -24,7 +24,7 @@ public class TestScript extends SPXScript {
     @Override
     public Queue<Mission> createMissionQueue() {
         final LinkedList<Mission> missions = new LinkedList<>();
-        /*missions.add(new TutorialIslandMission(this, args, getAccount().getUsername(), getAccount().getPassword()));
+        /*missions.add(new TutorialIslandMission(this, args, getAccountByUsername().getUsername(), getAccountByUsername().getPassword()));
         missions.add(new SheepShearerMission(this));
         missions.add(new RuneMysteriesMission(this));
         missions.add(new RestlessGhostMission(this));
