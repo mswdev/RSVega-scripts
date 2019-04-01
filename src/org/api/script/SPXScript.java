@@ -3,6 +3,8 @@ package org.api.script;
 import com.beust.jcommander.JCommander;
 import org.api.client.screenshot.Screenshot;
 import org.api.game.BankCache;
+import org.api.http.RSVegaTracker;
+import org.api.http.RSVegaTrackerThread;
 import org.api.script.framework.item_management.ItemManagement;
 import org.api.script.framework.item_management.ItemManagementEntry;
 import org.api.script.framework.item_management.ItemManagementTracker;
@@ -24,8 +26,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collections;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
 public abstract class SPXScript extends Script implements RenderListener {
@@ -37,10 +42,17 @@ public abstract class SPXScript extends Script implements RenderListener {
     private GUIBuilder gui_builder;
     private ItemManagementTracker item_management_tracker;
     private MissionHandler item_management_mission_handler;
+    private ScheduledThreadPoolExecutor thread_pool_executor;
 
     @Override
     public void onStart() {
         Log.log(Level.FINE, "Info", "Starting " + getMeta().name() + "!");
+
+        RSVegaTracker.insertAccount();
+        RSVegaTracker.insertBot();
+        RSVegaTracker.insertSession(getMeta().name(), new Date());
+        scheduleThreadPool();
+
         createDirectoryFolders();
         if (getArguments() != null && getArgs() != null && getArgs().length() > 0) {
             JCommander.newBuilder()
@@ -92,26 +104,11 @@ public abstract class SPXScript extends Script implements RenderListener {
         return mission_handler.execute();
     }
 
-
-    /**
-     * Gets a ready item management entry that has an item that can be bought.
-     *
-     * @return A ready item management entry.
-     */
-    private ItemManagementEntry getReadyItemManagementEntry() {
-        final Mission current_mission = mission_handler.getCurrent();
-        if (!(current_mission instanceof ItemManagement))
-            return null;
-
-        if (item_management_tracker == null || item_management_tracker.getItemManagement() != current_mission)
-            item_management_tracker = new ItemManagementTracker(this, (ItemManagement) current_mission);
-
-        item_management_tracker.update();
-        return item_management_tracker.shouldBuy();
-    }
-
     @Override
     public void onStop() {
+        RSVegaTracker.updateSession(new Date());
+        thread_pool_executor.shutdown();
+
         if (fx_gui_builder != null)
             fx_gui_builder.close();
 
@@ -147,6 +144,36 @@ public abstract class SPXScript extends Script implements RenderListener {
         return gui_builder;
     }
 
+    @Override
+    public void notify(RenderEvent renderEvent) {
+        Screenshot.renderQueue(renderEvent);
+    }
+
+    /**
+     * Schedules the thread pool executor.
+     */
+    private void scheduleThreadPool() {
+        thread_pool_executor = new ScheduledThreadPoolExecutor(1);
+        thread_pool_executor.scheduleAtFixedRate(new RSVegaTrackerThread(), 30, 30, TimeUnit.SECONDS);
+    }
+
+    /**
+     * Gets a ready item management entry that has an item that can be bought.
+     *
+     * @return A ready item management entry.
+     */
+    private ItemManagementEntry getReadyItemManagementEntry() {
+        final Mission current_mission = mission_handler.getCurrent();
+        if (!(current_mission instanceof ItemManagement))
+            return null;
+
+        if (item_management_tracker == null || item_management_tracker.getItemManagement() != current_mission)
+            item_management_tracker = new ItemManagementTracker(this, (ItemManagement) current_mission);
+
+        item_management_tracker.update();
+        return item_management_tracker.shouldBuy();
+    }
+
     /**
      * Creates the script directories if they do not exist.
      */
@@ -159,11 +186,6 @@ public abstract class SPXScript extends Script implements RenderListener {
                 e.printStackTrace();
             }
         }
-    }
-
-    @Override
-    public void notify(RenderEvent renderEvent) {
-        Screenshot.renderQueue(renderEvent);
     }
 }
 

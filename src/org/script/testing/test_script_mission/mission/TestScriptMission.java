@@ -40,7 +40,7 @@ public class TestScriptMission extends Mission implements ItemManagement {
 
     @Override
     public boolean shouldPrintWorkerString() {
-        return true;
+        return false;
     }
 
     @Override
@@ -64,7 +64,7 @@ public class TestScriptMission extends Mission implements ItemManagement {
         return new ItemManagementEntry[]{
                 /*new ItemManagementEntry(this, AxeType.BRONZE.getItemID(), 1, new GoalList(new SkillGoal(Skills.getLevel(Skill.WOODCUTTING), AxeType.BRONZE.getRequiredWoodcuttingLevel()))),
                 new ItemManagementEntry(this, AxeType.RUNE.getItemID(), 1, new GoalList(new SkillGoal(Skills.getLevel(Skill.WOODCUTTING), AxeType.BRONZE.getRequiredWoodcuttingLevel())))*/
-                new ItemManagementEntry(this, 995, 10000, () -> Inventory.getCount(true, 995) <= 0)
+                /*new ItemManagementEntry(this, 995, 10000, () -> Inventory.getCount(true, 995) <= 0)*/
         };
     }
 
