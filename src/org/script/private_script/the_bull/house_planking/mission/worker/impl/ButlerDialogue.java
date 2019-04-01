@@ -4,7 +4,6 @@ import org.api.script.framework.worker.Worker;
 import org.api.script.impl.worker.DialogueWorker;
 import org.rspeer.runetek.adapter.component.InterfaceComponent;
 import org.rspeer.runetek.adapter.scene.Npc;
-import org.rspeer.runetek.api.Varps;
 import org.rspeer.runetek.api.commons.Time;
 import org.rspeer.runetek.api.component.Dialog;
 import org.rspeer.runetek.api.component.EnterInput;
@@ -40,11 +39,17 @@ public class ButlerDialogue extends Worker {
         if (servant == null)
             return;
 
-        if (isServantStuck(servant))
+        if (isServantStuck(servant)) {
+            Log.severe("The servant is stuck, attempting to fix positioning.");
+            Log.fine("[Player position]: " + Players.getLocal().getPosition().toString() + " | [Servant position]: " + servant.getPosition().toString());
             Movement.walkTo(new Position(Players.getLocal().getX() - 1, Players.getLocal().getY()));
+            return;
+        }
 
-        if (!Dialog.isOpen())
+        if (!Dialog.isOpen()) {
             callServant();
+            Log.severe("CALLING BUTLER");
+        }
 
         if (Interfaces.getFirst(a -> a.getText().contains("Go to the sawmill...")) != null)
             if (Inventory.use(a -> a.getId() == mission.getLogType().getItemID(), servant))

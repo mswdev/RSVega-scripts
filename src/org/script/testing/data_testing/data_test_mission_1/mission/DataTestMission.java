@@ -3,8 +3,6 @@ package org.script.testing.data_testing.data_test_mission_1.mission;
 import org.api.script.SPXScript;
 import org.api.script.framework.goal.GoalList;
 import org.api.script.framework.goal.impl.InfiniteGoal;
-import org.api.script.framework.item_management.ItemManagement;
-import org.api.script.framework.item_management.ItemManagementEntry;
 import org.api.script.framework.mission.Mission;
 import org.api.script.framework.worker.Worker;
 import org.script.testing.data_testing.data_test_mission_1.mission.worker.DataTestWorkerHandler;
@@ -55,13 +53,5 @@ public class DataTestMission extends Mission {
     public int execute() {
         worker_handler.work();
         return 100;
-    }
-
-    @Override
-    public void onMissionStart() {
-    }
-
-    @Override
-    public void onMissionEnd() {
     }
 }

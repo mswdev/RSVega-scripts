@@ -66,16 +66,6 @@ public class FireMakingMission extends Mission {
         return 100;
     }
 
-    @Override
-    public void onMissionStart() {
-
-    }
-
-    @Override
-    public void onMissionEnd() {
-
-    }
-
     public Position getCurrentLaneStartPosition() {
         return current_lane_start_position;
     }
