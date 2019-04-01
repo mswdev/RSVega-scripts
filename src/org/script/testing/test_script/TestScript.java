@@ -5,6 +5,8 @@ import org.rspeer.script.ScriptCategory;
 import org.rspeer.script.ScriptMeta;
 import org.rspeer.ui.Log;
 
+import java.util.function.Predicate;
+
 @ScriptMeta(developer = "Sphiinx", category = ScriptCategory.TOOL, name = "[SPX] Test Script", desc = "Test Script")
 public class TestScript extends Script {
 
@@ -15,6 +17,7 @@ public class TestScript extends Script {
 
     @Override
     public int loop() {
+
         return 150;
     }
 

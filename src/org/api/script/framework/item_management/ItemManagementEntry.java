@@ -5,7 +5,6 @@ import org.api.script.framework.goal.GoalList;
 import org.api.script.framework.mission.Mission;
 import org.rspeer.runetek.api.component.tab.Equipment;
 import org.rspeer.runetek.api.component.tab.Inventory;
-import org.rspeer.ui.Log;
 
 import java.io.IOException;
 import java.util.function.BooleanSupplier;

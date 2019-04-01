@@ -20,6 +20,9 @@ public class WithdrawWorker extends Worker {
     private final DepositWorker deposit_worker;
     private boolean item_not_found;
 
+    // [TODO - 3/7/2019]: Temporary until contains bug is fixed.
+    private boolean has_checked_twice;
+
     public WithdrawWorker(Predicate<Item> item) {
         this(item, 1, Bank.WithdrawMode.ITEM);
     }
@@ -69,6 +72,11 @@ public class WithdrawWorker extends Worker {
                 deposit_worker.work();
                 return;
             }
+        }
+
+        if (!Bank.contains(item)) {
+            setItemNotFound();
+            return;
         }
 
         final int withdraw_cache = Inventory.getCount(true);

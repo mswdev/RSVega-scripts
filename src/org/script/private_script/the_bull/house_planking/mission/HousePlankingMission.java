@@ -13,6 +13,7 @@ import org.api.script.framework.mission.Mission;
 import org.api.script.framework.worker.Worker;
 import org.rspeer.runetek.api.component.Dialog;
 import org.rspeer.runetek.api.component.tab.Inventory;
+import org.rspeer.runetek.api.movement.position.Area;
 import org.rspeer.runetek.api.scene.House;
 import org.script.private_script.the_bull.house_planking.mission.worker.HousePlankingWorkerHandler;
 
@@ -33,6 +34,8 @@ public class HousePlankingMission extends Mission implements ItemManagement {
             11982,
             11980
     };
+    private static final Area GRAND_EXCHANGE = Area.rectangular(3137, 3518, 3191, 3466);
+    private static final Area LUMBRIDGE_PVP = Area.rectangular(3219, 3216, 3224, 3220);
     public boolean should_end;
 
     public HousePlankingMission(SPXScript script, LogType log_type, int quantity) {
@@ -78,24 +81,15 @@ public class HousePlankingMission extends Mission implements ItemManagement {
         if (Dialog.canContinue())
             Dialog.processContinue();
 
+
         worker_handler.work();
         return 150;
     }
 
     @Override
-    public void onMissionStart() {
-
-    }
-
-    @Override
-    public void onMissionEnd() {
-
-    }
-
-    @Override
     public ItemManagementEntry[] itemsToBuy() {
         return new ItemManagementEntry[]{
-                new ItemManagementEntry(this, RING_OF_WEALTH_IDS[5], 10, () -> getScript().bank_cache.get().getOrDefault(RING_OF_WEALTH_IDS[1], 0) <= 0 && getScript().bank_cache.get().getOrDefault(RING_OF_WEALTH_IDS[2], 0) <= 0 && getScript().bank_cache.get().getOrDefault(RING_OF_WEALTH_IDS[3], 0) <= 0 && getScript().bank_cache.get().getOrDefault(RING_OF_WEALTH_IDS[4], 0) <= 0 && getScript().bank_cache.get().getOrDefault(RING_OF_WEALTH_IDS[5], 0) <= 0 && Inventory.getCount(RING_OF_WEALTH_IDS[5] + 1) <= 0),
+                new ItemManagementEntry(this, RING_OF_WEALTH_IDS[5], 5, () -> getScript().bank_cache.get().getOrDefault(RING_OF_WEALTH_IDS[1], 0) <= 0 && getScript().bank_cache.get().getOrDefault(RING_OF_WEALTH_IDS[2], 0) <= 0 && getScript().bank_cache.get().getOrDefault(RING_OF_WEALTH_IDS[3], 0) <= 0 && getScript().bank_cache.get().getOrDefault(RING_OF_WEALTH_IDS[4], 0) <= 0 && getScript().bank_cache.get().getOrDefault(RING_OF_WEALTH_IDS[5], 0) <= 0 && Inventory.getCount(RING_OF_WEALTH_IDS[5] + 1) <= 0),
                 new ItemManagementEntry(this, ItemManagementTracker.GOLD_ID, getRequiredGold(), () -> Inventory.getCount(true, ItemManagementTracker.GOLD_ID) < getRequiredGold()),
                 new ItemManagementEntry(this, getLogType().getItemID(), getQuantity(), () -> getScript().bank_cache.get().getOrDefault(getLogType().getItemID(), 0) <= 0 && Inventory.getCount(true, getLogType().getItemID()) <= 0 && Inventory.getCount(getLogType().getNotedItemID()) <= 0 && !House.isInside() && !should_end),
                 new ItemManagementEntry(this, RuneType.LAW.getItemID(), ((getQuantity()) / 24) * 2 + 1, () -> getScript().bank_cache.get().getOrDefault(RuneType.LAW.getItemID(), 0) <= 0 && Inventory.getCount(true, RuneType.LAW.getItemID()) <= 0 && !should_end),

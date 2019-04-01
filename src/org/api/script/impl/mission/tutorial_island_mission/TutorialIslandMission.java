@@ -79,6 +79,13 @@ public class TutorialIslandMission extends Mission {
                     Time.sleepUntil(() -> Game.getClientPreferences().getResizable() == 1, 2500);
         }
 
+        //Temporary until the rspeer continue dialog is fixed.
+        if (Dialog.canContinue()) {
+            Dialog.processContinue();
+            Game.getClient().fireScriptEvent(299, 1, 1);
+        }
+
+
         worker_handler.work();
         return 100;
     }
@@ -86,10 +93,6 @@ public class TutorialIslandMission extends Mission {
     @Override
     public void onMissionStart() {
         script.setAccount(new GameAccount(username, password));
-    }
-
-    @Override
-    public void onMissionEnd() {
     }
 
     public void setShouldEnd(boolean should_stop) {

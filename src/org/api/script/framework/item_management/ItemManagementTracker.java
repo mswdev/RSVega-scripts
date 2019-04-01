@@ -3,7 +3,6 @@ package org.api.script.framework.item_management;
 import org.api.game.pricechecking.PriceCheck;
 import org.api.script.SPXScript;
 import org.rspeer.runetek.api.component.tab.Inventory;
-import org.rspeer.ui.Log;
 
 import java.io.IOException;
 

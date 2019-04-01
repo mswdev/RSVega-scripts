@@ -65,14 +65,6 @@ public class ItemManagementMission extends Mission {
         return 100;
     }
 
-    @Override
-    public void onMissionStart() {
-    }
-
-    @Override
-    public void onMissionEnd() {
-    }
-
     public ItemManagementTracker getItemManagementTracker() {
         return item_management_tracker;
     }
