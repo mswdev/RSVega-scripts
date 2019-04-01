@@ -10,6 +10,7 @@ import org.api.script.impl.mission.tutorial_island_mission.worker.impl.stage.com
 import org.api.script.impl.mission.tutorial_island_mission.worker.impl.stage.magic_instructor.CastAirStrike;
 import org.api.script.impl.mission.tutorial_island_mission.worker.impl.stage.master_chef.MakeDough;
 import org.api.script.impl.mission.tutorial_island_mission.worker.impl.stage.mining_instructor.SmithDagger;
+import org.api.script.impl.mission.tutorial_island_mission.worker.impl.stage.mining_instructor.TempSmeltOreWorker;
 import org.api.script.impl.mission.tutorial_island_mission.worker.impl.stage.survival_expert.CatchShrimp;
 import org.api.script.impl.mission.tutorial_island_mission.worker.impl.stage.survival_expert.ChopTree;
 import org.api.script.impl.mission.tutorial_island_mission.worker.impl.stage.survival_expert.CookShrimp;
@@ -57,7 +58,8 @@ public enum TutorialState {
     MINING_INSTRUCTOR_DIALOGUE(new NpcWorker(a -> a.getName().equals("Mining Instructor"), new MovementWorker(new Position(3080, 9505, 0))), 260, 270, 330),
     MINE_TIN(new HintWorker(), 300),
     MINE_COPPER(new HintWorker(), 310),
-    SMELT_ORE(new HintWorker(), 320),
+    /*SMELT_ORE(new HintWorker(), 320),*/
+    SMELT_ORE(new TempSmeltOreWorker(), 320),
     OPEN_ANVIL(new HintWorker(), 340),
     SMITH_DAGGER(new SmithDagger(), 350),
 
