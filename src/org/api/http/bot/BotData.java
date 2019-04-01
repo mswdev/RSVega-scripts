@@ -88,7 +88,6 @@ public class BotData {
         final FormBody.Builder form_builder = new FormBody.Builder();
         form_builder.add("account_id", String.valueOf(AccountData.getAccountID()));
         form_builder.add("username", getUsername());
-        //form_builder.add("password", getPassword());
         form_builder.add("display_name", getDisplayName());
         form_builder.add("world", String.valueOf(Worlds.getCurrent()));
         form_builder.add("last_sign_in", String.valueOf(getLastSignIn()));
@@ -104,17 +103,6 @@ public class BotData {
 
         return username;
     }
-
-    // COMMENTED OUT
-    // COMMENTED OUT
-    // COMMENTED OUT
-    /*private static String getPassword() {
-        final String password = RSPeer.getGameAccount().getPassword();
-        if (password == null)
-            return "";
-
-        return password;
-    }*/
 
     private static String getDisplayName() {
         final String display_name = Players.getLocal().getName();
