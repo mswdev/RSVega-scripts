@@ -28,5 +28,5 @@ For now, RSVega bot sessions are controlled via the [RSPeer Bot Panel](https://a
 - AIO Firemaking mission
 - AIO Questing mission
 
-### Future support
+### Project board
 Check the [RSVega Project Board](https://github.com/users/Sphiinx/projects/1) for to-do and in-progress tasks.
