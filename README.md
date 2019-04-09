@@ -1,5 +1,7 @@
 ## RSVega - Automation for Old School RuneScape® bot farms/account checking
 
+![](https://discordapp.com/api/guilds/173837867976622082/widget.png?style=shield) ![Uptime Robot ratio (7 days)](https://img.shields.io/uptimerobot/ratio/7/m782380754-961dbbe722edf94a1349207f.svg?style=flat-square)
+
 ### What is RSVega?
 RSVega is a project that aims to fully automate bot farms and account checking for [Old School RuneScape®](https://oldschool.runescape.com/) built upon the [RSPeer](https://rspeer.org/) platform.
 
