@@ -24,7 +24,7 @@
   <path id="rsvega-scripts.runtime.production.module.classpath">
     <pathelement location="${rsvega-scripts.output.dir}"/>
     <pathelement location="${basedir}/../../RSPeer/cache/rspeer.jar"/>
-    <path refid="rsvega-scriptapi.runtime.production.module.classpath"/>
+    <pathelement location="${basedir}/../../RSPeer/cache/rspeer.jar"/>
   </path>
   
   <path id="rsvega-scripts.module.classpath">
@@ -36,7 +36,7 @@
   <path id="rsvega-scripts.runtime.module.classpath">
     <pathelement location="${rsvega-scripts.output.dir}"/>
     <pathelement location="${basedir}/../../RSPeer/cache/rspeer.jar"/>
-    <path refid="rsvega-scriptapi.runtime.module.classpath"/>
+    <pathelement location="${basedir}/../../RSPeer/cache/rspeer.jar"/>
   </path>
   
   
