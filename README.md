@@ -12,8 +12,11 @@ For now, RSVega bot sessions are controlled via the [RSPeer Bot Panel](https://a
 
 ### Repositories
 [RSVega-scripts](https://github.com/Sphiinx/RSVega-scripts) - This repository contains the main-entry points for the RSVega scripts.
+
 [RSVega-scriptapi](https://github.com/Sphiinx/RSVega-scriptapi) - This repository contains the library of methods for the RSVega scripts to use.
+
 [RSVega-restapi](https://github.com/Sphiinx/RSVega-restapi) - This repository contains the RESTful api for controlling the back-end system of RSVega.
+
 [RSVega-discord-bot](https://github.com/Sphiinx/RSVega-discord-bot) - This repository contains the RSVega discord bot.
 
 ### Current support
