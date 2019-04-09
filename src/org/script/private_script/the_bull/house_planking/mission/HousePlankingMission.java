@@ -19,13 +19,6 @@ import org.script.private_script.the_bull.house_planking.mission.worker.HousePla
 
 public class HousePlankingMission extends Mission implements ItemManagement {
 
-    private final HousePlankingWorkerHandler worker_handler = new HousePlankingWorkerHandler(this);
-    private final LogType log_type;
-    private final int quantity;
-    private final int PLANK_ID = 960;
-    private final int OAK_PLANK_ID = 8778;
-    private final int MAHOGANY_PLANK_ID = 8782;
-    private final int TEAK_PLANK_ID = 8780;
     public static final int[] RING_OF_WEALTH_IDS = new int[]{
             2572,
             11988,
@@ -36,6 +29,13 @@ public class HousePlankingMission extends Mission implements ItemManagement {
     };
     private static final Area GRAND_EXCHANGE = Area.rectangular(3137, 3518, 3191, 3466);
     private static final Area LUMBRIDGE_PVP = Area.rectangular(3219, 3216, 3224, 3220);
+    private final HousePlankingWorkerHandler worker_handler = new HousePlankingWorkerHandler(this);
+    private final LogType log_type;
+    private final int quantity;
+    private final int PLANK_ID = 960;
+    private final int OAK_PLANK_ID = 8778;
+    private final int MAHOGANY_PLANK_ID = 8782;
+    private final int TEAK_PLANK_ID = 8780;
     public boolean should_end;
 
     public HousePlankingMission(SPXScript script, LogType log_type, int quantity) {

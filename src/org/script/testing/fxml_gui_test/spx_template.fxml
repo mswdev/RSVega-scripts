@@ -7,7 +7,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.script.testing.fxml_gui_test.TestFXGUIController" maxHeight="-Infinity"
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.script.testing.fxml_gui_test.TestFXGUIController"
+      maxHeight="-Infinity"
       maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
       prefWidth="300.0" style="-fx-background-color: #1a1818;" xmlns="http://javafx.com/javafx/9.0.1">
     <children>
