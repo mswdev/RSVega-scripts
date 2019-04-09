@@ -15,7 +15,6 @@ public class TestScript extends Script {
 
     @Override
     public int loop() {
-        Inventoery.
         return 150;
     }
 
