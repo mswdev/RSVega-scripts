@@ -1,7 +1,7 @@
 package org.script.free_script.spx_aio_firemaking.data;
 
 import com.beust.jcommander.Parameter;
-import org.api.game.skills.firemaking.LogType;
+import org.script.free_script.spx_aio_firemaking.api.game.skills.firemaking.LogType;
 
 public class Args {
 
