@@ -1,9 +1,9 @@
 package org.script.free_script.spx_aio_firemaking;
 
-import org.script.free_script.spx_aio_firemaking.api.script.SPXScript;
-import org.script.free_script.spx_aio_firemaking.api.script.framework.mission.Mission;
-import org.script.free_script.spx_aio_firemaking.api.script.impl.mission.firemaking_mission.FireMakingMission;
-import org.script.free_script.spx_aio_firemaking.api.script.impl.mission.firemaking_mission.data.Args;
+import org.api.script.SPXScript;
+import org.api.script.framework.mission.Mission;
+import org.api.script.impl.mission.firemaking_mission.FireMakingMission;
+import org.api.script.impl.mission.firemaking_mission.data.Args;
 import org.rspeer.script.ScriptCategory;
 import org.rspeer.script.ScriptMeta;
 
