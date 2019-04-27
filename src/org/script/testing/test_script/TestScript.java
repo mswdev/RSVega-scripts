@@ -10,7 +10,7 @@ public class TestScript extends Script {
 
     @Override
     public void onStart() {
-        Log.fine("[SPX] Test Script has started.");
+        Log.fine("[SPX] Test Script has started. :^)");
     }
 
     @Override
