@@ -19,7 +19,7 @@ public class Main extends SPXScript {
     @Override
     public Queue<Mission> createMissionQueue() {
         final LinkedList<Mission> missions = new LinkedList<>();
-        missions.add(new TutorialIslandMission(this, args, getAccount().getUsername(), getAccount().getPassword()));
+        missions.add(new TutorialIslandMission(this, args, false, getAccount().getUsername(), getAccount().getPassword()));
         Log.fine("Loaded " + missions.size() + " account(s)");
         return missions;
     }
