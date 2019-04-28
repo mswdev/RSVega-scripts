@@ -40,18 +40,34 @@ public class Main extends SPXScript implements LoginResponseListener {
     @Override
     public Queue<Mission> createMissionQueue() {
         final LinkedList<Mission> missions = new LinkedList<>();
-        if (!getAccount().getUsername().isEmpty() && !getAccount().getPassword().isEmpty())
-            missions.add(new TutorialIslandMission(this, args, getAccount().getUsername(), getAccount().getPassword()));
 
         final String delimiter = ":";
-        try (Stream<String> lines = Files.lines(Paths.get(script_data_path + File.separator + args.load_accounts))) {
+        try (Stream<String> lines = Files.lines(Paths.get(script_data_path + File.separator + args.proxy_list))) {
             lines.filter(line -> line.contains(delimiter))
-                    .forEach(line -> missions.add(new TutorialIslandMission(this, args, line.split(delimiter)[0], line.split(delimiter)[1])));
+                    .forEach(line -> {
+                        for (int i = 0; i < args.accounts_per_proxy; i++) {
+                            missions.add(new TutorialIslandMission(this, args, true, null, null, line.split(delimiter)[0], line.split(delimiter)[1], line.split(delimiter)[2], line.split(delimiter)[3]));
+                        }
+                    });
+        } catch (IOException e) {
+            Log.fine("Proxy file not found; using no proxy.");
+            for (int i = 0; i < args.accounts_to_create; i++) {
+                missions.add(new TutorialIslandMission(this, args, true, null, null));
+            }
+        }
+
+        if (!getAccount().getUsername().isEmpty() && !getAccount().getPassword().isEmpty())
+            missions.add(new TutorialIslandMission(this, args, false, getAccount().getUsername(), getAccount().getPassword()));
+
+        try (Stream<String> lines = Files.lines(Paths.get(script_data_path + File.separator + args.account_list))) {
+            lines.filter(line -> line.contains(delimiter))
+                    .forEach(line -> missions.add(new TutorialIslandMission(this, args, false, line.split(delimiter)[0], line.split(delimiter)[1])));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        Log.log(Level.WARNING, "Info", "[Loaded Accounts]: " + missions.size() + " | [Loaded File]: " + args.load_accounts);
+        Log.log(Level.WARNING, "Info", "[Accounts To Create]: " + args.accounts_to_create + " | [Loaded Proxy File]: " + args.proxy_list);
+        Log.log(Level.WARNING, "Info", "[Loaded Accounts]: " + missions.size() + " | [Loaded File]: " + args.account_list);
         return missions;
     }
 
