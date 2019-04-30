@@ -1,7 +1,6 @@
 package org.script.paid_script.spx_tutorial_island;
 
 import org.api.script.SPXScript;
-import org.api.script.SPXScriptUtil;
 import org.api.script.framework.mission.Mission;
 import org.api.script.impl.mission.tutorial_island_mission.TutorialIslandMission;
 import org.api.script.impl.mission.tutorial_island_mission.data.args.Args;
@@ -15,10 +14,7 @@ import org.rspeer.ui.Log;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
