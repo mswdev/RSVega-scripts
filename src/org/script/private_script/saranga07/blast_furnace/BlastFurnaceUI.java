@@ -17,15 +17,15 @@ public class BlastFurnaceUI extends GUI {
     private final JFrame frame = new JFrame();
     private final JPanel panel = new JPanel();
     private final GridBagConstraints constraints = new GridBagConstraints();
-    private final JComboBox combo_box = new AutoCompleteComboBox(BarType.values(), "");
+    private final AutoCompleteComboBox comboBox = new AutoCompleteComboBox(BarType.values(), "");
 
     @Override
     public void initialize() {
         constraints.gridx = 0;
         constraints.gridy = 1;
         constraints.anchor = GridBagConstraints.CENTER;
-        panel.add(combo_box, constraints);
-        combo_box.setSelectedIndex(4);
+        panel.add(comboBox, constraints);
+        comboBox.setSelectedIndex(4);
     }
 
     @Override
@@ -77,7 +77,7 @@ public class BlastFurnaceUI extends GUI {
     @Override
     public ActionListener onStart() {
         return e -> {
-            BlastFurnaceMission.bar_type = (BarType) combo_box.getSelectedItem();
+            BlastFurnaceMission.barType = (BarType) comboBox.getSelectedItem();
             frame.setVisible(false);
         };
     }

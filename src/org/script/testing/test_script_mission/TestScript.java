@@ -3,8 +3,6 @@ package org.script.testing.test_script_mission;
 import org.api.script.SPXScript;
 import org.api.script.framework.mission.Mission;
 import org.api.script.impl.mission.tutorial_island_mission.data.args.Args;
-import org.rspeer.runetek.adapter.Interactable;
-import org.rspeer.runetek.api.input.menu.ActionOpcodes;
 import org.rspeer.script.ScriptCategory;
 import org.rspeer.script.ScriptMeta;
 import org.script.testing.test_script_mission.mission.TestScriptMission;

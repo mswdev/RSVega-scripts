@@ -26,7 +26,7 @@ public class TestSwingGUI extends GUI {
         constraints.gridx = 0;
         constraints.gridy = 1;
         constraints.anchor = GridBagConstraints.CENTER;
-        JComboBox COMBO_BOX = new AutoCompleteComboBox(list.toArray(), "Location");
+        AutoCompleteComboBox COMBO_BOX = new AutoCompleteComboBox(list.toArray(), "Location");
         panel.add(COMBO_BOX, constraints);
     }
 

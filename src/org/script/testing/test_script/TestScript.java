@@ -1,5 +1,6 @@
 package org.script.testing.test_script;
 
+import org.api.game.questing.Questing;
 import org.rspeer.script.Script;
 import org.rspeer.script.ScriptCategory;
 import org.rspeer.script.ScriptMeta;
@@ -15,6 +16,7 @@ public class TestScript extends Script {
 
     @Override
     public int loop() {
+        Log.fine(Questing.getCompletedQuests());
         return 150;
     }
 

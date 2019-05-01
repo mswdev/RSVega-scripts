@@ -1,7 +1,6 @@
 package org.script.free_script.spx_account_checker.http;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -40,11 +39,7 @@ public class AccountData {
                 return null;
 
             final Gson gson = new Gson().newBuilder().create();
-            final JsonArray json_array = gson.fromJson(response.body().string(), JsonArray.class);
-            if (json_array == null)
-                return null;
-
-            return json_array.get(0).getAsJsonObject();
+            return gson.fromJson(response.body().string(), JsonObject.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -69,22 +64,22 @@ public class AccountData {
         return null;
     }
 
-    public static boolean putData(AccountDataType data_type, int account_id, RequestBody request_body) {
+    public static boolean putData(AccountDataType dataType, int accountId, RequestBody requestBody) {
         String url = null;
-        switch (data_type) {
+        switch (dataType) {
             case GENERAL:
-                url = "https://api.org.me/rs/accounts/" + account_id + "/update";
+                url = "https://api.org.me/rs/accounts/" + accountId + "/update";
                 break;
             case OSRS:
-                url = "https://api.org.me/rs/accounts/" + account_id + "/osrs/update";
+                url = "https://api.org.me/rs/accounts/" + accountId + "/osrs/update";
                 break;
             case RS3:
-                url = "https://api.org.me/rs/accounts/" + account_id + "/rs3/update";
+                url = "https://api.org.me/rs/accounts/" + accountId + "/rs3/update";
                 break;
         }
 
         try {
-            return put(url, request_body).isSuccessful();
+            return put(url, requestBody).isSuccessful();
         } catch (IOException e) {
             e.printStackTrace();
         }

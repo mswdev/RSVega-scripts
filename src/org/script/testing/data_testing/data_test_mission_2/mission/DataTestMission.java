@@ -9,12 +9,12 @@ import org.script.testing.data_testing.data_test_mission_2.mission.worker.DataTe
 
 public class DataTestMission extends Mission {
 
-    private final DataTestWorkerHandler worker_handler;
+    private final DataTestWorkerHandler workerHandler;
 
 
     public DataTestMission(SPXScript script) {
         super(script);
-        worker_handler = new DataTestWorkerHandler();
+        workerHandler = new DataTestWorkerHandler();
     }
 
     @Override
@@ -24,13 +24,13 @@ public class DataTestMission extends Mission {
 
     @Override
     public String getWorkerName() {
-        Worker c = worker_handler.getCurrent();
+        Worker c = workerHandler.getCurrent();
         return c == null ? "WORKER" : c.getClass().getSimpleName();
     }
 
     @Override
     public String getWorkerString() {
-        Worker c = worker_handler.getCurrent();
+        Worker c = workerHandler.getCurrent();
         return c == null ? "Waiting for worker." : c.toString();
     }
 
@@ -51,7 +51,7 @@ public class DataTestMission extends Mission {
 
     @Override
     public int execute() {
-        worker_handler.work();
+        workerHandler.work();
         return 100;
     }
 }

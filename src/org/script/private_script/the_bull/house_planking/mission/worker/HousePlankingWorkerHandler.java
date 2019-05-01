@@ -13,27 +13,27 @@ import org.script.private_script.the_bull.house_planking.mission.worker.impl.*;
 public class HousePlankingWorkerHandler extends WorkerHandler {
 
     private final HousePlankingMission mission;
-    private final EquipStaffOfAir equip_staff_of_air;
-    private final WithdrawLogs withdraw_logs;
-    private final WithdrawCoins withdraw_coins;
-    private final WithdrawEarthRune withdraw_earth_rune;
-    private final WithdrawLawRune withdraw_law_rune;
-    private final UnnoteLogs unnote_logs;
-    private final TeleportToHouse teleport_to_house;
-    private final ButlerDialogue butler_dialogue;
-    private final TeleportToLumbridge teleport_to_lumbridge;
+    private final EquipStaffOfAir equipStaffOfAir;
+    private final WithdrawLogs withdrawLogs;
+    private final WithdrawCoins withdrawCoins;
+    private final WithdrawEarthRune withdrawEarthRune;
+    private final WithdrawLawRune withdrawLawRune;
+    private final UnnoteLogs unnoteLogs;
+    private final TeleportToHouse teleportToHouse;
+    private final ButlerDialogue butlerDialogue;
+    private final TeleportToLumbridge teleportToLumbridge;
 
     public HousePlankingWorkerHandler(HousePlankingMission mission) {
         this.mission = mission;
-        equip_staff_of_air = new EquipStaffOfAir(mission);
-        withdraw_logs = new WithdrawLogs(mission);
-        withdraw_coins = new WithdrawCoins();
-        withdraw_earth_rune = new WithdrawEarthRune();
-        withdraw_law_rune = new WithdrawLawRune();
-        unnote_logs = new UnnoteLogs(mission);
-        teleport_to_house = new TeleportToHouse();
-        butler_dialogue = new ButlerDialogue(mission);
-        teleport_to_lumbridge = new TeleportToLumbridge(mission);
+        equipStaffOfAir = new EquipStaffOfAir(mission);
+        withdrawLogs = new WithdrawLogs(mission);
+        withdrawCoins = new WithdrawCoins();
+        withdrawEarthRune = new WithdrawEarthRune();
+        withdrawLawRune = new WithdrawLawRune();
+        unnoteLogs = new UnnoteLogs(mission);
+        teleportToHouse = new TeleportToHouse();
+        butlerDialogue = new ButlerDialogue(mission);
+        teleportToLumbridge = new TeleportToLumbridge(mission);
     }
 
     @Override
@@ -42,35 +42,35 @@ public class HousePlankingWorkerHandler extends WorkerHandler {
             return new DepositWorker(a -> a.getId() == HousePlankingMission.RING_OF_WEALTH_IDS[5] + 1);
 
         if (House.isInside()) {
-            if (Inventory.contains(mission.getLogType().getItemID()))
-                return butler_dialogue;
+            if (Inventory.contains(mission.getLogType().getItemId()))
+                return butlerDialogue;
 
-            return teleport_to_lumbridge;
+            return teleportToLumbridge;
         }
 
         if (!Equipment.contains(EquipStaffOfAir.STAFF_OF_AIR))
-            return equip_staff_of_air;
+            return equipStaffOfAir;
 
         if (Inventory.getCount(true, WithdrawCoins.COINS) < 6000)
-            return withdraw_coins;
+            return withdrawCoins;
 
         if (Inventory.getCount(WithdrawEarthRune.EARTH_RUNE) <= 0)
-            return withdraw_earth_rune;
+            return withdrawEarthRune;
 
         if (Inventory.getCount(WithdrawLawRune.LAW_RUNE) <= 0)
-            return withdraw_law_rune;
+            return withdrawLawRune;
 
-        if (!Inventory.contains(mission.getLogType().getItemID())) {
+        if (!Inventory.contains(mission.getLogType().getItemId())) {
             if (BankLocation.LUMBRIDGE_PVP.getPosition().distance() > 10)
-                return teleport_to_lumbridge;
+                return teleportToLumbridge;
 
-            if (Inventory.getCount(mission.getLogType().getNotedItemID()) <= 0)
-                return withdraw_logs;
+            if (Inventory.getCount(mission.getLogType().getNotedItemId()) <= 0)
+                return withdrawLogs;
 
-            return unnote_logs;
+            return unnoteLogs;
         }
 
-        return teleport_to_house;
+        return teleportToHouse;
     }
 }
 

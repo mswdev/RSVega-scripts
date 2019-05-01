@@ -24,17 +24,17 @@ public class UnnoteLogs extends Worker {
 
     @Override
     public void work() {
-        final SceneObject bank_chest = SceneObjects.getNearest(a -> a.getName().equals("Bank chest"));
-        if (bank_chest == null)
+        final SceneObject bankChest = SceneObjects.getNearest(a -> a.getName().equals("Bank chest"));
+        if (bankChest == null)
             return;
 
         if (!Dialog.isOpen())
-            if (Inventory.use(a -> a.getName().equals(mission.getLogType().getName()), bank_chest))
+            if (Inventory.use(a -> a.getName().equals(mission.getLogType().getName()), bankChest))
                 Time.sleepUntil(Dialog::isOpen, 1500);
 
-        final int inventory_cache = Inventory.getCount();
+        final int inventoryCache = Inventory.getCount();
         if (Dialog.process(a -> a.equals("Yes"))) {
-            Time.sleepUntil(() -> Inventory.getCount() != inventory_cache, 1500);
+            Time.sleepUntil(() -> Inventory.getCount() != inventoryCache, 1500);
             Log.severe("Sleeping 900ms to ensure butler has returned from the bank...");
             Time.sleep(900);
         }

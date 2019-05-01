@@ -7,13 +7,10 @@ import org.script.private_script.the_bull.house_planking.mission.HousePlankingMi
 
 public class WithdrawLogs extends Worker {
 
-
-    private final HousePlankingMission mission;
-    private WithdrawWorker withdraw_logtype;
+    private WithdrawWorker withdrawLogType;
 
     public WithdrawLogs(HousePlankingMission mission) {
-        this.mission = mission;
-        this.withdraw_logtype = new WithdrawWorker(a -> a.getName().equals(mission.getLogType().getName()), 0, Bank.WithdrawMode.NOTE);
+        this.withdrawLogType = new WithdrawWorker(a -> a.getName().equals(mission.getLogType().getName()), 0, Bank.WithdrawMode.NOTE);
     }
 
     @Override
@@ -23,7 +20,7 @@ public class WithdrawLogs extends Worker {
 
     @Override
     public void work() {
-        withdraw_logtype.work();
+        withdrawLogType.work();
     }
 
     @Override

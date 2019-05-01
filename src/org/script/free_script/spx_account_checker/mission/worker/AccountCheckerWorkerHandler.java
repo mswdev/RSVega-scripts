@@ -13,32 +13,32 @@ import org.script.free_script.spx_account_checker.mission.worker.impl.LoginAccou
 
 public class AccountCheckerWorkerHandler extends WorkerHandler {
 
-    private final CheckAge check_age;
-    private final CheckBank check_bank;
+    private final CheckAge checkAge;
+    private final CheckBank checkBank;
     private final Logout logout;
     private final Wait wait;
 
     public AccountCheckerWorkerHandler(AccountCheckerMission mission) {
-        check_age = new CheckAge();
-        check_bank = new CheckBank(mission);
+        checkAge = new CheckAge();
+        checkBank = new CheckBank(mission);
         logout = new Logout(mission);
         wait = new Wait();
     }
 
     @Override
     public Worker decide() {
-        if (Vars.get().can_logout && !Vars.get().check_bank && !Vars.get().check_age)
+        if (Vars.get().canLogout && !Vars.get().checkBank && !Vars.get().checkAge)
             return logout;
 
         if (!Movement.isRunEnabled() && Movement.getRunEnergy() > 20)
             if (Movement.toggleRun(true))
                 Time.sleepUntil(Movement::isRunEnabled, 1500);
 
-        if (Vars.get().check_age)
-            return check_age;
+        if (Vars.get().checkAge)
+            return checkAge;
 
-        if (Vars.get().check_bank)
-            return check_bank;
+        if (Vars.get().checkBank)
+            return checkBank;
 
         return wait;
     }

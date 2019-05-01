@@ -34,8 +34,8 @@ public class TeleportToLumbridge extends Worker {
             Time.sleepUntil(() -> Players.getLocal().getAnimation() != -1 && SceneObjects.getNearest("Bank chest") != null, 3500);
 
         Main.PLANKS_CREATED += 24;
-        if (Inventory.getCount(mission.getLogType().getNotedItemID()) <= 0)
-            mission.should_end = true;
+        if (Inventory.getCount(mission.getLogType().getNotedItemId()) <= 0)
+            mission.shouldEnd = true;
     }
 
     @Override

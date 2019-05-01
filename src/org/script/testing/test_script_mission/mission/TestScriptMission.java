@@ -17,12 +17,12 @@ import org.script.testing.test_script_mission.mission.worker.TestScriptWorkerHan
 
 public class TestScriptMission extends Mission implements ItemManagement {
 
-    private final TestScriptWorkerHandler worker_handler;
+    private final TestScriptWorkerHandler workerHandler;
 
 
     public TestScriptMission(SPXScript script) {
         super(script);
-        worker_handler = new TestScriptWorkerHandler();
+        workerHandler = new TestScriptWorkerHandler();
     }
 
     @Override
@@ -32,13 +32,13 @@ public class TestScriptMission extends Mission implements ItemManagement {
 
     @Override
     public String getWorkerName() {
-        Worker c = worker_handler.getCurrent();
+        Worker c = workerHandler.getCurrent();
         return c == null ? "WORKER" : c.getClass().getSimpleName();
     }
 
     @Override
     public String getWorkerString() {
-        Worker c = worker_handler.getCurrent();
+        Worker c = workerHandler.getCurrent();
         return c == null ? "Waiting for worker." : c.toString();
     }
 
@@ -59,15 +59,15 @@ public class TestScriptMission extends Mission implements ItemManagement {
 
     @Override
     public int execute() {
-        worker_handler.work();
+        workerHandler.work();
         return 100;
     }
 
     @Override
     public ItemManagementEntry[] itemsToBuy() {
         return new ItemManagementEntry[]{
-                new ItemManagementEntry(this, AxeType.BRONZE.getItemID(), 1, new GoalList(new SkillGoal(Skills.getLevel(Skill.WOODCUTTING), AxeType.BRONZE.getRequiredWoodcuttingLevel()))),
-                new ItemManagementEntry(this, AxeType.RUNE.getItemID(), 1, new GoalList(new SkillGoal(Skills.getLevel(Skill.WOODCUTTING), AxeType.BRONZE.getRequiredWoodcuttingLevel()))),
+                new ItemManagementEntry(this, AxeType.BRONZE.getItemId(), 1, new GoalList(new SkillGoal(Skills.getLevel(Skill.WOODCUTTING), AxeType.BRONZE.getRequiredWoodcuttingLevel()))),
+                new ItemManagementEntry(this, AxeType.RUNE.getItemId(), 1, new GoalList(new SkillGoal(Skills.getLevel(Skill.WOODCUTTING), AxeType.BRONZE.getRequiredWoodcuttingLevel()))),
                 new ItemManagementEntry(this, 995, 10000, () -> Inventory.getCount(true, 995) <= 0)
         };
     }
@@ -75,8 +75,8 @@ public class TestScriptMission extends Mission implements ItemManagement {
     @Override
     public int[] itemsToSell() {
         return new int[]{
-                LogType.MAPLE.getItemID(),
-                LogType.LOGS.getItemID()
+                LogType.MAPLE.getItemId(),
+                LogType.LOGS.getItemId()
         };
     }
 

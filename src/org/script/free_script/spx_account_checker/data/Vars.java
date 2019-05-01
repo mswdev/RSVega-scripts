@@ -6,11 +6,11 @@ import java.util.Map;
 public class Vars {
 
     public static Vars vars;
-    public Map<String, String> general_data = new HashMap<>();
-    public Map<String, String> osrs_data = new HashMap<>();
-    public boolean check_age;
-    public boolean check_bank;
-    public boolean can_logout;
+    public Map<String, String> generalData = new HashMap<>();
+    public Map<String, String> osrsData = new HashMap<>();
+    public boolean checkAge;
+    public boolean checkBank;
+    public boolean canLogout;
 
     public static Vars get() {
         return vars == null ? vars = new Vars() : vars;
