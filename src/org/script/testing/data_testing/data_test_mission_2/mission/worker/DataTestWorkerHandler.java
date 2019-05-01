@@ -7,14 +7,14 @@ import org.rspeer.ui.Log;
 
 public class DataTestWorkerHandler extends WorkerHandler {
 
-    private StopWatch stop_watch;
+    private StopWatch stopWatch;
 
     @Override
     public Worker decide() {
-        if (stop_watch == null)
-            stop_watch = StopWatch.start();
+        if (stopWatch == null)
+            stopWatch = StopWatch.start();
 
-        Log.fine("[Seconds]: " + stop_watch.getElapsed().getSeconds());
+        Log.fine("[Seconds]: " + stopWatch.getElapsed().getSeconds());
         return null;
     }
 }

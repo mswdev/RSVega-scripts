@@ -19,12 +19,12 @@ public class Main extends SPXScript implements RenderListener {
 
     public static int PLANKS_CREATED = 0;
     private Args args = new Args();
-    private StopWatch stop_watch;
+    private StopWatch stopWatch;
 
     @Override
     public void onStart() {
         super.onStart();
-        stop_watch = StopWatch.start();
+        stopWatch = StopWatch.start();
     }
 
     @Override
@@ -45,8 +45,8 @@ public class Main extends SPXScript implements RenderListener {
     @Override
     public void notify(RenderEvent renderEvent) {
         final Graphics G = renderEvent.getSource();
-        G.drawString("[RUNTIME]: " + stop_watch.toElapsedString(), 10, 305);
-        G.drawString("[PLANKS]: " + PLANKS_CREATED + " (" + (3600000 / stop_watch.getElapsed().toMillis() * PLANKS_CREATED) + "/hr)", 10, 320);
+        G.drawString("[RUNTIME]: " + stopWatch.toElapsedString(), 10, 305);
+        G.drawString("[PLANKS]: " + PLANKS_CREATED + " (" + (3600000 / stopWatch.getElapsed().toMillis() * PLANKS_CREATED) + "/hr)", 10, 320);
     }
 }
 

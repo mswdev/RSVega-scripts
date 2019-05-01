@@ -43,10 +43,10 @@ public class Main extends SPXScript implements LoginResponseListener {
         final LinkedList<Mission> missions = new LinkedList<>();
 
         final String delimiter = ":";
-        try (Stream<String> lines = Files.lines(Paths.get(script_data_path + File.separator + args.proxy_list))) {
+        try (Stream<String> lines = Files.lines(Paths.get(scriptDataPath + File.separator + args.proxyList))) {
             lines.filter(line -> line.contains(delimiter))
                     .forEach(line -> {
-                        for (int i = 0; i < args.accounts_per_proxy; i++) {
+                        for (int i = 0; i < args.accountsPerProxy; i++) {
                             final HashMap<String, String> accountData = new HashMap<>();
                             final String[] proxyData = line.split(delimiter);
                             accountData.put("socks_ip", proxyData[0]);
@@ -60,7 +60,7 @@ public class Main extends SPXScript implements LoginResponseListener {
                         }
                     });
         } catch (IOException e) {
-            for (int i = 0; i < args.accounts_to_create; i++) {
+            for (int i = 0; i < args.accountsToCreate; i++) {
                 final HashMap<String, String> accountData = new HashMap<>();
                 missions.add(new TutorialIslandMission(this, args, accountData, true));
             }
@@ -73,7 +73,7 @@ public class Main extends SPXScript implements LoginResponseListener {
             missions.add(new TutorialIslandMission(this, args, accountData, false));
         }
 
-        try (Stream<String> lines = Files.lines(Paths.get(script_data_path + File.separator + args.account_list))) {
+        try (Stream<String> lines = Files.lines(Paths.get(scriptDataPath + File.separator + args.accountList))) {
             lines.filter(line -> line.contains(delimiter))
                     .forEach(line -> {
                         final HashMap<String, String> accountData = new HashMap<>();
@@ -96,7 +96,7 @@ public class Main extends SPXScript implements LoginResponseListener {
             e.printStackTrace();
         }
 
-        Log.log(Level.WARNING, "Info", "[Total Accounts]: " + missions.size() + " | [Loaded File]: " + args.account_list + "| [Loaded Proxy File]: " + args.proxy_list);
+        Log.log(Level.WARNING, "Info", "[Total Accounts]: " + missions.size() + " | [Loaded File]: " + args.accountList + "| [Loaded Proxy File]: " + args.proxyList);
         return missions;
     }
 

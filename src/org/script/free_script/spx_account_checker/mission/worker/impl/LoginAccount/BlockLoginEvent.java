@@ -8,11 +8,11 @@ import org.rspeer.script.events.LoginScreen;
 
 public class BlockLoginEvent extends ScriptBlockingEvent {
 
-    private final LoginScreen login_screen;
+    private final LoginScreen loginScreen;
 
     public BlockLoginEvent(Script ctx) {
         super(ctx);
-        login_screen = new LoginScreen(ctx);
+        loginScreen = new LoginScreen(ctx);
     }
 
     @Override
@@ -20,12 +20,12 @@ public class BlockLoginEvent extends ScriptBlockingEvent {
         if (Login.getState() == Login.STATE_AUTHENTICATOR)
             Game.getClient().setGameState(Game.STATE_CREDENTIALS_SCREEN);
 
-        login_screen.process();
+        loginScreen.process();
     }
 
     @Override
     public boolean validate() {
-        return login_screen.validate();
+        return loginScreen.validate();
     }
 }
 

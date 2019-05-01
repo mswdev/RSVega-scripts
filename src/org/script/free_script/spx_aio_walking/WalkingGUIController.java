@@ -20,11 +20,11 @@ public class WalkingGUIController {
 
     @DoNotRename
     @FXML
-    private Label logo_first;
+    private Label logoFirst;
 
     @DoNotRename
     @FXML
-    private Label logo_second;
+    private Label logoSecond;
 
     @DoNotRename
     @FXML
@@ -32,19 +32,19 @@ public class WalkingGUIController {
 
     @DoNotRename
     @FXML
-    private TextField location_name;
+    private TextField locationName;
 
     @DoNotRename
     @FXML
-    private TextField location_position;
+    private TextField locationPosition;
 
     @DoNotRename
     @FXML
-    private Hyperlink view_map;
+    private Hyperlink viewMap;
 
     @DoNotRename
     @FXML
-    private Button add_location;
+    private Button addLocation;
 
     @DoNotRename
     @FXML
@@ -55,18 +55,18 @@ public class WalkingGUIController {
     void initialize() {
         /*FXAutoCompleteComboBox.autoCompleteComboBoxPlus(locations, (typedText, itemToCompare) -> itemToCompare.toString().toLowerCase().contains(typedText.toLowerCase()) || itemToCompare.toString().equals(typedText));*/
 
-        location_name.setDisable(true);
-        location_position.setDisable(true);
-        add_location.setDisable(true);
+        locationName.setDisable(true);
+        locationPosition.setDisable(true);
+        addLocation.setDisable(true);
 
-        logo_first.getStylesheets().add(SPXStyle.getLogoFontStyle());
-        logo_second.getStylesheets().add(SPXStyle.getLogoFontStyle());
+        logoFirst.getStylesheets().add(SPXStyle.getLogoFontStyle());
+        logoSecond.getStylesheets().add(SPXStyle.getLogoFontStyle());
         locations.getItems().setAll(BankLocation.values());
 
-        add_location.setOnAction(event -> {
+        addLocation.setOnAction(event -> {
 
         });
-        view_map.setOnAction(event -> openURL("https://explv.github.io/"));
+        viewMap.setOnAction(event -> openURL("https://explv.github.io/"));
         start.setOnAction(event -> {
             /*Vars.get().location = FXAutoCompleteComboBox.getComboBoxValue(locations);*/
             ((Node) (event.getSource())).getScene().getWindow().hide();

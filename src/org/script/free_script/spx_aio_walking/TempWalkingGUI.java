@@ -18,7 +18,7 @@ public class TempWalkingGUI extends GUI {
     private final JFrame frame = new JFrame();
     private final JPanel panel = new JPanel();
     private final GridBagConstraints constraints = new GridBagConstraints();
-    private AutoCompleteComboBox combo_box;
+    private AutoCompleteComboBox comboBox;
 
     @Override
     public void initialize() {
@@ -27,8 +27,8 @@ public class TempWalkingGUI extends GUI {
         constraints.gridx = 0;
         constraints.gridy = 1;
         constraints.anchor = GridBagConstraints.CENTER;
-        combo_box = new AutoCompleteComboBox(list.toArray(), "Location");
-        panel.add(combo_box, constraints);
+        comboBox = new AutoCompleteComboBox(list.toArray(), "Location");
+        panel.add(comboBox, constraints);
     }
 
     @Override
@@ -80,7 +80,7 @@ public class TempWalkingGUI extends GUI {
     @Override
     public ActionListener onStart() {
         return e -> {
-            Main.ARGS.LOCATION = (BankLocation) combo_box.getSelectedItem();
+            Main.ARGS.LOCATION = (BankLocation) comboBox.getSelectedItem();
             frame.setVisible(false);
         };
     }

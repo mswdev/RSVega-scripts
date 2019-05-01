@@ -9,7 +9,7 @@ public class AccountManager {
 
 
     private final SPXScript script;
-    private int account_id;
+    private int accountId;
     private String username;
     private String password;
 
@@ -17,8 +17,8 @@ public class AccountManager {
         this.script = script;
     }
 
-    public int getAccountID() {
-        return account_id;
+    public int getAccountId() {
+        return accountId;
     }
 
     public String getUsername() {
@@ -30,16 +30,16 @@ public class AccountManager {
     }
 
     public void setNext() {
-        final JsonObject json_object = AccountData.getNext();
-        if (json_object == null || !json_object.has("id") || !json_object.has("username") || !json_object.has("password")) {
+        final JsonObject jsonObject = AccountData.getNext();
+        if (jsonObject == null || !jsonObject.has("id") || !jsonObject.has("username") || !jsonObject.has("password")) {
             Log.severe("Failed to set next account.");
             return;
         }
 
-        account_id = json_object.get("id").getAsInt();
-        username = json_object.get("username").getAsString();
-        password = json_object.get("password").getAsString();
+        accountId = jsonObject.get("id").getAsInt();
+        username = jsonObject.get("username").getAsString();
+        password = jsonObject.get("password").getAsString();
         script.setAccount(new GameAccount(username, password));
-        Log.info("[ACCOUNT CHECKER]: [Total: " + AccountData.getTotal() + "] [ID:" + account_id + " | Username:" + username + " | Password:" + password + "]");
+        Log.info("[ACCOUNT CHECKER]: [Total: " + AccountData.getTotal() + "] [ID:" + accountId + " | Username:" + username + " | Password:" + password + "]");
     }
 }

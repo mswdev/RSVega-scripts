@@ -16,7 +16,7 @@ import java.io.IOException;
 
 public class CheckBank extends Worker {
 
-    private final int coins_id = 995;
+    private final int coinsId = 995;
     private final AccountCheckerMission mission;
 
     public CheckBank(AccountCheckerMission mission) {
@@ -34,8 +34,8 @@ public class CheckBank extends Worker {
             return;
 
         if (Bank.isOpen()) {
-            Vars.get().osrs_data.putIfAbsent("bank_worth", getBankWorth());
-            Vars.get().check_bank = false;
+            Vars.get().osrsData.putIfAbsent("bank_worth", getBankWorth());
+            Vars.get().checkBank = false;
         } else {
             if (BankLocation.getNearestWithdrawable().getPosition().distance() <= 15) {
                 if (Bank.open(BankLocation.getNearestWithdrawable()))
@@ -54,7 +54,7 @@ public class CheckBank extends Worker {
             return "0";
 
         for (Item item : items) {
-            if (item.getId() == coins_id) {
+            if (item.getId() == coinsId) {
                 total += item.getStackSize();
                 continue;
             }

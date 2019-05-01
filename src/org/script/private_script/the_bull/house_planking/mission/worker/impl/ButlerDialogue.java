@@ -52,7 +52,7 @@ public class ButlerDialogue extends Worker {
         }
 
         if (Interfaces.getFirst(a -> a.getText().contains("Go to the sawmill...")) != null)
-            if (Inventory.use(a -> a.getId() == mission.getLogType().getItemID(), servant))
+            if (Inventory.use(a -> a.getId() == mission.getLogType().getItemId(), servant))
                 Time.sleepUntil(Dialog::isOpen, 1500);
 
         if (EnterInput.isOpen())
@@ -66,22 +66,22 @@ public class ButlerDialogue extends Worker {
     }
 
     private boolean callServant() {
-        final InterfaceComponent call_servant = Interfaces.getComponent(370, 19);
-        if (call_servant == null || !call_servant.isVisible())
+        final InterfaceComponent callServant = Interfaces.getComponent(370, 19);
+        if (callServant == null || !callServant.isVisible())
             if (openHouseOptions())
                 Time.sleepUntil(() -> Interfaces.getComponent(370, 19) != null, 1500);
 
-        return call_servant != null && call_servant.click();
+        return callServant != null && callServant.click();
     }
 
     private boolean openHouseOptions() {
-        final InterfaceComponent house_options = Interfaces.getComponent(261, 98);
-        if (house_options == null)
+        final InterfaceComponent houseOptions = Interfaces.getComponent(261, 98);
+        if (houseOptions == null)
             if (Tabs.getOpen() != Tab.OPTIONS)
                 if (Tabs.open(Tab.OPTIONS))
                     Time.sleepUntil(() -> Tabs.isOpen(Tab.OPTIONS), 1500);
 
-        return house_options != null && house_options.click();
+        return houseOptions != null && houseOptions.click();
     }
 
     @Override

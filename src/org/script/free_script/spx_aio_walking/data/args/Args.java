@@ -5,7 +5,7 @@ import org.rspeer.runetek.api.commons.BankLocation;
 
 public class Args {
 
-    @Parameter(names = "-location")
+    @Parameter(names = "-location", arity = 1)
     public BankLocation LOCATION;
 
 }

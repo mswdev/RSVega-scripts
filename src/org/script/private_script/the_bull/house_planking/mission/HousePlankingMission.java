@@ -13,7 +13,6 @@ import org.api.script.framework.mission.Mission;
 import org.api.script.framework.worker.Worker;
 import org.rspeer.runetek.api.component.Dialog;
 import org.rspeer.runetek.api.component.tab.Inventory;
-import org.rspeer.runetek.api.movement.position.Area;
 import org.rspeer.runetek.api.scene.House;
 import org.script.private_script.the_bull.house_planking.mission.worker.HousePlankingWorkerHandler;
 
@@ -27,20 +26,18 @@ public class HousePlankingMission extends Mission implements ItemManagement {
             11982,
             11980
     };
-    private static final Area GRAND_EXCHANGE = Area.rectangular(3137, 3518, 3191, 3466);
-    private static final Area LUMBRIDGE_PVP = Area.rectangular(3219, 3216, 3224, 3220);
-    private final HousePlankingWorkerHandler worker_handler = new HousePlankingWorkerHandler(this);
-    private final LogType log_type;
+    private final HousePlankingWorkerHandler workerHandler = new HousePlankingWorkerHandler(this);
+    private final LogType logType;
     private final int quantity;
     private final int PLANK_ID = 960;
     private final int OAK_PLANK_ID = 8778;
     private final int MAHOGANY_PLANK_ID = 8782;
     private final int TEAK_PLANK_ID = 8780;
-    public boolean should_end;
+    public boolean shouldEnd;
 
-    public HousePlankingMission(SPXScript script, LogType log_type, int quantity) {
+    public HousePlankingMission(SPXScript script, LogType logType, int quantity) {
         super(script);
-        this.log_type = log_type;
+        this.logType = logType;
         this.quantity = quantity;
     }
 
@@ -51,13 +48,13 @@ public class HousePlankingMission extends Mission implements ItemManagement {
 
     @Override
     public String getWorkerName() {
-        final Worker c = worker_handler.getCurrent();
+        final Worker c = workerHandler.getCurrent();
         return c == null ? "WORKER" : c.getClass().getSimpleName();
     }
 
     @Override
     public String getWorkerString() {
-        final Worker c = worker_handler.getCurrent();
+        final Worker c = workerHandler.getCurrent();
         return c == null ? "Waiting for worker." : c.toString();
     }
 
@@ -68,7 +65,7 @@ public class HousePlankingMission extends Mission implements ItemManagement {
 
     @Override
     public boolean shouldEnd() {
-        return should_end;
+        return shouldEnd;
     }
 
     @Override
@@ -82,18 +79,18 @@ public class HousePlankingMission extends Mission implements ItemManagement {
             Dialog.processContinue();
 
 
-        worker_handler.work();
+        workerHandler.work();
         return 150;
     }
 
     @Override
     public ItemManagementEntry[] itemsToBuy() {
         return new ItemManagementEntry[]{
-                new ItemManagementEntry(this, RING_OF_WEALTH_IDS[5], 5, () -> getScript().bank_cache.get().getOrDefault(RING_OF_WEALTH_IDS[1], 0) <= 0 && getScript().bank_cache.get().getOrDefault(RING_OF_WEALTH_IDS[2], 0) <= 0 && getScript().bank_cache.get().getOrDefault(RING_OF_WEALTH_IDS[3], 0) <= 0 && getScript().bank_cache.get().getOrDefault(RING_OF_WEALTH_IDS[4], 0) <= 0 && getScript().bank_cache.get().getOrDefault(RING_OF_WEALTH_IDS[5], 0) <= 0 && Inventory.getCount(RING_OF_WEALTH_IDS[5] + 1) <= 0),
+                new ItemManagementEntry(this, RING_OF_WEALTH_IDS[5], 5, () -> getScript().bankCache.get().getOrDefault(RING_OF_WEALTH_IDS[1], 0) <= 0 && getScript().bankCache.get().getOrDefault(RING_OF_WEALTH_IDS[2], 0) <= 0 && getScript().bankCache.get().getOrDefault(RING_OF_WEALTH_IDS[3], 0) <= 0 && getScript().bankCache.get().getOrDefault(RING_OF_WEALTH_IDS[4], 0) <= 0 && getScript().bankCache.get().getOrDefault(RING_OF_WEALTH_IDS[5], 0) <= 0 && Inventory.getCount(RING_OF_WEALTH_IDS[5] + 1) <= 0),
                 new ItemManagementEntry(this, ItemManagementTracker.GOLD_ID, getRequiredGold(), () -> Inventory.getCount(true, ItemManagementTracker.GOLD_ID) < getRequiredGold()),
-                new ItemManagementEntry(this, getLogType().getItemID(), getQuantity(), () -> getScript().bank_cache.get().getOrDefault(getLogType().getItemID(), 0) <= 0 && Inventory.getCount(true, getLogType().getItemID()) <= 0 && Inventory.getCount(getLogType().getNotedItemID()) <= 0 && !House.isInside() && !should_end),
-                new ItemManagementEntry(this, RuneType.LAW.getItemID(), ((getQuantity()) / 24) * 2 + 1, () -> getScript().bank_cache.get().getOrDefault(RuneType.LAW.getItemID(), 0) <= 0 && Inventory.getCount(true, RuneType.LAW.getItemID()) <= 0 && !should_end),
-                new ItemManagementEntry(this, RuneType.EARTH.getItemID(), ((getQuantity()) / 24) * 2 + 1, () -> getScript().bank_cache.get().getOrDefault(RuneType.EARTH.getItemID(), 0) <= 0 && Inventory.getCount(true, RuneType.EARTH.getItemID()) <= 0 && !should_end)
+                new ItemManagementEntry(this, getLogType().getItemId(), getQuantity(), () -> getScript().bankCache.get().getOrDefault(getLogType().getItemId(), 0) <= 0 && Inventory.getCount(true, getLogType().getItemId()) <= 0 && Inventory.getCount(getLogType().getNotedItemId()) <= 0 && !House.isInside() && !shouldEnd),
+                new ItemManagementEntry(this, RuneType.LAW.getItemId(), ((getQuantity()) / 24) * 2 + 1, () -> getScript().bankCache.get().getOrDefault(RuneType.LAW.getItemId(), 0) <= 0 && Inventory.getCount(true, RuneType.LAW.getItemId()) <= 0 && !shouldEnd),
+                new ItemManagementEntry(this, RuneType.EARTH.getItemId(), ((getQuantity()) / 24) * 2 + 1, () -> getScript().bankCache.get().getOrDefault(RuneType.EARTH.getItemId(), 0) <= 0 && Inventory.getCount(true, RuneType.EARTH.getItemId()) <= 0 && !shouldEnd)
         };
     }
 
@@ -119,7 +116,7 @@ public class HousePlankingMission extends Mission implements ItemManagement {
     }
 
     public LogType getLogType() {
-        return log_type;
+        return logType;
     }
 
     private int getQuantity() {
@@ -127,25 +124,28 @@ public class HousePlankingMission extends Mission implements ItemManagement {
     }
 
     private int getRequiredGold() {
-        final int amount_of_logs = Inventory.getCount(true, getLogType().getName());
-        final int butler_payment = ((amount_of_logs / 24) / 8) * 10000;
-        int sawmill_cost = 0;
+        final int amountOfLogs = Inventory.getCount(true, getLogType().getName());
+        final int butlerPayment = ((amountOfLogs / 24) / 8) * 10000;
+        int sawmillCost = 0;
         switch (getLogType()) {
             case LOGS:
-                sawmill_cost = PlankType.PLANK.getSawmillCost() * amount_of_logs;
+                sawmillCost = PlankType.PLANK.getSawmillCost() * amountOfLogs;
                 break;
             case OAK:
-                sawmill_cost = PlankType.OAK.getSawmillCost() * amount_of_logs;
+                sawmillCost = PlankType.OAK.getSawmillCost() * amountOfLogs;
                 break;
             case TEAK:
-                sawmill_cost = PlankType.TEAK.getSawmillCost() * amount_of_logs;
+                sawmillCost = PlankType.TEAK.getSawmillCost() * amountOfLogs;
                 break;
             case MAHOGANY:
-                sawmill_cost = PlankType.MAHOGANY.getSawmillCost() * amount_of_logs;
+                sawmillCost = PlankType.MAHOGANY.getSawmillCost() * amountOfLogs;
+                break;
+            default:
+                sawmillCost = PlankType.OAK.getSawmillCost() * amountOfLogs;
                 break;
         }
 
-        return sawmill_cost + butler_payment;
+        return sawmillCost + butlerPayment;
     }
 }
 

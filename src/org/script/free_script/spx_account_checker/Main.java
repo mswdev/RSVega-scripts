@@ -33,14 +33,14 @@ import java.util.Queue;
 @ScriptMeta(developer = "Sphiinx", category = ScriptCategory.TOOL, name = "[SPX] Account Checker", desc = "")
 public class Main extends SPXScript implements LoginResponseListener, GameStateListener {
 
-    public final AccountManager account_manager = new AccountManager(this);
+    public final AccountManager accountManager = new AccountManager(this);
 
     @Override
     public void onStart() {
         Game.getClient().setLoginWorldSelectorOpen(true);
         Game.getClient().setWorld(Worlds.get(a -> !a.isMembers()));
 
-        account_manager.setNext();
+        accountManager.setNext();
 
         removeBlockingEvent(WelcomeScreen.class);
         removeBlockingEvent(LoginScreen.class);
@@ -66,36 +66,36 @@ public class Main extends SPXScript implements LoginResponseListener, GameStateL
             setStopping(true);
         }
 
-        Vars.get().general_data.put("last_check", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
-        Vars.get().general_data.put("is_invalid", "1");
+        Vars.get().generalData.put("last_check", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+        Vars.get().generalData.put("is_invalid", "1");
         if (loginResponseEvent.getResponse() == LoginResponseEvent.Response.ACCOUNT_DISABLED)
-            Vars.get().general_data.put("is_disabled", "1");
+            Vars.get().generalData.put("is_disabled", "1");
 
         if (loginResponseEvent.getResponse() == LoginResponseEvent.Response.ACCOUNT_LOCKED)
-            Vars.get().general_data.put("is_locked", "1");
+            Vars.get().generalData.put("is_locked", "1");
 
         if (loginResponseEvent.getResponse() == LoginResponseEvent.Response.ENTER_AUTH)
-            Vars.get().general_data.put("is_auth", "1");
+            Vars.get().generalData.put("is_auth", "1");
 
         if (loginResponseEvent.getResponse() == LoginResponseEvent.Response.UNSUCCESSFUL_ACCOUNT_LOGIN_ATTEMPT)
-            Vars.get().general_data.put("is_billing", "1");
+            Vars.get().generalData.put("is_billing", "1");
 
-        final FormBody.Builder form_builder = new FormBody.Builder();
-        for (Map.Entry<String, String> entry : Vars.get().general_data.entrySet()) {
-            form_builder.add(entry.getKey(), entry.getValue());
+        final FormBody.Builder formBuilder = new FormBody.Builder();
+        for (Map.Entry<String, String> entry : Vars.get().generalData.entrySet()) {
+            formBuilder.add(entry.getKey(), entry.getValue());
         }
 
-        final RequestBody request_body = form_builder.build();
-        if (AccountData.putData(AccountDataType.GENERAL, account_manager.getAccountID(), request_body))
+        final RequestBody requestBody = formBuilder.build();
+        if (AccountData.putData(AccountDataType.GENERAL, accountManager.getAccountId(), requestBody))
             Log.fine("[ACCOUNT CHECKER]: PUT general data.");
 
-        Vars.get().general_data.clear();
-        account_manager.setNext();
+        Vars.get().generalData.clear();
+        accountManager.setNext();
     }
 
     @Override
     public void notify(GameStateEvent gameStateEvent) {
         /*if (gameStateEvent.getNew() == 30)
-            account_manager.setNext();*/
+            accountManager.setNext();*/
     }
 }

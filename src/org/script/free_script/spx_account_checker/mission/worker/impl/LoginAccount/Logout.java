@@ -29,33 +29,33 @@ public class Logout extends Worker {
 
     @Override
     public void work() {
-        if (Vars.get().general_data.size() > 0) {
-            final FormBody.Builder form_builder = new FormBody.Builder();
-            for (Map.Entry<String, String> entry : Vars.get().general_data.entrySet()) {
-                form_builder.add(entry.getKey(), entry.getValue());
+        if (Vars.get().generalData.size() > 0) {
+            final FormBody.Builder formBuilder = new FormBody.Builder();
+            for (Map.Entry<String, String> entry : Vars.get().generalData.entrySet()) {
+                formBuilder.add(entry.getKey(), entry.getValue());
             }
 
-            final RequestBody request_body = form_builder.build();
-            if (AccountData.putData(AccountDataType.GENERAL, mission.main.account_manager.getAccountID(), request_body)) {
+            final RequestBody requestBody = formBuilder.build();
+            if (AccountData.putData(AccountDataType.GENERAL, mission.main.accountManager.getAccountId(), requestBody)) {
                 Log.fine("[ACCOUNT CHECKER]: PUT general data.");
-                Vars.get().general_data.clear();
+                Vars.get().generalData.clear();
             }
-        } else if (Vars.get().osrs_data.size() > 0) {
-            final FormBody.Builder form_builder = new FormBody.Builder();
-            for (Map.Entry<String, String> entry : Vars.get().osrs_data.entrySet()) {
-                form_builder.add(entry.getKey(), entry.getValue());
+        } else if (Vars.get().osrsData.size() > 0) {
+            final FormBody.Builder formBuilder = new FormBody.Builder();
+            for (Map.Entry<String, String> entry : Vars.get().osrsData.entrySet()) {
+                formBuilder.add(entry.getKey(), entry.getValue());
             }
 
-            final RequestBody request_body = form_builder.build();
-            if (AccountData.putData(AccountDataType.OSRS, mission.main.account_manager.getAccountID(), request_body)) {
+            final RequestBody requestBody = formBuilder.build();
+            if (AccountData.putData(AccountDataType.OSRS, mission.main.accountManager.getAccountId(), requestBody)) {
                 Log.fine("[ACCOUNT CHECKER]: PUT osrs data.");
-                Vars.get().osrs_data.clear();
+                Vars.get().osrsData.clear();
             }
 
         } else if (Game.logout())
             if (Time.sleepUntil(() -> !Game.isLoggedIn(), 2500)) {
-                mission.main.account_manager.setNext();
-                Vars.get().can_logout = false;
+                mission.main.accountManager.setNext();
+                Vars.get().canLogout = false;
             }
     }
 
