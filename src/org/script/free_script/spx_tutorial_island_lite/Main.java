@@ -8,6 +8,7 @@ import org.rspeer.script.ScriptCategory;
 import org.rspeer.script.ScriptMeta;
 import org.rspeer.ui.Log;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -19,7 +20,11 @@ public class Main extends SPXScript {
     @Override
     public Queue<Mission> createMissionQueue() {
         final LinkedList<Mission> missions = new LinkedList<>();
-        missions.add(new TutorialIslandMission(this, args, false, getAccount().getUsername(), getAccount().getPassword()));
+        final HashMap<String, String> accountData = new HashMap<>();
+
+        accountData.put("email", getAccount().getUsername());
+        accountData.put("password", getAccount().getPassword());
+        missions.add(new TutorialIslandMission(this, args, accountData, false));
         Log.fine("Loaded " + missions.size() + " account(s)");
         return missions;
     }

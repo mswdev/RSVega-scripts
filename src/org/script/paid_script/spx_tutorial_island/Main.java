@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.logging.Level;
@@ -46,28 +47,56 @@ public class Main extends SPXScript implements LoginResponseListener {
             lines.filter(line -> line.contains(delimiter))
                     .forEach(line -> {
                         for (int i = 0; i < args.accounts_per_proxy; i++) {
-                            missions.add(new TutorialIslandMission(this, args, true, null, null, line.split(delimiter)[0], line.split(delimiter)[1], line.split(delimiter)[2], line.split(delimiter)[3]));
+                            final HashMap<String, String> accountData = new HashMap<>();
+                            final String[] proxyData = line.split(delimiter);
+                            accountData.put("socks_ip", proxyData[0]);
+                            accountData.put("socks_port", proxyData[1]);
+
+                            if (proxyData.length > 2) {
+                                accountData.put("socks_username", line.split(delimiter)[2]);
+                                accountData.put("socks_password", line.split(delimiter)[3]);
+                            }
+                            missions.add(new TutorialIslandMission(this, args, accountData, true));
                         }
                     });
         } catch (IOException e) {
-            Log.fine("Proxy file not found; using no proxy.");
             for (int i = 0; i < args.accounts_to_create; i++) {
-                missions.add(new TutorialIslandMission(this, args, true, null, null));
+                final HashMap<String, String> accountData = new HashMap<>();
+                missions.add(new TutorialIslandMission(this, args, accountData, true));
             }
         }
 
-        if (!getAccount().getUsername().isEmpty() && !getAccount().getPassword().isEmpty())
-            missions.add(new TutorialIslandMission(this, args, false, getAccount().getUsername(), getAccount().getPassword()));
+        if (!getAccount().getUsername().isEmpty() && !getAccount().getPassword().isEmpty()) {
+            final HashMap<String, String> accountData = new HashMap<>();
+            accountData.put("email", getAccount().getUsername());
+            accountData.put("password", getAccount().getPassword());
+            missions.add(new TutorialIslandMission(this, args, accountData, false));
+        }
 
         try (Stream<String> lines = Files.lines(Paths.get(script_data_path + File.separator + args.account_list))) {
             lines.filter(line -> line.contains(delimiter))
-                    .forEach(line -> missions.add(new TutorialIslandMission(this, args, false, line.split(delimiter)[0], line.split(delimiter)[1])));
+                    .forEach(line -> {
+                        final HashMap<String, String> accountData = new HashMap<>();
+                        final String[] accountDetails = line.split(delimiter);
+                        accountData.put("email", accountDetails[0]);
+                        accountData.put("password", accountDetails[1]);
+
+                        if (accountDetails.length > 2) {
+                            accountData.put("socks_ip", accountDetails[2]);
+                            accountData.put("socks_port", accountDetails[3]);
+                        }
+
+                        if (accountDetails.length > 4) {
+                            accountData.put("socks_username", accountDetails[4]);
+                            accountData.put("socks_password", accountDetails[5]);
+                        }
+                        missions.add(new TutorialIslandMission(this, args, accountData, false));
+                    });
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        Log.log(Level.WARNING, "Info", "[Accounts To Create]: " + args.accounts_to_create + " | [Loaded Proxy File]: " + args.proxy_list);
-        Log.log(Level.WARNING, "Info", "[Loaded Accounts]: " + missions.size() + " | [Loaded File]: " + args.account_list);
+        Log.log(Level.WARNING, "Info", "[Total Accounts]: " + missions.size() + " | [Loaded File]: " + args.account_list + "| [Loaded Proxy File]: " + args.proxy_list);
         return missions;
     }
 
