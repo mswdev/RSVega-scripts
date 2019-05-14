@@ -70,10 +70,12 @@ public class Main extends SPXScript implements LoginResponseListener {
                             }
                         });
             } catch (IOException e) {
-                for (int i = 0; i < args.accountsToCreate; i++) {
-                    final HashMap<String, String> accountData = new HashMap<>();
-                    missions.add(new TutorialIslandMission(this, args, accountData, true));
-                }
+                e.printStackTrace();
+            }
+        } else {
+            for (int i = 0; i < args.accountsToCreate; i++) {
+                final HashMap<String, String> accountData = new HashMap<>();
+                missions.add(new TutorialIslandMission(this, args, accountData, true));
             }
         }
 
