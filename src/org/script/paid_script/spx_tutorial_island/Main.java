@@ -46,7 +46,7 @@ public class Main extends SPXScript implements LoginResponseListener {
 
         if (!getAccount().getUsername().isEmpty() && !getAccount().getPassword().isEmpty()) {
             final HashMap<String, String> accountData = new HashMap<>();
-            accountData.put("email", getAccount().getUsername());
+            accountData.put("username", getAccount().getUsername());
             accountData.put("password", getAccount().getPassword());
             missions.add(new TutorialIslandMission(this, args, accountData, false));
         }
@@ -86,7 +86,7 @@ public class Main extends SPXScript implements LoginResponseListener {
                         .forEach(line -> {
                             final HashMap<String, String> accountData = new HashMap<>();
                             final String[] accountDetails = line.split(delimiter);
-                            accountData.put("email", accountDetails[0]);
+                            accountData.put("username", accountDetails[0]);
                             accountData.put("password", accountDetails[1]);
 
                             if (accountDetails.length > 2) {
