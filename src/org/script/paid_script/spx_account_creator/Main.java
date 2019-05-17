@@ -1,11 +1,9 @@
-package org.script.paid_script.spx_tutorial_island;
+package org.script.paid_script.spx_account_creator;
 
 import org.api.script.SPXScript;
 import org.api.script.framework.mission.Mission;
-import org.api.script.impl.mission.tutorial_island_mission.TutorialIslandMission;
-import org.api.script.impl.mission.tutorial_island_mission.data.args.Args;
-import org.rspeer.runetek.event.listeners.LoginResponseListener;
-import org.rspeer.runetek.event.types.LoginResponseEvent;
+import org.api.script.impl.mission.account_creation_mission.AccountCreationMission;
+import org.api.script.impl.mission.account_creation_mission.data.Args;
 import org.rspeer.script.ScriptCategory;
 import org.rspeer.script.ScriptMeta;
 import org.rspeer.script.events.LoginScreen;
@@ -22,15 +20,14 @@ import java.util.Queue;
 import java.util.logging.Level;
 import java.util.stream.Stream;
 
-@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.OTHER, name = "[SPX] Tutorial Island", desc = "[SPX] Tutorial Island")
-public class Main extends SPXScript implements LoginResponseListener {
+@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.OTHER, name = "[SPX] Account Creator", desc = "[SPX] Account Creator")
+public class Main extends SPXScript {
 
     public final Args args = new Args();
 
     @Override
     public void onStart() {
         removeBlockingEvent(LoginScreen.class);
-        addBlockingEvent(new BlockLoginEvent(this));
         super.onStart();
     }
 
@@ -43,13 +40,6 @@ public class Main extends SPXScript implements LoginResponseListener {
     public Queue<Mission> createMissionQueue() {
         final LinkedList<Mission> missions = new LinkedList<>();
         final String delimiter = ":";
-
-        if (!getAccount().getUsername().isEmpty() && !getAccount().getPassword().isEmpty()) {
-            final HashMap<String, String> accountData = new HashMap<>();
-            accountData.put("email", getAccount().getUsername());
-            accountData.put("password", getAccount().getPassword());
-            missions.add(new TutorialIslandMission(this, args, accountData, false));
-        }
 
         final Path proxyPath = Paths.get(scriptDataPath + File.separator + args.proxyList);
         if (proxyPath.toFile().exists()) {
@@ -66,7 +56,7 @@ public class Main extends SPXScript implements LoginResponseListener {
                                     accountData.put("socks_username", line.split(delimiter)[2]);
                                     accountData.put("socks_password", line.split(delimiter)[3]);
                                 }
-                                missions.add(new TutorialIslandMission(this, args, accountData, true));
+                                missions.add(new AccountCreationMission(this, args, accountData));
                             }
                         });
             } catch (IOException e) {
@@ -75,7 +65,7 @@ public class Main extends SPXScript implements LoginResponseListener {
         } else {
             for (int i = 0; i < args.accountsToCreate; i++) {
                 final HashMap<String, String> accountData = new HashMap<>();
-                missions.add(new TutorialIslandMission(this, args, accountData, true));
+                missions.add(new AccountCreationMission(this, args, accountData));
             }
         }
 
@@ -98,7 +88,7 @@ public class Main extends SPXScript implements LoginResponseListener {
                                 accountData.put("socks_username", accountDetails[4]);
                                 accountData.put("socks_password", accountDetails[5]);
                             }
-                            missions.add(new TutorialIslandMission(this, args, accountData, false));
+                            missions.add(new AccountCreationMission(this, args, accountData));
                         });
             } catch (IOException e) {
                 e.printStackTrace();
@@ -108,12 +98,4 @@ public class Main extends SPXScript implements LoginResponseListener {
         Log.log(Level.WARNING, "Info", "[Total Accounts]: " + missions.size() + " | [Loaded Accounts File]: " + args.accountList + "| [Loaded Proxy File]: " + args.proxyList);
         return missions;
     }
-
-    @Override
-    public void notify(LoginResponseEvent loginResponseEvent) {
-        Log.severe("Login failed; setting next account.");
-        setAccount(null);
-        getMissionHandler().endCurrent();
-    }
 }
-

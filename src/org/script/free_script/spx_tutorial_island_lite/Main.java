@@ -22,7 +22,7 @@ public class Main extends SPXScript {
         final LinkedList<Mission> missions = new LinkedList<>();
         final HashMap<String, String> accountData = new HashMap<>();
 
-        accountData.put("username", getAccount().getUsername());
+        accountData.put("email", getAccount().getUsername());
         accountData.put("password", getAccount().getPassword());
         missions.add(new TutorialIslandMission(this, args, accountData, false));
         Log.fine("Loaded " + missions.size() + " account(s)");
