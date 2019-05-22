@@ -30,7 +30,7 @@ public class Main extends SPXScript {
 
     @Override
     public GUI getGUI() {
-        return new org.script.free_script.spx_aio_walking.TempWalkingGUI();
+        return new TempWalkingGUI();
     }
 }
 
