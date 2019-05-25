@@ -10,7 +10,7 @@ public class WithdrawLogs extends Worker {
     private WithdrawWorker withdrawLogType;
 
     public WithdrawLogs(HousePlankingMission mission) {
-        this.withdrawLogType = new WithdrawWorker(a -> a.getName().equals(mission.getLogType().getName()), 0, Bank.WithdrawMode.NOTE);
+        this.withdrawLogType = new WithdrawWorker(mission, a -> a.getName().equals(mission.getLogType().getName()), 0, Bank.WithdrawMode.NOTE);
     }
 
     @Override
