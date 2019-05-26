@@ -27,9 +27,9 @@ public class HousePlankingWorkerHandler extends WorkerHandler {
         this.mission = mission;
         equipStaffOfAir = new EquipStaffOfAir(mission);
         withdrawLogs = new WithdrawLogs(mission);
-        withdrawCoins = new WithdrawCoins();
-        withdrawEarthRune = new WithdrawEarthRune();
-        withdrawLawRune = new WithdrawLawRune();
+        withdrawCoins = new WithdrawCoins(mission);
+        withdrawEarthRune = new WithdrawEarthRune(mission);
+        withdrawLawRune = new WithdrawLawRune(mission);
         unnoteLogs = new UnnoteLogs(mission);
         teleportToHouse = new TeleportToHouse();
         butlerDialogue = new ButlerDialogue(mission);

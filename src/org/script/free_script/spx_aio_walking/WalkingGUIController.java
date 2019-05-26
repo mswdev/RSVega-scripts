@@ -68,7 +68,7 @@ public class WalkingGUIController {
         });
         viewMap.setOnAction(event -> openURL("https://explv.github.io/"));
         start.setOnAction(event -> {
-            /*Vars.get().location = FXAutoCompleteComboBox.getComboBoxValue(locations);*/
+            /*Vars.getBankCache().location = FXAutoCompleteComboBox.getComboBoxValue(locations);*/
             ((Node) (event.getSource())).getScene().getWindow().hide();
         });
     }

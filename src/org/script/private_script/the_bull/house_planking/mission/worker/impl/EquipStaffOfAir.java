@@ -13,12 +13,14 @@ public class EquipStaffOfAir extends Worker {
 
     public static final String STAFF_OF_AIR = "Staff of air";
     private final Predicate<Item> staffOfAir = a -> a.getName().equals(STAFF_OF_AIR);
-    private final WithdrawWorker withdrawStaffOfAir = new WithdrawWorker(staffOfAir);
-    private final ItemWorker equipStaffOfAir = new ItemWorker(staffOfAir, withdrawStaffOfAir);
+    private final WithdrawWorker withdrawStaffOfAir;
+    private final ItemWorker equipStaffOfAir;
     private final HousePlankingMission mission;
 
     public EquipStaffOfAir(HousePlankingMission mission) {
         this.mission = mission;
+        withdrawStaffOfAir = new WithdrawWorker(mission, staffOfAir);
+        equipStaffOfAir = new ItemWorker(staffOfAir, withdrawStaffOfAir);
     }
 
     @Override
