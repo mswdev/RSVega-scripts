@@ -9,7 +9,8 @@ import org.rspeer.runetek.event.listeners.ChatMessageListener;
 import org.rspeer.script.ScriptCategory;
 import org.rspeer.script.ScriptMeta;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
 
 @ScriptMeta(developer = "Sphiinx", category = ScriptCategory.TOOL, name = "[SPX] RSVega Slave Management", desc = "[SPX] RSVega Slave Management")
 public class Main extends SPXScript {

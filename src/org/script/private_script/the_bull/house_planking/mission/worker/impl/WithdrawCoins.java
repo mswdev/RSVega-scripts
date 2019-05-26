@@ -13,7 +13,8 @@ public class WithdrawCoins extends Worker {
     private static WithdrawWorker WITHDRAW_COINS;
 
     public WithdrawCoins(HousePlankingMission mission) {
-        WITHDRAW_COINS = new WithdrawWorker(mission, COINS, 0);;
+        WITHDRAW_COINS = new WithdrawWorker(mission, COINS, 0);
+        ;
     }
 
     @Override
