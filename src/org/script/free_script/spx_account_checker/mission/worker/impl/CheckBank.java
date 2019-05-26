@@ -63,7 +63,7 @@ public class CheckBank extends Worker {
                 total += PriceCheck.getOSBuddyPrice(item.getId()) * item.getStackSize();
             } catch (IOException e) {
                 e.printStackTrace();
-                Log.severe("[ACCOUNT CHECKER]: Unable to getBankCache OSBuddy prices.");
+                Log.severe("[ACCOUNT CHECKER]: Unable to get OSBuddy prices.");
                 mission.getScript().setStopping(true);
             }
         }
