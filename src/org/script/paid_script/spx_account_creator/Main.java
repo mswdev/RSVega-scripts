@@ -1,6 +1,7 @@
 package org.script.paid_script.spx_account_creator;
 
 import org.api.script.SPXScript;
+import org.api.script.SPXScriptUtil;
 import org.api.script.framework.mission.Mission;
 import org.api.script.impl.mission.account_creation_mission.AccountCreationMission;
 import org.api.script.impl.mission.account_creation_mission.data.Args;
@@ -41,7 +42,7 @@ public class Main extends SPXScript {
         final LinkedList<Mission> missions = new LinkedList<>();
         final String delimiter = ":";
 
-        final Path proxyPath = Paths.get(scriptDataPath + File.separator + args.proxyList);
+        final Path proxyPath = Paths.get(SPXScriptUtil.getScriptDataPath(getMeta().name()) + File.separator + args.proxyList);
         if (proxyPath.toFile().exists()) {
             try (Stream<String> lines = Files.lines(proxyPath)) {
                 lines.filter(line -> line.contains(delimiter))
@@ -69,7 +70,7 @@ public class Main extends SPXScript {
             }
         }
 
-        final Path accountList = Paths.get(scriptDataPath + File.separator + args.accountList);
+        final Path accountList = Paths.get(SPXScriptUtil.getScriptDataPath(getMeta().name()) + File.separator + args.accountList);
         if (accountList.toFile().exists()) {
             try (Stream<String> lines = Files.lines(accountList)) {
                 lines.filter(line -> line.contains(delimiter))

@@ -9,7 +9,7 @@ import org.rspeer.script.ScriptMeta;
 import java.util.LinkedList;
 import java.util.Queue;
 
-@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.COMBAT, name = "[P-SPX] NMZ", desc = "")
+@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.COMBAT, name = "[P-SPX] NMZ", desc = "[P-SPX] NMZ")
 public class Main extends SPXScript {
 
     @Override

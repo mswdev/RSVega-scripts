@@ -10,7 +10,7 @@ import org.rspeer.script.ScriptMeta;
 import java.util.LinkedList;
 import java.util.Queue;
 
-@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.FIREMAKING, name = "[SPX] AIO Firemaking", desc = "")
+@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.FIREMAKING, name = "[SPX] AIO Firemaking", desc = "[SPX] AIO Firemaking")
 public class Main extends SPXScript {
 
     private static final Args ARGS = new Args();

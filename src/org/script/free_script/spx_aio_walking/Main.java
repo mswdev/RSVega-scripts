@@ -11,7 +11,7 @@ import org.script.free_script.spx_aio_walking.mission.WalkingMission;
 import java.util.LinkedList;
 import java.util.Queue;
 
-@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.OTHER, name = "[SPX] AIO Walking", desc = "")
+@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.OTHER, name = "[SPX] AIO Walking", desc = "[SPX] AIO Walking")
 public class Main extends SPXScript {
 
     public static final Args ARGS = new Args();

@@ -10,7 +10,7 @@ import org.script.free_script.spx_aio_fishing.data.Args;
 import java.util.LinkedList;
 import java.util.Queue;
 
-@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.FIREMAKING, name = "[SPX] AIO Fishing", desc = "")
+@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.FIREMAKING, name = "[SPX] AIO Fishing", desc = "[SPX] AIO Fishing")
 public class Main extends SPXScript {
 
     public static final Args ARGS = new Args();

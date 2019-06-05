@@ -30,7 +30,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 
-@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.TOOL, name = "[SPX] Account Checker", desc = "")
+@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.TOOL, name = "[SPX] Account Checker", desc = "[SPX] Account Checker")
 public class Main extends SPXScript implements LoginResponseListener, GameStateListener {
 
     public final AccountManager accountManager = new AccountManager(this);

@@ -9,7 +9,7 @@ import org.rspeer.script.ScriptMeta;
 import java.util.LinkedList;
 import java.util.Queue;
 
-@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.QUESTING, name = "[SPX] AIO Questing", desc = "")
+@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.QUESTING, name = "[SPX] AIO Questing", desc = "[SPX] AIO Questing")
 public class Main extends SPXScript {
 
 

@@ -14,7 +14,7 @@ import java.awt.*;
 import java.util.LinkedList;
 import java.util.Queue;
 
-@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.MONEY_MAKING, name = "[P-SPX] House Planking", desc = "")
+@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.MONEY_MAKING, name = "[P-SPX] House Planking", desc = "[P-SPX] House Planking")
 public class Main extends SPXScript implements RenderListener {
 
     public static int PLANKS_CREATED = 0;

@@ -10,7 +10,7 @@ import org.rspeer.script.ScriptMeta;
 import java.util.LinkedList;
 import java.util.Queue;
 
-@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.SMITHING, name = "[P-SPX] Blast Furnace", desc = "")
+@ScriptMeta(developer = "Sphiinx", category = ScriptCategory.SMITHING, name = "[P-SPX] Blast Furnace", desc = "[P-SPX] Blast Furnace")
 public class Main extends SPXScript {
 
 

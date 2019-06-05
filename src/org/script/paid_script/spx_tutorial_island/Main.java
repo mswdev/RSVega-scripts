@@ -1,6 +1,7 @@
 package org.script.paid_script.spx_tutorial_island;
 
 import org.api.script.SPXScript;
+import org.api.script.SPXScriptUtil;
 import org.api.script.framework.mission.Mission;
 import org.api.script.impl.mission.tutorial_island_mission.TutorialIslandMission;
 import org.api.script.impl.mission.tutorial_island_mission.data.args.Args;
@@ -8,7 +9,6 @@ import org.rspeer.runetek.event.listeners.LoginResponseListener;
 import org.rspeer.runetek.event.types.LoginResponseEvent;
 import org.rspeer.script.ScriptCategory;
 import org.rspeer.script.ScriptMeta;
-import org.rspeer.script.events.LoginScreen;
 import org.rspeer.ui.Log;
 
 import java.io.File;
@@ -28,13 +28,6 @@ public class Main extends SPXScript implements LoginResponseListener {
     public final Args args = new Args();
 
     @Override
-    public void onStart() {
-        removeBlockingEvent(LoginScreen.class);
-        addBlockingEvent(new BlockLoginEvent(this));
-        super.onStart();
-    }
-
-    @Override
     public Object getArguments() {
         return args;
     }
@@ -51,7 +44,7 @@ public class Main extends SPXScript implements LoginResponseListener {
             missions.add(new TutorialIslandMission(this, args, accountData, false));
         }
 
-        final Path proxyPath = Paths.get(scriptDataPath + File.separator + args.proxyList);
+        final Path proxyPath = Paths.get(SPXScriptUtil.getScriptDataPath(getMeta().name()) + File.separator + args.proxyList);
         if (proxyPath.toFile().exists()) {
             try (Stream<String> lines = Files.lines(proxyPath)) {
                 lines.filter(line -> line.contains(delimiter))
@@ -79,7 +72,7 @@ public class Main extends SPXScript implements LoginResponseListener {
             }
         }
 
-        final Path accountList = Paths.get(scriptDataPath + File.separator + args.accountList);
+        final Path accountList = Paths.get(SPXScriptUtil.getScriptDataPath(getMeta().name()) + File.separator + args.accountList);
         if (accountList.toFile().exists()) {
             try (Stream<String> lines = Files.lines(accountList)) {
                 lines.filter(line -> line.contains(delimiter))
