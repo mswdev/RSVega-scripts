@@ -1,0 +1,7 @@
+# Created by .ignore support plugin (hsz.mobi)
+/api/script/impl/mission/account_creation_mission
+/api/script/impl/mission/blast_furnace_mission
+/api/script/impl/mission/fishing_mission
+/api/script/impl/mission/nmz_mission
+/api/script/impl/mission/questing
+/api/script/impl/mission/tutorial_island_mission
