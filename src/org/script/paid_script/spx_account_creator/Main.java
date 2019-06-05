@@ -2,12 +2,12 @@ package org.script.paid_script.spx_account_creator;
 
 import org.api.script.SPXScript;
 import org.api.script.SPXScriptUtil;
+import org.api.script.blocking_event.LoginBlockingEvent;
 import org.api.script.framework.mission.Mission;
 import org.api.script.impl.mission.account_creation_mission.AccountCreationMission;
 import org.api.script.impl.mission.account_creation_mission.data.Args;
 import org.rspeer.script.ScriptCategory;
 import org.rspeer.script.ScriptMeta;
-import org.rspeer.script.events.LoginScreen;
 import org.rspeer.ui.Log;
 
 import java.io.File;
@@ -28,8 +28,8 @@ public class Main extends SPXScript {
 
     @Override
     public void onStart() {
-        removeBlockingEvent(LoginScreen.class);
         super.onStart();
+        removeBlockingEvent(LoginBlockingEvent.class);
     }
 
     @Override
