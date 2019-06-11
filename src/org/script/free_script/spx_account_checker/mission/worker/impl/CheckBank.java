@@ -24,11 +24,6 @@ public class CheckBank extends Worker {
     }
 
     @Override
-    public boolean needsRepeat() {
-        return false;
-    }
-
-    @Override
     public void work() {
         if (Players.getLocal().isMoving())
             return;

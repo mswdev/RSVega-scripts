@@ -14,11 +14,6 @@ public class WithdrawLogs extends Worker {
     }
 
     @Override
-    public boolean needsRepeat() {
-        return false;
-    }
-
-    @Override
     public void work() {
         withdrawLogType.work();
     }

@@ -27,11 +27,6 @@ public class CheckAge extends Worker {
     private final Position hansPosition = new Position(3218, 3228, 0);
 
     @Override
-    public boolean needsRepeat() {
-        return false;
-    }
-
-    @Override
     public void work() {
         if (Players.getLocal().isMoving() || Players.getLocal().getAnimation() != -1)
             return;

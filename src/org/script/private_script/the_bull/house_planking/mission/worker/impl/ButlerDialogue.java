@@ -29,11 +29,6 @@ public class ButlerDialogue extends Worker {
     }
 
     @Override
-    public boolean needsRepeat() {
-        return false;
-    }
-
-    @Override
     public void work() {
         final Npc servant = Npcs.getNearest("Demon butler");
         if (servant == null)

@@ -17,11 +17,6 @@ public class WithdrawLawRune extends Worker {
     }
 
     @Override
-    public boolean needsRepeat() {
-        return false;
-    }
-
-    @Override
     public void work() {
         WITHDRAW_LAW_RUNE.work();
     }

@@ -18,11 +18,6 @@ public class UnnoteLogs extends Worker {
     }
 
     @Override
-    public boolean needsRepeat() {
-        return false;
-    }
-
-    @Override
     public void work() {
         final SceneObject bankChest = SceneObjects.getNearest(a -> a.getName().equals("Bank chest"));
         if (bankChest == null)

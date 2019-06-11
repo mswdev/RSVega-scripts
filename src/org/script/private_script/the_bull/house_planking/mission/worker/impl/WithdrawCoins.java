@@ -14,12 +14,6 @@ public class WithdrawCoins extends Worker {
 
     public WithdrawCoins(HousePlankingMission mission) {
         WITHDRAW_COINS = new WithdrawWorker(mission, COINS, 0);
-        ;
-    }
-
-    @Override
-    public boolean needsRepeat() {
-        return false;
     }
 
     @Override

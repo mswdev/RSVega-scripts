@@ -17,11 +17,6 @@ public class WithdrawEarthRune extends Worker {
     }
 
     @Override
-    public boolean needsRepeat() {
-        return false;
-    }
-
-    @Override
     public void work() {
         WITHDRAW_EARTH_RUNE.work();
     }
