@@ -4,12 +4,6 @@ import org.api.script.framework.worker.Worker;
 
 public class Wait extends Worker {
 
-
-    @Override
-    public boolean needsRepeat() {
-        return false;
-    }
-
     @Override
     public void work() {
     }

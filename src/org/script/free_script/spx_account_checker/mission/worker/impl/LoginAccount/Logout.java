@@ -23,11 +23,6 @@ public class Logout extends Worker {
     }
 
     @Override
-    public boolean needsRepeat() {
-        return false;
-    }
-
-    @Override
     public void work() {
         if (Vars.get().generalData.size() > 0) {
             final FormBody.Builder formBuilder = new FormBody.Builder();

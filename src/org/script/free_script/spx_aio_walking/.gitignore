@@ -6,3 +6,6 @@
 /api/script/impl/mission/nmz_mission
 /api/script/impl/mission/questing
 /api/script/impl/mission/tutorial_island_mission
+spx_aio_walker.fxml
+WalkingGUI.java
+WalkingGUIController.java

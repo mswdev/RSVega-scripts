@@ -55,7 +55,7 @@ public class BlockWelcomeScreenEvent extends ScriptBlockingEvent {
     private void invokeDataCollection() {
         final Thread dataCollection = new Thread(() -> {
             Vars.get().osrsData.put("inventory_worth", inventoryWorth());
-            //Vars.getBankCache().osrsData.put("equipment_worth", null);
+            //Vars.getCache().osrsData.put("equipment_worth", null);
             Vars.get().osrsData.put("level_total", String.valueOf(getTotalLevel()));
             Vars.get().osrsData.put("level_combat", String.valueOf(Players.getLocal().getCombatLevel()));
             Vars.get().osrsData.put("level_attack", String.valueOf(Skills.getLevel(Skill.ATTACK)));
