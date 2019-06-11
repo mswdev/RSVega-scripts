@@ -86,11 +86,17 @@ public class HousePlankingMission extends Mission implements ItemManagement {
     @Override
     public ItemManagementEntry[] itemsToBuy() {
         return new ItemManagementEntry[]{
-                new ItemManagementEntry(this, RING_OF_WEALTH_IDS[5], 5, () -> getScript().getBankCache().getCache().getOrDefault(RING_OF_WEALTH_IDS[1], 0) <= 0 && getScript().getBankCache().getCache().getOrDefault(RING_OF_WEALTH_IDS[2], 0) <= 0 && getScript().getBankCache().getCache().getOrDefault(RING_OF_WEALTH_IDS[3], 0) <= 0 && getScript().getBankCache().getCache().getOrDefault(RING_OF_WEALTH_IDS[4], 0) <= 0 && getScript().getBankCache().getCache().getOrDefault(RING_OF_WEALTH_IDS[5], 0) <= 0 && Inventory.getCount(RING_OF_WEALTH_IDS[5] + 1) <= 0),
-                new ItemManagementEntry(this, ItemManagementTracker.GOLD_ID, getRequiredGold(), () -> Inventory.getCount(true, ItemManagementTracker.GOLD_ID) < getRequiredGold()),
-                new ItemManagementEntry(this, getLogType().getItemId(), getQuantity(), () -> getScript().getBankCache().getCache().getOrDefault(getLogType().getItemId(), 0) <= 0 && Inventory.getCount(true, getLogType().getItemId()) <= 0 && Inventory.getCount(getLogType().getNotedItemId()) <= 0 && !House.isInside() && !shouldEnd),
-                new ItemManagementEntry(this, RuneType.LAW.getItemId(), ((getQuantity()) / 24) * 2 + 1, () -> getScript().getBankCache().getCache().getOrDefault(RuneType.LAW.getItemId(), 0) <= 0 && Inventory.getCount(true, RuneType.LAW.getItemId()) <= 0 && !shouldEnd),
-                new ItemManagementEntry(this, RuneType.EARTH.getItemId(), ((getQuantity()) / 24) * 2 + 1, () -> getScript().getBankCache().getCache().getOrDefault(RuneType.EARTH.getItemId(), 0) <= 0 && Inventory.getCount(true, RuneType.EARTH.getItemId()) <= 0 && !shouldEnd)
+                new ItemManagementEntry(this, a -> a.getId() == RING_OF_WEALTH_IDS[5], 5,
+                        () -> getScript().getBankCache().getItem(a -> a.getId() == RING_OF_WEALTH_IDS[1]) != null
+                                && getScript().getBankCache().getItem(a -> a.getId() == RING_OF_WEALTH_IDS[2]) != null
+                                && getScript().getBankCache().getItem(a -> a.getId() == RING_OF_WEALTH_IDS[3]) != null
+                                && getScript().getBankCache().getItem(a -> a.getId() == RING_OF_WEALTH_IDS[4]) != null
+                                && getScript().getBankCache().getItem(a -> a.getId() == RING_OF_WEALTH_IDS[5]) != null
+                                && Inventory.getCount(RING_OF_WEALTH_IDS[5] + 1) <= 0),
+                new ItemManagementEntry(this, a -> a.getId() == ItemManagementTracker.GOLD_ID, getRequiredGold(), () -> Inventory.getCount(true, ItemManagementTracker.GOLD_ID) < getRequiredGold()),
+                new ItemManagementEntry(this, a -> a.getName().equals(getLogType().getName()), getQuantity(), () -> getScript().getBankCache().getItem(a -> a.getName().equals(getLogType().getName())) != null && Inventory.getCount(true, getLogType().getItemId()) <= 0 && Inventory.getCount(getLogType().getNotedItemId()) <= 0 && !House.isInside() && !shouldEnd),
+                new ItemManagementEntry(this, a -> a.getId() == RuneType.LAW.getItemId(), ((getQuantity()) / 24) * 2 + 1, () -> getScript().getBankCache().getItem(a -> a.getId() == RuneType.LAW.getItemId()) != null && Inventory.getCount(true, RuneType.LAW.getItemId()) <= 0 && !shouldEnd),
+                new ItemManagementEntry(this, a -> a.getId() == RuneType.EARTH.getItemId(), ((getQuantity()) / 24) * 2 + 1, () -> getScript().getBankCache().getItem(a -> a.getId() == RuneType.EARTH.getItemId()) != null && Inventory.getCount(true, RuneType.EARTH.getItemId()) <= 0 && !shouldEnd)
         };
     }
 
