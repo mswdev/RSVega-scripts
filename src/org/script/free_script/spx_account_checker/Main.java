@@ -2,7 +2,6 @@ package org.script.free_script.spx_account_checker;
 
 import okhttp3.FormBody;
 import okhttp3.RequestBody;
-import org.api.client.screenshot.Screenshot;
 import org.api.script.SPXScript;
 import org.api.script.framework.mission.Mission;
 import org.rspeer.runetek.api.Game;
@@ -61,8 +60,6 @@ public class Main extends SPXScript implements LoginResponseListener, GameStateL
     public void notify(LoginResponseEvent loginResponseEvent) {
         Log.severe("[ACCOUNT CHECKER]: Login Failed");
         if (loginResponseEvent.getResponse() != null && (loginResponseEvent.getResponse() != LoginResponseEvent.Response.ACCOUNT_DISABLED && loginResponseEvent.getResponse() != LoginResponseEvent.Response.ACCOUNT_LOCKED && loginResponseEvent.getResponse() != LoginResponseEvent.Response.ENTER_AUTH && loginResponseEvent.getResponse() != LoginResponseEvent.Response.UNSUCCESSFUL_ACCOUNT_LOGIN_ATTEMPT)) {
-            Log.severe("UNKNOWN RESPONSE TYPE, TAKING PICTURE AND STOPPING SCRIPT");
-            Screenshot.add("Unknown Response Type");
             setStopping(true);
         }
 

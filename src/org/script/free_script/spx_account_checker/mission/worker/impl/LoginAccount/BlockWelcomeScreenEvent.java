@@ -21,7 +21,7 @@ import java.util.Date;
 
 public class BlockWelcomeScreenEvent extends ScriptBlockingEvent {
 
-    private final static int COINS_ID = 995;
+    private static final int COINS_ID = 995;
     private final WelcomeScreen welcomeScreen;
 
     public BlockWelcomeScreenEvent(Script ctx) {
