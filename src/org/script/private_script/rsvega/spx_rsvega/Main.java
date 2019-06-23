@@ -9,6 +9,7 @@ import org.api.script.impl.mission.questing.rune_mysteries_mission.RuneMysteries
 import org.api.script.impl.mission.questing.sheep_shearer_mission.SheepShearerMission;
 import org.api.script.impl.mission.tutorial_island_mission.TutorialIslandMission;
 import org.api.script.impl.mission.tutorial_island_mission.data.args.Args;
+import org.rspeer.runetek.api.component.Dialog;
 import org.rspeer.script.ScriptCategory;
 import org.rspeer.script.ScriptMeta;
 
